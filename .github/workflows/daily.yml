@@ -1,0 +1,47 @@
+name: Daily Paper Digest
+
+on:
+  schedule:
+    # 23:00 UTC = 07:00 Beijing time (UTC+8)
+    - cron: "0 23 * * *"
+  workflow_dispatch:  # Allow manual trigger from GitHub Actions UI
+
+permissions:
+  contents: write   # Required to push docs/ and data/seen_papers.json updates
+
+jobs:
+  daily-paper:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history so git push works correctly
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run DailyPaper pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
+          SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
+        run: python scripts/main.py
+
+      - name: Commit and push updated docs + seen_papers
+        run: |
+          git config user.name "DailyPaper Bot"
+          git config user.email "actions@github.com"
+          git add docs/ data/
+          git diff --staged --quiet || git commit -m "chore: daily digest $(TZ='Asia/Shanghai' date '+%Y-%m-%d') [skip ci]"
+          git push

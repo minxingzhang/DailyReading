@@ -10,6 +10,7 @@ from scripts.render_html import (
     write_daily_page, write_index_page,
 )
 from scripts.send_email import send_digest_email
+from scripts.seen_papers import load_seen_ids, save_seen_ids, filter_new_papers, mark_papers_as_seen
 
 
 def load_config(config_path: str = "config.yaml") -> dict:
@@ -25,18 +26,32 @@ def run_pipeline(
     email_recipients: list,
     base_url: str,
     config_path: str = "config.yaml",
+    seen_papers_path: str = None,
 ) -> None:
     config = load_config(config_path)
     client = Anthropic(api_key=anthropic_api_key)
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # Use Beijing date (UTC+8) for display and dedup key
+    from datetime import timedelta
+    today = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d")
 
-    print(f"[DailyPaper] Starting pipeline for {today}")
+    if seen_papers_path is None:
+        seen_papers_path = os.path.join(
+            os.path.dirname(os.path.abspath(config_path)), "data", "seen_papers.json"
+        )
+
+    print(f"[DailyPaper] Starting pipeline for {today} (Beijing)")
+
+    # Load seen paper IDs once — O(1) lookups for all subsequent checks
+    seen_ids = load_seen_ids(seen_papers_path)
+    print(f"  Loaded {len(seen_ids)} previously seen paper IDs")
 
     print("Fetching HuggingFace daily papers...")
     hf_papers = fetch_hf_papers()
     print(f"  Found {len(hf_papers)} HF papers")
 
     categories_data = []
+    all_selected_papers = []  # accumulate for marking as seen after pipeline succeeds
+
     for cat_id, cat_cfg in config["categories"].items():
         print(f"\nProcessing: {cat_cfg['name_en']}")
 
@@ -53,12 +68,16 @@ def run_pipeline(
         ]
 
         candidates = merge_and_deduplicate([arxiv_papers, hf_relevant])
+
+        # Remove papers already pushed in previous runs
+        candidates = filter_new_papers(candidates, seen_ids)
+        print(f"  After dedup: {len(candidates)} new candidates")
+
         max_cands = config["llm"]["max_candidates_per_category"]
         candidates = candidates[:max_cands]
-        print(f"  Total candidates: {len(candidates)}")
 
         if not candidates:
-            print(f"  WARNING: No candidates found for {cat_cfg['name_en']}")
+            print(f"  WARNING: No new candidates for {cat_cfg['name_en']} (all already seen)")
             categories_data.append({
                 "id": cat_id,
                 "name_zh": cat_cfg["name_zh"],
@@ -81,6 +100,7 @@ def run_pipeline(
             print(f"    Analyzing: {sp.paper.title[:60]}...")
             analysis = generate_analysis(sp, client)
             analyses.append(analysis)
+            all_selected_papers.append(sp.paper)
 
         categories_data.append({
             "id": cat_id,
@@ -95,10 +115,12 @@ def run_pipeline(
     write_daily_page(today, daily_html, docs_dir)
     print(f"\nWrote: docs/{today}/index.html")
 
-    # Update index with archive
+    # Update index with archive (exclude non-date dirs like 'plans')
     archive_dates = sorted(
         [d for d in os.listdir(docs_dir)
-         if os.path.isdir(os.path.join(docs_dir, d)) and not d.startswith(".")],
+         if os.path.isdir(os.path.join(docs_dir, d))
+         and not d.startswith(".")
+         and len(d) == 10 and d[4] == "-"],  # YYYY-MM-DD format only
         reverse=True,
     )
     index_html = render_index_page(archive_dates, latest_date=today, base_url=base_url)
@@ -121,6 +143,11 @@ def run_pipeline(
         print(f"Email sent to: {email_recipients}")
     else:
         print("No email recipients configured, skipping email.")
+
+    # Persist seen paper IDs only after the pipeline succeeds
+    updated_seen = mark_papers_as_seen(all_selected_papers, seen_ids, today)
+    save_seen_ids(updated_seen, seen_papers_path)
+    print(f"Saved {len(updated_seen)} seen IDs to {seen_papers_path}")
 
     print("\n[DailyPaper] Pipeline complete!")
 
