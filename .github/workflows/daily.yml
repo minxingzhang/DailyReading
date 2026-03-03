@@ -34,7 +34,7 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
           SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
-        run: python scripts/main.py
+        run: python -m scripts.main
 
       - name: Commit and push updated docs + seen_papers
         run: |
