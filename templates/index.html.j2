@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>DailyPaper - 每日论文精选</title>
+  {% if latest_date %}<meta http-equiv="refresh" content="0; url={{ base_url }}/{{ latest_date }}/">{% endif %}
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 700px; margin: 4rem auto; padding: 0 1rem; color: #1e293b; }
+    h1 { color: #2563eb; } a { color: #2563eb; } li { margin: 0.4rem 0; }
+  </style>
+</head>
+<body>
+  <h1>📄 DailyPaper</h1>
+  <p>每日自动精选 LLM 安全 / 具身智能安全 / LLM 动态 / 具身智能动态 最值得读的论文。</p>
+  {% if latest_date %}<p>正在跳转到最新一期: <a href="{{ base_url }}/{{ latest_date }}/">{{ latest_date }}</a></p>{% endif %}
+  <h2>历史归档</h2>
+  <ul>{% for date in archive_dates %}<li><a href="{{ base_url }}/{{ date }}/">{{ date }}</a></li>{% endfor %}</ul>
+</body>
+</html>

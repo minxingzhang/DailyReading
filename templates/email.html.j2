@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><style>
+  body { font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #1e293b; }
+  .header { background: #2563eb; color: white; padding: 1.25rem 1.5rem; border-radius: 8px 8px 0 0; }
+  .header h1 { font-size: 1.2rem; margin: 0; }
+  .body { padding: 1.25rem 1.5rem; background: #f8fafc; }
+  .category { margin-bottom: 1.5rem; }
+  .category h2 { font-size: 1rem; color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 0.3rem; margin-bottom: 0.75rem; }
+  .paper { background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.9rem; margin-bottom: 0.6rem; }
+  .paper-title { font-weight: 600; font-size: 0.95rem; }
+  .paper-title-en { color: #64748b; font-size: 0.85rem; margin-bottom: 0.4rem; }
+  .paper-meta { font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; }
+  .summary { font-size: 0.9rem; line-height: 1.5; }
+  .read-more { display: inline-block; margin-top: 0.5rem; color: #2563eb; font-size: 0.82rem; }
+  .footer { padding: 1rem 1.5rem; text-align: center; color: #94a3b8; font-size: 0.82rem; background: white; border-radius: 0 0 8px 8px; border-top: 1px solid #e2e8f0; }
+</style></head>
+<body>
+  <div class="header"><h1>📄 DailyPaper · {{ date }} 每日论文精选</h1></div>
+  <div class="body">
+    {% for cat in categories %}
+    <div class="category">
+      <h2>{{ cat.name_zh }} / {{ cat.name_en }}</h2>
+      {% for analysis in cat.analyses %}
+      {% set paper = analysis.scored_paper.paper %}
+      <div class="paper">
+        <div class="paper-title">{{ paper.title | truncate(80) }}</div>
+        <div class="paper-meta">{{ paper.authors[:2] | join(", ") }}{% if paper.authors | length > 2 %} et al.{% endif %}</div>
+        <div class="summary">{{ analysis.tldr_zh }}</div>
+        <a class="read-more" href="{{ full_url }}#{{ cat.id }}">查看完整分析 →</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="footer">
+    <a href="{{ full_url }}">查看今日完整网页版</a> · 由 DailyPaper 自动生成
+  </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ date }} - {{ site_title }}</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+    .category { margin-bottom: 3rem; }
+    .category-title { font-size: 1.3rem; font-weight: 700; border-left: 4px solid var(--accent); padding-left: 0.75rem; margin-bottom: 1.5rem; }
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    .score-badge { display: inline-block; background: #dcfce7; color: #166534; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.8rem; font-weight: 600; margin-left: 0.5rem; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>{{ site_title }}</h1>
+    <div class="date">{{ date }}  |  共 {{ total_papers }} 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="{{ base_url }}/">首页</a>
+    <a href="{{ base_url }}/archive/">归档</a>
+    {% for cat in categories %}<a href="#{{ cat.id }}">{{ cat.name_zh }}</a>{% endfor %}
+  </nav>
+  <div class="container">
+    {% for cat in categories %}
+    <div class="category" id="{{ cat.id }}">
+      <h2 class="category-title">{{ cat.name_zh }} <span style="font-weight:400;font-size:1rem;color:#64748b">/ {{ cat.name_en }}</span></h2>
+      {% for analysis in cat.analyses %}
+      {% set paper = analysis.scored_paper.paper %}
+      <div class="paper-card">
+        <div class="paper-title">{{ analysis.tldr_zh | truncate(60, True, "...") }}</div>
+        <div class="paper-title-en">{{ paper.title }}</div>
+        <div class="paper-meta">
+          {{ paper.authors[:3] | join(", ") }}{% if paper.authors | length > 3 %} et al.{% endif %}
+          {% if paper.hf_upvotes > 0 %} · ⬆ {{ paper.hf_upvotes }} on HF{% endif %}
+          <span class="score-badge">评分 {{ "%.1f" | format(analysis.scored_paper.score) }}</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>{{ analysis.tldr_zh }}</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">{{ analysis.tldr_en }}</div>
+        </div>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">{{ analysis.research_question_zh }}</div>
+            <div class="en">{{ analysis.research_question_en }}</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">{{ analysis.prior_work_zh }}</div>
+            <div class="en">{{ analysis.prior_work_en }}</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">{{ analysis.solution_zh }}</div>
+            <div class="en">{{ analysis.solution_en }}</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">{{ analysis.results_zh }}</div>
+            <div class="en">{{ analysis.results_en }}</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list">{% for pt in analysis.discussion_zh %}<li>{{ pt }}</li>{% endfor %}</ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list">{% for pt in analysis.discussion_en %}<li>{{ pt }}</li>{% endfor %}</ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="{{ paper.url }}" target="_blank">查看原文 →</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · {{ date }}</footer>
+</body>
+</html>
