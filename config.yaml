@@ -1,0 +1,74 @@
+schedule:
+  cron: "0 1 * * *"
+  lookback_hours: 48
+
+categories:
+  llm_security:
+    name_zh: "LLM 安全"
+    name_en: "LLM Security"
+    papers_per_day: 3
+    type: worthwhile
+    arxiv_categories: ["cs.CR", "cs.AI", "cs.LG"]
+    keywords:
+      - "LLM safety"
+      - "LLM security"
+      - "jailbreak"
+      - "prompt injection"
+      - "adversarial attack LLM"
+      - "red-teaming language model"
+      - "backdoor LLM"
+
+  embodied_security:
+    name_zh: "具身智能安全"
+    name_en: "Embodied Intelligence Security"
+    papers_per_day: 3
+    type: worthwhile
+    arxiv_categories: ["cs.RO", "cs.AI", "cs.CR"]
+    keywords:
+      - "embodied AI safety"
+      - "robot safety"
+      - "physical adversarial attack"
+      - "embodied agent security"
+      - "robot manipulation security"
+
+  llm_trends:
+    name_zh: "LLM 发展动态"
+    name_en: "LLM Development Trends"
+    papers_per_day: 3
+    type: trending
+    arxiv_categories: ["cs.AI", "cs.CL", "cs.LG"]
+    keywords:
+      - "large language model"
+      - "reasoning LLM"
+      - "multimodal LLM"
+      - "language model alignment"
+      - "chain-of-thought"
+      - "foundation model"
+
+  embodied_trends:
+    name_zh: "具身智能发展动态"
+    name_en: "Embodied Intelligence Development Trends"
+    papers_per_day: 3
+    type: trending
+    arxiv_categories: ["cs.RO", "cs.AI"]
+    keywords:
+      - "embodied intelligence"
+      - "embodied AI"
+      - "robot learning"
+      - "humanoid robot"
+      - "manipulation policy"
+      - "world model robotics"
+
+llm:
+  scoring_model: "claude-haiku-4-5-20251001"
+  analysis_model: "claude-sonnet-4-6"
+  max_candidates_per_category: 30
+
+email:
+  sender_name: "DailyPaper Bot"
+  subject_prefix: "[DailyPaper]"
+  recipients: []  # Populated from GITHUB SECRET: EMAIL_RECIPIENTS (comma-separated)
+
+site:
+  base_url: ""  # e.g. https://username.github.io/dailyPaper
+  title: "DailyPaper - 每日论文精选"
