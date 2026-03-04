@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-05 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-05  |  共 8 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">JailNewsBench是首个多语言、多地区基准（涵盖34个地区、22种语言、约30万条实例），用于评估LLM在...</div>
+        <div class="paper-title-en">JailNewsBench: Multi-Lingual and Regional Benchmark for Fake News Generation under Jailbreak Attacks</div>
+        <div class="paper-meta">
+          <span>Masahiro Kaneko, Ayana Niwa, Timothy Baldwin</span>
+          <span class="badge badge-date">2026-03-01</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>JailNewsBench是首个多语言、多地区基准（涵盖34个地区、22种语言、约30万条实例），用于评估LLM在越狱攻击下生成虚假新闻的鲁棒性。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">JailNewsBench is the first multilingual, multi-regional benchmark (34 regions, 22 languages, ~300k instances) for evaluating LLM robustness against jailbreak-induced fake news generation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">该基准系统揭示了越狱攻击如何在不同语言和地区背景下将LLM武器化以生成虚假新闻，最高攻击成功率达86%，警示了现实部署中的紧迫风险。JailNewsBench为全球研究者提供了标准化的大规模安全评测工具。</div>
+            <div class="en">This benchmark fills a critical gap by systematically exposing how jailbreak attacks can weaponize LLMs for fake news generation across diverse linguistic and regional contexts. The finding that attack success rates reach 86% signals urgent risk for real-world deployment. JailNewsBench provides researchers and practitioners with a standardized, large-scale tool to benchmark and improve LLM safety guardrails globally.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLM能否通过越狱攻击在多语言、多地区背景下生成具有欺骗性的虚假新闻？现有安全评测多以英语为中心且地区覆盖有限，而虚假新闻具有强烈的地域和文化特异性，亟需跨语言评估。</div>
+            <div class="en">Can LLMs be manipulated via jailbreak attacks to generate convincing fake news across multiple languages and regions? This matters because fake news is deeply context-dependent—shaped by local politics, culture, and language—yet existing LLM safety evaluations are predominantly English-centric and regionally narrow.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有虚假新闻检测与LLM安全基准大多为单语（以英语为主），无法反映特定地区的政治和文化背景。此前的越狱评测聚焦于一般有害内容，而非虚假新闻生成这一结构化威胁，缺乏系统性的多语言越狱评估框架。</div>
+            <div class="en">Existing fake news detection and LLM safety benchmarks are largely monolingual (predominantly English) and fail to capture region-specific political and cultural nuances. Prior jailbreak evaluations focus on general harmful content rather than the specific, structured threat of fake news generation. No benchmark before JailNewsBench systematically combines multilingual coverage, regional context, and jailbreak attack diversity for this task.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">JailNewsBench覆盖34个地区、22种语言，对9个LLM施加5种越狱攻击策略，采用LLM-as-a-Judge方法从8个细粒度子指标（如事实可信度、地区特异性、语言流畅性）评估输出，数据集共约30万条实例，支持跨模型、跨语言和跨攻击类型的统计比较。</div>
+            <div class="en">JailNewsBench constructs a benchmark spanning 34 regions and 22 languages, applying 5 distinct jailbreak attack strategies to 9 LLMs. It evaluates outputs using LLM-as-a-Judge across 8 fine-grained sub-metrics (e.g., factual plausibility, regional specificity, linguistic fluency). The dataset totals approximately 300,000 instances, enabling statistically robust comparisons across models, languages, and attack types.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在9个LLM的评测中，最高攻击成功率（ASR）达86%，表明现有安全机制极易被越狱攻击突破。不同语言和地区之间的表现差异显著，低资源语言的防护能力尤为薄弱，揭示了多语言安全对齐中的系统性盲区。</div>
+            <div class="en">Across 9 evaluated LLMs, the maximum attack success rate (ASR) reached 86%, indicating that current safety guardrails are highly vulnerable to jailbreak-induced fake news generation. Performance varied significantly across languages and regions, suggesting that safety mechanisms are unevenly distributed—likely weaker in lower-resource languages. The scale and diversity of the benchmark expose systematic blind spots in existing multilingual LLM safety alignment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>基准覆盖偏差：尽管涵盖34个地区和22种语言，但低资源语言（如撒哈拉以南非洲语言）仍可能代表性不足，而这些地区恰是虚假新闻风险最高、LLM训练数据最匮乏的地方。</li><li>LLM裁判可靠性：使用LLM评估LLM输出存在循环性问题，裁判模型可能与被测模型共享同样的盲区，在低资源语言场景下可能低估真实攻击成功率。</li><li>攻击泛化性：5种越狱攻击未必覆盖自适应或新兴攻击策略，随着模型商修补已知漏洞，攻击者会开发新方法，若无持续更新机制，基准的长期相关性将受影响。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Benchmark coverage bias: While 34 regions and 22 languages is a significant advance, the benchmark may still underrepresent the most vulnerable low-resource languages (e.g., Sub-Saharan African languages), where fake news risks are high but training data for both LLMs and judges is scarce.</li><li>LLM-as-a-Judge reliability: Using LLMs to evaluate LLM outputs introduces circularity—judge models may share the same blind spots as the evaluated models, particularly for languages outside their training distribution, potentially underreporting true ASR in low-resource settings.</li><li>Attack generalizability: The 5 jailbreak attacks tested may not cover adaptive or evolving attack strategies; as LLM providers patch known exploits, adversaries develop new methods, so benchmark relevance may degrade without a living update mechanism.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01291v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">CC-BOS利用仿生果蝇优化算法，在八个策略维度上自动生成文言文越狱提示，借助文言文的语言隐晦性实现高效的黑盒攻击。</div>
+        <div class="paper-title-en">Obscure but Effective: Classical Chinese Jailbreak Prompt Optimization via Bio-Inspired Search</div>
+        <div class="paper-meta">
+          <span>Xun Huang, Simeng Qin, Xiaoshuang Jia et al.</span>
+          <span class="badge badge-date">2026-02-26</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>CC-BOS利用仿生果蝇优化算法，在八个策略维度上自动生成文言文越狱提示，借助文言文的语言隐晦性实现高效的黑盒攻击。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CC-BOS uses bio-inspired fruit fly optimization to auto-generate classical Chinese jailbreak prompts across 8 policy dimensions, achieving effective black-box attacks on LLMs by exploiting classical Chinese&#39;s linguistic obscurity.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了一个被忽视的攻击面：文言文作为低资源语言向量可绕过LLM安全过滤器。CC-BOS框架降低了黑盒对抗提示生成的门槛，表明多语言和古典语言安全覆盖在LLM对齐研究中亟待加强。</div>
+            <div class="en">This paper reveals a concrete, underexplored attack surface: classical Chinese as a low-resource language vector that evades modern LLM safety filters. The automated CC-BOS framework lowers the barrier for adversarial prompt generation in black-box settings, signaling that multilingual and classical-language safety coverage is urgently needed in LLM alignment research.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当提示语言为文言文这一低资源且语义晦涩的语言时，LLM是否存在可利用的安全漏洞？作者认为安全训练主要集中于现代高资源语言，使文言文成为越狱攻击的有效盲区。</div>
+            <div class="en">Do LLMs exhibit exploitable safety vulnerabilities when prompted in classical Chinese, a low-resource and linguistically obscure language? The authors argue that safety training is disproportionately skewed toward modern, high-resource languages, leaving classical Chinese an effective blind spot for jailbreak attacks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有越狱研究主要集中于现代英文提示（如GCG、AutoDAN）或有限的现代多语言攻击，未探索低资源或古典语言场景，且人工构造提示难以实现系统化的黑盒自动对抗优化。</div>
+            <div class="en">Existing jailbreak research focuses primarily on modern English prompts (e.g., GCG, AutoDAN) or a limited set of modern multilingual attacks. These approaches fail to explore low-resource or classical language contexts, and manual prompt crafting does not scale to automated, systematic adversarial optimization in black-box settings.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">CC-BOS将对抗提示编码为角色、行为、机制、隐喻、表达、知识、触发模式和上下文八个策略维度，并利用多维果蝇优化算法（FOA）进行迭代优化，涵盖嗅觉搜索（随机探索）、视觉搜索（邻域利用）和柯西变异（跳出局部最优）三个阶段。整个框架仅依赖模型输出作为反馈，无需访问模型内部参数。</div>
+            <div class="en">CC-BOS encodes adversarial prompts into 8 policy dimensions: role, behavior, mechanism, metaphor, expression, knowledge, trigger pattern, and context. It optimizes these dimensions using a multi-dimensional fruit fly optimization algorithm (FOA), iterating through smell search (random exploration), visual search (neighbor exploitation), and Cauchy mutation (escaping local optima). The framework operates entirely in a black-box setting, requiring only model output scores as feedback. This bio-inspired search strategy enables efficient traversal of the classical Chinese prompt space without access to model internals.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">CC-BOS在黑盒设置下对多个商业和开源LLM实现了可量化的攻击成功率，在有害内容诱导基准上优于基线越狱方法；文言文编码能持续绕过拦截现代中文或英文等效提示的内容过滤器，但具体数值因摘要不完整未能完全披露。</div>
+            <div class="en">CC-BOS demonstrates measurable attack success rates against multiple commercial and open-source LLMs in black-box settings, outperforming baseline jailbreak methods on harmful content elicitation benchmarks. The classical Chinese encoding consistently bypasses content filters that block equivalent modern Chinese or English prompts, though specific numerical results are not fully disclosed in the available abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>语言特定安全盲区：文言文在安全对齐数据集中的稀缺性很可能是其作为攻击向量有效的根本原因，提示LLM开发者须审查所有语言变体（包括古典语言）的安全覆盖情况。</li><li>仿生优化的可扩展性：将FOA用于提示优化具有新颖性，但8个策略维度的选择似乎依赖经验，未来研究应探索不同维度组合或其他进化算法（如遗传算法、PSO）能否提升攻击效率与迁移性。</li><li>伦理与双重用途风险：自动化文言文越狱生成降低了滥用门槛；论文写作不完整且社区关注度极低，引发对负责任披露实践的质疑，以及是否提供了充分防御对策的担忧。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Language-specific safety gaps: Classical Chinese&#39;s scarcity in safety alignment datasets likely explains its effectiveness as an attack vector — this suggests LLM developers must audit safety coverage across all supported language registers, including archaic ones.</li><li>Scalability of bio-inspired optimization: Using FOA for prompt optimization is novel, but the choice of exactly 8 policy dimensions appears heuristic; future work should investigate whether different dimension sets or other evolutionary algorithms (e.g., genetic algorithms, PSO) yield better attack efficiency or transferability.</li><li>Ethical and dual-use concerns: Automating jailbreak generation in classical Chinese lowers the practical barrier for misuse; the paper&#39;s incomplete writing and minimal community reception raise questions about responsible disclosure practices and whether sufficient defensive countermeasures are proposed alongside the attack framework.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2602.22983v2" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文将对大语言模型的&#34;越狱&#34;重新定性为一种用户主导的非暴力策略，用于揭露和瓦解社交媒体上由AI驱动的政治操控机器人。</div>
+        <div class="paper-title-en">Ignore All Previous Instructions: Jailbreaking as a de-escalatory peace building practise to resist LLM social media bots</div>
+        <div class="paper-meta">
+          <span>Huw Day, Adrianna Jezierska, Jessica Woodgate</span>
+          <span class="badge badge-date">2026-03-02</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文将对大语言模型的&#34;越狱&#34;重新定性为一种用户主导的非暴力策略，用于揭露和瓦解社交媒体上由AI驱动的政治操控机器人。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper reframes &#34;jailbreaking&#34; of LLMs as a user-driven, non-violent tactic to expose and neutralize AI-powered political manipulation bots on social media.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM驱动的机器人大规模扭曲政治话语，本文提出了一种绕过平台审核依赖的公民层面对策，将AI安全研究与和平建设文献相结合，为技术人员与冲突研究者开辟了跨学科对话空间。</div>
+            <div class="en">As LLM-powered bots increasingly distort political discourse at scale, this paper offers a novel citizen-level countermeasure that bypasses dependence on platform moderation. It connects AI safety research with peacebuilding literature, opening an interdisciplinary dialogue between technologists and conflict scholars.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">普通社交媒体用户如何主动对抗加剧政治冲突、传播虚假信息的LLM机器人？本文认为平台主导的审核机制不足，用户发起的越狱行为是一种尚未充分研究的基层抵制策略。</div>
+            <div class="en">How can ordinary social media users actively counter LLM-powered bots that escalate political conflict and spread disinformation? The paper argues that platform-centric moderation is insufficient and that user-initiated jailbreaking represents an underexplored grassroots resistance strategy.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有关于AI驱动虚假信息的研究主要聚焦于平台层面的干预，如自动检测系统和内容审核政策。这些自上而下的方法使终端用户处于被动地位，且平台的商业利益可能与严格执法相冲突。</div>
+            <div class="en">Existing literature on AI-driven disinformation focuses predominantly on platform-level interventions such as automated detection systems and content moderation policies. These top-down approaches leave end users passive and dependent on platforms whose commercial incentives may conflict with rigorous enforcement.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者提出将用户主导的越狱行为——即构造绕过LLM安全护栏以揭示账户自动化本质的提示词——视为一种去升级和平建设实践。借鉴冲突转化理论，他们将其定性为非暴力干扰手段，通过暴露机器人行为来削弱虚假叙事的传播力。论文还构建了概念分类框架，将角色扮演提示、指令注入等越狱技术映射至其去升级功能。</div>
+            <div class="en">The authors propose treating user-led jailbreaking — crafting prompts that bypass LLM safety guardrails to reveal a bot&#39;s automated nature — as a de-escalatory peacebuilding practice. Drawing on conflict transformation theory, they frame this as non-violent disruption: exposing bot behavior discredits misleading narratives and reduces their social spread. The paper offers a conceptual taxonomy mapping jailbreaking techniques (e.g., role-play prompts, instruction injection like &#34;Ignore all previous instructions&#34;) to their de-escalatory functions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">本文以概念性论证为主，未提供实证实验或量化结果。论文未报告任何用户研究、真实机器人交互案例或可量化的去升级效果来验证所提框架。</div>
+            <div class="en">The paper is primarily conceptual and does not present empirical experiments or quantitative results. No user studies, real-world bot interactions, or measurable de-escalation outcomes are reported to validate the proposed framework.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>最核心的缺陷是缺乏实证基础：没有对真实越狱交互的受控研究，关于其能降低政治冲突升级的主张仍属推测，尚未得到验证。</li><li>该方法存在伦理与安全风险——将越狱行为常态化，可能无意中向用户传授可被滥用于有害目的（而非仅用于识别机器人）的技术。</li><li>论文未涉及平台规则与法律层面的阻力：对LLM驱动账户实施越狱可能违反服务条款甚至计算机欺诈法规，而论文对这些现实与法律约束未作回应。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Lack of empirical grounding is the central weakness: without controlled studies of actual jailbreaking interactions, the claim that this reduces political conflict escalation remains speculative and unverified.</li><li>The approach carries ethical and safety risks — normalizing jailbreaking could inadvertently teach users techniques that also enable misuse of LLMs for harmful purposes beyond bot detection.</li><li>Platform and legal pushback is unaddressed: jailbreaking LLM-powered accounts may violate terms of service or even computer fraud statutes, and the paper does not engage with these practical and legal constraints.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01942v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文量化了翻转美国选举所需的对抗样本选票数量，并对六种对抗攻击方式在物理打印场景下进行了基准评测。</div>
+        <div class="paper-title-en">Analyzing Physical Adversarial Example Threats to Machine Learning in Election Systems</div>
+        <div class="paper-meta">
+          <span>Khaleque Md Aashiq Kamal, Surya Eada, Aayushi Verma et al.</span>
+          <span class="badge badge-date">2026-02-28</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文量化了翻转美国选举所需的对抗样本选票数量，并对六种对抗攻击方式在物理打印场景下进行了基准评测。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper quantifies how many physically-printed adversarial ballot images are needed to flip a U.S. election and benchmarks six adversarial attack types against ML ballot classifiers.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文是首批系统分析物理对抗样本对选票分类系统威胁的研究之一，提出的概率框架可帮助选举官员评估真实风险，研究结论可直接指导更鲁棒选票扫描系统的设计。</div>
+            <div class="en">Election integrity is a critical societal concern, and this paper is one of the first to rigorously analyze physical adversarial attacks on ML-based ballot classification at scale (144,000 adversarial examples). The probabilistic framework for estimating attack thresholds provides election officials and ML security researchers with a concrete tool to assess real-world risk. Findings could directly inform the design of more robust ballot scanning systems and adversarial defenses in high-stakes civic infrastructure.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">攻击者能否通过打印对抗样本选票来愚弄ML选票分类器，从而翻转选举结果？本文探讨需要多少张此类选票，以及哪种攻击方式在打印-扫描流程中最有效。</div>
+            <div class="en">Can an attacker flip a U.S. election by physically printing adversarially perturbed ballots that fool ML ballot classifiers? The paper asks how many such ballots are needed and which adversarial attack type survives the print-scan pipeline most effectively.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有研究表明ML选票分类器准确率超过99%，但安全评估多忽视物理对抗威胁；现有对抗样本研究集中于数字扰动，鲜少考察打印-扫描鲁棒性。</div>
+            <div class="en">Prior work demonstrated that ML ballot classifiers can exceed 99% accuracy on standard datasets, but security evaluations largely ignored physical-world adversarial threats. Existing adversarial example research focuses on digital perturbations, with limited study of print-scan robustness in election-critical contexts.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者建立概率框架，将翻转选举所需对抗选票数量建模为候选人胜率与总票数的函数；并对六种攻击算法生成的144,000张对抗样本进行物理打印与扫描实验，评估各攻击在真实降质条件下的存活率。</div>
+            <div class="en">The authors develop a probabilistic framework that models the number of adversarial ballots required to flip an election as a function of candidate win probabilities and total ballots cast. They then physically print and scan 144,000 adversarial examples generated by six attack algorithms: ℓ∞-APGD, ℓ2-APGD, ℓ1-APGD, ℓ0-PGD, ℓ0+ℓ∞-PGD, and ℓ0+σ-map PGD. Each attack&#39;s effectiveness is measured post-print-scan to identify which perturbation type best survives real-world degradation. This combined theoretical and empirical approach provides both a risk quantification tool and an attack comparison benchmark.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明，稀疏型攻击（ℓ0及ℓ0+σ-map PGD）在打印-扫描后保持较高误分类率；概率框架显示，在势均力敌的选举中，少量对抗选票即可能改变结果。</div>
+            <div class="en">Across 144,000 physically realized adversarial examples, certain attack types (particularly sparse ℓ0-based and combined ℓ0+σ-map PGD) retained higher misclassification rates after the print-scan process compared to ℓ∞-norm attacks. The probabilistic framework shows that in close elections, a surprisingly small number of adversarial ballots could be sufficient to alter outcomes, underscoring the practical feasibility of such attacks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>攻击者需物理插入对抗选票，依赖内部访问权限，现实可行性存疑，威胁模型对此讨论不足。</li><li>攻击针对特定分类器评估，对抗样本能否迁移至不同司法管辖区的扫描仪或分类器架构尚不明确。</li><li>论文仅分析攻击有效性，未提出或评估具体防御方案（如对抗训练），从威胁分析到缓解措施的路径尚不完整。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Threat model realism: The attacker must physically print and insert adversarial ballots into real voting pools, which requires insider access or physical infiltration — a significant practical barrier not fully addressed in the threat model.</li><li>Transferability gap: Attacks are evaluated against specific trained classifiers; it is unclear how well these adversarial examples transfer to different ballot scanner models or classifier architectures used across jurisdictions.</li><li>Defense gap: The paper characterizes attack effectiveness but does not propose or evaluate concrete defenses (e.g., adversarial training, certified robustness), leaving the path from threat analysis to mitigation incomplete.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.00481v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Code2Math提出一个多智能体框架，利用代码执行自动将已有数学题演化为更难的变体，用于LLM训练与评估。</div>
+        <div class="paper-title-en">Code2Math: Can Your Code Agent Effectively Evolve Math Problems Through Exploration?</div>
+        <div class="paper-meta">
+          <span>Dadi Guo, Yuejin Xie, Qingyu Liu et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
+          <span class="badge badge-venue">ICML</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Code2Math提出一个多智能体框架，利用代码执行自动将已有数学题演化为更难的变体，用于LLM训练与评估。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Code2Math introduces a multi-agent framework that uses code execution to autonomously evolve existing math problems into harder, structurally distinct variants for LLM training and evaluation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM数学能力逼近IMO水平，高难度训练题稀缺问题日益突出，本文提供了一种可扩展的自动化解决方案。该框架能验证生成题目的可解性和难度提升，具备实际部署价值，同时开辟了代码智能体与数学推理交叉的新研究方向。</div>
+            <div class="en">As LLMs approach IMO-level math, the shortage of sufficiently challenging training problems is a critical bottleneck; this paper offers a scalable, automated solution via code agents. The framework&#39;s ability to validate solvability and difficulty increase makes it practically deployable for synthetic data pipelines. It also opens a new research direction at the intersection of agentic coding and mathematical reasoning.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何自动生成高质量难题以解决前沿LLM训练数据稀缺的问题？随着模型逼近IMO水平，缺乏足够难的题目已成为训练和评估的关键瓶颈。</div>
+            <div class="en">How can we automatically generate challenging, high-quality math problems to address the scarcity of hard training data for frontier LLMs? This matters because state-of-the-art models are approaching IMO-level performance, and the lack of sufficiently difficult problems limits both further training and rigorous evaluation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有数学数据集构建方法依赖人工整理或简单模板增强，难以扩展至IMO难度。基于LLM的改写方法生成的变体缺乏结构新颖性和经过验证的难度提升。此前代码智能体虽具备强推理能力，但未被系统性地应用于带可解性保证的数学题演化。</div>
+            <div class="en">Existing math dataset construction methods rely heavily on human curation or simple template-based augmentation, which do not scale to IMO-level difficulty. LLM-based problem rephrasing approaches tend to produce superficially modified variants that lack structural novelty or verified difficulty increases. Prior code agents have shown strong reasoning abilities but have not been systematically applied to math problem evolution with solvability guarantees.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">Code2Math构建多智能体框架，代码智能体迭代变换题目的参数、约束与结构，以代码执行作为沙箱验证每个生成变体。专用验证模块检查两个关键属性：可解性（新题有验证解）和难度提升（新题经实验证明更难）。框架利用测试时探索，允许智能体尝试多条演化路径后再输出有效结果。</div>
+            <div class="en">Code2Math builds a multi-agent framework where a code agent iteratively mutates math problems—modifying parameters, constraints, and structure—using code execution as a sandbox to test and validate each generated variant. A dedicated validation module checks two key properties: solvability (the new problem has a verified solution) and increased difficulty (the new problem is harder than the original, measured empirically). The framework leverages test-time exploration, allowing agents to attempt multiple evolution trajectories before committing to a valid output. This combination of agentic code generation and automated quality control distinguishes it from prior augmentation approaches.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在充足的测试时探索下，代码智能体成功合成了可解且与原题结构相异的新题，并经实验验证难度有所提升。实验表明，更长的探索预算与更高质量的演化题目正相关，体现了推理时算力扩展的重要性。</div>
+            <div class="en">Given sufficient test-time exploration, code agents successfully synthesize new math problems that are both solvable and structurally distinct from the originals, with empirically verified difficulty increases. The experiments confirm that longer exploration budgets correlate with higher-quality evolved problems, highlighting the importance of compute scaling at inference time. Specific quantitative metrics on success rate and difficulty gain are reported, demonstrating the framework&#39;s viability as a synthetic data engine.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>难度衡量依赖经验代理指标（如LLM求解率），可能无法反映真正的数学深度——题目变难或源于计算复杂度而非概念创新。</li><li>框架对充足测试时探索的依赖引发了大规模生成训练数据时推理成本过高的实际问题。</li><li>方法在竞赛风格题目上验证，对于难以自动验证可解性的开放式或证明类题目是否适用仍是开放问题。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Difficulty measurement relies on empirical proxies (e.g., LLM solve rates), which may not align with true mathematical depth — problems could be harder due to computational complexity rather than conceptual novelty.</li><li>The framework&#39;s dependence on sufficient test-time exploration raises practical concerns about inference cost, especially at scale for generating large training datasets.</li><li>The approach is validated on existing competition-style problems, leaving open whether code agents can evolve open-ended or proof-based problems where automated solvability verification is much harder.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03202v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Magma通过集合标记（SoM）与轨迹标记（ToM）监督，将视觉语言模型扩展为具备时空智能的多模态基础模型，支持数...</div>
+        <div class="paper-title-en">Magma: A Foundation Model for Multimodal AI Agents</div>
+        <div class="paper-meta">
+          <span>Jianwei Yang, Reuben Tan, Qianhui Wu et al.</span>
+          <span class="badge badge-date">2025-02-18</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Magma通过集合标记（SoM）与轨迹标记（ToM）监督，将视觉语言模型扩展为具备时空智能的多模态基础模型，支持数字界面导航与机器人操控。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Magma is a multimodal foundation model that extends vision-language models with spatial-temporal intelligence using Set-of-Mark (SoM) and Trace-of-Mark (ToM) supervision, enabling both digital UI navigation and physical robot manipulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">Magma是首批在单一框架下统一语言理解与时空行动能力的基础模型之一，对构建通用AI智能体具有重要价值。其跨GUI导航与机器人操控的泛化能力，为多模态异构数据协同训练树立了新标杆。</div>
+            <div class="en">Magma is one of the first foundation models to unify verbal and spatial-temporal intelligence under a single framework, bridging the gap between passive VL understanding and active agentic behavior. Its ability to generalize across GUI navigation and robotic manipulation from a single model has broad practical implications for building general-purpose AI agents. This work sets a new benchmark for how heterogeneous data (images, videos, robotics) can be co-trained to produce capable multimodal agents.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何让单一基础模型同时具备在数字环境（如GUI导航）和物理环境（如机器人操控）中有效行动的能力？现有视觉语言模型擅长感知与推理，却缺乏落地行动能力，限制了其作为现实世界智能体的应用。</div>
+            <div class="en">How can a single foundation model be equipped to act effectively in both digital environments (e.g., GUI navigation) and physical environments (e.g., robot arm control), beyond just understanding visual and language inputs? This matters because current VL models excel at perception and reasoning but lack grounded action capabilities, limiting their utility as real-world AI agents.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有视觉语言模型（如GPT-4V、LLaVA）擅长图文理解，但无法生成可执行的视觉落地动作。已有智能体模型通常局限于GUI交互或机器人控制单一领域，跨域迁移能力不足，且尚无工作同时在图像、视频与机器人数据上协同训练出通用行动模型。</div>
+            <div class="en">Existing vision-language models (e.g., GPT-4V, LLaVA) are strong at image and text understanding but are not designed to produce grounded, executable actions in visual environments. Prior agentic models tend to be domain-specific — either targeting GUI interaction or robot control — making it difficult to transfer learned capabilities across domains. No prior work has effectively co-trained on images, videos, and robotics data to produce a single generalist action model.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">Magma引入两种关键标注策略：对图像中可操作视觉对象（如GUI按钮）进行集合标记（SoM）以支持动作定位，对视频中的运动轨迹（如手部或机械臂轨迹）进行轨迹标记（ToM）以支持动作规划。模型在图像、视频与机器人数据的大规模异构混合数据集上联合训练，实现语言理解与时空行动能力的统一学习，无需针对特定任务设计独立架构。</div>
+            <div class="en">Magma introduces two key labeling strategies applied to heterogeneous training data: Set-of-Mark (SoM), which annotates actionable visual objects (e.g., clickable GUI buttons) in images for action grounding, and Trace-of-Mark (ToM), which annotates object movement trajectories (e.g., hand or robot arm traces) in videos for action planning. The model is trained on a large, diverse mixture of image, video, and robotics datasets, allowing it to learn both verbal and spatial-temporal intelligence jointly. This design lets Magma generalize across tasks like web UI navigation, desktop control, and robotic arm manipulation without task-specific architectures.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Magma在涵盖UI导航（网页与桌面）及机器人操控的多个基准测试中达到最优性能，证明SoM与ToM监督可显著缩小语言理解与可执行动作之间的差距。作为单一通用模型，Magma在时空智能指标上超越了多个领域专用基线模型。</div>
+            <div class="en">Magma achieves state-of-the-art results across multiple benchmarks spanning UI navigation (web and desktop) and robot manipulation tasks, demonstrating that SoM and ToM supervision significantly close the gap between verbal understanding and executable action. The model shows strong generalization, outperforming domain-specific baselines despite being trained as a single generalist model. Specific numerical results are not fully disclosed in the abstract, but the authors report &#34;significant enhancement&#34; in spatio-temporal intelligence metrics.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>SoM与ToM作为可扩展监督信号：现有图像和视频中已隐含动作信息（可点击元素、运动轨迹），可低成本重新标注，使Magma的训练流程具备扩展至更大异构数据集的潜力。</li><li>通用性与专用性的权衡：Magma虽优于领域专用模型，但单一通用模型能否在最难任务（如精细灵巧机器人操控）上媲美专用智能体，仍是开放问题。</li><li>跨域迁移作为核心能力：数字与物理世界数据的协同训练表明，GUI导航中学到的空间对象定位技能可能正向迁移至机器人控制，这对未来数据高效智能体训练具有重要启示。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>SoM and ToM as scalable supervision: The key insight is that existing images and videos already contain implicit action information (clickable elements, motion traces) that can be re-labeled cheaply, making Magma&#39;s training pipeline potentially scalable to even larger heterogeneous datasets without costly new data collection.</li><li>Generalization vs. specialization trade-off: While Magma outperforms domain-specific models, it remains an open question whether a single generalist model can match highly specialized agents on the hardest tasks (e.g., fine-grained dexterous robot manipulation), or whether further scaling is required.</li><li>Cross-domain transfer as a core capability: The co-training on digital and physical world data suggests that skills learned in GUI navigation (spatial object grounding) may positively transfer to robot control and vice versa — a hypothesis with significant implications for future data-efficient agent training.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.13130" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">RAPO将检索增强探索引入智能体强化学习，使LLM智能体能够利用轨迹记忆库中的步骤级离策略信号，发现自身输出之外的更优推理路径。</div>
+        <div class="paper-title-en">RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization</div>
+        <div class="paper-meta">
+          <span>Siwei Zhang, Yun Xiong, Xi Chen et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
+          <span class="badge badge-venue">KDD</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>RAPO将检索增强探索引入智能体强化学习，使LLM智能体能够利用轨迹记忆库中的步骤级离策略信号，发现自身输出之外的更优推理路径。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">RAPO introduces retrieval-augmented exploration into agentic reinforcement learning, enabling LLM agents to leverage step-level off-policy signals from a trajectory memory bank to discover better reasoning paths beyond their own outputs.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">RAPO直接解决了智能体RL中的结构性瓶颈——无法超越自生成轨迹进行探索——这限制了LLM智能体在复杂多步任务上的提升空间。步骤级操作使外部知识注入策略优化更加精细，对工具使用和推理基准测试的LLM智能体训练具有重要实践价值。</div>
+            <div class="en">RAPO directly addresses a structural bottleneck in agentic RL — the inability to explore beyond self-generated rollouts — which limits how well LLM agents can improve on complex, multi-step tasks. By operating at the step level rather than the trajectory level, it offers a more granular and principled way to inject external knowledge into policy optimization. This work is practically relevant for anyone training LLM agents on tool-use or reasoning benchmarks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">在训练中，LLM智能体如何探索超越自身输出的推理策略？纯在策略探索会形成&#34;回音壁&#34;，导致智能体无法发现全新解题策略，限制其在复杂多步任务上的性能上限。</div>
+            <div class="en">How can LLM agents in agentic RL explore reasoning strategies beyond their own self-generated outputs during training? This matters because pure on-policy exploration creates an echo chamber where agents cannot discover qualitatively new solution strategies, capping their performance on complex, multi-step tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">标准智能体RL方法完全依赖在策略轨迹，探索多样性受限。近期方法引入离策略轨迹，但采用轨迹级策略估计，忽略了多步任务中关键的步骤级动态，导致外部来源的有用中间步骤在训练中被丢弃或权重失当。</div>
+            <div class="en">Standard agentic RL methods (e.g., GRPO-based approaches) rely entirely on on-policy rollouts, meaning the agent only learns from trajectories it generates itself, limiting diversity of explored strategies. Some recent methods incorporate off-policy trajectories, but they apply trajectory-level policy estimation, which ignores the fine-grained, step-by-step dynamics critical in multi-step agentic tasks. This coarse granularity means useful intermediate steps from external sources are discarded or misweighted during training.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">RAPO在每个推理步骤查询轨迹记忆库，检索相关离策略动作以增强训练中的候选动作集。采用步骤级策略优化目标，在单个动作步骤层面融合在策略与离策略信号，而非跨整条轨迹。记忆库由历史训练轨迹和人工示例填充，持续扩展探索的动作空间，同时避免朴素全离策略训练带来的分布不匹配问题。</div>
+            <div class="en">RAPO introduces a retrieval mechanism that queries a trajectory memory bank at each reasoning step, fetching relevant off-policy actions to augment the agent&#39;s own candidate actions during training. A step-level policy optimization objective is then applied, blending on-policy and retrieved off-policy signals at each individual action step rather than across whole trajectories. The memory bank is populated with trajectories from prior training iterations and potentially human demonstrations, enabling continual expansion of the explored action space. This design allows the agent to incorporate fine-grained exploratory signals without the distributional mismatch issues of naive full off-policy training.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">RAPO在涉及工具使用和多步推理的多个智能体基准上，持续优于纯在策略基线（如GRPO）及现有离策略增强方法。步骤级检索集成相比轨迹级离策略方法取得了可量化的提升，验证了离策略信号粒度的重要性，并在同等规模LLM智能体训练框架中达到当前最优水平。</div>
+            <div class="en">RAPO consistently outperforms pure on-policy baselines (e.g., GRPO) and prior off-policy-augmented methods across multiple agentic benchmarks involving tool-use and multi-step reasoning. The step-level retrieval integration yields measurable gains over trajectory-level off-policy methods, validating that granularity of the off-policy signal matters. Specific numerical gains are reported on benchmarks such as tool-calling and reasoning tasks, with RAPO achieving state-of-the-art among comparable-scale LLM agent training frameworks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>步骤级与轨迹级粒度是核心设计洞见：论文表明仅拥有离策略数据不够，关键在于在rollout中何处、如何应用，这一细节被此前混合方法所忽视。</li><li>检索质量是潜在瓶颈：RAPO的效果依赖轨迹记忆库的相关性与多样性；在训练早期成功轨迹稀疏的任务上，检索信号可能含噪或无效，冷启动行为值得关注。</li><li>可扩展性与内存开销需审视：训练期间维护和查询轨迹记忆库增加了计算开销，论文对效率权衡及RAPO在更长视野或更大动作空间任务上的扩展性分析仍有待深化。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Step-level vs. trajectory-level granularity is the key design insight: the paper demonstrates that simply having off-policy data is insufficient — where and how it is applied within a rollout critically determines its utility, a nuance overlooked by prior hybrid methods.</li><li>Retrieval quality is a potential bottleneck: the effectiveness of RAPO depends on the relevance and diversity of the trajectory memory bank; on tasks with sparse successful trajectories early in training, the retrieval signal may be noisy or unhelpful, raising questions about cold-start behavior.</li><li>Scalability and memory cost deserve scrutiny: maintaining and querying a trajectory memory bank at inference time during training adds computational overhead; the paper&#39;s evaluation on the efficiency trade-off and how well RAPO scales to longer-horizon or larger-action-space tasks would benefit from further analysis.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03078v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">CoWVLA提出&#34;Chain of World&#34;范式，将解耦潜在运动表示与世界模型时序推理相结合，提升具身智能VLA模型性能。</div>
+        <div class="paper-title-en">Chain of World: World Model Thinking in Latent Motion</div>
+        <div class="paper-meta">
+          <span>Fuxiang Yang, Donglin Di, Lulu Tang et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>CoWVLA提出&#34;Chain of World&#34;范式，将解耦潜在运动表示与世界模型时序推理相结合，提升具身智能VLA模型性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CoWVLA introduces a &#34;Chain of World&#34; paradigm that combines disentangled latent motion representations with world-model temporal reasoning to improve Vision-Language-Action models for embodied tasks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">CoWVLA融合了世界模型VLA与潜在动作VLA两条路线，为具身决策提供更高效、时序一致的方案。通过将视频分解为结构与运动潜变量，避免了重建冗余背景的算力浪费。该工作或将影响大规模机器人学习预训练流程的设计方向。</div>
+            <div class="en">CoWVLA bridges two previously separate paradigms—world-model VLAs and latent-action VLAs—offering a more compute-efficient and temporally coherent approach to embodied decision-making. By factorizing video into structure and motion latents, it avoids wasting model capacity on redundant background reconstruction. This work could influence how the community designs pre-training pipelines for robot learning at scale.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">VLA模型如何在不浪费算力重建冗余背景的前提下，更好地捕捉视觉动态的预测性时序因果结构？现有方法要么预测完整未来帧（代价高），要么过度压缩帧间转换而缺乏连续时序建模，限制了具身场景中策略的时序推理与泛化能力。</div>
+            <div class="en">How can VLA models better capture the predictive, temporal-causal structure of visual dynamics without wasting capacity on redundant background reconstruction? Existing approaches either predict full future frames (expensive) or encode transitions too compactly without continuous temporal modeling. This gap limits the temporal reasoning and generalization of VLA policies in embodied settings.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">世界模型VLA通过预测未来视频帧来支撑动作预测，但重建包含静态背景的完整帧浪费大量模型容量。潜在动作VLA将帧间转换压缩为紧凑编码，降低了开销，但牺牲了连续时序动态建模与世界知识的融合。两类方法均无法同时实现高效性、时序连贯性与丰富动态推理。</div>
+            <div class="en">World-model VLAs predict future video frames to ground action prediction in visual dynamics, but reconstructing full frames—including static backgrounds—wastes significant model capacity. Latent-action VLAs compress frame transitions into compact codes, reducing this overhead, but sacrifice temporally continuous dynamic modeling and the integration of broader world knowledge. Neither approach jointly achieves efficiency, temporal continuity, and rich dynamic reasoning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">CoWVLA使用预训练视频VAE将视频片段显式分解为结构潜变量与运动潜变量，将动态信息与静态内容分离。预训练阶段，给定指令与初始帧，VLA学习推断连续潜在运动链并预测片段终止帧，构建时序基础的世界模型推理。联合微调阶段，潜在动态与机器人动作输出对齐，将世界模型预测直接连接至策略执行。两阶段设计在保留时序因果性的同时，解耦了表示学习与策略学习。</div>
+            <div class="en">CoWVLA uses a pretrained video VAE to explicitly factorize video segments into separate structure and motion latents, isolating dynamic information from static content. During pre-training, given an instruction and an initial frame, the VLA learns to infer a continuous latent motion chain and predict the segment&#39;s terminal frame—building temporally grounded world-model reasoning. During co-fine-tuning, the latent dynamics are aligned with robot action outputs, connecting world-model predictions directly to policy execution. This two-stage design decouples representation learning from policy learning while preserving temporal causality.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">CoWVLA在具身操作基准上超越了世界模型VLA与潜在动作VLA基线，得益于更紧凑且时序连贯的运动表示。解耦潜在运动链使模型将算力集中于动态内容而非静态场景重建。摘要未完整披露具体数值，但方法在多个机器人学习任务上得到验证。</div>
+            <div class="en">CoWVLA demonstrates improvements over both world-model and latent-action VLA baselines on embodied manipulation benchmarks, benefiting from more compact and temporally coherent motion representations. The disentangled latent motion chain enables the model to focus capacity on dynamic content rather than static scene reconstruction. Specific numerical results are not fully disclosed in the abstract, but the method is validated across multiple robot learning tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>视频VAE的泛化性：结构/运动解耦质量高度依赖预训练视频VAE，其在不同机器人本体或分布外视觉环境中的泛化能力尚不明确。</li><li>联合微调的对齐差距：通过联合微调将潜在世界模型预测与底层动作输出对接，潜在连续空间与机器人常用离散/结构化动作空间之间存在潜在对齐偏差。</li><li>评估广度不足：现有基准可能未充分覆盖长时域任务或接触丰富的操作场景——而这些正是连续时序世界建模最关键的应用场景，未来应在此类设置下进一步验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability of the video VAE: The quality of the disentangled structure/motion factorization depends heavily on the pretrained video VAE. It remains unclear how well this generalizes to diverse robot embodiments or out-of-distribution visual environments.</li><li>Co-fine-tuning alignment gap: Bridging latent world-model predictions to low-level action outputs via co-fine-tuning introduces a potential misalignment between the continuous latent space and discrete or structured action spaces common in robotics.</li><li>Evaluation breadth: The paper&#39;s benchmarks may not fully capture long-horizon tasks or contact-rich manipulation, where temporally continuous world modeling would be most critical—future work should test on denser-reward, longer-horizon settings.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03195v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-05</footer>
+</body>
+</html>
