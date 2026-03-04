@@ -1,7 +1,36 @@
 schedule:
-  cron: "0 1 * * *"
+  cron: "0 23 * * *"
   lookback_hours: 48
   fallback_lookback_hours: 168   # 7 days: used when a category has too few candidates
+  s2_min_year: 2024              # Semantic Scholar: only conferences from this year onwards
+
+top_conferences:
+  - "NeurIPS"
+  - "Neural Information Processing Systems"
+  - "ICML"
+  - "ICLR"
+  - "CVPR"
+  - "ICCV"
+  - "ECCV"
+  - "AAAI"
+  - "IJCAI"
+  - "ACL"
+  - "EMNLP"
+  - "NAACL"
+  - "COLING"
+  - "CCS"
+  - "USENIX Security"
+  - "IEEE Symposium on Security and Privacy"
+  - "NDSS"
+  - "RAID"
+  - "AsiaCCS"
+  - "ICRA"
+  - "IROS"
+  - "CoRL"
+  - "RSS"
+  - "HUMANOIDS"
+  - "WACV"
+  - "SIGGRAPH"
 
 categories:
   llm_security:
@@ -9,6 +38,7 @@ categories:
     name_en: "LLM Security"
     papers_per_day: 3
     type: worthwhile
+    semantic_query: "LLM security jailbreak adversarial attack prompt injection language model safety"
     arxiv_categories: ["cs.CR", "cs.AI", "cs.LG"]
     keywords:
       - "LLM safety"
@@ -24,17 +54,21 @@ categories:
     name_en: "Embodied Intelligence Security"
     papers_per_day: 3
     type: worthwhile
+    semantic_query: "adversarial attack robot perception policy autonomous driving security attack"
     arxiv_categories: ["cs.RO", "cs.AI", "cs.CR", "cs.CV"]
     keywords:
-      - "adversarial attack robot"
-      - "physical adversarial"
-      - "robot adversarial"
-      - "autonomous driving attack"
-      - "adversarial autonomous"
-      - "embodied safety"
-      - "robot safety"
-      - "sensor spoofing"
+      # Perception layer attacks
+      - "adversarial attack perception"
+      - "LiDAR adversarial"
+      - "adversarial point cloud"
+      - "adversarial object detection"
+      - "camera attack autonomous"
       - "adversarial patch robot"
+      # Decision layer attacks
+      - "adversarial robot policy"
+      - "backdoor robot"
+      - "attack autonomous driving"
+      - "physical adversarial"
       - "robot policy attack"
 
   llm_trends:
@@ -42,6 +76,7 @@ categories:
     name_en: "LLM Development Trends"
     papers_per_day: 3
     type: trending
+    semantic_query: "large language model reasoning multimodal foundation model agent"
     arxiv_categories: ["cs.AI", "cs.CL", "cs.LG"]
     keywords:
       - "large language model"
@@ -56,14 +91,23 @@ categories:
     name_en: "Embodied Intelligence Development Trends"
     papers_per_day: 3
     type: trending
-    arxiv_categories: ["cs.RO", "cs.AI"]
+    semantic_query: "robot manipulation planning embodied AI 3D perception scene understanding vision language action"
+    arxiv_categories: ["cs.RO", "cs.AI", "cs.CV"]
     keywords:
-      - "embodied intelligence"
-      - "embodied AI"
-      - "robot learning"
-      - "humanoid robot"
-      - "manipulation policy"
-      - "world model robotics"
+      # Decision layer
+      - "vision language action"
+      - "robot manipulation policy"
+      - "dexterous manipulation"
+      - "robot task planning"
+      - "motion planning robot"
+      - "reinforcement learning manipulation"
+      - "robot foundation model"
+      # Perception layer
+      - "3D scene understanding"
+      - "embodied perception"
+      - "robot SLAM"
+      - "point cloud robot"
+      - "neural scene representation"
 
 llm:
   scoring_model: "claude-haiku-4-5-20251001"

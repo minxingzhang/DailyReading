@@ -135,8 +135,96 @@ def fetch_hf_papers() -> List[Paper]:
     return papers
 
 
+def fetch_semantic_scholar_papers(
+    query: str,
+    top_conferences: List[str],
+    min_year: int = 2024,
+    max_results: int = 50,
+) -> List[Paper]:
+    """Fetch conference-accepted papers from Semantic Scholar API."""
+    url = "https://api.semanticscholar.org/graph/v1/paper/search"
+    params = {
+        "query": query,
+        "fields": "title,abstract,authors,year,venue,externalIds,publicationDate",
+        "limit": min(max_results, 100),
+    }
+    headers = {"User-Agent": "DailyPaper/1.0 (academic research)"}
+
+    try:
+        resp = requests.get(url, params=params, headers=headers, timeout=30)
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception as e:
+        print(f"  [S2] API error: {e}")
+        return []
+
+    conf_upper = [c.upper() for c in top_conferences]
+    papers = []
+
+    for item in data.get("data", []):
+        venue = (item.get("venue") or "").strip()
+        year = item.get("year") or 0
+
+        if year < min_year:
+            continue
+
+        # Match venue against top conferences
+        venue_matched = ""
+        if venue:
+            venue_u = venue.upper()
+            for conf, conf_u in zip(top_conferences, conf_upper):
+                if conf_u in venue_u or venue_u in conf_u:
+                    venue_matched = venue
+                    break
+
+        if not venue_matched:
+            continue
+
+        ext_ids = item.get("externalIds") or {}
+        arxiv_id = ext_ids.get("ArXiv")
+        s2_id = item.get("paperId", "")
+        unique_id = arxiv_id if arxiv_id else f"s2:{s2_id}"
+
+        paper_url = (
+            f"https://arxiv.org/abs/{arxiv_id}"
+            if arxiv_id
+            else f"https://www.semanticscholar.org/paper/{s2_id}"
+        )
+
+        pub_str = item.get("publicationDate") or ""
+        try:
+            published = datetime.strptime(pub_str, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        except Exception:
+            published = datetime(max(year, 2020), 1, 1, tzinfo=timezone.utc)
+
+        title = (item.get("title") or "").strip()
+        abstract = (item.get("abstract") or "").replace("\n", " ").strip()
+        authors = [a.get("name", "") for a in (item.get("authors") or [])]
+
+        if not title or not abstract:
+            continue
+
+        papers.append(Paper(
+            arxiv_id=unique_id,
+            title=title,
+            authors=authors,
+            abstract=abstract,
+            url=paper_url,
+            published=published,
+            hf_upvotes=0,
+            source="conference",
+            venue=venue_matched,
+        ))
+
+    return papers
+
+
 def merge_and_deduplicate(papers_lists: List[List[Paper]]) -> List[Paper]:
-    """Merge multiple paper lists; deduplicate by arxiv_id, preferring HF version (has upvotes)."""
+    """Merge multiple paper lists; deduplicate by arxiv_id.
+
+    Priority: conference source > HF upvotes > first-seen.
+    Venue and conference designation are preserved across merges.
+    """
     seen: dict = {}
 
     for papers in papers_lists:
@@ -150,9 +238,15 @@ def merge_and_deduplicate(papers_lists: List[List[Paper]]) -> List[Paper]:
                 if paper.hf_upvotes > existing.hf_upvotes:
                     if not paper.abstract and existing.abstract:
                         paper.abstract = existing.abstract
-                    # Preserve venue from arXiv version
+                    # Preserve venue and conference source from whichever has it
                     if not paper.venue and existing.venue:
                         paper.venue = existing.venue
+                    if existing.source == "conference":
+                        paper.source = "conference"
+                    seen[paper.arxiv_id] = paper
+                elif existing.source != "conference" and paper.source == "conference":
+                    # Conference version wins even with same upvotes
+                    paper.hf_upvotes = existing.hf_upvotes  # preserve any upvotes
                     seen[paper.arxiv_id] = paper
 
     return list(seen.values())

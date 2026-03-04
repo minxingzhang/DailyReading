@@ -2,7 +2,9 @@ import os
 import yaml
 from datetime import datetime, timezone
 from anthropic import Anthropic
-from scripts.fetch_papers import fetch_arxiv_papers, fetch_hf_papers, merge_and_deduplicate
+from scripts.fetch_papers import (
+    fetch_arxiv_papers, fetch_hf_papers, fetch_semantic_scholar_papers, merge_and_deduplicate,
+)
 from scripts.score_papers import select_top_papers
 from scripts.generate_analysis import generate_analysis
 from scripts.render_html import (
@@ -52,8 +54,20 @@ def run_pipeline(
     categories_data = []
     all_selected_papers = []  # accumulate for marking as seen after pipeline succeeds
 
+    top_conferences = config.get("top_conferences", [])
+    s2_min_year = config["schedule"].get("s2_min_year", 2024)
+
     for cat_id, cat_cfg in config["categories"].items():
         print(f"\nProcessing: {cat_cfg['name_en']}")
+
+        # Primary source: Semantic Scholar conference papers
+        s2_papers = fetch_semantic_scholar_papers(
+            query=cat_cfg.get("semantic_query", cat_cfg["name_en"]),
+            top_conferences=top_conferences,
+            min_year=s2_min_year,
+            max_results=50,
+        )
+        print(f"  S2 conference candidates: {len(s2_papers)}")
 
         arxiv_papers = fetch_arxiv_papers(
             keywords=cat_cfg["keywords"],
@@ -79,7 +93,8 @@ def run_pipeline(
             if any(kw.lower() in (p.title + p.abstract).lower() for kw in cat_cfg["keywords"])
         ]
 
-        candidates = merge_and_deduplicate([arxiv_papers, hf_relevant])
+        # Merge: S2 conference papers first (highest priority), then arXiv, then HF
+        candidates = merge_and_deduplicate([s2_papers, arxiv_papers, hf_relevant])
 
         # Remove papers already pushed in previous runs
         candidates = filter_new_papers(candidates, seen_ids)

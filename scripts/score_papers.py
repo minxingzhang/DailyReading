@@ -71,6 +71,20 @@ def parse_score_response(response_text: str, paper: Paper) -> ScoredPaper:
     )
 
 
+def _venue_bonus(paper: Paper) -> float:
+    """Bonus/penalty based on conference acceptance and community signal."""
+    if paper.source == "conference" or paper.venue:
+        return 1.5
+    if paper.hf_upvotes >= 20:
+        return 1.0
+    if paper.hf_upvotes >= 5:
+        return 0.3
+    # Plain arXiv with no conference signal and no community attention
+    if paper.source == "arxiv" and paper.hf_upvotes == 0:
+        return -0.5
+    return 0.0
+
+
 def score_paper(paper: Paper, category_name: str, category_type: str, client: Anthropic) -> ScoredPaper:
     """Score a single paper using Claude Haiku."""
     prompt = build_scoring_prompt(paper, category_name, category_type)
@@ -81,9 +95,12 @@ def score_paper(paper: Paper, category_name: str, category_type: str, client: An
             system=SCORING_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": prompt}],
         )
-        return parse_score_response(message.content[0].text, paper)
+        sp = parse_score_response(message.content[0].text, paper)
+        sp.score = min(10.0, max(1.0, sp.score + _venue_bonus(paper)))
+        return sp
     except Exception as e:
-        return ScoredPaper(paper=paper, score=5.0, score_breakdown={}, rationale=f"Error: {e}")
+        base = min(10.0, max(1.0, 5.0 + _venue_bonus(paper)))
+        return ScoredPaper(paper=paper, score=base, score_breakdown={}, rationale=f"Error: {e}")
 
 
 def select_top_papers(
