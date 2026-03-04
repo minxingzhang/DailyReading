@@ -4,6 +4,8 @@ schedule:
   fallback_lookback_hours: 168   # 7 days: used when a category has too few candidates
   s2_lookback_years: 2           # Semantic Scholar: conferences within last N years (auto-updates with current year)
 
+seen_ttl_days: 30  # Expire seen paper IDs after N days so S2 conference papers can recirculate
+
 top_conferences:
   - "NeurIPS"
   - "Neural Information Processing Systems"
@@ -38,7 +40,9 @@ categories:
     name_en: "LLM Security"
     papers_per_day: 3
     type: worthwhile
-    semantic_query: "LLM security jailbreak adversarial attack prompt injection language model safety"
+    semantic_queries:
+      - "LLM security jailbreak adversarial attack prompt injection language model safety"
+      - "backdoor attack language model red-teaming hallucination safety alignment"
     arxiv_categories: ["cs.CR", "cs.AI", "cs.LG"]
     keywords:
       - "LLM safety"
@@ -54,7 +58,10 @@ categories:
     name_en: "Embodied Intelligence Security"
     papers_per_day: 3
     type: worthwhile
-    semantic_query: "jailbreak robot LLM prompt injection embodied agent adversarial attack VLA vision language action world model neural policy safety security"
+    semantic_queries:
+      - "jailbreak robot LLM prompt injection embodied agent adversarial attack VLA vision language action world model neural policy safety security"
+      - "adversarial attack autonomous driving perception LiDAR camera sensor safety"
+      - "physical adversarial attack object detection deep learning safety critical system"
     arxiv_categories: ["cs.RO", "cs.AI", "cs.CR", "cs.CV", "cs.LG"]
     scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — LLM security in embodied contexts (jailbreak/prompt injection targeting robot LLMs, backdoor in VLA/world models, adversarial neural policies), attacks on LLM-based robot decision-making. LLM is the robot brain, so LLM-level attacks are the most critical threat. (2) Perception layer = HIGH — adversarial attacks on any sensing modality (LiDAR, camera, depth, tactile, sensor fusion), adversarial object detection/segmentation/grounding in robot contexts. Perception layer is broader than CV alone. (3) Physical/mechanical layer = LOW, only score high if top-conference and groundbreaking."
     keywords:
@@ -95,7 +102,9 @@ categories:
     name_en: "LLM Development Trends"
     papers_per_day: 3
     type: trending
-    semantic_query: "large language model reasoning multimodal foundation model agent"
+    semantic_queries:
+      - "large language model reasoning multimodal foundation model agent"
+      - "RLHF alignment preference optimization instruction tuning LLM benchmark evaluation"
     arxiv_categories: ["cs.AI", "cs.CL", "cs.LG"]
     keywords:
       - "large language model"
@@ -110,7 +119,10 @@ categories:
     name_en: "Embodied Intelligence Development Trends"
     papers_per_day: 3
     type: trending
-    semantic_query: "LLM embodied agent VLA vision language action world model robot manipulation language-conditioned policy robot planning embodied AI perception"
+    semantic_queries:
+      - "LLM embodied agent VLA vision language action world model robot manipulation language-conditioned policy robot planning embodied AI perception"
+      - "robot learning reinforcement learning dexterous manipulation grasping imitation learning"
+      - "humanoid robot locomotion motion planning whole-body control sim-to-real"
     arxiv_categories: ["cs.RO", "cs.AI", "cs.CV"]
     scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — LLM is the most important component since it serves as the robot brain. This includes VLA, world models, LLM-based robot decision-making/planning/control, language-conditioned policies, LLM for manipulation, dexterous manipulation with neural networks. Any work applying LLM to embodied AI belongs here. (2) Perception layer = HIGH — sensing and scene understanding that enables embodied tasks: 3D scene understanding, SLAM, neural scene representation, depth estimation, semantic segmentation for robots, multi-modal sensing. Perception is broader than CV alone. (3) Physical/mechanical layer (pure hardware, actuator design without learning) = LOW, max 1 paper only if truly exceptional (top conference + high community attention)."
     keywords:

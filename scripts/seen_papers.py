@@ -14,6 +14,7 @@ Design rationale:
 
 import json
 import os
+from datetime import datetime, timezone, timedelta
 from typing import Dict, List
 
 from scripts.models import Paper
@@ -41,6 +42,22 @@ def save_seen_ids(seen: Dict[str, str], filepath: str = _DEFAULT_PATH) -> None:
 def filter_new_papers(papers: List[Paper], seen: Dict[str, str]) -> List[Paper]:
     """Return only papers whose arxiv_id has not been seen before."""
     return [p for p in papers if p.arxiv_id and p.arxiv_id not in seen]
+
+
+def prune_stale_ids(seen: Dict[str, str], ttl_days: int = 30) -> Dict[str, str]:
+    """Remove entries older than ttl_days so conference papers can recirculate.
+
+    Semantic Scholar always returns the same top papers for a given query.
+    Without expiry, once those papers enter seen_ids they are never shown again.
+    A 30-day TTL lets them resurface periodically while still suppressing
+    same-day duplicates from overlapping arXiv lookback windows.
+    """
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=ttl_days)).strftime("%Y-%m-%d")
+    pruned = {k: v for k, v in seen.items() if v >= cutoff}
+    removed = len(seen) - len(pruned)
+    if removed:
+        print(f"  Pruned {removed} seen IDs older than {ttl_days} days")
+    return pruned
 
 
 def mark_papers_as_seen(

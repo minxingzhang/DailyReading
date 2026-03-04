@@ -12,7 +12,7 @@ from scripts.render_html import (
     write_daily_page, write_index_page, write_meta_json, load_archive_data,
 )
 from scripts.send_email import send_digest_email
-from scripts.seen_papers import load_seen_ids, save_seen_ids, filter_new_papers, mark_papers_as_seen
+from scripts.seen_papers import load_seen_ids, save_seen_ids, filter_new_papers, mark_papers_as_seen, prune_stale_ids
 
 
 def load_config(config_path: str = "config.yaml") -> dict:
@@ -49,6 +49,10 @@ def run_pipeline(
     seen_ids = load_seen_ids(seen_papers_path)
     print(f"  Loaded {len(seen_ids)} previously seen paper IDs")
 
+    # Prune entries older than TTL so Semantic Scholar conference papers can recirculate
+    ttl_days = config.get("seen_ttl_days", 30)
+    seen_ids = prune_stale_ids(seen_ids, ttl_days=ttl_days)
+
     print("Fetching HuggingFace daily papers...")
     hf_papers = fetch_hf_papers()
     print(f"  Found {len(hf_papers)} HF papers")
@@ -64,16 +68,25 @@ def run_pipeline(
     for cat_id, cat_cfg in config["categories"].items():
         print(f"\nProcessing: {cat_cfg['name_en']}")
 
-        # Brief pause before each S2 call to stay within the free-tier rate limit
-        _time.sleep(3)
+        # Support one or multiple S2 queries per category (list broadens conference paper pool)
+        raw_queries = cat_cfg.get("semantic_queries") or []
+        if not raw_queries and cat_cfg.get("semantic_query"):
+            raw_queries = [cat_cfg["semantic_query"]]
 
-        # Primary source: Semantic Scholar conference papers
-        s2_papers = fetch_semantic_scholar_papers(
-            query=cat_cfg.get("semantic_query", cat_cfg["name_en"]),
-            top_conferences=top_conferences,
-            min_year=s2_min_year,
-            max_results=100,
-        )
+        s2_seen: dict = {}
+        for i, sq in enumerate(raw_queries):
+            # Brief pause before each S2 call to stay within the free-tier rate limit
+            _time.sleep(3)
+            batch = fetch_semantic_scholar_papers(
+                query=sq,
+                top_conferences=top_conferences,
+                min_year=s2_min_year,
+                max_results=100,
+            )
+            for p in batch:
+                if p.arxiv_id and p.arxiv_id not in s2_seen:
+                    s2_seen[p.arxiv_id] = p
+        s2_papers = list(s2_seen.values())
         print(f"  S2 conference candidates: {len(s2_papers)}")
 
         arxiv_papers = fetch_arxiv_papers(
