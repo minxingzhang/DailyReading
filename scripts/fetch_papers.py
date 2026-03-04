@@ -184,7 +184,11 @@ def fetch_semantic_scholar_papers(
     min_year: int = 2024,
     max_results: int = 100,
 ) -> List[Paper]:
-    """Fetch conference-accepted papers from Semantic Scholar API."""
+    """Fetch conference-accepted papers from Semantic Scholar API.
+
+    Retries up to 3 times on 429 rate-limit errors with exponential backoff.
+    """
+    import time
     url = "https://api.semanticscholar.org/graph/v1/paper/search"
     params = {
         "query": query,
@@ -193,12 +197,29 @@ def fetch_semantic_scholar_papers(
     }
     headers = {"User-Agent": "DailyPaper/1.0 (academic research)"}
 
-    try:
-        resp = requests.get(url, params=params, headers=headers, timeout=30)
-        resp.raise_for_status()
-        data = resp.json()
-    except Exception as e:
-        print(f"  [S2] API error: {e}")
+    data = None
+    for attempt in range(4):  # 1 initial + 3 retries
+        try:
+            resp = requests.get(url, params=params, headers=headers, timeout=30)
+            if resp.status_code == 429:
+                wait = 15 * (2 ** attempt)  # 15s, 30s, 60s, 120s
+                print(f"  [S2] Rate limited (429), waiting {wait}s before retry {attempt + 1}/3...")
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            break
+        except Exception as e:
+            if attempt < 3:
+                wait = 15 * (2 ** attempt)
+                print(f"  [S2] Error: {e}, retrying in {wait}s...")
+                time.sleep(wait)
+            else:
+                print(f"  [S2] Failed after retries: {e}")
+                return []
+
+    if data is None:
+        print("  [S2] All retries exhausted, skipping.")
         return []
 
     papers = []

@@ -60,8 +60,12 @@ def run_pipeline(
     s2_lookback_years = config["schedule"].get("s2_lookback_years", 2)
     s2_min_year = current_year - s2_lookback_years
 
+    import time as _time
     for cat_id, cat_cfg in config["categories"].items():
         print(f"\nProcessing: {cat_cfg['name_en']}")
+
+        # Brief pause before each S2 call to stay within the free-tier rate limit
+        _time.sleep(3)
 
         # Primary source: Semantic Scholar conference papers
         s2_papers = fetch_semantic_scholar_papers(
