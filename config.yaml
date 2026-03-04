@@ -1,6 +1,7 @@
 schedule:
   cron: "0 1 * * *"
   lookback_hours: 48
+  fallback_lookback_hours: 168   # 7 days: used when a category has too few candidates
 
 categories:
   llm_security:
@@ -23,13 +24,18 @@ categories:
     name_en: "Embodied Intelligence Security"
     papers_per_day: 3
     type: worthwhile
-    arxiv_categories: ["cs.RO", "cs.AI", "cs.CR"]
+    arxiv_categories: ["cs.RO", "cs.AI", "cs.CR", "cs.CV"]
     keywords:
-      - "embodied AI safety"
+      - "adversarial attack robot"
+      - "physical adversarial"
+      - "robot adversarial"
+      - "autonomous driving attack"
+      - "adversarial autonomous"
+      - "embodied safety"
       - "robot safety"
-      - "physical adversarial attack"
-      - "embodied agent security"
-      - "robot manipulation security"
+      - "sensor spoofing"
+      - "adversarial patch robot"
+      - "robot policy attack"
 
   llm_trends:
     name_zh: "LLM 发展动态"

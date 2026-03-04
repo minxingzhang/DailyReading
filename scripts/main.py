@@ -62,6 +62,18 @@ def run_pipeline(
         )
         print(f"  arXiv candidates: {len(arxiv_papers)}")
 
+        # Fallback: extend lookback if too few raw candidates (prefer new papers, but better than none)
+        if len(arxiv_papers) < cat_cfg["papers_per_day"]:
+            fallback_hours = config["schedule"].get("fallback_lookback_hours", 168)
+            extended = fetch_arxiv_papers(
+                keywords=cat_cfg["keywords"],
+                arxiv_categories=cat_cfg["arxiv_categories"],
+                lookback_hours=fallback_hours,
+            )
+            if len(extended) > len(arxiv_papers):
+                arxiv_papers = extended
+                print(f"  Extended lookback to {fallback_hours}h: {len(arxiv_papers)} candidates")
+
         hf_relevant = [
             p for p in hf_papers
             if any(kw.lower() in (p.title + p.abstract).lower() for kw in cat_cfg["keywords"])
