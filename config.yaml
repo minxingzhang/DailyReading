@@ -55,7 +55,7 @@ categories:
     papers_per_day: 3
     type: worthwhile
     semantic_query: "jailbreak robot LLM prompt injection embodied agent adversarial attack VLA vision language action world model neural policy safety security"
-    arxiv_categories: ["cs.RO", "cs.AI", "cs.CR", "cs.CV"]
+    arxiv_categories: ["cs.RO", "cs.AI", "cs.CR", "cs.CV", "cs.LG"]
     scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — LLM security in embodied contexts (jailbreak/prompt injection targeting robot LLMs, backdoor in VLA/world models, adversarial neural policies), attacks on LLM-based robot decision-making. LLM is the robot brain, so LLM-level attacks are the most critical threat. (2) Perception layer = HIGH — adversarial attacks on any sensing modality (LiDAR, camera, depth, tactile, sensor fusion), adversarial object detection/segmentation/grounding in robot contexts. Perception layer is broader than CV alone. (3) Physical/mechanical layer = LOW, only score high if top-conference and groundbreaking."
     keywords:
       # Decision layer: LLM security in embodied contexts (highest priority)

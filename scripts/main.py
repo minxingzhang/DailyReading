@@ -127,6 +127,11 @@ def run_pipeline(
         )
         print(f"  Selected {len(top_papers)} papers")
 
+        # Update seen_ids in-memory so later categories don't select the same papers
+        for sp in top_papers:
+            if sp.paper.arxiv_id:
+                seen_ids[sp.paper.arxiv_id] = today
+
         analyses = []
         for sp in top_papers:
             print(f"    Analyzing: {sp.paper.title[:60]}...")
