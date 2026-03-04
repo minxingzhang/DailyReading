@@ -119,6 +119,7 @@ def run_pipeline(
             category_type=cat_cfg["type"],
             n=cat_cfg["papers_per_day"],
             client=client,
+            scoring_note=cat_cfg.get("scoring_note", ""),
         )
         print(f"  Selected {len(top_papers)} papers")
 

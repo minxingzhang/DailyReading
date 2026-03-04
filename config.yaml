@@ -54,9 +54,19 @@ categories:
     name_en: "Embodied Intelligence Security"
     papers_per_day: 3
     type: worthwhile
-    semantic_query: "adversarial attack robot perception policy autonomous driving security attack"
+    semantic_query: "adversarial attack robot VLA vision language action world model neural policy autonomous driving security"
     arxiv_categories: ["cs.RO", "cs.AI", "cs.CR", "cs.CV"]
+    scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — attacks on VLA/world models/LLM-based robot control, adversarial neural policies, policy backdoors. (2) Perception layer = HIGH — LiDAR adversarial, adversarial point clouds, camera attacks. (3) Physical/mechanical layer = LOW, only score high if top-conference and groundbreaking."
     keywords:
+      # Decision layer attacks (highest priority)
+      - "adversarial robot policy"
+      - "backdoor robot"
+      - "robot policy attack"
+      - "VLA attack"
+      - "vision language action adversarial"
+      - "world model attack"
+      - "LLM robot attack"
+      - "neural policy attack"
       # Perception layer attacks
       - "adversarial attack perception"
       - "LiDAR adversarial"
@@ -64,12 +74,8 @@ categories:
       - "adversarial object detection"
       - "camera attack autonomous"
       - "adversarial patch robot"
-      # Decision layer attacks
-      - "adversarial robot policy"
-      - "backdoor robot"
       - "attack autonomous driving"
       - "physical adversarial"
-      - "robot policy attack"
 
   llm_trends:
     name_zh: "LLM 发展动态"
@@ -91,17 +97,21 @@ categories:
     name_en: "Embodied Intelligence Development Trends"
     papers_per_day: 3
     type: trending
-    semantic_query: "robot manipulation planning embodied AI 3D perception scene understanding vision language action"
+    semantic_query: "VLA vision language action world model robot manipulation LLM robot planning embodied AI 3D perception"
     arxiv_categories: ["cs.RO", "cs.AI", "cs.CV"]
+    scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — VLA, world models, LLM/neural-network-based robot decision-making, task planning with LLMs, policy learning, dexterous manipulation. (2) Perception layer = HIGH — 3D scene understanding, SLAM, neural scene representation. (3) Physical/mechanical layer (pure hardware, actuator design without learning) = LOW, max 1 paper only if truly exceptional (top conference + high community attention)."
     keywords:
-      # Decision layer
+      # Decision layer (highest priority)
       - "vision language action"
+      - "world model robot"
+      - "LLM robot planning"
+      - "VLA robot"
       - "robot manipulation policy"
       - "dexterous manipulation"
       - "robot task planning"
-      - "motion planning robot"
       - "reinforcement learning manipulation"
       - "robot foundation model"
+      - "language model robot control"
       # Perception layer
       - "3D scene understanding"
       - "embodied perception"

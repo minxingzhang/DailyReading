@@ -210,6 +210,10 @@ def fetch_semantic_scholar_papers(
         if year < min_year:
             continue
 
+        # Skip workshops
+        if re.search(r'\bworkshop\b', venue, re.IGNORECASE):
+            continue
+
         # Match venue against top conferences (using aliases for full S2 names)
         venue_matched = _match_top_conference(venue, top_conferences) if venue else ""
         if not venue_matched:

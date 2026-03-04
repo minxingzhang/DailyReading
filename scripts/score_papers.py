@@ -13,7 +13,7 @@ Title: {title}
 Authors: {authors}
 Abstract: {abstract}
 HuggingFace upvotes: {hf_upvotes}{venue_line}
-
+{scoring_note}
 Score this paper 1-10 on each dimension:
 1. topic_importance: Is the problem worth solving? Not trivial or marginal?
 2. trend_alignment: Does it align with current frontiers in {category_name}?
@@ -41,8 +41,9 @@ Respond ONLY with this JSON (use single quotes inside strings if you need quotes
 }}"""
 
 
-def build_scoring_prompt(paper: Paper, category_name: str, category_type: str) -> str:
+def build_scoring_prompt(paper: Paper, category_name: str, category_type: str, scoring_note: str = "") -> str:
     venue_line = f"\nVenue: {paper.venue}" if paper.venue else ""
+    note_block = f"Note: {scoring_note}" if scoring_note else ""
     return SCORING_USER_TEMPLATE.format(
         category_name=category_name,
         category_type=category_type,
@@ -51,6 +52,7 @@ def build_scoring_prompt(paper: Paper, category_name: str, category_type: str) -
         abstract=paper.abstract[:800],
         hf_upvotes=paper.hf_upvotes,
         venue_line=venue_line,
+        scoring_note=note_block,
     )
 
 
@@ -72,22 +74,31 @@ def parse_score_response(response_text: str, paper: Paper) -> ScoredPaper:
 
 
 def _venue_bonus(paper: Paper) -> float:
-    """Bonus/penalty based on conference acceptance and community signal."""
+    """Bonus/penalty based on conference acceptance and community signal.
+
+    Conference papers are strongly preferred. Non-conference papers only pass
+    through if they have meaningful community attention (high HF upvotes).
+    """
     if paper.source == "conference" or paper.venue:
         return 1.5
+    # Non-conference: gate on HF trending signal
     if paper.hf_upvotes >= 20:
         return 1.0
-    if paper.hf_upvotes >= 5:
+    if paper.hf_upvotes >= 10:
         return 0.3
-    # Plain arXiv with no conference signal and no community attention
-    if paper.source == "arxiv" and paper.hf_upvotes == 0:
-        return -0.5
-    return 0.0
+    # Plain arXiv with no conference signal and low community attention
+    return -1.5
 
 
-def score_paper(paper: Paper, category_name: str, category_type: str, client: Anthropic) -> ScoredPaper:
+def score_paper(
+    paper: Paper,
+    category_name: str,
+    category_type: str,
+    client: Anthropic,
+    scoring_note: str = "",
+) -> ScoredPaper:
     """Score a single paper using Claude Haiku."""
-    prompt = build_scoring_prompt(paper, category_name, category_type)
+    prompt = build_scoring_prompt(paper, category_name, category_type, scoring_note)
     try:
         message = client.messages.create(
             model="claude-haiku-4-5-20251001",
@@ -109,8 +120,9 @@ def select_top_papers(
     category_type: str,
     n: int,
     client: Anthropic,
+    scoring_note: str = "",
 ) -> List[ScoredPaper]:
     """Score all papers and return top n by score."""
-    scored = [score_paper(p, category_name, category_type, client) for p in papers]
+    scored = [score_paper(p, category_name, category_type, client, scoring_note) for p in papers]
     scored.sort(key=lambda x: x.score, reverse=True)
     return scored[:n]
