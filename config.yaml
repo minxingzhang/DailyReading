@@ -54,27 +54,40 @@ categories:
     name_en: "Embodied Intelligence Security"
     papers_per_day: 3
     type: worthwhile
-    semantic_query: "adversarial attack robot VLA vision language action world model neural policy autonomous driving security"
+    semantic_query: "jailbreak robot LLM prompt injection embodied agent adversarial attack VLA vision language action world model neural policy safety security"
     arxiv_categories: ["cs.RO", "cs.AI", "cs.CR", "cs.CV"]
-    scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — attacks on VLA/world models/LLM-based robot control, adversarial neural policies, policy backdoors. (2) Perception layer = HIGH — LiDAR adversarial, adversarial point clouds, camera attacks. (3) Physical/mechanical layer = LOW, only score high if top-conference and groundbreaking."
+    scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — LLM security in embodied contexts (jailbreak/prompt injection targeting robot LLMs, backdoor in VLA/world models, adversarial neural policies), attacks on LLM-based robot decision-making. LLM is the robot brain, so LLM-level attacks are the most critical threat. (2) Perception layer = HIGH — adversarial attacks on any sensing modality (LiDAR, camera, depth, tactile, sensor fusion), adversarial object detection/segmentation/grounding in robot contexts. Perception layer is broader than CV alone. (3) Physical/mechanical layer = LOW, only score high if top-conference and groundbreaking."
     keywords:
-      # Decision layer attacks (highest priority)
+      # Decision layer: LLM security in embodied contexts (highest priority)
+      - "jailbreak robot"
+      - "jailbreak embodied"
+      - "prompt injection robot"
+      - "embodied LLM safety"
+      - "embodied LLM attack"
+      - "robot LLM jailbreak"
+      - "embodied agent jailbreak"
+      - "adversarial instruction robot"
+      # Decision layer: attacks on neural/LLM-based policies
       - "adversarial robot policy"
       - "backdoor robot"
-      - "robot policy attack"
       - "VLA attack"
       - "vision language action adversarial"
       - "world model attack"
       - "LLM robot attack"
       - "neural policy attack"
-      # Perception layer attacks
+      - "robot policy attack"
+      # Perception layer: attacks on sensing (broader than CV)
       - "adversarial attack perception"
       - "LiDAR adversarial"
       - "adversarial point cloud"
       - "adversarial object detection"
+      - "adversarial depth estimation"
+      - "adversarial semantic segmentation"
+      - "adversarial visual grounding"
       - "camera attack autonomous"
       - "adversarial patch robot"
       - "attack autonomous driving"
+      - "sensor attack robot"
       - "physical adversarial"
 
   llm_trends:
@@ -97,28 +110,34 @@ categories:
     name_en: "Embodied Intelligence Development Trends"
     papers_per_day: 3
     type: trending
-    semantic_query: "VLA vision language action world model robot manipulation LLM robot planning embodied AI 3D perception"
+    semantic_query: "LLM embodied agent VLA vision language action world model robot manipulation language-conditioned policy robot planning embodied AI perception"
     arxiv_categories: ["cs.RO", "cs.AI", "cs.CV"]
-    scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — VLA, world models, LLM/neural-network-based robot decision-making, task planning with LLMs, policy learning, dexterous manipulation. (2) Perception layer = HIGH — 3D scene understanding, SLAM, neural scene representation. (3) Physical/mechanical layer (pure hardware, actuator design without learning) = LOW, max 1 paper only if truly exceptional (top conference + high community attention)."
+    scoring_note: "Layer priority for topic_importance and trend_alignment: (1) Decision layer = HIGHEST — LLM is the most important component since it serves as the robot brain. This includes VLA, world models, LLM-based robot decision-making/planning/control, language-conditioned policies, LLM for manipulation, dexterous manipulation with neural networks. Any work applying LLM to embodied AI belongs here. (2) Perception layer = HIGH — sensing and scene understanding that enables embodied tasks: 3D scene understanding, SLAM, neural scene representation, depth estimation, semantic segmentation for robots, multi-modal sensing. Perception is broader than CV alone. (3) Physical/mechanical layer (pure hardware, actuator design without learning) = LOW, max 1 paper only if truly exceptional (top conference + high community attention)."
     keywords:
-      # Decision layer (highest priority)
+      # Decision layer: LLM in embodied AI (highest priority)
       - "vision language action"
+      - "VLA robot"
       - "world model robot"
       - "LLM robot planning"
-      - "VLA robot"
+      - "LLM embodied agent"
+      - "language model robot control"
+      - "language-conditioned robot"
+      - "LLM for manipulation"
+      - "robot foundation model"
+      - "robot task planning"
       - "robot manipulation policy"
       - "dexterous manipulation"
-      - "robot task planning"
       - "motion planning robot"
       - "reinforcement learning manipulation"
-      - "robot foundation model"
-      - "language model robot control"
-      # Perception layer
+      # Perception layer: sensing and scene understanding
       - "3D scene understanding"
       - "embodied perception"
       - "robot SLAM"
       - "point cloud robot"
       - "neural scene representation"
+      - "depth estimation robot"
+      - "semantic segmentation robot"
+      - "multi-modal sensing robot"
 
 llm:
   scoring_model: "claude-haiku-4-5-20251001"
