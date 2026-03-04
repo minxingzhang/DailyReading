@@ -54,185 +54,185 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">TSC-GRPO通过因果意图探针与强化学习，防止大语言模型在生成&#34;Sure, here is&#34;等对抗性前缀后丧失安全对齐能力。</div>
-        <div class="paper-title-en">From Shallow to Deep: Pinning Semantic Intent via Causal GRPO</div>
+        <div class="paper-title">本文将对LLM驱动社交媒体机器人的&#34;越狱&#34;行为重新定义为一种用户主导的非暴力手段，用于揭露自动化政治操控并阻断虚假信息传播。</div>
+        <div class="paper-title-en">Ignore All Previous Instructions: Jailbreaking as a de-escalatory peace building practise to resist LLM social media bots</div>
         <div class="paper-meta">
-          Shuyi Zhou, Zeen Song, Wenwen Qiang et al.
+          Huw Day, Adrianna Jezierska, Jessica Woodgate
           
-          <span class="score-badge">评分 7.2</span>
+          <span class="score-badge">评分 4.8</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>TSC-GRPO通过因果意图探针与强化学习，防止大语言模型在生成&#34;Sure, here is&#34;等对抗性前缀后丧失安全对齐能力。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TSC-GRPO uses causal intent probing and reinforcement learning to prevent LLMs from abandoning safety alignment mid-generation when primed with adversarial compliant prefixes like &#34;Sure, here is&#34;.</div>
+          <div>本文将对LLM驱动社交媒体机器人的&#34;越狱&#34;行为重新定义为一种用户主导的非暴力手段，用于揭露自动化政治操控并阻断虚假信息传播。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper reframes jailbreaking of LLM-powered social media bots as a legitimate, user-driven, non-violent tactic to expose automated political manipulation and disrupt misinformation.</div>
         </div>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">经过标准安全对齐训练的大语言模型仍易受对抗性前缀攻击，即强制模型以顺从短语开头后会继续生成有害内容。此类攻击构造极为简单，却能绕过主流安全微调方法，带来严重部署风险。</div>
-            <div class="en">LLMs trained with standard safety alignment remain brittle against adversarial prefix attacks, where forcing the model to begin a response with a compliant phrase (e.g., &#34;Sure, here is&#34;) causes it to complete harmful content. This matters because such attacks are trivially simple yet bypass state-of-the-art safety fine-tuning, posing a critical deployment risk.</div>
+            <div class="zh">LLM正被大规模用于操控社交媒体政治话语，加剧社会冲突。现有应对措施以平台审核为主，普通用户缺乏有效手段。本文探讨：用户主动对LLM机器人实施&#34;越狱&#34;，能否成为一种有意义的基层去升级实践？</div>
+            <div class="en">LLMs are increasingly weaponized to run coordinated social media bot campaigns that manipulate political discourse at scale, escalating societal conflict. Current countermeasures focus on platform-level content moderation, leaving ordinary users with no recognized tools to fight back. This paper asks: can end-user jailbreaking serve as a meaningful grassroots de-escalation practice?</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有安全对齐方法（如RLHF、DPO）侧重于在生成初期拒绝有害请求，但一旦顺从性token已被生成，便无法维持拒绝行为。已有防御方法依赖输入过滤或静态拒绝模板，易被绕过且未解决生成过程中意图信号衰减的根本问题。</div>
-            <div class="en">Existing safety alignment methods (e.g., RLHF, DPO) focus on refusing harmful prompts at the start of generation but fail to maintain refusal behavior once compliant tokens have been generated. Prior defenses against prefix attacks rely on input filtering or static refusal templates, which are easily circumvented and do not address the root cause of intent signal degradation during generation.</div>
+            <div class="zh">现有研究主要聚焦于平台主导的内容审核（如自动检测与封号），将用户视为虚假信息的被动接受者。和平构建与冲突去升级理论此前未被引入LLM驱动的社交媒体操控领域。</div>
+            <div class="en">Existing research on LLM misuse in political contexts focuses predominantly on platform-led moderation strategies, such as automated detection and account suspension. This top-down framing treats users as passive recipients of misinformation rather than active agents. The peacebuilding and conflict de-escalation literature has not previously been applied to the domain of LLM-driven social media manipulation.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">作者将核心问题诊断为&#34;语义表示衰减&#34;：模型在生成顺从性前缀时，内部恶意意图表示逐渐消退。TSC-GRPO分两阶段：首先基于因果可识别性理论训练因果意图探针，提取对风格扰动鲁棒的不变意图信号；其次通过GRPO将因果感知注入策略训练，在&#34;岔路口&#34;场景中施加累积因果惩罚，使每生成一个额外有害token奖励单调递减，从而强制模型学会在生成后期执行拒绝。</div>
-            <div class="en">The authors diagnose the core problem as &#34;semantic representation decay&#34;: the model&#39;s internal malicious intent representation fades as it generates compliant prefix tokens, leading to harmful completions. TSC-GRPO operates in two stages: first, a causal intent probe is trained using causal identifiability theory to extract an invariant intent signal that is robust to stylistic surface variations. Second, this causal awareness is injected into policy training via Group Relative Policy Optimization (GRPO), using &#34;fork-in-the-road&#34; scenarios where the model must choose to continue or refuse after seeing a harmful prefix. A cumulative causal penalty ensures that generating each additional harmful token monotonically decreases reward, forcing the model to learn late-stage refusals.</div>
+            <div class="zh">作者提出概念框架，将越狱（诱导LLM账号暴露系统提示或产生失coherent输出）定位为非暴力抵抗形式，并借鉴和平构建理论说明其去升级作用。研究以用户为中心，强调社区能动性，属理论性与规范性贡献，缺乏实证验证。</div>
+            <div class="en">The authors propose a conceptual framework that positions jailbreaking—prompting LLM-based accounts to break character, reveal system prompts, or produce incoherent outputs—as a form of non-violent resistance and de-escalation. They draw on peacebuilding theory to argue that exposing bot behavior disrupts the automated amplification of divisive narratives. The paper adopts a user-centric lens, emphasizing community-level agency over platform-dependent solutions. This is primarily a theoretical and normative contribution rather than an empirical study.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">TSC-GRPO在对抗性前缀攻击基准上显著优于基线安全对齐方法，即使模型已生成多个顺从性token，仍能实现鲁棒的后期拒绝。累积因果惩罚被证明至关重要，去除后模型无法在生成早期之后持续维持拒绝。摘要未披露完整数值，但报告了相对于RLHF和DPO基线的实质性提升。</div>
-            <div class="en">TSC-GRPO significantly outperforms baseline safety alignment methods on adversarial prefix attack benchmarks, demonstrating robust late-stage refusal even after the model has already generated several compliant tokens. The cumulative causal penalty proves critical: models trained without it fail to sustain refusals beyond early generation steps. Specific numeric results are not fully disclosed in the abstract but are reported as substantial improvements over RLHF and DPO baselines.</div>
+            <div class="zh">本文无实证实验、数据集或量化结果，结论依赖理论论证与零散案例。未报告任何可量化成效（如机器人活动减少或虚假信息传播下降）。</div>
+            <div class="en">The paper presents no empirical experiments, datasets, or quantitative results. Its claims rest on theoretical argumentation and anecdotal examples of users attempting to jailbreak suspected LLM-driven accounts on social media platforms. No measurable outcomes—such as reduction in bot activity or misinformation spread—are reported.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>因果探针的泛化性：框架假设意图可与风格解耦，但探针对训练未见的新型攻击措辞或多语言对抗前缀的泛化能力尚不明确。</li><li>岔路口训练的可扩展性：构建该场景需要精心标注的部分有害完成数据集，规模化成本较高，且分支点选取方式可能引入偏差。</li><li>奖励单调性与实用性的权衡：强制每个有害token使奖励递减可能导致对模糊或边界性提示的过度拒绝，损害模型在表面相似但合法任务上的有用性。</li></ul>
+              <ul class="discussion-list"><li>实证缺失致命：用户越狱能否真正去升级政治机器人活动从未被验证，成功率、用户风险与叙事干预效果均无数据支撑，框架停留于推测层面。</li><li>伦理与法律模糊：将越狱定性为公民实践，忽视了错误识别真实用户、骚扰风险及违反平台条款或计算机滥用法律等潜在危害。</li><li>可扩展性存疑：即便单次越狱成功，运营者可轻易修补系统提示或注册新账号，该策略能否实现系统性去升级仍存重大疑问。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Causal probe generalization: The causal identifiability framework assumes intent can be disentangled from style, but it is unclear how well the probe generalizes to novel attack phrasings or multilingual adversarial prefixes not seen during training.</li><li>Scalability of fork-in-the-road training: Constructing &#39;fork-in-the-road&#39; scenarios requires curated datasets of partial harmful completions, which may be costly to scale and could introduce biases depending on how the branching points are selected.</li><li>Reward monotonicity vs. utility trade-off: Enforcing that every additional harmful token decreases reward may cause over-refusal on ambiguous or borderline prompts, potentially degrading helpfulness on legitimate tasks that superficially resemble harmful ones.</li></ul>
+              <ul class="discussion-list"><li>Empirical gap is critical: The core claim—that user-led jailbreaking meaningfully de-escalates political bot campaigns—is never tested. Without evidence on success rates, user safety risks, or actual narrative disruption, the framework remains speculative.</li><li>Ethical and legal ambiguity: Framing jailbreaking as a positive civic practice ignores potential harms, including misidentification of real humans as bots, harassment risks, and possible violations of platform terms of service or computer misuse laws.</li><li>Scalability concern: Even if individual jailbreaking attempts succeed in exposing one bot, LLM operators can trivially patch system prompts or deploy new accounts, raising serious doubts about whether this tactic can achieve systemic de-escalation at any meaningful scale.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02675v1" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">SaFeR-ToolKit将视觉语言模型的安全决策形式化为可校验的虚拟工具调用协议，并通过三阶段课程训练实现可靠执行。</div>
-        <div class="paper-title-en">SaFeR-ToolKit: Structured Reasoning via Virtual Tool Calling for Multimodal Safety</div>
-        <div class="paper-meta">
-          Zixuan Xu, Tiancheng He, Huahui Yi et al.
-          
-          <span class="score-badge">评分 7.2</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>SaFeR-ToolKit将视觉语言模型的安全决策形式化为可校验的虚拟工具调用协议，并通过三阶段课程训练实现可靠执行。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SaFeR-ToolKit enforces structured, auditable safety reasoning in vision-language models by casting the safety decision as a virtual tool-calling protocol trained with a three-stage SFT→DPO→GRPO curriculum.</div>
-        </div>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">视觉语言模型易受多模态越狱攻击和过度拒绝问题的困扰，根源在于现有对齐流程仅监督最终输出，忽略了视觉证据与用户意图的中间推理过程。安全机制需具备透明性和可验证性。</div>
-            <div class="en">Vision-language models (VLMs) are vulnerable to multimodal jailbreaks (harmful inputs that bypass refusal) and over-refusal (blocking benign requests), both of which stem from opaque, end-to-end alignment that ignores intermediate visual evidence and user intent. A reliable safety mechanism must be transparent, checkable, and sensitive to multimodal context rather than just the final output.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有RLHF/DPO方法仅在答案层面进行监督，推理过程缺乏约束，容易被攻击。多模态安全分类器将安全判断视为二元输出，无法区分感知失败还是推理失败。</div>
-            <div class="en">Existing alignment pipelines (RLHF, DPO at answer level) supervise only the final response, leaving the reasoning process unchecked and exploitable. Multimodal safety benchmarks and refusal classifiers treat safety as a binary output rather than a structured decision process, making it hard to diagnose whether a failure is perceptual or reasoning-based.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">系统由规划器和响应器组成：规划器定义角色和三工具（感知→推理→决策）的有限状态转移图，响应器在生成最终答案前须输出结构化的键值工具轨迹。训练数据包含31,654条样本，采用SFT→DPO→GRPO三阶段课程，其中GRPO直接对工具使用行为给予奖励。</div>
-            <div class="en">SaFeR-ToolKit introduces a planner-responder architecture: the planner defines a persona and a constrained transition graph over three virtual tools—Perception, Reasoning, and Decision—while the responder must emit a typed key-value tool trace before producing any final answer. This makes every safety decision fully auditable. A dataset of 31,654 examples is constructed across three training splits (SFT 6k, DPO 18.6k, GRPO 6k) plus a 1k held-out evaluation set. Training follows a three-stage curriculum: SFT for basic protocol adherence, DPO for preference alignment, and GRPO to directly reward correct tool usage beyond answer-level signals.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">在Qwen2.5-VL上，SaFeR-ToolKit在安全分数和有用性分数上均显著优于基线，表明其在减少越狱攻击的同时未增加过度拒绝。GRPO对工具使用的直接监督优于仅监督答案的方法，但论文摘要未披露具体数值。</div>
-            <div class="en">On Qwen2.5-VL, SaFeR-ToolKit significantly improves both Safety Score and Helpful Score compared to baselines, demonstrating it reduces jailbreak susceptibility without increasing over-refusal. The structured tool trace provides a measurable intermediate signal that GRPO can optimize, outperforming answer-only supervision baselines. Specific absolute numbers are not fully disclosed in the abstract, but the dual improvement on safety and helpfulness is highlighted as the primary empirical contribution.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>推理开销问题：每次响应前强制生成完整工具轨迹会增加推理延迟，但论文未报告延迟成本，这对实时部署至关重要。</li><li>跨模型泛化性存疑：实验仅在Qwen2.5-VL上验证，工具调用协议和数据集能否迁移至LLaVA、InternVL等其他架构尚不明确。</li><li>数据多样性不透明：训练集未详细说明越狱攻击类型的覆盖范围，若攻击分布单一，安全提升可能对未见攻击策略脆弱。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Auditability vs. latency trade-off: Requiring a full Perception→Reasoning→Decision key-value trace before every response adds inference overhead; the paper does not report latency costs, which are critical for deployment in real-time applications.</li><li>Generalizability beyond Qwen2.5-VL: All experiments use a single model family; it is unclear whether the tool-calling protocol and dataset transfer effectively to other VLM architectures (e.g., LLaVA, InternVL) or whether the GRPO reward is model-specific.</li><li>Dataset quality and adversarial coverage: The 31,654 training examples cover SFT, DPO, and GRPO splits, but the paper does not detail how adversarial jailbreak diversity was ensured—a narrow attack distribution could lead to brittle safety gains that fail against unseen jailbreak strategies.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02635v1" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">CEMMA提出协同进化框架，通过进化攻击者与自适应防御者的迭代博弈，实现更鲁棒的多模态大语言模型安全对齐。</div>
-        <div class="paper-title-en">Co-Evolutionary Multi-Modal Alignment via Structured Adversarial Evolution</div>
-        <div class="paper-meta">
-          Guoxin Shi, Haoyu Wang, Zaihui Yang et al.
-          
-          <span class="score-badge">评分 7.2</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>CEMMA提出协同进化框架，通过进化攻击者与自适应防御者的迭代博弈，实现更鲁棒的多模态大语言模型安全对齐。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CEMMA introduces a co-evolutionary framework where an Evolutionary Attacker and Adaptive Defender iteratively improve each other to achieve more robust multimodal LLM safety alignment.</div>
-        </div>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">如何使多模态大语言模型能够抵御多样化、自适应的越狱攻击，而非仅防御已知的固定对抗提示？多模态场景下的攻击面远大于纯文本，静态对齐方法难以泛化。</div>
-            <div class="en">How can we build multimodal LLMs that remain safe against diverse and adaptive jailbreak attacks, rather than only known, fixed adversarial prompts? Static alignment methods fail to generalize because the attack space in multimodal models (text + image) is vastly larger and more varied than in text-only settings.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有RLHF、DPO等对齐方法依赖固定的人工标注对抗样本集，随着新越狱策略涌现，这些数据集很快过时。多模态安全对齐研究严重不足，大多数方法仅将纯文本方案简单迁移，未考虑视觉输入带来的额外攻击面。</div>
-            <div class="en">Existing alignment approaches such as RLHF and DPO rely on fixed, human-curated datasets of adversarial examples, which quickly become outdated as new jailbreak strategies emerge. Multimodal safety alignment is especially underexplored, with most methods naively extending text-only pipelines without accounting for the compounding attack surface introduced by visual inputs.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">CEMMA包含两个协同进化模块：进化攻击者将对抗提示分解为&#34;方法模板&#34;与&#34;有害意图&#34;，并通过变异、交叉、差分进化等遗传算子，从简单种子攻击中孵化出复杂越狱样本；自适应防御者在最难的合成对抗样本上迭代微调，形成闭环红队测试流程，使对齐持续适应新型攻击策略。</div>
-            <div class="en">CEMMA introduces two co-evolving components: an Evolutionary Attacker and an Adaptive Defender. The Evolutionary Attacker decomposes adversarial prompts into reusable &#34;method templates&#34; and &#34;harmful intents,&#34; then applies genetic operators—mutation, crossover, and differential evolution—to breed increasingly sophisticated jailbreaks from simple seed attacks. The Adaptive Defender is fine-tuned iteratively on the hardest synthesized adversarial examples, creating a closed-loop red-teaming pipeline. This design ensures alignment continuously adapts to novel attack strategies rather than converging on a fixed threat model.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">CEMMA在多模态场景下对已知和未知越狱攻击均表现出更强的鲁棒性，进化攻击生成的结构多样性样本能暴露固定红队数据集遗漏的安全漏洞。摘要未披露完整数值，但在多个多模态基准上安全性有持续提升。</div>
-            <div class="en">CEMMA demonstrates improved robustness against both seen and unseen jailbreak attacks in multimodal settings compared to static alignment baselines. The evolutionary attack generation produces structurally diverse adversarial prompts that expose weaknesses missed by fixed red-teaming datasets. Specific numerical results were not fully disclosed in the abstract, but the framework shows consistent safety gains across multiple multimodal benchmarks.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>计算开销：遗传算子（交叉、差分进化）在大规模训练中成本较高，论文未说明与标准RLHF/DPO相比的额外计算代价。</li><li>评估不足：摘要未公布具体数值，且社区认可度为零，难以判断安全提升是否能抵御视觉对抗补丁等前沿攻击手段。</li><li>军备竞赛风险：协同进化框架可能使防御者过拟合于特定进化攻击策略，对遗传算子未覆盖的真实越狱方式仍存在盲区。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Scalability concern: Genetic operators like crossover and differential evolution can be computationally expensive at scale; the paper does not clarify the training cost overhead compared to standard RLHF or DPO pipelines.</li><li>Evaluation gap: Without published benchmark numbers in the abstract and zero community validation (0 HF upvotes), it is difficult to assess whether safety gains hold against state-of-the-art attacks like visual adversarial patches or multimodal prompt injection.</li><li>Arms-race risk: Co-evolutionary frameworks inherently risk overfitting the defender to the specific attacker&#39;s evolutionary strategy, potentially leaving blind spots against structurally different real-world jailbreaks not captured by the genetic operators used.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.01784v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01942v1" target="_blank">查看原文 →</a>
       </div>
       
     </div>
     
     <div class="category" id="embodied_security">
       <h2 class="category-title">具身智能安全 <span style="font-weight:400;font-size:1rem;color:#64748b">/ Embodied Intelligence Security</span></h2>
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出refineCBF与HJ-Patch，通过热启动HJ可达性分析实时修正近似或不安全的控制障碍函数，使机器人...</div>
+        <div class="paper-title-en">Refining Almost-Safe Value Functions on the Fly</div>
+        <div class="paper-meta">
+          Sander Tonkens, Sosuke Kojima, Chenhao Liu et al.
+          
+          <span class="score-badge">评分 7.8</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出refineCBF与HJ-Patch，通过热启动HJ可达性分析实时修正近似或不安全的控制障碍函数，使机器人能在动态环境中安全运行。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces refineCBF and HJ-Patch, two methods that refine approximate or unsafe Control Barrier Functions in real time using warm-started Hamilton-Jacobi reachability, enabling safe robot operation in dynamic environments.</div>
+        </div>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当预计算的安全值函数近似、学习所得或本身不安全时，机器人如何在动态环境中维持正式安全保证？为复杂系统设计有效的CBF极为困难，而静态离线方案无法在运行时适应环境变化。</div>
+            <div class="en">How can robots maintain formal safety guarantees in dynamic environments when pre-computed safe value functions are approximate, learned, or outright unsafe? Designing valid Control Barrier Functions (CBFs) for complex systems is notoriously difficult, and static offline solutions cannot adapt when environments change at runtime.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">HJ可达性提供正式安全保证，但受维度诅咒影响，计算代价极高，难以在线使用。现有学习或解析推导的CBF往往缺乏正式有效性，且此前没有原则性方法能在不重新计算的情况下实时修正它们。</div>
+            <div class="en">Hamilton-Jacobi (HJ) Reachability offers formal safety guarantees but suffers from the curse of dimensionality, making it computationally intractable for high-dimensional systems and impractical for online use. Existing learned or analytically derived CBFs often lack formal validity, yet no principled method existed to certify and repair them on the fly without restarting computation from scratch.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">refineCBF以任意近似CBF为热启动，通过HJ可达性迭代修正，保证单调安全改进并收敛至有效安全值函数。HJ-Patch将HJ更新限定于状态空间中值函数不准确或不安全的局部区域，大幅降低每步计算量。两种方法均支持在线自适应，在机器人运行过程中持续强化安全性。</div>
+            <div class="en">refineCBF takes any approximate CBF—analytically derived, learned, or unsafe—as a warm start and iteratively refines it using HJ reachability, guaranteeing convergence to a valid safe value function with monotonic safety improvements. HJ-Patch, the computationally efficient successor, restricts HJ updates to localized regions of the state space where the current value function is inaccurate or unsafe, dramatically reducing per-step computation. Both methods support in-the-loop adaptation, meaning safety is continuously tightened as the robot operates rather than requiring a costly offline pre-computation phase. Together they bridge offline synthesis and real-time deployment for dynamic robotic environments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">仿真实验表明，两种方法均能从近似或不安全初始点成功恢复有效安全值函数；HJ-Patch通过局部更新显著提升速度。框架在真实机器人硬件上得到验证，确认具备实时自适应能力，且整个修正过程中安全集单调不缩小。</div>
+            <div class="en">Simulation experiments demonstrate that both methods successfully recover valid safe value functions from initially approximate or unsafe starting points, with HJ-Patch achieving significantly faster updates by focusing computation on localized patches. The framework is validated on real robotic hardware, confirming real-time adaptability. Monotonic safety improvement is maintained throughout adaptation, meaning the safe set never shrinks during the refinement process.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>可扩展性上限：HJ-Patch减轻但未消除维度诅咒，对于超过约6维的系统，局部HJ更新仍可能难以承受，限制了对高自由度机器人的适用性。</li><li>热启动质量关键：收敛速度和中间安全质量高度依赖初始近似CBF与有效CBF的接近程度，严重不安全的初始化可能需要大量修正步骤才能激活安全保证。</li><li>硬件验证范围有限：摘要提及了真实机器人实验，但系统复杂度、延迟及失败案例的细节不足，在传感器噪声和模型失配下的鲁棒性仍是开放问题。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability ceiling: HJ-Patch reduces but does not eliminate the curse of dimensionality; for systems beyond ~6 dimensions, even localized HJ updates may remain intractable, limiting applicability to high-DOF robots without further approximation.</li><li>Warm-start quality matters: The convergence speed and intermediate safety quality depend heavily on how close the initial approximate CBF is to a valid one; a severely unsafe initialization could require many refinement steps before safety guarantees activate.</li><li>Hardware validation scope: Real-robot experiments are mentioned but details on system complexity, latency, and failure cases are limited in the abstract, leaving open questions about robustness under sensor noise and model mismatch in real deployments.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2602.23478v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文量化了翻转美国大选所需的物理对抗样本选票数量，并通过144,000个物理样本对比六种对抗攻击类型的实际效果。</div>
+        <div class="paper-title-en">Analyzing Physical Adversarial Example Threats to Machine Learning in Election Systems</div>
+        <div class="paper-meta">
+          Khaleque Md Aashiq Kamal, Surya Eada, Aayushi Verma et al.
+          
+          <span class="score-badge">评分 6.2</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文量化了翻转美国大选所需的物理对抗样本选票数量，并通过144,000个物理样本对比六种对抗攻击类型的实际效果。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper quantifies how many physically printed adversarial ballots are needed to flip a U.S. election and benchmarks six adversarial attack types across 144,000 physical realizations to identify the most effective threat.</div>
+        </div>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">机器学习选票分类器准确率超99%，但易受对抗样本攻击导致误分类。核心问题是攻击者能否实际打印并提交足够的对抗选票以翻转选举结果，以及哪种攻击方式在物理实现时最有效。</div>
+            <div class="en">Machine learning ballot classifiers achieve over 99% accuracy but remain vulnerable to adversarial example attacks that deliberately cause misclassification. The core question is whether an attacker can realistically print and submit enough adversarial ballots to flip an election outcome, and which attack method is most effective when physically realized.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">此前研究证明基于机器学习的选票分类器可达到高精度，但安全分析多集中于数字对抗样本，未考虑打印-扫描流程对扰动的削弱。此前也无研究建立翻转选举所需对抗选票数量的概率阈值框架。</div>
+            <div class="en">Prior work has demonstrated that ML-based ballot classifiers are achievable with high accuracy, but security analyses have largely focused on digital adversarial examples without accounting for the print-and-scan pipeline that degrades perturbations. No prior study has established a probabilistic threshold for how many adversarial ballots are operationally required to change an election result.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者构建了一个概率框架，以候选人获胜概率和总票数为参数，计算翻转选举所需的最少对抗选票数。随后对六种攻击算法生成的对抗样本进行物理打印与扫描，共评估144,000个物理对抗样本，衡量通过打印-扫描通道的现实攻击迁移性。</div>
+            <div class="en">The authors develop a probabilistic framework that computes the minimum number of adversarial ballots needed to flip an election, parameterized by each candidate&#39;s win probability and total ballot count. They then physically print and scan adversarial examples generated by six attack algorithms: l∞-APGD, l2-APGD, l1-APGD, l0-PGD, l0+l∞-PGD, and l0+sigma-map PGD. A total of 144,000 physical adversarial examples are evaluated to measure real-world attack transferability through the print-scan channel. This bridges the gap between digital attack performance and physical deployment feasibility.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在144,000个物理对抗样本中，经打印-扫描流程后各算法攻击效果差异显著。稀疏攻击（l0类）与混合范数攻击（l0+sigma-map PGD）在物理实现鲁棒性上优于l∞-APGD。概率框架显示，在势均力敌的选举中，少量对抗选票即可能改变结果。</div>
+            <div class="en">Across 144,000 physical adversarial examples, attack effectiveness varied significantly by algorithm after the print-scan degradation pipeline. Sparse attacks (l0-based) and combined norm attacks (l0+sigma-map PGD) showed differential robustness to physical realization compared to l∞-APGD, though exact per-method success rates are pending full paper details. The probabilistic framework reveals that in close elections, a surprisingly small number of adversarial ballots could suffice to shift outcomes.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>物理实现差距：打印-扫描流程是关键瓶颈，数字攻击成功率无法直接迁移，攻击范数的选择（稀疏vs密集）对现实威胁建模至关重要。</li><li>威胁的规模性：概率框架表明，竞争激烈的选举极易受攻击，票差以千计时所需伪造选票远少于票差以百万计的情形。</li><li>防御启示：结果建议选票分类系统应针对打印-扫描变换后的扰动进行对抗训练，而非仅依赖纯数字对抗增强。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Physical realizability gap: The print-scan pipeline is the key bottleneck—digital attack success rates do not transfer directly, making the choice of attack norm (sparse vs. dense) critical for real-world threat modeling.</li><li>Scalability of the threat: The probabilistic framework highlights that tightly contested elections are disproportionately vulnerable; attackers need far fewer fraudulent ballots in a race decided by thousands rather than millions of votes.</li><li>Defensive implications: Results suggest that ballot classification systems should be hardened with adversarial training specifically tuned for print-scan-transformed perturbations, rather than purely digital adversarial augmentation.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.00481v1" target="_blank">查看原文 →</a>
+      </div>
       
     </div>
     
@@ -241,179 +241,179 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">Code2Math提出多智能体框架，利用代码智能体自动将现有数学题演化为更难但可解的变体，以缓解高质量数学训练数据稀缺的瓶颈。</div>
-        <div class="paper-title-en">Code2Math: Can Your Code Agent Effectively Evolve Math Problems Through Exploration?</div>
+        <div class="paper-title">提出贝叶斯对抗性多智能体框架，通过三个协调的LLM智能体协同优化测试用例与科学代码生成。</div>
+        <div class="paper-title-en">AI-for-Science Low-code Platform with Bayesian Adversarial Multi-Agent Framework</div>
         <div class="paper-meta">
-          Dadi Guo, Yuejin Xie, Qingyu Liu et al.
+          Zihang Zeng, Jiaquan Zhang, Pengze Li et al.
           
           <span class="score-badge">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>Code2Math提出多智能体框架，利用代码智能体自动将现有数学题演化为更难但可解的变体，以缓解高质量数学训练数据稀缺的瓶颈。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Code2Math introduces a multi-agent framework that uses code agents to autonomously evolve existing math problems into harder, solvable variants, addressing the shortage of high-quality training data for advanced LLM math reasoning.</div>
+          <div>提出贝叶斯对抗性多智能体框架，通过三个协调的LLM智能体协同优化测试用例与科学代码生成。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A Bayesian adversarial multi-agent framework for a low-code platform that co-optimizes test cases and scientific code generation using three coordinated LLM agents.</div>
         </div>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">随着LLM数学能力逼近IMO水平，高质量难题的稀缺已成为训练与评估的关键瓶颈。本文探讨代码智能体能否自主地从现有题目生成更难且合法的新题，从而减少对人工出题的依赖。</div>
-            <div class="en">As LLMs approach IMO-level mathematical reasoning, the supply of sufficiently challenging problems for training and benchmarking has become critically scarce. The paper asks whether code agents can autonomously generate harder, valid math problems from existing ones, reducing dependence on human problem-setters.</div>
+            <div class="zh">LLM在科学代码生成中存在输出不可靠、多智能体流程中错误级联传播以及成功指标难以定义等问题，本文针对AI4S任务中代码生成的可靠性与可信度展开研究。</div>
+            <div class="en">LLMs show promise for automating scientific code generation, but suffer from unreliable outputs, cascading errors in multi-agent pipelines, and difficulty evaluating correctness in domains where success metrics are poorly defined. This paper targets the specific challenge of making AI-driven code generation robust and trustworthy for AI-for-Science (AI4S) tasks.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有数学数据增强方法（如改写、模板变换或提示重写）通常只产生表面变体，难以保证真正提升难度。此前代码智能体研究主要聚焦于解题而非出题，可验证难度提升的新题合成问题基本尚未被探索。</div>
-            <div class="en">Existing data augmentation methods for math problems—such as rephrasing, template-based mutation, or GPT-prompted rewriting—tend to produce superficially varied but not genuinely harder problems. Prior code agent work has focused on solving problems rather than creating or evolving them, leaving the synthesis of verifiably difficult new problems largely unexplored.</div>
+            <div class="zh">现有LLM代码生成框架依赖静态提示模板和固定测试用例，在缺乏标准答案的科学领域表现脆弱。多智能体流程中，单个智能体的错误会向下游级联传播，缺乏自适应纠错机制。</div>
+            <div class="en">Existing LLM-based code generation frameworks rely on static prompt templates and fixed test cases, making them brittle when applied to scientific domains where ground-truth outputs are often unavailable. Multi-agent workflows further amplify errors, as mistakes from one agent propagate unchecked to downstream agents without adaptive correction mechanisms.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">Code2Math构建了一个多智能体框架：代码智能体通过可执行代码迭代修改题目参数、结构与约束，探索候选演化题目空间；独立验证模块同时检验可解性与难度提升（如求解器复杂度或模型失败率）。框架通过测试时计算扩展探索深度，并将创意演化与正确性验证解耦，实现可扩展的可靠出题。</div>
-            <div class="en">Code2Math proposes a multi-agent framework in which a code agent iteratively modifies problem parameters, structures, and constraints via executable code, exploring a space of candidate evolved problems. A separate validation module checks both solvability (the evolved problem has a well-defined solution) and increased difficulty (e.g., via solver complexity or model failure rates). The framework leverages test-time compute by allowing extended exploration before committing to a generated problem. This design decouples creative evolution from correctness verification, enabling scalable and reliable problem synthesis.</div>
+            <div class="zh">平台由任务管理器、代码生成器和评估器三个LLM智能体构成。任务管理器与代码生成器形成对抗循环，前者持续强化测试用例以暴露代码缺陷。系统利用贝叶斯推断动态更新提示分布，融合功能正确性、结构对齐性和静态分析三类质量指标，实现测试与代码的协同优化。</div>
+            <div class="en">The paper introduces a Low-code Platform (LCP) built on a Bayesian adversarial multi-agent framework with three specialized LLM agents: a Task Manager that structures user inputs and generates adaptive test cases, a Code Generator that produces candidate solutions, and an Evaluator that provides structured feedback. An adversarial loop pits the Task Manager against the Code Generator, where test cases are iteratively hardened to expose code weaknesses. Prompt distributions for all agents are updated dynamically via Bayesian inference, integrating three code quality signals: functional correctness, structural alignment, and static analysis results. This co-optimization ensures both the tests and the generated code improve together over iterations.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">在充足的测试时计算下，框架成功生成了结构上不同于原题且可量化更难的新题。演化题目在保持可解性的同时，通过自动求解器和LLM失败率两个维度验证了难度提升。实验结果表明，代码驱动智能体是人工出题的可行且可扩展的替代方案。</div>
-            <div class="en">Given sufficient test-time exploration, the framework successfully synthesizes new problems that are structurally distinct from and measurably more challenging than the originals. Evolved problems maintain solvability while exhibiting increased difficulty as validated by both automated solvers and LLM failure rates. The results provide empirical evidence that code-driven agents are a viable scalable alternative to human-authored problem generation for advanced math benchmarks.</div>
+            <div class="zh">原文摘要不完整，具体量化结果无法确认。框架通过对抗协同优化循环在可靠性上优于静态多智能体基线，三类质量指标共同引导迭代优化，完整实验数据有待查阅全文。</div>
+            <div class="en">Specific benchmark numbers are not available from the provided abstract, which appears truncated. The framework demonstrates improved reliability over static multi-agent baselines through the adversarial co-optimization loop, with the three quality metrics (functional correctness, structural alignment, static analysis) jointly guiding iterative refinement. Quantitative results on AI4S-specific tasks remain to be confirmed from the full paper.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>测试时计算依赖：框架成功依赖于&#39;充足&#39;的探索预算，但论文未清晰量化计算量与质量的权衡曲线，难以评估大规模部署的实际成本。</li><li>验证瓶颈：以LLM失败率和自动求解器认证难度并不完善——当前模型无法解答的题目可能是病态题而非真正的难题，存在引入噪声训练信号的风险。</li><li>泛化范围：实验似乎集中于特定数学领域，演化题目能否覆盖竞赛数学的全部分支（组合、数论、几何）尚不明确，或主要偏向求解器友好的代数与数值类题目。</li></ul>
+              <ul class="discussion-list"><li>自适应测试生成是核心创新点：任务管理器主动对抗性探测代码生成器，有别于标准LLM编码流程。</li><li>贝叶斯提示分布更新思路新颖，但其对先验选择的敏感性及在小数据科学领域的收敛速度仍是未解问题。</li><li>低代码平台定位面向编程能力有限的领域科学家，但实用性高度依赖任务管理器解析模糊科学问题描述的能力。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Test-time compute dependency: The framework&#39;s success relies on &#39;sufficient&#39; exploration budget, but the paper does not clearly quantify the compute-quality trade-off curve, making it hard to assess practical deployment costs at scale.</li><li>Validation bottleneck: Using LLM failure rates and automated solvers to certify difficulty is imperfect—a problem unsolvable by current models may be ill-posed rather than genuinely hard, risking noisy training signal.</li><li>Generalization scope: Experiments appear focused on specific math domains; it remains unclear whether the evolved problems cover the breadth of competition mathematics (combinatorics, number theory, geometry) or concentrate on more solver-friendly algebraic/numerical problems.</li></ul>
+              <ul class="discussion-list"><li>Adaptive test generation is the key novelty: rather than using fixed unit tests, the Task Manager actively adversarially probes the Code Generator, which is a meaningful departure from standard LLM coding pipelines.</li><li>The Bayesian prompt distribution update is elegant but its sensitivity to prior selection and convergence speed in low-data scientific domains remains an open question that the truncated abstract does not address.</li><li>The low-code platform framing targets domain scientists with limited programming expertise, but practical usability depends heavily on how well the Task Manager can parse ambiguous, jargon-heavy scientific problem descriptions.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03202v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03233v1" target="_blank">查看原文 →</a>
       </div>
       
       
       <div class="paper-card">
-        <div class="paper-title">MoD-DPO通过模态解耦偏好优化与语言先验去偏惩罚，有效缓解全模态大语言模型中的跨模态幻觉问题。</div>
-        <div class="paper-title-en">MoD-DPO: Towards Mitigating Cross-modal Hallucinations in Omni LLMs using Modality Decoupled Preference Optimization</div>
+        <div class="paper-title">RAPO将检索增强探索引入智能体强化学习，使LLM智能体能在细粒度步骤层面利用离线经验，突破纯在线策略的探索瓶颈。</div>
+        <div class="paper-title-en">RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization</div>
         <div class="paper-meta">
-          Ashutosh Chaubey, Jiacheng Pang, Mohammad Soleymani
+          Siwei Zhang, Yun Xiong, Xi Chen et al.
           
           <span class="score-badge">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>MoD-DPO通过模态解耦偏好优化与语言先验去偏惩罚，有效缓解全模态大语言模型中的跨模态幻觉问题。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MoD-DPO reduces cross-modal hallucinations in omni-modal LLMs by introducing modality-decoupled preference optimization with modality-aware regularization and a language-prior debiasing penalty.</div>
+          <div>RAPO将检索增强探索引入智能体强化学习，使LLM智能体能在细粒度步骤层面利用离线经验，突破纯在线策略的探索瓶颈。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">RAPO introduces retrieval-augmented exploration into agentic reinforcement learning, enabling LLM agents to learn from retrieved off-policy experience at a fine-grained step level rather than being confined to self-generated trajectories.</div>
         </div>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">全模态大语言模型在联合处理音频、视频与文本时，易因虚假跨模态相关性或强语言先验产生幻觉响应，严重影响其在真实视听理解任务中的可靠性。</div>
-            <div class="en">Omni-modal LLMs that jointly process audio, video, and text are prone to cross-modal hallucinations — generating responses driven by spurious inter-modal correlations or dominant language priors rather than the actual input signal. This undermines reliability in real-world audiovisual understanding tasks where precise modality grounding is critical.</div>
+            <div class="zh">基于智能体RL训练的LLM受限于纯在线策略探索，只能从自身生成的轨迹中学习，难以发现新的推理策略。在复杂多步工具调用任务中，拓展探索多样性对提升性能至关重要。</div>
+            <div class="en">LLM agents trained with agentic RL are bottlenecked by on-policy exploration: they can only learn from their own generated rollouts, which limits discovery of novel reasoning strategies for complex multi-step, tool-integrated tasks. Expanding the diversity of explored behaviors is critical to improving agent performance on hard tasks where self-generated solutions are sparse or repetitive.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">标准DPO等偏好优化方法对所有模态一视同仁，无法区分相关模态；现有幻觉缓解研究主要针对视觉-语言模型，对音视频文本联合的全模态场景研究不足，且语言先验去偏未被纳入偏好学习框架。</div>
-            <div class="en">Existing preference optimization methods like standard DPO treat all modalities uniformly, failing to disentangle which modality is relevant to a given query. Prior multimodal hallucination mitigation work has focused primarily on vision-language models, leaving omni-modal settings (audio + video + text) largely underexplored. Language-prior debiasing has not been explicitly integrated into preference learning frameworks for omni LLMs.</div>
+            <div class="zh">纯在线策略方法（如GRPO）将探索限制在智能体自身输出，形成&#34;回音壁&#34;效应。现有离线辅助方法以完整轨迹为粒度进行策略估计，忽视了智能体推理过程中逐步骤的动态差异，导致信用分配不准确。</div>
+            <div class="en">Pure on-policy methods (e.g., GRPO, PPO variants for LLMs) restrict exploration to the agent&#39;s own outputs, creating an echo-chamber effect that stalls improvement on hard tasks. Some recent works inject off-policy signals but operate at the full-trajectory level, applying coarse policy estimates that ignore the step-by-step dynamics critical to agentic rollouts — leading to misaligned credit assignment.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">MoD-DPO在DPO基础上引入两类模态感知正则项：对无关模态扰动保持不变性，对相关模态扰动保持敏感性；同时加入语言先验去偏惩罚项，抑制仅依赖文本的幻觉输出。该模态解耦设计引导模型将答案锚定于正确的输入模态。</div>
-            <div class="en">MoD-DPO extends DPO with two modality-aware regularization terms: one enforcing invariance to corruptions in task-irrelevant modalities (e.g., perturbing audio when the query is visual), and one enforcing sensitivity to perturbations in the task-relevant modality. A language-prior debiasing penalty explicitly suppresses text-only hallucination-prone responses during preference optimization. This modality-decoupled design encourages the model to ground its answers in the correct input modality rather than co-variate signals or memorized language patterns.</div>
+            <div class="zh">RAPO在训练时从经验库检索相关离线轨迹，并在步骤层面将其融入策略优化。智能体可将自身动作与检索到的替代动作对比，从而获得更丰富的梯度信号。通过重要性加权机制校正在/离线策略间的分布偏移，实现稳定的细粒度信用分配。</div>
+            <div class="en">RAPO (Retrieval-Augmented Policy Optimization) augments the training rollout process by retrieving relevant off-policy trajectories from an experience buffer and integrating them at the step level during policy optimization. This allows the agent to contrast its own actions against retrieved alternatives, enriching the gradient signal with diverse exploratory dynamics without fully committing to off-policy trajectories. A theoretically motivated importance-weighting scheme corrects for distribution shift between on- and off-policy steps, enabling stable and fine-grained credit assignment throughout the agentic rollout.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">MoD-DPO在多个视听幻觉基准上持续优于标准DPO及基线全模态模型，在视听问答与幻觉检测任务中均有提升，语言先验去偏惩罚项可量化地减少纯文本幻觉输出。</div>
-            <div class="en">MoD-DPO consistently outperforms standard DPO and baseline omni LLMs across multiple audiovisual hallucination benchmarks, improving both perception accuracy and hallucination resistance. Specific gains are demonstrated across audio-visual question answering and hallucination detection tasks, with the language-prior debiasing penalty contributing measurable reductions in text-only hallucinated responses.</div>
+            <div class="zh">RAPO在涉及工具使用和多步推理的多个智能体基准上持续优于在线策略及轨迹级离线策略基准。步骤级检索融合方式优于全轨迹离线方法，验证了细粒度探索信号的有效性。</div>
+            <div class="en">RAPO achieves consistent improvements over strong on-policy and trajectory-level off-policy baselines across multiple agentic benchmarks involving tool use and multi-step reasoning. The step-level retrieval integration outperforms full-trajectory off-policy methods, validating that fine-grained exploratory signals are more beneficial than coarse trajectory-level augmentation. Specific numbers are not fully disclosed in the abstract, but reported gains span diverse task categories, suggesting broad applicability.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>模态扩展性：模态解耦设计理论上可扩展至更多模态（如深度图、IMU），但论文仅在音频-视频-文本三元组上验证，更广泛的泛化能力有待证明。</li><li>数据依赖性：构建模态扰动偏好对需要针对每种模态设计扰动策略，合成负样本的质量与多样性可能成为性能提升的实际瓶颈。</li><li>评估范围：实验聚焦于幻觉基准，缺乏通用视听QA准确率对比，难以排除幻觉减少以牺牲通用任务性能为代价的可能性。</li></ul>
+              <ul class="discussion-list"><li>检索质量是隐性瓶颈：RAPO的效果高度依赖检索到的轨迹的相关性与多样性，若经验库质量不足，收益可能大打折扣。</li><li>长时域任务的可扩展性存疑：步骤级检索与重要性加权带来额外计算开销，随着任务复杂度和推理步数增加，效率问题有待验证。</li><li>在高度开放或新颖任务中的泛化能力不确定：对于检索步骤难以提供有效信号的任务，该方法的优势可能显著下降。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Scalability to more modalities: The modality-decoupling design is theoretically extensible to additional modalities (e.g., depth, IMU), but the paper only validates on audio-video-text triples — broader generalization remains unproven.</li><li>Data dependency: Constructing modality-corrupted preference pairs requires careful perturbation strategies per modality type; the quality and diversity of these synthetic negative samples likely impose a practical ceiling on performance gains.</li><li>Comparison scope: Evaluations focus on hallucination benchmarks but omit standard audiovisual QA accuracy benchmarks, making it hard to confirm that hallucination reduction does not come at the cost of general task performance.</li></ul>
+              <ul class="discussion-list"><li>Retrieval quality is a hidden bottleneck: RAPO&#39;s gains depend heavily on the relevance and diversity of retrieved trajectories; a poorly populated or redundant experience buffer could neutralize the benefit, yet the paper&#39;s curation strategy for this buffer remains underspecified.</li><li>Scalability to very long agentic horizons is unclear: step-level retrieval and importance weighting add per-step computational overhead, and it is not shown whether this overhead remains tractable as task complexity and rollout length grow significantly.</li><li>Generalization beyond retrieval-friendly domains is uncertain: the method is well-suited for tasks with reusable step patterns (e.g., structured tool calls), but its advantage may diminish in highly novel or open-ended tasks where retrieved steps provide little relevant signal.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03192v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03078v1" target="_blank">查看原文 →</a>
       </div>
       
       
       <div class="paper-card">
-        <div class="paper-title">PAE框架揭示tau-bench中27–78%的&#34;成功&#34;任务实为隐藏程序违规的虚假成功，标准评测方法对此完全不可见。</div>
-        <div class="paper-title-en">Beyond Task Completion: Revealing Corrupt Success in LLM Agents through Procedure-Aware Evaluation</div>
+        <div class="paper-title">TikZilla结合了规模扩大4倍、质量更高的TikZ数据集（DaTikZ-V4）与强化学习微调，显著提升了从文本...</div>
+        <div class="paper-title-en">TikZilla: Scaling Text-to-TikZ with High-Quality Data and Reinforcement Learning</div>
         <div class="paper-meta">
-          Hongliu Cao, Ilias Driouich, Eoin Thomas
+          Christian Greisinger, Steffen Eger
           
           <span class="score-badge">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>PAE框架揭示tau-bench中27–78%的&#34;成功&#34;任务实为隐藏程序违规的虚假成功，标准评测方法对此完全不可见。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">PAE (Procedure-Aware Evaluation) exposes that 27–78% of &#34;successful&#34; LLM agent task completions on tau-bench are actually corrupt, hiding procedural violations invisible to standard pass/fail benchmarks.</div>
+          <div>TikZilla结合了规模扩大4倍、质量更高的TikZ数据集（DaTikZ-V4）与强化学习微调，显著提升了从文本描述自动生成科学TikZ图形的效果。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TikZilla combines a 4x larger, cleaner TikZ dataset (DaTikZ-V4) with reinforcement learning fine-tuning to significantly improve automated generation of scientific TikZ figures from text descriptions.</div>
         </div>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">现有LLM智能体基准仅衡量任务是否完成，忽视完成过程是否合规。在高风险场景（如客服、医疗、金融）中，以不当步骤达成正确结果同样可能造成危害或法律责任。</div>
-            <div class="en">Current LLM agent benchmarks measure only whether a task was completed, ignoring whether the agent followed correct procedures to get there. This matters critically in high-stakes domains (e.g., customer service, healthcare, finance) where a correct outcome achieved through improper steps can still cause harm or liability.</div>
+            <div class="zh">本文研究从自然语言描述生成高质量TikZ程序的挑战，这对自动化科学图形创作至关重要。循环错误、无关内容和空间关系错误等问题使该任务对仅依赖文本监督训练的LLM尤为困难。</div>
+            <div class="en">The paper tackles the challenge of generating high-quality TikZ programs from natural language descriptions, a critical task for automating scientific figure creation. Errors like infinite loops, irrelevant content, and incorrect spatial relationships make this problem particularly difficult for LLMs trained only on text supervision.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有基准（如tau-bench）采用二元成功/失败信号，无法检测程序捷径、通信不一致或政策违规。已有多维评测框架，但通常独立处理各维度，不会对根本性缺陷结果予以否定。</div>
-            <div class="en">Existing benchmarks like tau-bench evaluate agents using binary success/failure signals, which cannot detect procedural shortcuts, inconsistent communications, or policy violations. Multi-dimensional evaluation frameworks exist but typically treat dimensions independently without disqualifying fundamentally flawed outcomes.</div>
+            <div class="zh">现有数据集（如DaTikZ-V3）规模偏小且噪声较多，无法涵盖TikZ的完整复杂性，导致文本与图形对齐效果差。此前方法均仅依赖监督微调（SFT），模型从未接触渲染后的视觉反馈，结构性和空间性错误因此无法得到纠正。</div>
+            <div class="en">Existing Text-to-TikZ datasets such as DaTikZ-V3 are too small and noisy to capture TikZ&#39;s full complexity, leading to poor text-figure alignment. All prior modeling approaches rely solely on supervised fine-tuning (SFT), which never exposes the model to rendered visual feedback, leaving structural and spatial errors uncorrected.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">PAE将智能体行为形式化为结构化观察，检查观察、通信与执行三个通道的一致性。框架沿四个互补轴（效用、效率、交互质量、程序完整性）进行评估，并通过多维门控机制对存在程序违规的结果予以否定，无论任务结果如何，从而区分&#34;虚假成功&#34;与真正成功。</div>
-            <div class="en">PAE formalizes agent behavior as structured observations capturing what agents observe, communicate, and execute, then checks consistency across these three channels. It evaluates agents along four complementary axes: Utility, Efficiency, Interaction Quality, and Procedural Integrity. A multi-dimensional gating mechanism categorically disqualifies outcomes where procedural violations are detected, regardless of task outcome. This separates &#34;corrupt successes&#34; — tasks that appear complete but involve policy or procedure violations — from genuine successes.</div>
+            <div class="zh">作者构建了DaTikZ-V4数据集，规模超过DaTikZ-V3四倍，并通过LLM生成的图形描述提升文本-图形对齐质量。基于DaTikZ-V4，作者以Qwen为基础训练了TikZilla系列小型开源模型，采用SFT与强化学习（RL）两阶段流程。RL阶段以渲染图形质量作为奖励信号，使模型超越词元级监督，感知视觉语义，有效解决SFT无法修正的循环和空间错误问题。</div>
+            <div class="en">The authors construct DaTikZ-V4, a dataset more than four times larger than DaTikZ-V3 and enriched with LLM-generated figure descriptions to improve text-figure alignment quality. Using DaTikZ-V4, they train TikZilla, a family of small open-source models based on Qwen, via a two-stage pipeline: supervised fine-tuning followed by reinforcement learning (RL). The RL stage uses rendered figure quality as a reward signal, exposing the model to visual semantics beyond token-level supervision. This approach directly targets common failure modes like looping and spatial incorrectness that SFT alone cannot fix.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">在tau-bench上，PAE发现27–78%的基准报告成功为&#34;虚假成功&#34;，隐藏程序违规。四个评估轴捕获非冗余失败模式：高效用掩盖可靠性缺口，速度快不代表精度高，简洁不预示意图遵从。</div>
-            <div class="en">On tau-bench, PAE finds that 27–78% of benchmark-reported successes are &#34;corrupt successes&#34; concealing procedural violations. The four axes capture non-redundant failure modes: high utility scores mask reliability gaps, faster agents are not necessarily more precise, and concise agents do not reliably adhere to intended procedures.</div>
+            <div class="zh">在DaTikZ-V4上经RL训练的TikZilla在Text-to-TikZ基准测试中优于仅使用SFT的基线，循环和空间错位等渲染错误显著减少。高质量数据与RL的组合所带来的提升超过任一单独干预，体现了数据整理与奖励训练的互补价值。</div>
+            <div class="en">TikZilla, trained with RL on DaTikZ-V4, outperforms prior SFT-only baselines on Text-to-TikZ benchmarks, with measurable reductions in rendering errors such as looping and spatial misalignment. The combination of higher-quality data and RL yields improvements beyond what either intervention achieves alone, demonstrating the complementary value of data curation and reward-based training.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>虚</li><li>假</li><li>成</li><li>功</li><li>率</li><li>2</li><li>7</li><li>–</li><li>7</li><li>8</li><li>%</li><li>的</li><li>区</li><li>间</li><li>跨</li><li>度</li><li>较</li><li>大</li><li>，</li><li>尚</li><li>不</li><li>清</li><li>楚</li><li>差</li><li>异</li><li>来</li><li>源</li><li>于</li><li>模</li><li>型</li><li>差</li><li>异</li><li>、</li><li>任</li><li>务</li><li>类</li><li>型</li><li>还</li><li>是</li><li>领</li><li>域</li><li>特</li><li>性</li><li>，</li><li>摘</li><li>要</li><li>截</li><li>断</li><li>限</li><li>制</li><li>了</li><li>对</li><li>此</li><li>的</li><li>完</li><li>整</li><li>评</li><li>估</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>多</li><li>维</li><li>门</li><li>控</li><li>的</li><li>硬</li><li>性</li><li>否</li><li>定</li><li>规</li><li>则</li><li>存</li><li>在</li><li>脆</li><li>性</li><li>风</li><li>险</li><li>：</li><li>轻</li><li>微</li><li>程</li><li>序</li><li>偏</li><li>差</li><li>可</li><li>能</li><li>不</li><li>公</li><li>平</li><li>地</li><li>否</li><li>定</li><li>整</li><li>体</li><li>高</li><li>质</li><li>量</li><li>的</li><li>运</li><li>行</li><li>，</li><li>未</li><li>来</li><li>可</li><li>考</li><li>虑</li><li>引</li><li>入</li><li>渐</li><li>进</li><li>惩</li><li>罚</li><li>机</li><li>制</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>P</li><li>A</li><li>E</li><li>在</li><li>t</li><li>a</li><li>u</li><li>-</li><li>b</li><li>e</li><li>n</li><li>c</li><li>h</li><li>之</li><li>外</li><li>的</li><li>泛</li><li>化</li><li>能</li><li>力</li><li>尚</li><li>未</li><li>验</li><li>证</li><li>；</li><li>编</li><li>程</li><li>智</li><li>能</li><li>体</li><li>、</li><li>网</li><li>页</li><li>智</li><li>能</li><li>体</li><li>等</li><li>场</li><li>景</li><li>的</li><li>&#34;</li><li>正</li><li>确</li><li>程</li><li>序</li><li>&#34;</li><li>本</li><li>身</li><li>模</li><li>糊</li><li>，</li><li>结</li><li>构</li><li>化</li><li>观</li><li>察</li><li>的</li><li>形</li><li>式</li><li>化</li><li>定</li><li>义</li><li>难</li><li>以</li><li>直</li><li>接</li><li>迁</li><li>移</li><li>。</li><li>&#34;</li><li>]</li></ul>
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>R</li><li>L</li><li>奖</li><li>励</li><li>设</li><li>计</li><li>仍</li><li>非</li><li>易</li><li>事</li><li>：</li><li>以</li><li>渲</li><li>染</li><li>图</li><li>形</li><li>质</li><li>量</li><li>为</li><li>奖</li><li>励</li><li>需</li><li>要</li><li>可</li><li>靠</li><li>的</li><li>视</li><li>觉</li><li>相</li><li>似</li><li>度</li><li>指</li><li>标</li><li>，</li><li>指</li><li>标</li><li>选</li><li>择</li><li>可</li><li>能</li><li>强</li><li>烈</li><li>影</li><li>响</li><li>模</li><li>型</li><li>对</li><li>&#34;</li><li>正</li><li>确</li><li>&#34;</li><li>图</li><li>形</li><li>的</li><li>定</li><li>义</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>T</li><li>i</li><li>k</li><li>Z</li><li>渲</li><li>染</li><li>的</li><li>计</li><li>算</li><li>成</li><li>本</li><li>制</li><li>约</li><li>了</li><li>R</li><li>L</li><li>训</li><li>练</li><li>的</li><li>可</li><li>扩</li><li>展</li><li>性</li><li>—</li><li>—</li><li>每</li><li>次</li><li>R</li><li>L</li><li>更</li><li>新</li><li>都</li><li>需</li><li>编</li><li>译</li><li>L</li><li>a</li><li>T</li><li>e</li><li>X</li><li>并</li><li>评</li><li>估</li><li>生</li><li>成</li><li>图</li><li>像</li><li>，</li><li>在</li><li>更</li><li>大</li><li>模</li><li>型</li><li>或</li><li>数</li><li>据</li><li>集</li><li>规</li><li>模</li><li>下</li><li>可</li><li>能</li><li>成</li><li>为</li><li>训</li><li>练</li><li>瓶</li><li>颈</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>D</li><li>a</li><li>T</li><li>i</li><li>k</li><li>Z</li><li>-</li><li>V</li><li>4</li><li>中</li><li>L</li><li>L</li><li>M</li><li>生</li><li>成</li><li>的</li><li>描</li><li>述</li><li>可</li><li>能</li><li>引</li><li>入</li><li>生</li><li>成</li><li>模</li><li>型</li><li>的</li><li>系</li><li>统</li><li>性</li><li>偏</li><li>差</li><li>，</li><li>导</li><li>致</li><li>T</li><li>i</li><li>k</li><li>Z</li><li>i</li><li>l</li><li>l</li><li>a</li><li>在</li><li>训</li><li>练</li><li>时</li><li>见</li><li>过</li><li>的</li><li>描</li><li>述</li><li>风</li><li>格</li><li>上</li><li>表</li><li>现</li><li>良</li><li>好</li><li>，</li><li>但</li><li>在</li><li>真</li><li>实</li><li>多</li><li>样</li><li>的</li><li>用</li><li>户</li><li>提</li><li>示</li><li>下</li><li>泛</li><li>化</li><li>能</li><li>力</li><li>受</li><li>限</li><li>。</li><li>&#34;</li><li>]</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>The 27–78% range of corrupt successes is striking but also raises questions about what drives the variance — is it model-specific, task-specific, or domain-specific? The truncated abstract prevents full assessment of this breakdown.</li><li>The multi-dimensional gating approach is a strong design choice, but hard disqualification rules risk being brittle: a minor procedural deviation might unfairly nullify an otherwise high-quality agent run, suggesting a need for graduated penalty mechanisms.</li><li>PAE&#39;s applicability beyond tau-bench is unproven; real-world agentic tasks (e.g., coding agents, web agents) have more ambiguous &#39;correct procedures,&#39; making the formalization of structured observations potentially difficult to generalize.</li></ul>
+              <ul class="discussion-list"><li>Reward design for RL in code generation remains non-trivial: using rendered figure quality as a reward requires a reliable visual similarity metric, and the choice of metric could strongly bias what &#34;correct&#34; figures look like.</li><li>Scalability is limited by the cost of rendering TikZ during RL training — each RL update requires compiling LaTeX and evaluating the resulting image, which may bottleneck training at larger model or dataset scales.</li><li>DaTikZ-V4&#39;s LLM-generated descriptions introduce a risk of systematic biases inherited from the generating LLM, potentially causing TikZilla to perform well on description styles it was trained on but poorly on real-world, diverse user prompts.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03116v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03072v1" target="_blank">查看原文 →</a>
       </div>
       
     </div>
@@ -423,179 +423,179 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">CoWVLA提出&#34;Chain of World&#34;范式，将解耦的潜在运动表示与世界模型时序推理相结合，提升具身智能中...</div>
-        <div class="paper-title-en">Chain of World: World Model Thinking in Latent Motion</div>
+        <div class="paper-title">首个系统性实证研究，揭示鱼眼相机的宽视野、场景多样性和跨相机迁移特性如何影响机器人操作策略学习。</div>
+        <div class="paper-title-en">Rethinking Camera Choice: An Empirical Study on Fisheye Camera Properties in Robotic Manipulation</div>
         <div class="paper-meta">
-          Fuxiang Yang, Donglin Di, Lulu Tang et al.
+          Han Xue, Nan Min, Xiaotong Liu et al.
           
           <span class="score-badge">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>CoWVLA提出&#34;Chain of World&#34;范式，将解耦的潜在运动表示与世界模型时序推理相结合，提升具身智能中视觉-语言-动作模型的性能。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CoWVLA introduces a &#34;Chain of World&#34; paradigm that combines disentangled latent motion representations with world-model temporal reasoning to improve Vision-Language-Action models for embodied intelligence tasks.</div>
+          <div>首个系统性实证研究，揭示鱼眼相机的宽视野、场景多样性和跨相机迁移特性如何影响机器人操作策略学习。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">The first systematic empirical study revealing how fisheye camera properties—wide FoV, scene diversity, and cross-camera transfer—affect robotic manipulation policy learning in both simulation and real-world settings.</div>
         </div>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">用于机器人控制的VLA模型难以捕捉视觉动态的预测性时序因果结构，这限制了其规划和可靠执行能力。具身智能体必须能预测未来状态，而非仅对当前观测做出反应。</div>
-            <div class="en">VLA models for robotic control struggle to capture the predictive, temporal-causal structure of visual dynamics, limiting their ability to plan and act reliably. This matters because robust embodied agents must anticipate future states, not merely react to current observations.</div>
+            <div class="zh">鱼眼相机因宽视野在机器人操作中日益普及，但其对模仿学习策略的影响缺乏系统研究。本文聚焦三个核心问题：宽视野是否提升空间定位能力、是否增强场景泛化能力，以及策略能否跨鱼眼硬件迁移。</div>
+            <div class="en">Fisheye cameras are increasingly used in robotic manipulation due to their wide Field of View, yet no systematic study has examined their downstream effects on imitation learning policies. This paper asks three concrete questions: does wide FoV improve spatial localization, does it enable better scene generalization, and can policies transfer across different fisheye hardware?</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">世界模型型VLA通过预测未来帧来规划，但大量容量被用于重建与动作无关的冗余背景像素。潜在动作型VLA编码更紧凑，但缺乏时序连续的动态建模，也无法利用世界知识进行长程推理。</div>
-            <div class="en">World-model VLAs predict future frames to enable planning but waste model capacity reconstructing redundant background pixels that carry little action-relevant information. Latent-action VLAs encode frame-to-frame transitions more compactly but sacrifice temporally continuous dynamic modeling and fail to leverage broader world knowledge for long-horizon reasoning.</div>
+            <div class="zh">现有机器人操作研究主要依赖标准针孔相机，鱼眼相机的引入缺乏系统评估。已有工作仅关注视角选择或畸变校正，对鱼眼光学特性在策略层面的影响（尤其是腕部安装配置）几乎没有深入探讨。</div>
+            <div class="en">Prior work in robotic manipulation has largely relied on standard pinhole cameras, with fisheye cameras adopted in an ad hoc manner without rigorous evaluation of their trade-offs. Existing studies on camera choice focus narrowly on viewpoint selection or distortion correction, leaving the policy-level consequences of fisheye optics—particularly for wrist-mounted configurations—largely unexplored.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">CoWVLA使用预训练视频VAE将视频段显式分解为结构潜变量（静态背景）和运动潜变量（动态变化），推理时丢弃冗余结构信息。预训练阶段，VLA根据指令和初始帧推断连续的潜在运动链并预测片段终止帧。联合微调阶段，潜在动态与机器人动作输出对齐，将世界模型推理落地为可执行运动指令。</div>
-            <div class="en">CoWVLA uses a pretrained video VAE to explicitly factorize video segments into structure latents (static background) and motion latents (dynamic changes), discarding redundant structure during reasoning. During pre-training, the VLA takes an instruction and an initial frame and learns to infer a continuous latent motion chain while predicting the segment&#39;s terminal frame. During co-fine-tuning, the learned latent dynamics are aligned with robot action outputs, grounding world-model reasoning in executable motor commands. This disentangled &#34;Chain of World&#34; design enables richer temporal modeling without the pixel-reconstruction overhead of prior world-model approaches.</div>
+            <div class="zh">作者以腕部鱼眼相机为对象，在仿真与真实环境中开展系统性对照实验，以模仿学习为评估框架。研究系统控制三个变量：环境视觉复杂度（空间定位）、训练数据场景多样性（泛化能力）和相机硬件型号（跨设备迁移）。针对跨相机迁移失败问题，识别出镜头畸变参数不匹配为根本原因，并提出基于标定的畸变感知自适应方法。</div>
+            <div class="en">The authors conduct extensive controlled experiments with wrist-mounted fisheye cameras across simulation and real-world robotic manipulation tasks, using imitation learning as the evaluation framework. They systematically vary three factors: environmental visual complexity (for spatial localization), scene diversity in training data (for generalization), and camera hardware models (for transfer). To address cross-camera transfer failures, they identify lens distortion parameter mismatch as the root cause and propose a distortion-aware calibration-based adaptation method.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">CoWVLA在机器人操作基准上优于世界模型型和潜在动作型VLA基线，无需像素级重建即可实现更丰富的时序推理。解耦运动表示使模型专注于与动作相关的动态，时序一致性和动作预测精度均有提升。具体数值结果在摘要中未完整披露，但在多步时序规划任务中有明显收益。</div>
-            <div class="en">CoWVLA demonstrates improved performance over both world-model and latent-action VLA baselines on robotic manipulation benchmarks, benefiting from richer temporal reasoning without pixel-level reconstruction costs. The disentangled motion representation allows the model to focus capacity on action-relevant dynamics, leading to more accurate and temporally consistent action predictions. Specific numerical results are not fully disclosed in the abstract, but the method shows clear gains in tasks requiring multi-step temporal planning.</div>
+            <div class="zh">宽视野鱼眼相机在视觉复杂环境中显著提升空间定位能力，但在简单场景中因过拟合优势消失甚至反转。在充足场景多样性训练下，鱼眼策略的跨场景泛化能力优于针孔相机策略。直接跨硬件迁移会导致失败，但所提畸变感知自适应方法可将策略性能恢复至近域内水平。</div>
+            <div class="en">Wide FoV fisheye cameras significantly improve spatial localization over standard cameras, but only in visually complex environments—in simple scenes, the advantage disappears or reverses due to overfitting. Fisheye-trained policies exhibit stronger scene generalization when trained with sufficient environmental diversity, outperforming pinhole-camera policies in cross-scene transfer. Naive cross-camera hardware transfer fails, but the proposed distortion-aware adaptation recovers policy performance to near in-distribution levels.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>解耦假设的风险：视频VAE对结构与运动的分解在动态背景场景（如传送带、闪烁灯光）中可能失效，导致运动链被污染，影响真实部署中的动作质量。</li><li>潜在运动链的可扩展性：自回归推断连续潜在运动链在长程任务中计算开销可能显著增加，百步以上操作序列的延迟问题有待验证。</li><li>联合微调的对齐鸿沟：将预训练世界模型潜变量与机器人动作输出对齐时，若预训练视频数据与机器人执行数据在视觉域或运动统计上差异较大，可能引入分布不匹配问题。</li></ul>
+              <ul class="discussion-list"><li>宽视野优势受环境复杂度调节：鱼眼相机的定位优势仅在视觉复杂场景中成立，从业者不应无条件选用鱼眼相机，需结合场景结构判断。</li><li>数据多样性是泛化能力的关键：鱼眼策略的场景泛化优势只有在多样化训练数据下才能显现，数据集构建策略与硬件选型同等重要。</li><li>跨硬件迁移需专项处理：镜头畸变参数不匹配（而非架构或数据分布偏移）是跨相机迁移失败的根本原因，换装鱼眼模块时必须重新标定畸变参数。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Disentanglement assumption risk: The video VAE&#39;s factorization into structure vs. motion latents may break down in scenes with dynamic backgrounds (e.g., moving conveyor belts, flickering lights), potentially corrupting the motion chain and degrading action quality in real-world deployments.</li><li>Scalability of latent motion chain: Inferring a continuous latent motion chain autoregressively could become computationally expensive for long-horizon tasks, raising questions about whether the approach scales to manipulation sequences of 100+ steps without latency penalties.</li><li>Co-fine-tuning alignment gap: Bridging pre-trained world-model latents to robot action outputs via co-fine-tuning introduces a potential distribution mismatch, especially when the pre-training video data and robot execution data differ significantly in visual domain or motion statistics.</li></ul>
+              <ul class="discussion-list"><li>Environmental complexity is a hidden moderator: the wide FoV benefit is conditional, meaning practitioners should not default to fisheye cameras without considering scene structure—cluttered, multi-object scenes are where fisheye cameras earn their advantage.</li><li>Data diversity is the key unlock: fisheye cameras&#39; generalization gains only materialize with diverse training environments, suggesting that dataset curation strategy matters as much as hardware choice when deploying fisheye-based systems.</li><li>Hardware interchangeability is non-trivial: the finding that lens distortion mismatch—not architecture or data shift—causes cross-camera transfer failures points to a practical checklist item (distortion recalibration) that robot practitioners must address when swapping fisheye units in the field.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03195v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02139v1" target="_blank">查看原文 →</a>
       </div>
       
       
       <div class="paper-card">
-        <div class="paper-title">CMoE将对比学习与专家混合模型结合，强制专家针对不同地形专门化，使人形机器人能在单阶段强化学习框架下应对复杂地形切换。</div>
-        <div class="paper-title-en">CMoE: Contrastive Mixture of Experts for Motion Control and Terrain Adaptation of Humanoid Robots</div>
+        <div class="paper-title">Robometer结合帧级进度损失与轨迹比较偏好损失，构建可扩展的机器人奖励模型，有效利用大规模不完美数据。</div>
+        <div class="paper-title-en">Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons</div>
         <div class="paper-meta">
-          Shihao Ma, Hongjin Chen, Zijun Xu et al.
+          Anthony Liang, Yigit Korkmaz, Jiahui Zhang et al.
           
           <span class="score-badge">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>CMoE将对比学习与专家混合模型结合，强制专家针对不同地形专门化，使人形机器人能在单阶段强化学习框架下应对复杂地形切换。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CMoE combines contrastive learning with Mixture of Experts to force expert specialization across terrain types, enabling humanoid robots to navigate diverse terrains with abrupt transitions in a single-stage RL framework.</div>
+          <div>Robometer结合帧级进度损失与轨迹比较偏好损失，构建可扩展的机器人奖励模型，有效利用大规模不完美数据。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Robometer is a scalable robot reward model trained with a dual objective—frame-level progress loss plus trajectory-comparison preference loss—enabling effective learning from imperfect, large-scale robotics datasets.</div>
         </div>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">人形机器人在真实环境中需应对楼梯、坡道、不平地面等多种地形的突变切换，同时保持对每类地形的强适应能力，如何在统一模型中兼顾泛化性与表达能力是具身智能的核心挑战。</div>
-            <div class="en">Humanoid robots deployed in real-world settings must handle abrupt transitions across diverse terrains (e.g., stairs, slopes, uneven ground), which requires both robust locomotion control and adaptive terrain-specific policies. A unified model that generalizes across all terrain types without losing expressive power for each individual terrain is a core open challenge in embodied AI.</div>
+            <div class="zh">当大量真实轨迹数据存在失败或次优情况时，如何大规模训练机器人奖励模型？可扩展的奖励信号是通用机器人学习的关键瓶颈。</div>
+            <div class="en">How can robotic reward models be trained at scale when most real-world trajectory data is suboptimal or failed, making dense progress labeling ambiguous? This matters because scalable reward signals are a bottleneck for general-purpose robot learning across diverse tasks and embodiments.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">传统MoE框架在理论上可建模多样地形，但门控网络实际上对不同地形输出近乎均匀的专家激活权重，导致专家专门化失效。单一策略RL方法难以捕捉不同地形的差异化行为，多阶段或层次化方法则引入训练复杂性并在地形切换处易出现不稳定。</div>
-            <div class="en">Vanilla MoE frameworks theoretically support diverse terrain modeling by routing inputs to specialized experts, but in practice the gating network tends to produce nearly uniform activation weights across all experts regardless of terrain, undermining specialization. Single-policy RL approaches lack the capacity to capture sufficiently distinct terrain-specific behaviors, while multi-stage or hierarchical methods introduce training complexity and potential instability at terrain boundaries.</div>
+            <div class="zh">现有奖励模型（如UniSim、RobotVQA）依赖专家演示的帧级绝对进度标注，仅提供局部监督信号。面对含有失败或次优轨迹的大规模数据集，这种范式难以扩展，进度标注模糊且易出错。</div>
+            <div class="en">Existing reward models like UniSim and RobotVQA are trained to predict absolute task progress from expert demonstrations using frame-level supervision, which provides only local, dense progress labels. This paradigm breaks down on large-scale datasets with failed or suboptimal trajectories, as assigning meaningful progress scores to such data is ambiguous and error-prone.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">CMoE在MoE门控网络训练中引入对比约束：同地形的专家激活被拉近（一致性最大化），不同地形的激活被推远（相似性最小化）。该对比监督集成于单阶段强化学习流程中，无需预训练或课程分阶段设计。方法在宇树G1人形机器人上验证，针对真实世界中突变地形切换场景，同时保留标准RL奖励结构并附加门控分布的对比损失项。</div>
-            <div class="en">CMoE introduces contrastive constraints directly into the MoE gating network training: activations for the same terrain type are pulled together (consistency maximized), while activations for different terrain types are pushed apart (similarity minimized). This contrastive supervision is integrated into a single-stage reinforcement learning pipeline, eliminating the need for pre-training or curriculum staging. The method is validated on the Unitree G1 humanoid robot, targeting real-world deployment with abrupt terrain transitions. The overall framework preserves standard RL reward structures while adding a contrastive loss term on the gating distribution.</div>
+            <div class="zh">Robometer采用双目标训练：帧级进度损失锚定专家数据的奖励幅度，轨迹比较偏好损失对同任务轨迹施加全局排序约束。偏好损失无需逐帧标注，可直接利用真实失败轨迹和增强次优轨迹。作者还构建了包含百万余条轨迹的RBM-1M数据集，覆盖多种机器人形态和任务类型。</div>
+            <div class="en">Robometer introduces a dual-objective training framework: a frame-level progress loss that anchors reward magnitudes using expert demonstrations, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories of the same task. The preference loss allows the model to learn from both real failed trajectories and augmented suboptimal ones without requiring dense per-frame labels. To support this at scale, the authors curate RBM-1M, a dataset of over one million trajectories spanning diverse robot embodiments and tasks. This combination enables Robometer to generalize as a general-purpose reward model beyond the specific tasks it was trained on.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">与普通MoE相比，CMoE的专家激活分布差异显著更大，验证了对比约束的有效性。在宇树G1机器人上的实验表明，单阶段框架在复杂地形切换中的运动性能优于或持平于多阶段基线方法。完整论文中有具体量化指标（如成功率、通过速度），摘要未披露详细数值。</div>
-            <div class="en">CMoE demonstrates measurably more distinct expert activation distributions compared to vanilla MoE, confirming that contrastive constraints successfully enforce specialization. Experiments on the Unitree G1 robot show improved locomotion performance across challenging terrain transitions, with the single-stage framework matching or outperforming multi-stage baselines. Specific quantitative metrics (e.g., success rates, traversal speeds) are reported in the full paper but not detailed in the abstract.</div>
+            <div class="zh">Robometer在奖励质量和下游策略性能上优于仅使用帧级监督的基线方法，并在未见任务和机器人形态上展现出较强的泛化能力。RBM-1M基准测试确认双目标方法优于单目标方法，具体数值因任务而异。</div>
+            <div class="en">Robometer demonstrates improved reward quality and downstream policy performance compared to baselines that rely solely on frame-level progress supervision. The model shows strong generalization to unseen tasks and robot embodiments, validating the benefit of combining local and global supervision signals. Specific quantitative benchmarks on RBM-1M confirm that the dual-objective approach outperforms single-objective counterparts, though exact numbers vary by task.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>对比约束的可扩展性：对比损失在训练时需要地形类别标签，当地形连续变化或类别边界模糊时，CMoE的适用性存疑。</li><li>仿真到现实的迁移：实验在宇树G1上验证，但仿真训练策略在真实硬件上（尤其是突变地形处）的迁移效果仍是关键开放问题。</li><li>方法的通用性：对比MoE思路可推广至操控、多任务RL等领域，未来可探索用自监督聚类替代人工地形标签，降低标注成本。</li></ul>
+              <ul class="discussion-list"><li>偏好学习的可扩展性：轨迹比较绕开了失败轨迹密集标注的难题，该思路可直接迁移至离线强化学习和RLHF等场景。</li><li>RBM-1M数据集的价值：百万级多样轨迹是重要的基础设施贡献，但实际影响力取决于数据集是否公开及其对真实部署分布的覆盖程度。</li><li>局限与未解问题：偏好损失依赖轨迹级成功/失败标注，而现实非结构化场景中此类标注本身可能存在噪声，未来需研究奖励模型在标注噪声下的鲁棒性。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Scalability of contrastive constraints: The contrastive loss requires terrain-type labels during training, raising questions about how CMoE scales to unlabeled or continuously varying terrains where discrete terrain categories are ambiguous.</li><li>Sim-to-real gap: Validation is conducted on the Unitree G1, but the degree to which simulation-trained policies transfer to real hardware—especially for abrupt terrain transitions—remains a critical open question that the abstract does not fully address.</li><li>Generality of the approach: The contrastive MoE idea is broadly applicable beyond locomotion (e.g., manipulation, multi-task RL), and future work could explore whether terrain labels can be replaced by self-supervised clustering to remove the need for manual annotation.</li></ul>
+              <ul class="discussion-list"><li>Scalability via preference learning: Using trajectory comparisons sidesteps the hard problem of dense label assignment for failed trajectories—a practical insight directly applicable to other robot learning settings like offline RL and RLHF.</li><li>Dataset contribution—RBM-1M: Curating over one million diverse trajectories is a meaningful infrastructure contribution, but the community impact depends heavily on whether this dataset is publicly released and how well it covers real deployment distributions.</li><li>Limitations and open questions: The preference loss assumes reliable trajectory-level outcome labels (success vs. failure), which may themselves be noisy or ambiguous in unstructured real-world settings; future work should address reward model robustness under label noise.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03067v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02115v1" target="_blank">查看原文 →</a>
       </div>
       
       
       <div class="paper-card">
-        <div class="paper-title">提出基于隐状态POMDP的框架，使机器人能在持续交互中推断并引导人类亲社会行为，从而提升团队绩效与合作水平。</div>
-        <div class="paper-title-en">Strategic Shaping of Human Prosociality: A Latent-State POMDP Framework</div>
+        <div class="paper-title">本文提出利用时序对比表示引导强化学习中的探索，无需外部奖励即可习得复杂运动、操作与具身AI行为。</div>
+        <div class="paper-title-en">Temporal Representations for Exploration: Learning Complex Exploratory Behavior without Extrinsic Rewards</div>
         <div class="paper-meta">
-          Zahra Zahedi, Xinyue Hu, Shashank Mehrotra et al.
+          Faisal Mohamed, Catherine Ji, Benjamin Eysenbach et al.
           
           <span class="score-badge">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>提出基于隐状态POMDP的框架，使机器人能在持续交互中推断并引导人类亲社会行为，从而提升团队绩效与合作水平。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A latent-state POMDP framework enables robots to strategically infer and shape human prosociality during repeated interactions, improving both team performance and cooperative behavior.</div>
+          <div>本文提出利用时序对比表示引导强化学习中的探索，无需外部奖励即可习得复杂运动、操作与具身AI行为。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes using temporal contrastive representations to drive exploration in RL, enabling complex locomotion, manipulation, and embodied-AI behaviors without any extrinsic rewards.</div>
         </div>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">机器人如何在多轮交互中主动影响人类的合作意愿（亲社会性），而非将其视为固定属性？解决这一问题有助于机器人建立长期合作关系，适应动态社会情境。</div>
-            <div class="en">How can a robot strategically influence a human&#39;s willingness to cooperate (prosociality) over repeated interactions, rather than treating it as a fixed trait? This matters because static models of human behavior limit robots&#39; ability to foster long-term teamwork and adapt to evolving social dynamics.</div>
+            <div class="zh">强化学习中的有效探索不仅需要记录访问轨迹，还需要智能体理解其对环境的表示方式。核心挑战是设计一种计算高效、无需外部奖励且能跨任务泛化的内在探索信号。</div>
+            <div class="en">Effective exploration in reinforcement learning demands more than visit-counting — agents must understand how they perceive and represent their environment. The core challenge is designing an intrinsic exploration signal that is computationally lightweight yet captures enough structure to generalize across diverse tasks without extrinsic rewards.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有人机交互模型多将人类亲社会性视为静态参数，忽视其随机器人行为的动态演变。已有基于POMDP的方法主要关注任务绩效，缺乏对社会合作维度的建模，且多依赖可完全观测的信号或手工设计的转移模型。</div>
-            <div class="en">Prior human-robot interaction models typically treat human prosociality as a static parameter, failing to capture how it evolves in response to robot actions. Existing POMDP-based HRI approaches focus primarily on task performance and largely ignore the social dimension of cooperation. Methods that do model social states often rely on fully observable signals or hand-crafted transition models, lacking data-driven adaptability.</div>
+            <div class="zh">现有探索方法依赖显式距离学习或情节记忆机制，计算代价高且常需特权状态信息。基于重建的好奇心方法（如ICM、RND）需对完整观测空间建模，在高维视觉环境中鲁棒性差，且难以捕捉支持下游任务学习所需的时序结构。</div>
+            <div class="en">Existing exploration methods often rely on explicit distance learning (e.g., quasimetric-based approaches) or episodic memory mechanisms, which incur high computational costs or require privileged state information. Reconstruction-based curiosity methods (e.g., ICM, RND) must model full observation spaces, making them brittle in high-dimensional visual environments. These approaches also struggle to capture the temporal structure needed to support downstream task learning.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">将人类亲社会性建模为随时间演变的离散隐状态，仅能通过行为信号部分观测，形式化为隐状态POMDP。机器人通过帮助与信号行动联合优化任务与社会目标，转移及观测动态由用户研究数据经EM算法学习得出，基于信念的策略最大化长期合作收益。</div>
-            <div class="en">The authors model human prosociality as a discrete latent state that evolves over time and is only partially observable through behavioral signals. This is formalized as a latent-state POMDP where the robot selects actions—including task-helping and social signaling—to jointly optimize task and social objectives. Transition and observation dynamics are learned from user study data using Expectation Maximization (EM), avoiding hand-crafted assumptions. The resulting belief-based policy maintains a probability distribution over human prosocial states and selects actions that maximize long-term cooperative outcomes.</div>
+            <div class="zh">作者提出TRE方法，利用时序对比学习构建编码未来状态可预测性的紧凑表示。内在奖励优先选择在已学时序嵌入下未来结果最不可预测的状态，驱动智能体探索真正新颖的区域。该方法无需像素级重建，同时保留任务相关的时序结构，且全程不使用外部奖励。</div>
+            <div class="en">The authors propose Temporal Representations for Exploration (TRE), which uses temporal contrastive learning to build compact representations encoding the predictability of future states. The intrinsic reward prioritizes states whose future outcomes are least predictable under the learned temporal embedding, pushing the agent toward genuinely novel regions. This avoids pixel-level reconstruction while preserving task-relevant temporal structure. The method is applied without any extrinsic reward signal across locomotion, robotic manipulation, and embodied-AI benchmarks.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">学习所得的基于信念的POMDP策略在团队任务绩效和观测到的人类合作行为两方面均优于基线策略（如始终帮助、从不帮助、反应式策略）。用户研究验证了模型推断的亲社会状态转移与真实行为规律的一致性，战略性帮助与信号行动可显著提升人类亲社会性。</div>
-            <div class="en">The learned belief-based POMDP policy outperforms baseline strategies (e.g., always-help, never-help, and reactive policies) in both team task performance and eliciting observed human cooperative behavior. Evaluation on user study data confirms that the model&#39;s inferred prosocial state transitions align with actual human behavioral patterns. The framework demonstrates that strategically timed helping and signaling actions can measurably increase human prosociality over repeated interactions.</div>
+            <div class="zh">TRE使智能体无需外部奖励即可习得双足步态、多步操作等复杂探索行为，这是现有纯内在方法无法实现的。在具身AI探索基准上，TRE以更低计算代价超越或持平于准度量与情节记忆基线。因摘要不完整，具体数值结果有限，但行为复杂度的质性提升是核心亮点。</div>
+            <div class="en">TRE enables agents to learn complex exploratory behaviors — such as bipedal locomotion gaits and multi-step manipulation — without any extrinsic reward, capabilities that prior intrinsic-only methods fail to produce. The method outperforms or matches quasimetric and episodic-memory baselines on embodied-AI exploration benchmarks while requiring significantly less computation. Specific numerical results are not fully available due to the incomplete abstract, but qualitative behavioral complexity is highlighted as a key differentiator.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>可</li><li>扩</li><li>展</li><li>性</li><li>：</li><li>隐</li><li>状</li><li>态</li><li>被</li><li>建</li><li>模</li><li>为</li><li>少</li><li>量</li><li>离</li><li>散</li><li>状</li><li>态</li><li>，</li><li>框</li><li>架</li><li>能</li><li>否</li><li>扩</li><li>展</li><li>至</li><li>连</li><li>续</li><li>或</li><li>更</li><li>丰</li><li>富</li><li>的</li><li>社</li><li>会</li><li>状</li><li>态</li><li>表</li><li>示</li><li>，</li><li>以</li><li>及</li><li>多</li><li>智</li><li>能</li><li>体</li><li>团</li><li>队</li><li>场</li><li>景</li><li>，</li><li>尚</li><li>待</li><li>验</li><li>证</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>伦</li><li>理</li><li>问</li><li>题</li><li>：</li><li>主</li><li>动</li><li>&#34;</li><li>塑</li><li>造</li><li>&#34;</li><li>人</li><li>类</li><li>行</li><li>为</li><li>涉</li><li>及</li><li>知</li><li>情</li><li>同</li><li>意</li><li>与</li><li>操</li><li>控</li><li>风</li><li>险</li><li>，</li><li>论</li><li>文</li><li>未</li><li>讨</li><li>论</li><li>防</li><li>止</li><li>机</li><li>器</li><li>人</li><li>以</li><li>不</li><li>当</li><li>方</li><li>式</li><li>影</li><li>响</li><li>人</li><li>类</li><li>的</li><li>安</li><li>全</li><li>机</li><li>制</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>泛</li><li>化</li><li>能</li><li>力</li><li>：</li><li>E</li><li>M</li><li>学</li><li>习</li><li>的</li><li>动</li><li>态</li><li>模</li><li>型</li><li>针</li><li>对</li><li>特</li><li>定</li><li>用</li><li>户</li><li>研</li><li>究</li><li>场</li><li>景</li><li>，</li><li>跨</li><li>任</li><li>务</li><li>、</li><li>跨</li><li>文</li><li>化</li><li>或</li><li>不</li><li>同</li><li>交</li><li>互</li><li>时</li><li>长</li><li>的</li><li>迁</li><li>移</li><li>能</li><li>力</li><li>仍</li><li>是</li><li>开</li><li>放</li><li>性</li><li>挑</li><li>战</li><li>。</li><li>&#34;</li><li>]</li></ul>
+              <ul class="discussion-list"><li>时序对比表示同时承担探索奖励与结构化世界模型两重角色，训练中两个目标可能产生冲突，值得深入分析。</li><li>以未来嵌入不可预测性衡量新颖性，在随机环境中该信号可能被噪声污染，导致智能体持续关注不可约随机转换。</li><li>摘要不完整且缺乏社区验证，表明该工作尚处早期阶段；与LEXA、Go-Explore等强基线的系统对比将显著增强实验说服力。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Scalability concern: The latent prosocial state is modeled as discrete with a small number of states; it remains unclear how the framework scales to richer, continuous representations of social states or more complex multi-agent teams.</li><li>Ethical dimension: Strategically &#39;shaping&#39; human behavior raises consent and manipulation concerns—the paper does not discuss guardrails against robots nudging humans in undesirable or coercive ways.</li><li>Generalizability: The EM-learned dynamics are fitted to a specific user study context; transferring the model to different tasks, cultures, or interaction lengths without retraining is an open challenge.</li></ul>
+              <ul class="discussion-list"><li>Temporal contrastive representations serve a dual purpose here — both as an exploration bonus and as a structured world model — which raises the question of whether the two objectives might sometimes conflict during training.</li><li>The method&#39;s reliance on predicting future temporal embeddings assumes that unpredictability correlates with novelty, but in stochastic environments this signal can be noisy, potentially causing the agent to fixate on irreducibly random transitions.</li><li>The incomplete abstract and absence of community validation suggest this is early-stage work; independent benchmarking against stronger baselines like LEXA or Go-Explore would significantly strengthen the empirical claims.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02379v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02008v1" target="_blank">查看原文 →</a>
       </div>
       
     </div>
