@@ -15,14 +15,36 @@
     .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
     .nav a:hover { text-decoration: underline; }
     .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
-    .category { margin-bottom: 3rem; }
-    .category-title { font-size: 1.3rem; font-weight: 700; border-left: 4px solid var(--accent); padding-left: 0.75rem; margin-bottom: 1.5rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
     .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
     .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
     .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
-    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-score { background: #dcfce7; color: #166534; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+
+    /* TL;DR block */
     .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
     .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
     details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
     summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
     summary:hover { background: #f1f5f9; }
@@ -31,574 +53,396 @@
     .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
     .discussion-list { padding-left: 1.25rem; }
     .discussion-list li { margin-bottom: 0.4rem; }
+
+    /* Pros / Cons */
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .pros-box, .cons-box { border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.88rem; }
+    .pros-box { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .cons-box { background: #fff7f7; border: 1px solid #fecaca; }
+    .pros-box strong { color: #166534; }
+    .cons-box strong { color: #991b1b; }
+    .pros-cons ul { padding-left: 1.1rem; margin-top: 0.3rem; }
+    .pros-cons li { margin-bottom: 0.25rem; }
+
     .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
     .paper-link:hover { text-decoration: underline; }
-    .score-badge { display: inline-block; background: #dcfce7; color: #166534; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.8rem; font-weight: 600; margin-left: 0.5rem; }
     footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
   </style>
 </head>
 <body>
   <div class="header">
     <h1>DailyPaper - 每日论文精选</h1>
-    <div class="date">2026-03-04  |  共 9 篇论文</div>
+    <div class="date">2026-03-04  |  共 4 篇论文</div>
   </div>
   <nav class="nav">
     <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
-    <a href="https://minxingzhang.github.io/DailyReading/archive/">归档</a>
     <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
   </nav>
   <div class="container">
     
-    <div class="category" id="llm_security">
-      <h2 class="category-title">LLM 安全 <span style="font-weight:400;font-size:1rem;color:#64748b">/ LLM Security</span></h2>
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
       
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
       
-      <div class="paper-card">
-        <div class="paper-title">本文将对LLM驱动社交媒体机器人的&#34;越狱&#34;行为重新定义为一种用户主导的非暴力手段，用于揭露自动化政治操控并阻断虚假信息传播。</div>
-        <div class="paper-title-en">Ignore All Previous Instructions: Jailbreaking as a de-escalatory peace building practise to resist LLM social media bots</div>
-        <div class="paper-meta">
-          Huw Day, Adrianna Jezierska, Jessica Woodgate
-          
-          <span class="score-badge">评分 4.8</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>本文将对LLM驱动社交媒体机器人的&#34;越狱&#34;行为重新定义为一种用户主导的非暴力手段，用于揭露自动化政治操控并阻断虚假信息传播。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper reframes jailbreaking of LLM-powered social media bots as a legitimate, user-driven, non-violent tactic to expose automated political manipulation and disrupt misinformation.</div>
-        </div>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">LLM正被大规模用于操控社交媒体政治话语，加剧社会冲突。现有应对措施以平台审核为主，普通用户缺乏有效手段。本文探讨：用户主动对LLM机器人实施&#34;越狱&#34;，能否成为一种有意义的基层去升级实践？</div>
-            <div class="en">LLMs are increasingly weaponized to run coordinated social media bot campaigns that manipulate political discourse at scale, escalating societal conflict. Current countermeasures focus on platform-level content moderation, leaving ordinary users with no recognized tools to fight back. This paper asks: can end-user jailbreaking serve as a meaningful grassroots de-escalation practice?</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有研究主要聚焦于平台主导的内容审核（如自动检测与封号），将用户视为虚假信息的被动接受者。和平构建与冲突去升级理论此前未被引入LLM驱动的社交媒体操控领域。</div>
-            <div class="en">Existing research on LLM misuse in political contexts focuses predominantly on platform-led moderation strategies, such as automated detection and account suspension. This top-down framing treats users as passive recipients of misinformation rather than active agents. The peacebuilding and conflict de-escalation literature has not previously been applied to the domain of LLM-driven social media manipulation.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">作者提出概念框架，将越狱（诱导LLM账号暴露系统提示或产生失coherent输出）定位为非暴力抵抗形式，并借鉴和平构建理论说明其去升级作用。研究以用户为中心，强调社区能动性，属理论性与规范性贡献，缺乏实证验证。</div>
-            <div class="en">The authors propose a conceptual framework that positions jailbreaking—prompting LLM-based accounts to break character, reveal system prompts, or produce incoherent outputs—as a form of non-violent resistance and de-escalation. They draw on peacebuilding theory to argue that exposing bot behavior disrupts the automated amplification of divisive narratives. The paper adopts a user-centric lens, emphasizing community-level agency over platform-dependent solutions. This is primarily a theoretical and normative contribution rather than an empirical study.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">本文无实证实验、数据集或量化结果，结论依赖理论论证与零散案例。未报告任何可量化成效（如机器人活动减少或虚假信息传播下降）。</div>
-            <div class="en">The paper presents no empirical experiments, datasets, or quantitative results. Its claims rest on theoretical argumentation and anecdotal examples of users attempting to jailbreak suspected LLM-driven accounts on social media platforms. No measurable outcomes—such as reduction in bot activity or misinformation spread—are reported.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>实证缺失致命：用户越狱能否真正去升级政治机器人活动从未被验证，成功率、用户风险与叙事干预效果均无数据支撑，框架停留于推测层面。</li><li>伦理与法律模糊：将越狱定性为公民实践，忽视了错误识别真实用户、骚扰风险及违反平台条款或计算机滥用法律等潜在危害。</li><li>可扩展性存疑：即便单次越狱成功，运营者可轻易修补系统提示或注册新账号，该策略能否实现系统性去升级仍存重大疑问。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Empirical gap is critical: The core claim—that user-led jailbreaking meaningfully de-escalates political bot campaigns—is never tested. Without evidence on success rates, user safety risks, or actual narrative disruption, the framework remains speculative.</li><li>Ethical and legal ambiguity: Framing jailbreaking as a positive civic practice ignores potential harms, including misidentification of real humans as bots, harassment risks, and possible violations of platform terms of service or computer misuse laws.</li><li>Scalability concern: Even if individual jailbreaking attempts succeed in exposing one bot, LLM operators can trivially patch system prompts or deploy new accounts, raising serious doubts about whether this tactic can achieve systemic de-escalation at any meaningful scale.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.01942v1" target="_blank">查看原文 →</a>
       </div>
-      
-    </div>
+    </details>
     
-    <div class="category" id="embodied_security">
-      <h2 class="category-title">具身智能安全 <span style="font-weight:400;font-size:1rem;color:#64748b">/ Embodied Intelligence Security</span></h2>
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
       
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
       
-      <div class="paper-card">
-        <div class="paper-title">本文提出refineCBF与HJ-Patch，通过热启动HJ可达性分析实时修正近似或不安全的控制障碍函数，使机器人...</div>
-        <div class="paper-title-en">Refining Almost-Safe Value Functions on the Fly</div>
-        <div class="paper-meta">
-          Sander Tonkens, Sosuke Kojima, Chenhao Liu et al.
-          
-          <span class="score-badge">评分 7.8</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>本文提出refineCBF与HJ-Patch，通过热启动HJ可达性分析实时修正近似或不安全的控制障碍函数，使机器人能在动态环境中安全运行。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces refineCBF and HJ-Patch, two methods that refine approximate or unsafe Control Barrier Functions in real time using warm-started Hamilton-Jacobi reachability, enabling safe robot operation in dynamic environments.</div>
-        </div>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">当预计算的安全值函数近似、学习所得或本身不安全时，机器人如何在动态环境中维持正式安全保证？为复杂系统设计有效的CBF极为困难，而静态离线方案无法在运行时适应环境变化。</div>
-            <div class="en">How can robots maintain formal safety guarantees in dynamic environments when pre-computed safe value functions are approximate, learned, or outright unsafe? Designing valid Control Barrier Functions (CBFs) for complex systems is notoriously difficult, and static offline solutions cannot adapt when environments change at runtime.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">HJ可达性提供正式安全保证，但受维度诅咒影响，计算代价极高，难以在线使用。现有学习或解析推导的CBF往往缺乏正式有效性，且此前没有原则性方法能在不重新计算的情况下实时修正它们。</div>
-            <div class="en">Hamilton-Jacobi (HJ) Reachability offers formal safety guarantees but suffers from the curse of dimensionality, making it computationally intractable for high-dimensional systems and impractical for online use. Existing learned or analytically derived CBFs often lack formal validity, yet no principled method existed to certify and repair them on the fly without restarting computation from scratch.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">refineCBF以任意近似CBF为热启动，通过HJ可达性迭代修正，保证单调安全改进并收敛至有效安全值函数。HJ-Patch将HJ更新限定于状态空间中值函数不准确或不安全的局部区域，大幅降低每步计算量。两种方法均支持在线自适应，在机器人运行过程中持续强化安全性。</div>
-            <div class="en">refineCBF takes any approximate CBF—analytically derived, learned, or unsafe—as a warm start and iteratively refines it using HJ reachability, guaranteeing convergence to a valid safe value function with monotonic safety improvements. HJ-Patch, the computationally efficient successor, restricts HJ updates to localized regions of the state space where the current value function is inaccurate or unsafe, dramatically reducing per-step computation. Both methods support in-the-loop adaptation, meaning safety is continuously tightened as the robot operates rather than requiring a costly offline pre-computation phase. Together they bridge offline synthesis and real-time deployment for dynamic robotic environments.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">仿真实验表明，两种方法均能从近似或不安全初始点成功恢复有效安全值函数；HJ-Patch通过局部更新显著提升速度。框架在真实机器人硬件上得到验证，确认具备实时自适应能力，且整个修正过程中安全集单调不缩小。</div>
-            <div class="en">Simulation experiments demonstrate that both methods successfully recover valid safe value functions from initially approximate or unsafe starting points, with HJ-Patch achieving significantly faster updates by focusing computation on localized patches. The framework is validated on real robotic hardware, confirming real-time adaptability. Monotonic safety improvement is maintained throughout adaptation, meaning the safe set never shrinks during the refinement process.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>可扩展性上限：HJ-Patch减轻但未消除维度诅咒，对于超过约6维的系统，局部HJ更新仍可能难以承受，限制了对高自由度机器人的适用性。</li><li>热启动质量关键：收敛速度和中间安全质量高度依赖初始近似CBF与有效CBF的接近程度，严重不安全的初始化可能需要大量修正步骤才能激活安全保证。</li><li>硬件验证范围有限：摘要提及了真实机器人实验，但系统复杂度、延迟及失败案例的细节不足，在传感器噪声和模型失配下的鲁棒性仍是开放问题。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Scalability ceiling: HJ-Patch reduces but does not eliminate the curse of dimensionality; for systems beyond ~6 dimensions, even localized HJ updates may remain intractable, limiting applicability to high-DOF robots without further approximation.</li><li>Warm-start quality matters: The convergence speed and intermediate safety quality depend heavily on how close the initial approximate CBF is to a valid one; a severely unsafe initialization could require many refinement steps before safety guarantees activate.</li><li>Hardware validation scope: Real-robot experiments are mentioned but details on system complexity, latency, and failure cases are limited in the abstract, leaving open questions about robustness under sensor noise and model mismatch in real deployments.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2602.23478v1" target="_blank">查看原文 →</a>
       </div>
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">本文量化了翻转美国大选所需的物理对抗样本选票数量，并通过144,000个物理样本对比六种对抗攻击类型的实际效果。</div>
-        <div class="paper-title-en">Analyzing Physical Adversarial Example Threats to Machine Learning in Election Systems</div>
-        <div class="paper-meta">
-          Khaleque Md Aashiq Kamal, Surya Eada, Aayushi Verma et al.
-          
-          <span class="score-badge">评分 6.2</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>本文量化了翻转美国大选所需的物理对抗样本选票数量，并通过144,000个物理样本对比六种对抗攻击类型的实际效果。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper quantifies how many physically printed adversarial ballots are needed to flip a U.S. election and benchmarks six adversarial attack types across 144,000 physical realizations to identify the most effective threat.</div>
-        </div>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">机器学习选票分类器准确率超99%，但易受对抗样本攻击导致误分类。核心问题是攻击者能否实际打印并提交足够的对抗选票以翻转选举结果，以及哪种攻击方式在物理实现时最有效。</div>
-            <div class="en">Machine learning ballot classifiers achieve over 99% accuracy but remain vulnerable to adversarial example attacks that deliberately cause misclassification. The core question is whether an attacker can realistically print and submit enough adversarial ballots to flip an election outcome, and which attack method is most effective when physically realized.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">此前研究证明基于机器学习的选票分类器可达到高精度，但安全分析多集中于数字对抗样本，未考虑打印-扫描流程对扰动的削弱。此前也无研究建立翻转选举所需对抗选票数量的概率阈值框架。</div>
-            <div class="en">Prior work has demonstrated that ML-based ballot classifiers are achievable with high accuracy, but security analyses have largely focused on digital adversarial examples without accounting for the print-and-scan pipeline that degrades perturbations. No prior study has established a probabilistic threshold for how many adversarial ballots are operationally required to change an election result.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">作者构建了一个概率框架，以候选人获胜概率和总票数为参数，计算翻转选举所需的最少对抗选票数。随后对六种攻击算法生成的对抗样本进行物理打印与扫描，共评估144,000个物理对抗样本，衡量通过打印-扫描通道的现实攻击迁移性。</div>
-            <div class="en">The authors develop a probabilistic framework that computes the minimum number of adversarial ballots needed to flip an election, parameterized by each candidate&#39;s win probability and total ballot count. They then physically print and scan adversarial examples generated by six attack algorithms: l∞-APGD, l2-APGD, l1-APGD, l0-PGD, l0+l∞-PGD, and l0+sigma-map PGD. A total of 144,000 physical adversarial examples are evaluated to measure real-world attack transferability through the print-scan channel. This bridges the gap between digital attack performance and physical deployment feasibility.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">在144,000个物理对抗样本中，经打印-扫描流程后各算法攻击效果差异显著。稀疏攻击（l0类）与混合范数攻击（l0+sigma-map PGD）在物理实现鲁棒性上优于l∞-APGD。概率框架显示，在势均力敌的选举中，少量对抗选票即可能改变结果。</div>
-            <div class="en">Across 144,000 physical adversarial examples, attack effectiveness varied significantly by algorithm after the print-scan degradation pipeline. Sparse attacks (l0-based) and combined norm attacks (l0+sigma-map PGD) showed differential robustness to physical realization compared to l∞-APGD, though exact per-method success rates are pending full paper details. The probabilistic framework reveals that in close elections, a surprisingly small number of adversarial ballots could suffice to shift outcomes.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>物理实现差距：打印-扫描流程是关键瓶颈，数字攻击成功率无法直接迁移，攻击范数的选择（稀疏vs密集）对现实威胁建模至关重要。</li><li>威胁的规模性：概率框架表明，竞争激烈的选举极易受攻击，票差以千计时所需伪造选票远少于票差以百万计的情形。</li><li>防御启示：结果建议选票分类系统应针对打印-扫描变换后的扰动进行对抗训练，而非仅依赖纯数字对抗增强。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Physical realizability gap: The print-scan pipeline is the key bottleneck—digital attack success rates do not transfer directly, making the choice of attack norm (sparse vs. dense) critical for real-world threat modeling.</li><li>Scalability of the threat: The probabilistic framework highlights that tightly contested elections are disproportionately vulnerable; attackers need far fewer fraudulent ballots in a race decided by thousands rather than millions of votes.</li><li>Defensive implications: Results suggest that ballot classification systems should be hardened with adversarial training specifically tuned for print-scan-transformed perturbations, rather than purely digital adversarial augmentation.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.00481v1" target="_blank">查看原文 →</a>
-      </div>
-      
-    </div>
+    </details>
     
-    <div class="category" id="llm_trends">
-      <h2 class="category-title">LLM 发展动态 <span style="font-weight:400;font-size:1rem;color:#64748b">/ LLM Development Trends</span></h2>
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
       
       
       <div class="paper-card">
-        <div class="paper-title">提出贝叶斯对抗性多智能体框架，通过三个协调的LLM智能体协同优化测试用例与科学代码生成。</div>
-        <div class="paper-title-en">AI-for-Science Low-code Platform with Bayesian Adversarial Multi-Agent Framework</div>
+        <div class="paper-title">SSAE将稀疏自编码器从词元级扩展至步骤级，通过稀疏特征解析大语言模型的思维链推理过程，捕捉推理方向与语义转变。</div>
+        <div class="paper-title-en">Step-Level Sparse Autoencoder for Reasoning Process Interpretation</div>
         <div class="paper-meta">
-          Zihang Zeng, Jiaquan Zhang, Pengze Li et al.
+          <span>Xuan Yang, Jiayu Liu, Yuhang Lai et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
           
-          <span class="score-badge">评分 7.2</span>
+          
+          <span class="badge badge-score">评分 7.4</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>提出贝叶斯对抗性多智能体框架，通过三个协调的LLM智能体协同优化测试用例与科学代码生成。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A Bayesian adversarial multi-agent framework for a low-code platform that co-optimizes test cases and scientific code generation using three coordinated LLM agents.</div>
+          <div>SSAE将稀疏自编码器从词元级扩展至步骤级，通过稀疏特征解析大语言模型的思维链推理过程，捕捉推理方向与语义转变。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SSAE extends Sparse Autoencoders from token-level to step-level granularity to interpret the reasoning process of LLMs using Chain-of-Thought, revealing sparse features that capture reasoning direction and semantic transitions.</div>
         </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles a genuinely important problem: understanding reasoning patterns in LLMs beyond token-level granularity, which is critical for interpretability</li><li>Proposes a technically sound solution that extends SAEs to operate at semantic step-levels, addressing a clear granularity mismatch in existing approaches</li><li>Well-aligned with current frontiers in mechanistic interpretability and CoT reasoning analysis, which are major LLM research trends</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero community engagement (0 HF upvotes) suggests limited visibility or adoption within the research community despite the work&#39;s merit</li><li>Abstract is incomplete/truncated, making it difficult to assess full methodological rigor and experimental validation comprehensively</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">LLM在科学代码生成中存在输出不可靠、多智能体流程中错误级联传播以及成功指标难以定义等问题，本文针对AI4S任务中代码生成的可靠性与可信度展开研究。</div>
-            <div class="en">LLMs show promise for automating scientific code generation, but suffer from unreliable outputs, cascading errors in multi-agent pipelines, and difficulty evaluating correctness in domains where success metrics are poorly defined. This paper targets the specific challenge of making AI-driven code generation robust and trustworthy for AI-for-Science (AI4S) tasks.</div>
+            <div class="zh">尽管大语言模型具备强大的思维链推理能力，其内部推理模式在有意义的粒度上仍难以分析。词元级可解释性工具无法捕捉推理步骤间的方向转变与高层语义过渡等步骤级现象。</div>
+            <div class="en">Despite strong CoT reasoning capabilities in LLMs, their internal reasoning patterns remain opaque and difficult to analyze at a meaningful granularity. Token-level interpretability tools fail to capture step-level phenomena such as shifts in reasoning direction or high-level semantic transitions between reasoning steps.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有LLM代码生成框架依赖静态提示模板和固定测试用例，在缺乏标准答案的科学领域表现脆弱。多智能体流程中，单个智能体的错误会向下游级联传播，缺乏自适应纠错机制。</div>
-            <div class="en">Existing LLM-based code generation frameworks rely on static prompt templates and fixed test cases, making them brittle when applied to scientific domains where ground-truth outputs are often unavailable. Multi-agent workflows further amplify errors, as mistakes from one agent propagate unchecked to downstream agents without adaptive correction mechanisms.</div>
+            <div class="zh">现有稀疏自编码器方法主要在词元级运行，当目标是理解推理步骤而非单个词元时，存在粒度不匹配的问题。这限制了其解析推理方向、错误纠正等跨越整个步骤的高层概念的能力。</div>
+            <div class="en">Existing Sparse Autoencoder (SAE) approaches predominantly operate at the token level, which creates a granularity mismatch when the goal is to understand reasoning steps rather than individual tokens. This limits their ability to disentangle high-level concepts like reasoning direction, error correction, or topic transitions that span entire steps in a CoT sequence.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">平台由任务管理器、代码生成器和评估器三个LLM智能体构成。任务管理器与代码生成器形成对抗循环，前者持续强化测试用例以暴露代码缺陷。系统利用贝叶斯推断动态更新提示分布，融合功能正确性、结构对齐性和静态分析三类质量指标，实现测试与代码的协同优化。</div>
-            <div class="en">The paper introduces a Low-code Platform (LCP) built on a Bayesian adversarial multi-agent framework with three specialized LLM agents: a Task Manager that structures user inputs and generates adaptive test cases, a Code Generator that produces candidate solutions, and an Evaluator that provides structured feedback. An adversarial loop pits the Task Manager against the Code Generator, where test cases are iteratively hardened to expose code weaknesses. Prompt distributions for all agents are updated dynamically via Bayesian inference, integrating three code quality signals: functional correctness, structural alignment, and static analysis results. This co-optimization ensures both the tests and the generated code improve together over iterations.</div>
+            <div class="zh">SSAE将每个推理步骤编码为以前文为条件的稀疏特征向量，并通过信息瓶颈机制控制步骤级稀疏度，将&#34;增量信息&#34;（步骤特有内容）与&#34;背景信息&#34;（共享上下文）分离，再将增量信息解耦为稀疏激活的维度。这使得对每个推理步骤贡献的细粒度分解成为可能。</div>
+            <div class="en">SSAE introduces a step-level sparse autoencoder that encodes each reasoning step as a sparse feature vector conditioned on its preceding context. A key design is an information bottleneck mechanism: by controlling sparsity at the step level, SSAE separates &#34;incremental information&#34; (what is new and specific to a step) from &#34;background information&#34; (shared context), then disentangles the incremental part into sparsely activated dimensions. This enables fine-grained decomposition of what each reasoning step contributes to the overall solution.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">原文摘要不完整，具体量化结果无法确认。框架通过对抗协同优化循环在可靠性上优于静态多智能体基线，三类质量指标共同引导迭代优化，完整实验数据有待查阅全文。</div>
-            <div class="en">Specific benchmark numbers are not available from the provided abstract, which appears truncated. The framework demonstrates improved reliability over static multi-agent baselines through the adversarial co-optimization loop, with the three quality metrics (functional correctness, structural alignment, static analysis) jointly guiding iterative refinement. Quantitative results on AI4S-specific tasks remain to be confirmed from the full paper.</div>
+            <div class="zh">SSAE在多个基础大语言模型和推理任务上进行了评估，结果表明步骤级特征比词元级SAE基线更具可解释性，更能捕捉推理过渡。SSAE识别出的稀疏特征与人类可识别的推理模式（如方向转变、语义枢纽）相吻合，但摘要中未完整披露具体量化指标。</div>
+            <div class="en">SSAE is evaluated across multiple base LLMs and reasoning tasks, demonstrating that step-level features are more interpretable and better capture reasoning transitions than token-level SAE baselines. The sparse features identified by SSAE align with human-recognizable reasoning patterns such as direction shifts and semantic pivots, though specific quantitative benchmarks (e.g., exact accuracy numbers) are not fully detailed in the abstract.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>自适应测试生成是核心创新点：任务管理器主动对抗性探测代码生成器，有别于标准LLM编码流程。</li><li>贝叶斯提示分布更新思路新颖，但其对先验选择的敏感性及在小数据科学领域的收敛速度仍是未解问题。</li><li>低代码平台定位面向编程能力有限的领域科学家，但实用性高度依赖任务管理器解析模糊科学问题描述的能力。</li></ul>
+              <ul class="discussion-list"><li>步骤边界的定义在不同模型的CoT输出中可能存在歧义，影响方法在不同大语言模型家族间的可复现性。</li><li>信息瓶颈设计假设上下文条件稀疏度能清晰分离增量与背景信息，该假设需要更充分的消融实验加以验证。</li><li>目前社区关注度有限，未来研究应通过激活修补等干预手段验证SSAE特征与推理行为的因果关系，而非仅停留于相关性。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Adaptive test generation is the key novelty: rather than using fixed unit tests, the Task Manager actively adversarially probes the Code Generator, which is a meaningful departure from standard LLM coding pipelines.</li><li>The Bayesian prompt distribution update is elegant but its sensitivity to prior selection and convergence speed in low-data scientific domains remains an open question that the truncated abstract does not address.</li><li>The low-code platform framing targets domain scientists with limited programming expertise, but practical usability depends heavily on how well the Task Manager can parse ambiguous, jargon-heavy scientific problem descriptions.</li></ul>
+              <ul class="discussion-list"><li>Granularity choice is critical: the step-level abstraction is well-motivated, but the definition of a &#39;step&#39; boundary in CoT outputs can be ambiguous and model-dependent, which may affect reproducibility across different LLM families.</li><li>The information bottleneck design (splitting incremental vs. background information) is an elegant inductive bias, but it relies on the assumption that context-conditioned sparsity cleanly separates these two types of information — a claim that warrants deeper ablation studies.</li><li>Early-stage community uptake suggests the work is novel but not yet stress-tested; future work should evaluate whether SSAE features are causally relevant (e.g., via activation patching) rather than merely correlational with reasoning behavior.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03233v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03031v1" target="_blank">查看原文 →</a>
       </div>
       
       
+      
       <div class="paper-card">
-        <div class="paper-title">RAPO将检索增强探索引入智能体强化学习，使LLM智能体能在细粒度步骤层面利用离线经验，突破纯在线策略的探索瓶颈。</div>
-        <div class="paper-title-en">RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization</div>
+        <div class="paper-title">PrivMedChat 是一个端到端差分隐私RLHF框架，在SFT、奖励建模和PPO每个访问监督数据的训练阶段均应...</div>
+        <div class="paper-title-en">PrivMedChat: End-to-End Differentially Private RLHF for Medical Dialogue Systems</div>
         <div class="paper-meta">
-          Siwei Zhang, Yun Xiong, Xi Chen et al.
+          <span>Sudip Bhujel</span>
+          <span class="badge badge-date">2026-03-03</span>
           
-          <span class="score-badge">评分 7.2</span>
+          
+          <span class="badge badge-score">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>RAPO将检索增强探索引入智能体强化学习，使LLM智能体能在细粒度步骤层面利用离线经验，突破纯在线策略的探索瓶颈。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">RAPO introduces retrieval-augmented exploration into agentic reinforcement learning, enabling LLM agents to learn from retrieved off-policy experience at a fine-grained step level rather than being confined to self-generated trajectories.</div>
+          <div>PrivMedChat 是一个端到端差分隐私RLHF框架，在SFT、奖励建模和PPO每个访问监督数据的训练阶段均应用DP-SGD，以保护医患对话隐私。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">PrivMedChat is an end-to-end differentially private RLHF framework that applies DP-SGD at every supervision-accessing training stage (SFT, reward modeling, PPO) to protect sensitive patient-doctor dialogue data.</div>
         </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles an important real-world problem: privacy-preserving RLHF for sensitive medical data, addressing genuine memorization and extraction risks in clinical settings</li><li>Aligns well with trending topics in LLM safety, privacy-aware training, and healthcare AI applications</li><li>Demonstrates concrete practical value by proposing end-to-end DP-RLHF framework applicable to medical dialogue systems</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero HuggingFace upvotes indicate minimal community engagement despite relevant topic, suggesting limited visibility or adoption</li><li>Single-author paper from non-obvious institutional affiliation lacks prestige signal typical of top-tier LLM research</li><li>Incomplete abstract truncates at reward model description, making it difficult to assess experimental completeness, baselines, and empirical validation rigor</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">基于智能体RL训练的LLM受限于纯在线策略探索，只能从自身生成的轨迹中学习，难以发现新的推理策略。在复杂多步工具调用任务中，拓展探索多样性对提升性能至关重要。</div>
-            <div class="en">LLM agents trained with agentic RL are bottlenecked by on-policy exploration: they can only learn from their own generated rollouts, which limits discovery of novel reasoning strategies for complex multi-step, tool-integrated tasks. Expanding the diversity of explored behaviors is critical to improving agent performance on hard tasks where self-generated solutions are sparse or repetitive.</div>
+            <div class="zh">基于医患对话微调的医疗大模型存在记忆并泄露敏感信息的风险，可能遭受成员推断攻击和训练数据提取攻击。核心问题是如何在完整的RLHF训练流程中实现临床对话对齐，同时全程保护患者隐私。</div>
+            <div class="en">Medical LLMs fine-tuned on doctor-patient conversations risk memorizing and leaking sensitive patient information through membership inference and training data extraction attacks. The challenge is how to perform full RLHF-based alignment on clinical dialogue data without violating patient privacy throughout the entire training pipeline.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">纯在线策略方法（如GRPO）将探索限制在智能体自身输出，形成&#34;回音壁&#34;效应。现有离线辅助方法以完整轨迹为粒度进行策略估计，忽视了智能体推理过程中逐步骤的动态差异，导致信用分配不准确。</div>
-            <div class="en">Pure on-policy methods (e.g., GRPO, PPO variants for LLMs) restrict exploration to the agent&#39;s own outputs, creating an echo-chamber effect that stalls improvement on hard tasks. Some recent works inject off-policy signals but operate at the full-trajectory level, applying coarse policy estimates that ignore the step-by-step dynamics critical to agentic rollouts — leading to misaligned credit assignment.</div>
+            <div class="zh">标准SFT和RLHF流程缺乏正式隐私保证，易导致罕见或敏感训练样本被记忆。已有差分隐私LLM工作通常仅覆盖SFT阶段，奖励模型训练和PPO对齐阶段仍存在隐私泄露风险。</div>
+            <div class="en">Standard supervised fine-tuning and RLHF pipelines apply no formal privacy guarantees, making them vulnerable to memorization of rare or sensitive training examples. Prior work on differentially private LLMs typically focuses only on the SFT stage, leaving reward model training and PPO alignment as unprotected privacy leakage surfaces.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">RAPO在训练时从经验库检索相关离线轨迹，并在步骤层面将其融入策略优化。智能体可将自身动作与检索到的替代动作对比，从而获得更丰富的梯度信号。通过重要性加权机制校正在/离线策略间的分布偏移，实现稳定的细粒度信用分配。</div>
-            <div class="en">RAPO (Retrieval-Augmented Policy Optimization) augments the training rollout process by retrieving relevant off-policy trajectories from an experience buffer and integrating them at the step level during policy optimization. This allows the agent to contrast its own actions against retrieved alternatives, enriching the gradient signal with diverse exploratory dynamics without fully committing to off-policy trajectories. A theoretically motivated importance-weighting scheme corrects for distribution shift between on- and off-policy steps, enabling stable and fine-grained credit assignment throughout the agentic rollout.</div>
+            <div class="zh">PrivMedChat 在三个训练阶段强制执行差分隐私：①医疗SFT阶段的DP-SGD；②基于对话偏好对的奖励模型训练阶段的DP-SGD；③PPO actor和critic处理对话提示时的DP-SGD。通过跨阶段隐私预算组合，提供端到端(ε,δ)-DP保证，仅对直接访问敏感数据的模块注入噪声。</div>
+            <div class="en">PrivMedChat enforces differential privacy across three distinct training stages: (1) DP-SGD during medical supervised fine-tuning, (2) DP-SGD during reward model training on preference pairs derived from dialogues, and (3) DP-SGD applied to the PPO actor and critic when processing dialogue-derived prompts. Privacy budgets are tracked and composed across all stages to provide end-to-end (ε, δ)-DP guarantees. This staged approach confines privacy cost only to components that directly access sensitive dialogue supervision, avoiding unnecessary noise injection into non-dialogue-derived computations.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">RAPO在涉及工具使用和多步推理的多个智能体基准上持续优于在线策略及轨迹级离线策略基准。步骤级检索融合方式优于全轨迹离线方法，验证了细粒度探索信号的有效性。</div>
-            <div class="en">RAPO achieves consistent improvements over strong on-policy and trajectory-level off-policy baselines across multiple agentic benchmarks involving tool use and multi-step reasoning. The step-level retrieval integration outperforms full-trajectory off-policy methods, validating that fine-grained exploratory signals are more beneficial than coarse trajectory-level augmentation. Specific numbers are not fully disclosed in the abstract, but reported gains span diverse task categories, suggesting broad applicability.</div>
+            <div class="zh">现有摘要未披露具体数值结果（如隐私预算ε值、效用指标或攻击成功率）。框架声称可有效缓解成员推断攻击和训练数据提取风险，同时保持医疗对话能力，但具体隐私-效用权衡数据尚不可评估。</div>
+            <div class="en">Specific numerical results (e.g., privacy budget ε values, utility metrics, or attack success rates) are not fully disclosed in the available abstract. The framework is claimed to mitigate empirical membership inference and training data extraction risks while maintaining functional medical dialogue capabilities, though the precise utility-privacy tradeoff figures are not yet available for assessment.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>检索质量是隐性瓶颈：RAPO的效果高度依赖检索到的轨迹的相关性与多样性，若经验库质量不足，收益可能大打折扣。</li><li>长时域任务的可扩展性存疑：步骤级检索与重要性加权带来额外计算开销，随着任务复杂度和推理步数增加，效率问题有待验证。</li><li>在高度开放或新颖任务中的泛化能力不确定：对于检索步骤难以提供有效信号的任务，该方法的优势可能显著下降。</li></ul>
+              <ul class="discussion-list"><li>三阶段DP-SGD（SFT+奖励模型+PPO）的隐私预算组合可能导致总ε值过大，需证明最终隐私保证对临床部署仍有实际意义（如ε≤8）。</li><li>在PPO actor/critic中引入DP-SGD梯度噪声可能破坏策略优化的训练稳定性，需说明差分隐私约束下奖励信号质量如何保持。</li><li>框架仅对对话衍生的监督数据提供DP保护，若基础模型本身在敏感临床语料上预训练，则整体隐私保护可能仍不充分。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Retrieval quality is a hidden bottleneck: RAPO&#39;s gains depend heavily on the relevance and diversity of retrieved trajectories; a poorly populated or redundant experience buffer could neutralize the benefit, yet the paper&#39;s curation strategy for this buffer remains underspecified.</li><li>Scalability to very long agentic horizons is unclear: step-level retrieval and importance weighting add per-step computational overhead, and it is not shown whether this overhead remains tractable as task complexity and rollout length grow significantly.</li><li>Generalization beyond retrieval-friendly domains is uncertain: the method is well-suited for tasks with reusable step patterns (e.g., structured tool calls), but its advantage may diminish in highly novel or open-ended tasks where retrieved steps provide little relevant signal.</li></ul>
+              <ul class="discussion-list"><li>Privacy budget composition across three DP-SGD stages (SFT + reward model + PPO) will likely accumulate a large total ε, and the paper must demonstrate that the final privacy guarantee remains practically meaningful (e.g., ε ≤ 8) for clinical deployment.</li><li>Applying DP-SGD to the PPO actor/critic introduces gradient noise during policy optimization, which may destabilize training convergence—the paper needs to address how reward signal quality is preserved under differential privacy constraints.</li><li>The framework&#39;s scope is limited to dialogue-derived supervision; pre-training data and non-dialogue prompts are explicitly excluded from DP protection, which may be insufficient if the base model itself was pre-trained on sensitive clinical corpora.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03078v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03054v1" target="_blank">查看原文 →</a>
       </div>
       
       
+      
       <div class="paper-card">
-        <div class="paper-title">TikZilla结合了规模扩大4倍、质量更高的TikZ数据集（DaTikZ-V4）与强化学习微调，显著提升了从文本...</div>
-        <div class="paper-title-en">TikZilla: Scaling Text-to-TikZ with High-Quality Data and Reinforcement Learning</div>
+        <div class="paper-title">TrustMH-Bench是首个从八大信任维度系统评估心理健康LLM可信度的综合基准，揭示了专用心理健康模型在安全...</div>
+        <div class="paper-title-en">TrustMH-Bench: A Comprehensive Benchmark for Evaluating the Trustworthiness of Large Language Models in Mental Health</div>
         <div class="paper-meta">
-          Christian Greisinger, Steffen Eger
+          <span>Zixin Xiong, Ziteng Wang, Haotian Fan et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
           
-          <span class="score-badge">评分 7.2</span>
+          
+          <span class="badge badge-score">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>TikZilla结合了规模扩大4倍、质量更高的TikZ数据集（DaTikZ-V4）与强化学习微调，显著提升了从文本描述自动生成科学TikZ图形的效果。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TikZilla combines a 4x larger, cleaner TikZ dataset (DaTikZ-V4) with reinforcement learning fine-tuning to significantly improve automated generation of scientific TikZ figures from text descriptions.</div>
+          <div>TrustMH-Bench是首个从八大信任维度系统评估心理健康LLM可信度的综合基准，揭示了专用心理健康模型在安全与伦理方面的显著不足。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TrustMH-Bench is the first comprehensive benchmark that evaluates LLMs for mental health applications across eight trust pillars, revealing that even specialized mental health models fall short on critical safety and ethical dimensions.</div>
         </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Addresses high-impact real-world problem: trustworthiness evaluation for mental health LLMs is genuinely important and under-researched</li><li>Comprehensive multi-pillar framework covering eight dimensions (Reliability, Crisis Identification, Safety, Fairness, Privacy, etc.) demonstrates domain-specific thinking beyond generic LLM benchmarks</li><li>Strong practical significance with direct applicability to clinical deployment and regulatory compliance, filling a clear gap in existing evaluation paradigms</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero HuggingFace community engagement (0 upvotes) suggests limited awareness or adoption among researchers despite the important topic</li><li>Author affiliations not provided in abstract, making prestige assessment difficult; appears to lack institutional recognition signals from top-tier organizations</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">本文研究从自然语言描述生成高质量TikZ程序的挑战，这对自动化科学图形创作至关重要。循环错误、无关内容和空间关系错误等问题使该任务对仅依赖文本监督训练的LLM尤为困难。</div>
-            <div class="en">The paper tackles the challenge of generating high-quality TikZ programs from natural language descriptions, a critical task for automating scientific figure creation. Errors like infinite loops, irrelevant content, and incorrect spatial relationships make this problem particularly difficult for LLMs trained only on text supervision.</div>
+            <div class="zh">LLM在心理健康支持中的应用日益广泛，但缺乏针对该高风险领域的系统性可信度评估框架。心理健康AI的失误（如漏判危机或存在偏见）可能带来生命威胁，亟需专项评估体系。</div>
+            <div class="en">LLMs are increasingly being deployed for mental health support, yet no rigorous, domain-specific framework exists to evaluate whether they are truly trustworthy in this high-stakes context. Failures in mental health AI—such as missing a suicide crisis or exhibiting bias—can have life-threatening consequences, making systematic trustworthiness evaluation urgent.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有数据集（如DaTikZ-V3）规模偏小且噪声较多，无法涵盖TikZ的完整复杂性，导致文本与图形对齐效果差。此前方法均仅依赖监督微调（SFT），模型从未接触渲染后的视觉反馈，结构性和空间性错误因此无法得到纠正。</div>
-            <div class="en">Existing Text-to-TikZ datasets such as DaTikZ-V3 are too small and noisy to capture TikZ&#39;s full complexity, leading to poor text-figure alignment. All prior modeling approaches rely solely on supervised fine-tuning (SFT), which never exposes the model to rendered visual feedback, leaving structural and spatial errors uncorrected.</div>
+            <div class="zh">现有LLM可信度基准面向通用任务，无法覆盖危机上报规程、治疗隐私义务等领域特有规范。已有心理健康LLM评估仅关注共情或回复质量，忽视了该领域特有的多维度信任风险。</div>
+            <div class="en">Existing LLM trustworthiness benchmarks (e.g., general safety or bias benchmarks) are designed for open-domain tasks and fail to capture domain-specific norms such as crisis escalation protocols, therapeutic privacy obligations, and clinical ethics. Specialized mental health LLM evaluations to date focus narrowly on empathy or response quality, ignoring multi-dimensional trust risks unique to the mental health domain.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">作者构建了DaTikZ-V4数据集，规模超过DaTikZ-V3四倍，并通过LLM生成的图形描述提升文本-图形对齐质量。基于DaTikZ-V4，作者以Qwen为基础训练了TikZilla系列小型开源模型，采用SFT与强化学习（RL）两阶段流程。RL阶段以渲染图形质量作为奖励信号，使模型超越词元级监督，感知视觉语义，有效解决SFT无法修正的循环和空间错误问题。</div>
-            <div class="en">The authors construct DaTikZ-V4, a dataset more than four times larger than DaTikZ-V3 and enriched with LLM-generated figure descriptions to improve text-figure alignment quality. Using DaTikZ-V4, they train TikZilla, a family of small open-source models based on Qwen, via a two-stage pipeline: supervised fine-tuning followed by reinforcement learning (RL). The RL stage uses rendered figure quality as a reward signal, exposing the model to visual semantics beyond token-level supervision. This approach directly targets common failure modes like looping and spatial incorrectness that SFT alone cannot fix.</div>
+            <div class="zh">TrustMH-Bench将临床与伦理规范映射为可量化指标，构建八大评估支柱：可靠性、危机识别与上报、安全性、公平性、隐私、鲁棒性、抗谄媚性和伦理。基准覆盖6个通用LLM与6个专用心理健康模型，测试任务源于真实临床标准，将抽象原则转化为可测量场景。</div>
+            <div class="en">TrustMH-Bench establishes a deep mapping from domain-specific clinical and ethical norms to quantitative metrics, operationalizing eight evaluation pillars: Reliability, Crisis Identification and Escalation, Safety, Fairness, Privacy, Robustness, Anti-sycophancy, and Ethics. The benchmark covers both six general-purpose LLMs and six specialized mental health models, enabling a broad comparative analysis. Evaluation tasks are grounded in real-world mental health standards, translating abstract principles (e.g., duty-to-warn, demographic fairness) into concrete, measurable test scenarios.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">在DaTikZ-V4上经RL训练的TikZilla在Text-to-TikZ基准测试中优于仅使用SFT的基线，循环和空间错位等渲染错误显著减少。高质量数据与RL的组合所带来的提升超过任一单独干预，体现了数据整理与奖励训练的互补价值。</div>
-            <div class="en">TikZilla, trained with RL on DaTikZ-V4, outperforms prior SFT-only baselines on Text-to-TikZ benchmarks, with measurable reductions in rendering errors such as looping and spatial misalignment. The combination of higher-quality data and RL yields improvements beyond what either intervention achieves alone, demonstrating the complementary value of data curation and reward-based training.</div>
+            <div class="zh">实验显示，即使是专用心理健康LLM在危机识别与伦理维度上也存在显著不足，领域微调并不能保证整体可信度。部分通用前沿模型在多维度信任指标上优于专用模型，表明任务优化与整体安全之间存在明显差距。无模型能在全部八个维度上同时达到满意水平。</div>
+            <div class="en">Experiments across 12 models reveal that even specialized mental health LLMs fall significantly short on critical pillars such as Crisis Identification and Escalation and Ethics, suggesting that domain fine-tuning alone does not ensure trustworthiness. General-purpose frontier models outperform several specialized models on multi-dimensional trust metrics, indicating a gap between task-specific optimization and holistic safety. Specific numerical scores are not fully disclosed in the abstract, but results consistently show no model achieves satisfactory performance across all eight pillars simultaneously.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>R</li><li>L</li><li>奖</li><li>励</li><li>设</li><li>计</li><li>仍</li><li>非</li><li>易</li><li>事</li><li>：</li><li>以</li><li>渲</li><li>染</li><li>图</li><li>形</li><li>质</li><li>量</li><li>为</li><li>奖</li><li>励</li><li>需</li><li>要</li><li>可</li><li>靠</li><li>的</li><li>视</li><li>觉</li><li>相</li><li>似</li><li>度</li><li>指</li><li>标</li><li>，</li><li>指</li><li>标</li><li>选</li><li>择</li><li>可</li><li>能</li><li>强</li><li>烈</li><li>影</li><li>响</li><li>模</li><li>型</li><li>对</li><li>&#34;</li><li>正</li><li>确</li><li>&#34;</li><li>图</li><li>形</li><li>的</li><li>定</li><li>义</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>T</li><li>i</li><li>k</li><li>Z</li><li>渲</li><li>染</li><li>的</li><li>计</li><li>算</li><li>成</li><li>本</li><li>制</li><li>约</li><li>了</li><li>R</li><li>L</li><li>训</li><li>练</li><li>的</li><li>可</li><li>扩</li><li>展</li><li>性</li><li>—</li><li>—</li><li>每</li><li>次</li><li>R</li><li>L</li><li>更</li><li>新</li><li>都</li><li>需</li><li>编</li><li>译</li><li>L</li><li>a</li><li>T</li><li>e</li><li>X</li><li>并</li><li>评</li><li>估</li><li>生</li><li>成</li><li>图</li><li>像</li><li>，</li><li>在</li><li>更</li><li>大</li><li>模</li><li>型</li><li>或</li><li>数</li><li>据</li><li>集</li><li>规</li><li>模</li><li>下</li><li>可</li><li>能</li><li>成</li><li>为</li><li>训</li><li>练</li><li>瓶</li><li>颈</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>D</li><li>a</li><li>T</li><li>i</li><li>k</li><li>Z</li><li>-</li><li>V</li><li>4</li><li>中</li><li>L</li><li>L</li><li>M</li><li>生</li><li>成</li><li>的</li><li>描</li><li>述</li><li>可</li><li>能</li><li>引</li><li>入</li><li>生</li><li>成</li><li>模</li><li>型</li><li>的</li><li>系</li><li>统</li><li>性</li><li>偏</li><li>差</li><li>，</li><li>导</li><li>致</li><li>T</li><li>i</li><li>k</li><li>Z</li><li>i</li><li>l</li><li>l</li><li>a</li><li>在</li><li>训</li><li>练</li><li>时</li><li>见</li><li>过</li><li>的</li><li>描</li><li>述</li><li>风</li><li>格</li><li>上</li><li>表</li><li>现</li><li>良</li><li>好</li><li>，</li><li>但</li><li>在</li><li>真</li><li>实</li><li>多</li><li>样</li><li>的</li><li>用</li><li>户</li><li>提</li><li>示</li><li>下</li><li>泛</li><li>化</li><li>能</li><li>力</li><li>受</li><li>限</li><li>。</li><li>&#34;</li><li>]</li></ul>
+              <ul class="discussion-list"><li>危机上报是得分最低的维度，说明当前LLM在最关键时刻（用户表达自杀意念时）仍不可靠，对真实心理健康平台的部署构成直接风险。</li><li>抗谄媚性维度是本研究的重要创新：心理健康用户易受认可需求驱动，若模型一味迎合扭曲认知（如肯定绝望感），将加剧而非改善病情。</li><li>基准目前仅覆盖英文及12个固定模型，未来需扩展至多语言场景并引入多轮纵向交互测试，因为单轮评估可能遗漏持续治疗对话中涌现的风险。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Reward design for RL in code generation remains non-trivial: using rendered figure quality as a reward requires a reliable visual similarity metric, and the choice of metric could strongly bias what &#34;correct&#34; figures look like.</li><li>Scalability is limited by the cost of rendering TikZ during RL training — each RL update requires compiling LaTeX and evaluating the resulting image, which may bottleneck training at larger model or dataset scales.</li><li>DaTikZ-V4&#39;s LLM-generated descriptions introduce a risk of systematic biases inherited from the generating LLM, potentially causing TikZilla to perform well on description styles it was trained on but poorly on real-world, diverse user prompts.</li></ul>
+              <ul class="discussion-list"><li>Crisis escalation is the most underperforming pillar, meaning current LLMs are unreliable at the most safety-critical moment—when a user expresses suicidal ideation or acute distress—posing direct deployment risks in real mental health platforms.</li><li>The anti-sycophancy pillar is a novel and important addition: mental health users are vulnerable to validation-seeking behavior, and a model that simply agrees with distorted cognitions (e.g., affirming hopelessness) can worsen outcomes rather than help.</li><li>The benchmark&#39;s scope is limited to English-language evaluation and a fixed set of 12 models; future work should extend to multilingual settings and integrate longitudinal interaction testing, as single-turn evaluations may miss risks that emerge over sustained therapeutic conversations.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03072v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03047v1" target="_blank">查看原文 →</a>
       </div>
       
-    </div>
+      
+      </div>
+    </details>
     
-    <div class="category" id="embodied_trends">
-      <h2 class="category-title">具身智能发展动态 <span style="font-weight:400;font-size:1rem;color:#64748b">/ Embodied Intelligence Development Trends</span></h2>
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
       
       
       <div class="paper-card">
-        <div class="paper-title">首个系统性实证研究，揭示鱼眼相机的宽视野、场景多样性和跨相机迁移特性如何影响机器人操作策略学习。</div>
-        <div class="paper-title-en">Rethinking Camera Choice: An Empirical Study on Fisheye Camera Properties in Robotic Manipulation</div>
+        <div class="paper-title">ACE-Brain-0以空间智能为通用支架，在单一多模态大语言模型中统一自动驾驶、机器人与无人机任务，避免灾难性遗忘。</div>
+        <div class="paper-title-en">ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments</div>
         <div class="paper-meta">
-          Han Xue, Nan Min, Xiaotong Liu et al.
+          <span>Ziyang Gong, Zehang Luo, Anke Tang et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
           
-          <span class="score-badge">评分 7.2</span>
+          
+          <span class="badge badge-score">评分 7.2</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>首个系统性实证研究，揭示鱼眼相机的宽视野、场景多样性和跨相机迁移特性如何影响机器人操作策略学习。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">The first systematic empirical study revealing how fisheye camera properties—wide FoV, scene diversity, and cross-camera transfer—affect robotic manipulation policy learning in both simulation and real-world settings.</div>
+          <div>ACE-Brain-0以空间智能为通用支架，在单一多模态大语言模型中统一自动驾驶、机器人与无人机任务，避免灾难性遗忘。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ACE-Brain-0 proposes spatial intelligence as a universal scaffold to train a single MLLM that generalizes across autonomous driving, robotics, and UAVs without catastrophic forgetting.</div>
         </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles important challenge of universal generalization across heterogeneous embodiments (vehicles, robots, UAVs)</li><li>Novel insight that spatial intelligence serves as common foundation across diverse physical systems demonstrates conceptual depth</li><li>Directly addresses real problems in multi-embodiment learning: long-tail data, gradient interference, catastrophic forgetting</li><li>Practical applications across autonomous driving, robotics, and aerial systems with significant real-world value</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero HuggingFace engagement (0 upvotes) suggests limited community visibility or preliminary/recent work status</li><li>Abstract is incomplete and cuts off mid-sentence, indicating paper may be in early submission stage or documentation quality concerns</li><li>Author affiliations not clearly prestigious (no obvious MIT/CMU/Google/DeepMind/Stanford representation based on names alone)</li><li>Insufficient details in abstract to assess experimental methodology, benchmarks, and validation rigor across the three embodiment domains</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">鱼眼相机因宽视野在机器人操作中日益普及，但其对模仿学习策略的影响缺乏系统研究。本文聚焦三个核心问题：宽视野是否提升空间定位能力、是否增强场景泛化能力，以及策略能否跨鱼眼硬件迁移。</div>
-            <div class="en">Fisheye cameras are increasingly used in robotic manipulation due to their wide Field of View, yet no systematic study has examined their downstream effects on imitation learning policies. This paper asks three concrete questions: does wide FoV improve spatial localization, does it enable better scene generalization, and can policies transfer across different fisheye hardware?</div>
+            <div class="zh">如何让单一基础模型在自动驾驶、机械臂和无人机等差异悬殊的具身形态上均表现出色，同时保持领域专精能力？现实部署对跨平台泛化的需求日益迫切，专用模型的成本难以为继。</div>
+            <div class="en">How can a single foundation model achieve strong performance across radically different physical embodiments—cars, robot arms, and UAVs—without sacrificing domain-specific proficiency? This matters because real-world deployment increasingly demands agents that transfer skills across platforms rather than requiring separate, costly specialist models for each embodiment.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有机器人操作研究主要依赖标准针孔相机，鱼眼相机的引入缺乏系统评估。已有工作仅关注视角选择或畸变校正，对鱼眼光学特性在策略层面的影响（尤其是腕部安装配置）几乎没有深入探讨。</div>
-            <div class="en">Prior work in robotic manipulation has largely relied on standard pinhole cameras, with fisheye cameras adopted in an ad hoc manner without rigorous evaluation of their trade-offs. Existing studies on camera choice focus narrowly on viewpoint selection or distortion correction, leaving the policy-level consequences of fisheye optics—particularly for wrist-mounted configurations—largely unexplored.</div>
+            <div class="zh">现有通用具身模型在跨形态联合训练时，面临长尾数据分布、梯度干扰和灾难性遗忘等难题。已有方案多采用各形态独立训练或轻量适配器，难以实现真正的跨形态知识迁移。</div>
+            <div class="en">Existing universal embodied models suffer from long-tail data distributions, gradient interference between heterogeneous tasks, and catastrophic forgetting when jointly trained across embodiments. Prior approaches typically handle these issues either by training separate specialist models per embodiment or by using lightweight adapter modules, both of which limit true cross-embodiment knowledge transfer.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">作者以腕部鱼眼相机为对象，在仿真与真实环境中开展系统性对照实验，以模仿学习为评估框架。研究系统控制三个变量：环境视觉复杂度（空间定位）、训练数据场景多样性（泛化能力）和相机硬件型号（跨设备迁移）。针对跨相机迁移失败问题，识别出镜头畸变参数不匹配为根本原因，并提出基于标定的畸变感知自适应方法。</div>
-            <div class="en">The authors conduct extensive controlled experiments with wrist-mounted fisheye cameras across simulation and real-world robotic manipulation tasks, using imitation learning as the evaluation framework. They systematically vary three factors: environmental visual complexity (for spatial localization), scene diversity in training data (for generalization), and camera hardware models (for transfer). To address cross-camera transfer failures, they identify lens distortion parameter mismatch as the root cause and propose a distortion-aware calibration-based adaptation method.</div>
+            <div class="zh">ACE-Brain-0将三维空间认知（场景几何、深度建模、心理3D空间）作为所有具身形态共享的领域无关能力，嵌入单一多模态大语言模型，统一处理空间推理、自动驾驶感知/规划与机器人操作任务。共享空间表征缓解了梯度干扰，并通过空间归纳偏置保持领域专精能力。</div>
+            <div class="en">ACE-Brain-0 identifies 3D spatial cognition—modeling mental 3D space, depth, and scene geometry—as a domain-agnostic capability shared by all physical embodiments regardless of their morphology. This spatial intelligence scaffold is embedded within a single multimodal large language model (MLLM) that jointly handles spatial reasoning, autonomous driving perception/planning, and robotic manipulation. By grounding all embodiment-specific tasks in a common spatial representation, the model alleviates gradient interference and enables positive cross-embodiment transfer. The unified architecture avoids the need for separate models while preserving domain-specific proficiency through the shared spatial inductive bias.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">宽视野鱼眼相机在视觉复杂环境中显著提升空间定位能力，但在简单场景中因过拟合优势消失甚至反转。在充足场景多样性训练下，鱼眼策略的跨场景泛化能力优于针孔相机策略。直接跨硬件迁移会导致失败，但所提畸变感知自适应方法可将策略性能恢复至近域内水平。</div>
-            <div class="en">Wide FoV fisheye cameras significantly improve spatial localization over standard cameras, but only in visually complex environments—in simple scenes, the advantage disappears or reverses due to overfitting. Fisheye-trained policies exhibit stronger scene generalization when trained with sufficient environmental diversity, outperforming pinhole-camera policies in cross-scene transfer. Naive cross-camera hardware transfer fails, but the proposed distortion-aware adaptation recovers policy performance to near in-distribution levels.</div>
+            <div class="zh">摘要未披露具体数值，但论文报告ACE-Brain-0在自动驾驶、机器人操作和无人机任务上均具有竞争力。空间支架设计被证明可缓解灾难性遗忘和长尾退化，完整定量对比有待论文正文披露。</div>
+            <div class="en">Specific benchmark numbers are not disclosed in the abstract, but the paper reports that ACE-Brain-0 achieves competitive performance on autonomous driving, robotic manipulation, and UAV-related tasks within a single unified model. The spatial-scaffold design is claimed to mitigate catastrophic forgetting and long-tail degradation relative to naive multi-task baselines, though full quantitative comparisons await the complete paper.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>宽视野优势受环境复杂度调节：鱼眼相机的定位优势仅在视觉复杂场景中成立，从业者不应无条件选用鱼眼相机，需结合场景结构判断。</li><li>数据多样性是泛化能力的关键：鱼眼策略的场景泛化优势只有在多样化训练数据下才能显现，数据集构建策略与硬件选型同等重要。</li><li>跨硬件迁移需专项处理：镜头畸变参数不匹配（而非架构或数据分布偏移）是跨相机迁移失败的根本原因，换装鱼眼模块时必须重新标定畸变参数。</li></ul>
+              <ul class="discussion-list"><li>空间认知作为通用桥梁的假设优雅，但需严格消融实验验证三维空间任务是否真正覆盖驾驶、操作和无人机的瓶颈能力。</li><li>论文承认长尾与梯度干扰问题，但摘要未披露具体缓解机制（如数据采样、损失加权或架构门控），核心技术贡献有待正文证实。</li><li>单一大型MLLM服务所有形态面临实时性挑战：无人机和机械臂控制对推理延迟极为敏感，部署可行性需进一步验证。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Environmental complexity is a hidden moderator: the wide FoV benefit is conditional, meaning practitioners should not default to fisheye cameras without considering scene structure—cluttered, multi-object scenes are where fisheye cameras earn their advantage.</li><li>Data diversity is the key unlock: fisheye cameras&#39; generalization gains only materialize with diverse training environments, suggesting that dataset curation strategy matters as much as hardware choice when deploying fisheye-based systems.</li><li>Hardware interchangeability is non-trivial: the finding that lens distortion mismatch—not architecture or data shift—causes cross-camera transfer failures points to a practical checklist item (distortion recalibration) that robot practitioners must address when swapping fisheye units in the field.</li></ul>
+              <ul class="discussion-list"><li>Spatial cognition as a universal bridge is an elegant hypothesis, but its validity depends heavily on whether the chosen 3D spatial tasks truly capture the bottleneck competencies for driving, manipulation, and UAV flight—this needs rigorous ablation studies separating spatial pretraining from other factors.</li><li>The long-tail and gradient interference problems are acknowledged but the specific mitigation mechanisms (e.g., data sampling strategy, loss weighting, or architectural gating) are not detailed in the abstract, leaving the core technical novelty unclear until the full paper is available.</li><li>Scalability and real-world deployment feasibility are open questions: a single large MLLM serving all embodiments may face latency and compute constraints incompatible with real-time UAV or manipulation control loops.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02139v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03198v1" target="_blank">查看原文 →</a>
       </div>
       
       
-      <div class="paper-card">
-        <div class="paper-title">Robometer结合帧级进度损失与轨迹比较偏好损失，构建可扩展的机器人奖励模型，有效利用大规模不完美数据。</div>
-        <div class="paper-title-en">Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons</div>
-        <div class="paper-meta">
-          Anthony Liang, Yigit Korkmaz, Jiahui Zhang et al.
-          
-          <span class="score-badge">评分 7.2</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>Robometer结合帧级进度损失与轨迹比较偏好损失，构建可扩展的机器人奖励模型，有效利用大规模不完美数据。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Robometer is a scalable robot reward model trained with a dual objective—frame-level progress loss plus trajectory-comparison preference loss—enabling effective learning from imperfect, large-scale robotics datasets.</div>
-        </div>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">当大量真实轨迹数据存在失败或次优情况时，如何大规模训练机器人奖励模型？可扩展的奖励信号是通用机器人学习的关键瓶颈。</div>
-            <div class="en">How can robotic reward models be trained at scale when most real-world trajectory data is suboptimal or failed, making dense progress labeling ambiguous? This matters because scalable reward signals are a bottleneck for general-purpose robot learning across diverse tasks and embodiments.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有奖励模型（如UniSim、RobotVQA）依赖专家演示的帧级绝对进度标注，仅提供局部监督信号。面对含有失败或次优轨迹的大规模数据集，这种范式难以扩展，进度标注模糊且易出错。</div>
-            <div class="en">Existing reward models like UniSim and RobotVQA are trained to predict absolute task progress from expert demonstrations using frame-level supervision, which provides only local, dense progress labels. This paradigm breaks down on large-scale datasets with failed or suboptimal trajectories, as assigning meaningful progress scores to such data is ambiguous and error-prone.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">Robometer采用双目标训练：帧级进度损失锚定专家数据的奖励幅度，轨迹比较偏好损失对同任务轨迹施加全局排序约束。偏好损失无需逐帧标注，可直接利用真实失败轨迹和增强次优轨迹。作者还构建了包含百万余条轨迹的RBM-1M数据集，覆盖多种机器人形态和任务类型。</div>
-            <div class="en">Robometer introduces a dual-objective training framework: a frame-level progress loss that anchors reward magnitudes using expert demonstrations, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories of the same task. The preference loss allows the model to learn from both real failed trajectories and augmented suboptimal ones without requiring dense per-frame labels. To support this at scale, the authors curate RBM-1M, a dataset of over one million trajectories spanning diverse robot embodiments and tasks. This combination enables Robometer to generalize as a general-purpose reward model beyond the specific tasks it was trained on.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">Robometer在奖励质量和下游策略性能上优于仅使用帧级监督的基线方法，并在未见任务和机器人形态上展现出较强的泛化能力。RBM-1M基准测试确认双目标方法优于单目标方法，具体数值因任务而异。</div>
-            <div class="en">Robometer demonstrates improved reward quality and downstream policy performance compared to baselines that rely solely on frame-level progress supervision. The model shows strong generalization to unseen tasks and robot embodiments, validating the benefit of combining local and global supervision signals. Specific quantitative benchmarks on RBM-1M confirm that the dual-objective approach outperforms single-objective counterparts, though exact numbers vary by task.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>偏好学习的可扩展性：轨迹比较绕开了失败轨迹密集标注的难题，该思路可直接迁移至离线强化学习和RLHF等场景。</li><li>RBM-1M数据集的价值：百万级多样轨迹是重要的基础设施贡献，但实际影响力取决于数据集是否公开及其对真实部署分布的覆盖程度。</li><li>局限与未解问题：偏好损失依赖轨迹级成功/失败标注，而现实非结构化场景中此类标注本身可能存在噪声，未来需研究奖励模型在标注噪声下的鲁棒性。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Scalability via preference learning: Using trajectory comparisons sidesteps the hard problem of dense label assignment for failed trajectories—a practical insight directly applicable to other robot learning settings like offline RL and RLHF.</li><li>Dataset contribution—RBM-1M: Curating over one million diverse trajectories is a meaningful infrastructure contribution, but the community impact depends heavily on whether this dataset is publicly released and how well it covers real deployment distributions.</li><li>Limitations and open questions: The preference loss assumes reliable trajectory-level outcome labels (success vs. failure), which may themselves be noisy or ambiguous in unstructured real-world settings; future work should address reward model robustness under label noise.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02115v1" target="_blank">查看原文 →</a>
       </div>
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">本文提出利用时序对比表示引导强化学习中的探索，无需外部奖励即可习得复杂运动、操作与具身AI行为。</div>
-        <div class="paper-title-en">Temporal Representations for Exploration: Learning Complex Exploratory Behavior without Extrinsic Rewards</div>
-        <div class="paper-meta">
-          Faisal Mohamed, Catherine Ji, Benjamin Eysenbach et al.
-          
-          <span class="score-badge">评分 7.2</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>本文提出利用时序对比表示引导强化学习中的探索，无需外部奖励即可习得复杂运动、操作与具身AI行为。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes using temporal contrastive representations to drive exploration in RL, enabling complex locomotion, manipulation, and embodied-AI behaviors without any extrinsic rewards.</div>
-        </div>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">强化学习中的有效探索不仅需要记录访问轨迹，还需要智能体理解其对环境的表示方式。核心挑战是设计一种计算高效、无需外部奖励且能跨任务泛化的内在探索信号。</div>
-            <div class="en">Effective exploration in reinforcement learning demands more than visit-counting — agents must understand how they perceive and represent their environment. The core challenge is designing an intrinsic exploration signal that is computationally lightweight yet captures enough structure to generalize across diverse tasks without extrinsic rewards.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有探索方法依赖显式距离学习或情节记忆机制，计算代价高且常需特权状态信息。基于重建的好奇心方法（如ICM、RND）需对完整观测空间建模，在高维视觉环境中鲁棒性差，且难以捕捉支持下游任务学习所需的时序结构。</div>
-            <div class="en">Existing exploration methods often rely on explicit distance learning (e.g., quasimetric-based approaches) or episodic memory mechanisms, which incur high computational costs or require privileged state information. Reconstruction-based curiosity methods (e.g., ICM, RND) must model full observation spaces, making them brittle in high-dimensional visual environments. These approaches also struggle to capture the temporal structure needed to support downstream task learning.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">作者提出TRE方法，利用时序对比学习构建编码未来状态可预测性的紧凑表示。内在奖励优先选择在已学时序嵌入下未来结果最不可预测的状态，驱动智能体探索真正新颖的区域。该方法无需像素级重建，同时保留任务相关的时序结构，且全程不使用外部奖励。</div>
-            <div class="en">The authors propose Temporal Representations for Exploration (TRE), which uses temporal contrastive learning to build compact representations encoding the predictability of future states. The intrinsic reward prioritizes states whose future outcomes are least predictable under the learned temporal embedding, pushing the agent toward genuinely novel regions. This avoids pixel-level reconstruction while preserving task-relevant temporal structure. The method is applied without any extrinsic reward signal across locomotion, robotic manipulation, and embodied-AI benchmarks.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">TRE使智能体无需外部奖励即可习得双足步态、多步操作等复杂探索行为，这是现有纯内在方法无法实现的。在具身AI探索基准上，TRE以更低计算代价超越或持平于准度量与情节记忆基线。因摘要不完整，具体数值结果有限，但行为复杂度的质性提升是核心亮点。</div>
-            <div class="en">TRE enables agents to learn complex exploratory behaviors — such as bipedal locomotion gaits and multi-step manipulation — without any extrinsic reward, capabilities that prior intrinsic-only methods fail to produce. The method outperforms or matches quasimetric and episodic-memory baselines on embodied-AI exploration benchmarks while requiring significantly less computation. Specific numerical results are not fully available due to the incomplete abstract, but qualitative behavioral complexity is highlighted as a key differentiator.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>时序对比表示同时承担探索奖励与结构化世界模型两重角色，训练中两个目标可能产生冲突，值得深入分析。</li><li>以未来嵌入不可预测性衡量新颖性，在随机环境中该信号可能被噪声污染，导致智能体持续关注不可约随机转换。</li><li>摘要不完整且缺乏社区验证，表明该工作尚处早期阶段；与LEXA、Go-Explore等强基线的系统对比将显著增强实验说服力。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Temporal contrastive representations serve a dual purpose here — both as an exploration bonus and as a structured world model — which raises the question of whether the two objectives might sometimes conflict during training.</li><li>The method&#39;s reliance on predicting future temporal embeddings assumes that unpredictability correlates with novelty, but in stochastic environments this signal can be noisy, potentially causing the agent to fixate on irreducibly random transitions.</li><li>The incomplete abstract and absence of community validation suggest this is early-stage work; independent benchmarking against stronger baselines like LEXA or Go-Explore would significantly strengthen the empirical claims.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02008v1" target="_blank">查看原文 →</a>
-      </div>
-      
-    </div>
+    </details>
     
   </div>
   <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-04</footer>
