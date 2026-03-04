@@ -72,7 +72,7 @@
 <body>
   <div class="header">
     <h1>DailyPaper - 每日论文精选</h1>
-    <div class="date">2026-03-04  |  共 4 篇论文</div>
+    <div class="date">2026-03-04  |  共 8 篇论文</div>
   </div>
   <nav class="nav">
     <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
@@ -93,11 +93,171 @@
     
     <details class="category-details" id="embodied_security" open>
       <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
-        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">2 篇</span>
       </summary>
       <div class="category-body">
       
-      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文系统分析BEV感知模型（BEVDet、BEVDet4D、DAL、BEVFormer）在摄像头与激光雷达两种模态...</div>
+        <div class="paper-title-en">Probing Vulnerabilities of Vision-Lidar Based Autonomous Driving Systems</div>
+        <div class="paper-meta">
+          <span>Siwei Yang, Zeyu Wang, Diego Ortiz Barbosa et al.</span>
+          <span class="badge badge-date">2025-06-11</span>
+          <span class="badge badge-venue">2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</span>
+          
+          <span class="badge badge-score">评分 8.7</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文系统分析BEV感知模型（BEVDet、BEVDet4D、DAL、BEVFormer）在摄像头与激光雷达两种模态下的对抗攻击脆弱性，涵盖白盒与黑盒场景。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper systematically probes adversarial vulnerabilities of state-of-the-art BEV perception models (BEVDet, BEVDet4D, DAL, BEVFormer) across camera and LiDAR modalities in both white-box and black-box settings.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Directly addresses autonomous driving security, a high-impact embodied AI system with real-world safety implications</li><li>Examines vulnerabilities across multimodal inputs (camera + LiDAR), reflecting realistic perception architectures used in practice</li><li>Analyzes state-of-the-art BEV models (BEVDet, BEVFormer, etc.) providing current-frontier insights</li><li>Published at CVPRW 2025, a reputable venue for computer vision research</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero HuggingFace upvotes suggests limited community engagement and visibility despite topic relevance</li><li>Abstract is truncated/incomplete, suggesting preparation issues; methodology details unclear for full evaluation</li><li>Authors from UT Dallas (cybersecurity expertise) rather than top-tier robotics/AI institutions, limiting prestige</li><li>Appears preliminary in scope based on &#39;preliminary security analysis&#39; framing, suggesting incomplete empirical validation</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">随着BEV感知成为自动驾驶的核心组件，其对抗鲁棒性直接关乎行车安全。本文探究：多模态BEV模型对图像和点云对抗攻击的脆弱程度如何，以及攻击能否跨模型迁移？</div>
+            <div class="en">As Bird&#39;s Eye View (BEV) perception becomes central to autonomous driving, understanding its adversarial robustness is a critical safety concern. The paper asks: how vulnerable are multi-modal BEV models to adversarial attacks on camera images and LiDAR point clouds, and do these attacks transfer across models?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">此前的对抗攻击研究多聚焦于单模态模型（纯摄像头或纯激光雷达），对多模态融合架构的分析不足。现有BEV安全研究较为零散，缺乏对多个主流架构跨模型迁移性的系统比较。</div>
+            <div class="en">Prior adversarial attack research on autonomous driving largely focused on single-modality models (camera-only or LiDAR-only), leaving multi-modal fusion architectures underexplored. Existing BEV security studies are sparse and do not comprehensively compare attack transferability across multiple state-of-the-art architectures.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者对BEVDet、BEVDet4D、DAL和BEVFormer四个BEV模型分别在摄像头图像和激光雷达点云输入上实施对抗攻击，评估白盒攻击效果及黑盒迁移性。通过对代理模型发起攻击并在其他模型上测试，系统识别各模型最脆弱的组件。</div>
+            <div class="en">The authors conduct a preliminary security analysis on four BEV models—BEVDet, BEVDet4D, DAL, and BEVFormer—by applying adversarial attacks separately to camera (visual) and LiDAR (point-cloud) inputs. Both white-box attacks (with full model access) and black-box transferability experiments (attacking a surrogate model and testing on others) are evaluated. The study covers multiple attack strategies across modalities to identify which model components are most susceptible.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">四个BEV模型在白盒攻击下均表现出显著脆弱性，检测性能大幅下降。尽管多模态输入提供了一定的隐式鲁棒性，对抗扰动在黑盒场景下仍可跨模型迁移，表明多模态融合本身不足以防御对抗威胁。</div>
+            <div class="en">All four BEV models exhibit significant vulnerabilities under white-box adversarial attacks across both camera and LiDAR modalities, with detection performance degrading substantially. Despite multi-modal inputs providing some implicit robustness, adversarial perturbations still transfer across models in black-box settings, indicating that multi-modality alone does not sufficiently defend against adversarial threats.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>方法细节不完整（如扰动预算、具体攻击算法未明确），影响结果可复现性与横向比较。</li><li>本文定位为初步研究，未提出任何防御或缓解方案，如何增强BEV模型鲁棒性仍是重要开放问题。</li><li>黑盒迁移性结论对实际威胁建模有价值，但仅测试4个模型，难以推广至更新的BEV架构。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Incomplete methodology details (e.g., specific perturbation budgets, attack algorithms used) make it difficult to reproduce results or fairly compare with other robustness benchmarks.</li><li>The paper is preliminary and does not propose any defenses or mitigations, leaving an important open question about how to harden BEV models against the identified attacks.</li><li>Black-box transferability findings are practically important for real-world threat modeling, but the limited number of tested architectures (4 models) restricts the generalizability of conclusions to newer BEV designs.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/a8ee05631d8d10d5df5c3a5ebdaa1fed39cdbd9f" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">一种利用物体刚性作为结构先验的三维点云对抗攻击框架，能生成难以被离群点去除策略检测的隐蔽扰动。</div>
+        <div class="paper-title-en">Rigid Structure Perturbation for Adversarial 3D Point Clouds Attack</div>
+        <div class="paper-meta">
+          <span>Zhiyuan Ma, Ju Wang, Jun Wang et al.</span>
+          <span class="badge badge-date">2025-10-31</span>
+          <span class="badge badge-venue">2025 IEEE 3rd International Conference on Computer, Vision and Intelligent Technology (ICCVIT)</span>
+          
+          <span class="badge badge-score">评分 7.7</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>一种利用物体刚性作为结构先验的三维点云对抗攻击框架，能生成难以被离群点去除策略检测的隐蔽扰动。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A rigid-structure-aware adversarial attack framework for 3D point clouds that exploits object rigidity as a geometric prior to generate imperceptible perturbations resilient to outlier-removal defenses.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles critical security vulnerability in 3D perception systems used in autonomous driving and robotics, which is highly relevant to embodied intelligence</li><li>Identifies and targets a real limitation of existing methods—conspicuous outlier points that can be easily removed—suggesting a more sophisticated attack strategy</li><li>3D point cloud robustness is an underexplored area with genuine practical significance for safety-critical applications</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero community engagement (0 HuggingFace upvotes) and publication at a lower-tier venue (ICCVIT 2025) rather than top-tier ML/vision conferences, suggesting limited impact</li><li>Abstract appears truncated (&#39;How&#39; at the end indicates incomplete submission), raising concerns about paper quality and completeness of methodology</li><li>Authors appear to be from non-elite institutions (not verifiable as top-tier), and lack of institutional affiliation details weakens credibility</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">用于三维点云分类的深度神经网络在自动驾驶和机器人领域至关重要，但其对抗鲁棒性研究远少于二维图像领域。核心挑战在于如何生成既能欺骗模型、又难以被人类感知的三维对抗扰动。</div>
+            <div class="en">Deep neural networks used for 3D point cloud classification—critical in autonomous driving and robotics—are vulnerable to adversarial attacks, yet this domain remains understudied compared to 2D images. The key challenge is crafting perturbations that are both effective at fooling models and imperceptible to human observers, who perceive 3D structure very differently from 2D images.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有三维对抗攻击方法常引入明显的离群点，偏离物体自然表面，易被简单的离群点去除或统计滤波防御所抵消。这些方法大多直接借鉴二维图像攻击策略，未充分考虑三维点云特有的几何结构属性。</div>
+            <div class="en">Existing 3D adversarial attack methods frequently introduce conspicuous outlier points that deviate from the object&#39;s natural surface, making them easily neutralized by simple outlier removal or statistical filtering defenses. These approaches largely borrow perturbation strategies from 2D image attacks without accounting for the structural and geometric properties unique to 3D point clouds.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">该框架将物体刚性作为结构先验约束对抗扰动，确保生成的点位移与目标物体的刚体几何保持一致。通过遵守刚性结构，扰动自然融入物体表面，避免产生悬浮离群点。所生成的对抗样本既能有效欺骗分类器，又对离群点去除防御具有鲁棒性，并在三维空间中保持感知上的合理性。</div>
+            <div class="en">The proposed framework introduces object rigidity as a structural prior to constrain adversarial perturbations, ensuring that generated point displacements remain consistent with the rigid-body geometry of the target object. By respecting rigid structure, the perturbations blend naturally into the object&#39;s surface rather than producing floating outlier points. This approach produces adversarial samples that are both effective against classifiers and robust to outlier-removal defenses, while remaining perceptually plausible in 3D space.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">该方法在主流点云分类器（如PointNet、PointNet++、DGCNN）上的攻击成功率优于基线方法，同时在离群点去除防御下具有更低的可检测性。具体数值因摘要不完整未能全部披露，但文章报告其在隐蔽性和防御规避指标上均优于现有方法。</div>
+            <div class="en">The method demonstrates improved attack success rates against mainstream point cloud classifiers (e.g., PointNet, PointNet++, DGCNN) compared to baselines, while maintaining lower detectability under outlier removal defenses. Specific numerical results are not fully disclosed in the available abstract, but the framework is reported to outperform prior adversarial point cloud attack methods in both imperceptibility and defense evasion metrics.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>方法新颖性存疑：将扰动约束于刚体变换是对已有思路的自然延伸，与GeoA3等方法的增量贡献需更清晰的实验区分。</li><li>研究范围局限于分类任务，刚性结构扰动能否迁移至三维目标检测或分割等更关键的下游任务尚不明确。</li><li>摘要不完整且论文可见度有限，刚性约束的具体公式化方法和评估数据集未充分说明，影响可复现性判断。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Methodological novelty is questionable: constraining perturbations to rigid-body transformations is a natural extension of existing ideas, and the paper&#39;s incremental contribution over methods like GeoA3 or SI-Adv needs clearer experimental differentiation.</li><li>Scope is limited to classification tasks; it remains unclear whether rigid-structure perturbations transfer effectively to more safety-critical downstream tasks such as 3D object detection or segmentation in real autonomous driving pipelines.</li><li>The incomplete abstract and limited visibility of this work raise concerns about reproducibility and thoroughness of evaluation—key details about the rigidity constraint formulation and the benchmark datasets used are not fully specified.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/35dc299468ce0c15f2fe0e7dfbe81acaabc47eda" target="_blank">查看原文 →</a>
+      </div>
+      
       
       </div>
     </details>
@@ -112,20 +272,20 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">SSAE将稀疏自编码器从词元级扩展至步骤级，通过稀疏特征解析大语言模型的思维链推理过程，捕捉推理方向与语义转变。</div>
-        <div class="paper-title-en">Step-Level Sparse Autoencoder for Reasoning Process Interpretation</div>
+        <div class="paper-title">本文提出&#34;智能体化评估&#34;框架，通过标准化的智能体间接口，用评估智能体自动化评测逻辑推理智能体，在FOLIO数据集上...</div>
+        <div class="paper-title-en">Agentified Assessment of Logical Reasoning Agents</div>
         <div class="paper-meta">
-          <span>Xuan Yang, Jiayu Liu, Yuhang Lai et al.</span>
+          <span>Zhiyu Ni, Yifeng Xiao, Zheng Liang</span>
           <span class="badge badge-date">2026-03-03</span>
+          <span class="badge badge-venue">ICLR 2026</span>
           
-          
-          <span class="badge badge-score">评分 7.4</span>
+          <span class="badge badge-score">评分 8.7</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>SSAE将稀疏自编码器从词元级扩展至步骤级，通过稀疏特征解析大语言模型的思维链推理过程，捕捉推理方向与语义转变。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SSAE extends Sparse Autoencoders from token-level to step-level granularity to interpret the reasoning process of LLMs using Chain-of-Thought, revealing sparse features that capture reasoning direction and semantic transitions.</div>
+          <div>本文提出&#34;智能体化评估&#34;框架，通过标准化的智能体间接口，用评估智能体自动化评测逻辑推理智能体，在FOLIO数据集上实现86.70%的准确率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces an &#34;agentified assessment&#34; framework where a dedicated assessor agent automates the evaluation of logical reasoning agents via a standardized agent-to-agent interface, achieving 86.70% accuracy on FOLIO with an auto-formalization + Z3Py/SMT approach.</div>
         </div>
 
         
@@ -135,11 +295,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Tackles a genuinely important problem: understanding reasoning patterns in LLMs beyond token-level granularity, which is critical for interpretability</li><li>Proposes a technically sound solution that extends SAEs to operate at semantic step-levels, addressing a clear granularity mismatch in existing approaches</li><li>Well-aligned with current frontiers in mechanistic interpretability and CoT reasoning analysis, which are major LLM research trends</li></ul>
+                <ul><li>Tackles an increasingly important problem of reproducible and auditable agent evaluation, which is crucial as LLMs are deployed as agents</li><li>Novel agentified assessment paradigm where evaluators are themselves agents, enabling better scalability and standardization of benchmarking</li><li>Concrete case study on auto-formalization and logical reasoning demonstrates practical applicability with structured failure type recording</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero community engagement (0 HF upvotes) suggests limited visibility or adoption within the research community despite the work&#39;s merit</li><li>Abstract is incomplete/truncated, making it difficult to assess full methodological rigor and experimental validation comprehensively</li></ul>
+                <ul><li>Zero community engagement on HuggingFace (0 upvotes) suggests limited visibility or interest from the broader research community at time of evaluation</li><li>Authors appear to be from less prominent institutions (not explicitly major tech/AI labs), which may reduce paper&#39;s initial visibility and adoption</li></ul>
               </div>
             </div>
           </div>
@@ -149,63 +309,63 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">尽管大语言模型具备强大的思维链推理能力，其内部推理模式在有意义的粒度上仍难以分析。词元级可解释性工具无法捕捉推理步骤间的方向转变与高层语义过渡等步骤级现象。</div>
-            <div class="en">Despite strong CoT reasoning capabilities in LLMs, their internal reasoning patterns remain opaque and difficult to analyze at a meaningful granularity. Token-level interpretability tools fail to capture step-level phenomena such as shifts in reasoning direction or high-level semantic transitions between reasoning steps.</div>
+            <div class="zh">如何以可复现、可审计且对执行失败具有鲁棒性的方式评测逻辑推理智能体？现有评测流程脆弱且难以审计，导致跨研究的公平比较困难。</div>
+            <div class="en">How can we evaluate logical reasoning agents in a way that is reproducible, auditable, and resilient to execution failures? Ad-hoc evaluation pipelines are brittle and hard to audit, making it difficult to fairly compare reasoning agents across studies.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有稀疏自编码器方法主要在词元级运行，当目标是理解推理步骤而非单个词元时，存在粒度不匹配的问题。这限制了其解析推理方向、错误纠正等跨越整个步骤的高层概念的能力。</div>
-            <div class="en">Existing Sparse Autoencoder (SAE) approaches predominantly operate at the token level, which creates a granularity mismatch when the goal is to understand reasoning steps rather than individual tokens. This limits their ability to disentangle high-level concepts like reasoning direction, error correction, or topic transitions that span entire steps in a CoT sequence.</div>
+            <div class="zh">现有推理智能体评测依赖静态数据集和脚本式评估，无法强制执行预算或系统记录失败类型。CoT基线在FOLIO上仅达73.89%，且缺乏结构化的失败分析与可扩展的审计机制。</div>
+            <div class="en">Existing benchmarking of reasoning agents typically relies on static datasets and manual or script-based evaluation, which cannot enforce execution budgets or systematically record failure modes. Chain-of-thought (CoT) prompting baselines on FOLIO, while widely used, are opaque in their failure analysis and achieve only ~73.89% accuracy. Neither approach provides a structured, agent-native interface for scalable and auditable assessment.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">SSAE将每个推理步骤编码为以前文为条件的稀疏特征向量，并通过信息瓶颈机制控制步骤级稀疏度，将&#34;增量信息&#34;（步骤特有内容）与&#34;背景信息&#34;（共享上下文）分离，再将增量信息解耦为稀疏激活的维度。这使得对每个推理步骤贡献的细粒度分解成为可能。</div>
-            <div class="en">SSAE introduces a step-level sparse autoencoder that encodes each reasoning step as a sparse feature vector conditioned on its preceding context. A key design is an information bottleneck mechanism: by controlling sparsity at the step level, SSAE separates &#34;incremental information&#34; (what is new and specific to a step) from &#34;background information&#34; (shared context), then disentangles the incremental part into sparsely activated dimensions. This enables fine-grained decomposition of what each reasoning step contributes to the overall solution.</div>
+            <div class="zh">评估智能体负责下发任务、执行预算管控、输出解析及结构化失败记录（如解析错误、超时、答案错误）。被测智能体只需暴露标准化A2A接口。案例中，自动形式化智能体将自然语言前提与结论转化为Z3Py程序，并通过SMT求解判断逻辑蕴含，基准在经过求解器验证和修复的FOLIO子集上运行。</div>
+            <div class="en">The authors design an assessor agent that issues tasks, enforces token/step execution budgets, parses outputs, and logs structured failure types (e.g., parse errors, timeout, wrong answer). The agent under test only needs to expose a standardized agent-to-agent (A2A) interface, decoupling evaluation logic from agent internals. As a case study, an auto-formalization agent translates natural language premises and conclusions into Z3Py programs and uses SMT solving to determine logical entailment. The benchmark is run on a solver-verified and repaired split of the FOLIO dataset to ensure label reliability.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">SSAE在多个基础大语言模型和推理任务上进行了评估，结果表明步骤级特征比词元级SAE基线更具可解释性，更能捕捉推理过渡。SSAE识别出的稀疏特征与人类可识别的推理模式（如方向转变、语义枢纽）相吻合，但摘要中未完整披露具体量化指标。</div>
-            <div class="en">SSAE is evaluated across multiple base LLMs and reasoning tasks, demonstrating that step-level features are more interpretable and better capture reasoning transitions than token-level SAE baselines. The sparse features identified by SSAE align with human-recognizable reasoning patterns such as direction shifts and semantic pivots, though specific quantitative benchmarks (e.g., exact accuracy numbers) are not fully detailed in the abstract.</div>
+            <div class="zh">在清洗后的FOLIO验证集上，自动形式化智能体在评估协议下达到86.70%准确率，比CoT基线高出12.81个百分点（73.89%）。结构化失败日志揭示了CoT评估无法发现的具体失败类别。</div>
+            <div class="en">The auto-formalization agent achieves 86.70% accuracy on the cleaned FOLIO validation set under the assessor protocol, outperforming the chain-of-thought baseline by 12.81 percentage points (73.89%). The structured failure logging reveals specific breakdown categories that CoT evaluation cannot surface, demonstrating the auditing advantage of the agentified approach.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>步骤边界的定义在不同模型的CoT输出中可能存在歧义，影响方法在不同大语言模型家族间的可复现性。</li><li>信息瓶颈设计假设上下文条件稀疏度能清晰分离增量与背景信息，该假设需要更充分的消融实验加以验证。</li><li>目前社区关注度有限，未来研究应通过激活修补等干预手段验证SSAE特征与推理行为的因果关系，而非仅停留于相关性。</li></ul>
+              <ul class="discussion-list"><li>评估范围有限：案例研究仅覆盖FOLIO验证集和单一智能体类型，在数学、常识等其他推理领域及多智能体场景中的泛化能力尚未验证。</li><li>数据标签依赖性：框架有效性依赖于求解器验证和修复后的FOLIO子集质量，数据修复中的错误可能静默地影响准确率报告。</li><li>A2A接口开销未量化：标准化接口虽是核心贡献，但论文未报告评估智能体自身的延迟与成本，这对大规模评测的实用性至关重要。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Granularity choice is critical: the step-level abstraction is well-motivated, but the definition of a &#39;step&#39; boundary in CoT outputs can be ambiguous and model-dependent, which may affect reproducibility across different LLM families.</li><li>The information bottleneck design (splitting incremental vs. background information) is an elegant inductive bias, but it relies on the assumption that context-conditioned sparsity cleanly separates these two types of information — a claim that warrants deeper ablation studies.</li><li>Early-stage community uptake suggests the work is novel but not yet stress-tested; future work should evaluate whether SSAE features are causally relevant (e.g., via activation patching) rather than merely correlational with reasoning behavior.</li></ul>
+              <ul class="discussion-list"><li>Scope of evaluation: The case study covers only the FOLIO validation set with one agent type; broader generalization to other reasoning domains (e.g., math, commonsense) or multi-agent systems remains untested.</li><li>Label reliability dependency: The framework&#39;s validity hinges on the quality of the solver-verified/repaired FOLIO split; errors introduced during dataset repair could silently inflate or deflate reported accuracy.</li><li>Scalability of A2A interface: While the standardized interface is a key contribution, the paper does not quantify the overhead (latency, cost) of the assessor agent itself, which matters for large-scale benchmarking campaigns.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03031v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02788v1" target="_blank">查看原文 →</a>
       </div>
       
       
       
       <div class="paper-card">
-        <div class="paper-title">PrivMedChat 是一个端到端差分隐私RLHF框架，在SFT、奖励建模和PPO每个访问监督数据的训练阶段均应...</div>
-        <div class="paper-title-en">PrivMedChat: End-to-End Differentially Private RLHF for Medical Dialogue Systems</div>
+        <div class="paper-title">BehaveSim通过比较求解过程中的中间解序列（问题求解轨迹）来衡量LLM生成代码的算法相似性，而非依赖语法或最终输出。</div>
+        <div class="paper-title-en">Rethinking Code Similarity for Automated Algorithm Design with LLMs</div>
         <div class="paper-meta">
-          <span>Sudip Bhujel</span>
+          <span>Rui Zhang, Zhichao Lu</span>
           <span class="badge badge-date">2026-03-03</span>
+          <span class="badge badge-venue">ICLR</span>
           
-          
-          <span class="badge badge-score">评分 7.2</span>
+          <span class="badge badge-score">评分 8.7</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>PrivMedChat 是一个端到端差分隐私RLHF框架，在SFT、奖励建模和PPO每个访问监督数据的训练阶段均应用DP-SGD，以保护医患对话隐私。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">PrivMedChat is an end-to-end differentially private RLHF framework that applies DP-SGD at every supervision-accessing training stage (SFT, reward modeling, PPO) to protect sensitive patient-doctor dialogue data.</div>
+          <div>BehaveSim通过比较求解过程中的中间解序列（问题求解轨迹）来衡量LLM生成代码的算法相似性，而非依赖语法或最终输出。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">BehaveSim measures algorithmic similarity in LLM-generated code by comparing problem-solving trajectories (sequences of intermediate solutions), rather than syntax or final outputs.</div>
         </div>
 
         
@@ -215,11 +375,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Tackles an important real-world problem: privacy-preserving RLHF for sensitive medical data, addressing genuine memorization and extraction risks in clinical settings</li><li>Aligns well with trending topics in LLM safety, privacy-aware training, and healthcare AI applications</li><li>Demonstrates concrete practical value by proposing end-to-end DP-RLHF framework applicable to medical dialogue systems</li></ul>
+                <ul><li>Tackles an important and understudied problem in automated algorithm design where distinguishing true algorithmic innovation from syntactic variation is critical</li><li>Directly addresses the LLM Development Trends frontier by improving evaluation methods for LLM-generated algorithms, which is increasingly important as LLMs generate more code</li><li>Proposes a principled approach (BehaveSim) that likely measures behavioral properties rather than surface-level code similarity, showing methodological rigor</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero HuggingFace upvotes indicate minimal community engagement despite relevant topic, suggesting limited visibility or adoption</li><li>Single-author paper from non-obvious institutional affiliation lacks prestige signal typical of top-tier LLM research</li><li>Incomplete abstract truncates at reward model description, making it difficult to assess experimental completeness, baselines, and empirical validation rigor</li></ul>
+                <ul><li>Zero community engagement (0 HuggingFace upvotes) suggests limited current awareness or impact despite venue being ICLR, a top conference</li><li>Author institutions not clearly from Tier-1 AI labs (MIT, CMU, Google, DeepMind, Stanford), limiting prestige factor</li><li>Abstract is incomplete/truncated, making it difficult to assess full methodological contribution and experimental comprehensiveness</li></ul>
               </div>
             </div>
           </div>
@@ -229,63 +389,63 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">基于医患对话微调的医疗大模型存在记忆并泄露敏感信息的风险，可能遭受成员推断攻击和训练数据提取攻击。核心问题是如何在完整的RLHF训练流程中实现临床对话对齐，同时全程保护患者隐私。</div>
-            <div class="en">Medical LLMs fine-tuned on doctor-patient conversations risk memorizing and leaking sensitive patient information through membership inference and training data extraction attacks. The challenge is how to perform full RLHF-based alignment on clinical dialogue data without violating patient privacy throughout the entire training pipeline.</div>
+            <div class="zh">随着LLM自主生成算法实现，如何区分真正的算法创新与表面代码变体成为LLM-AAD评估的核心问题。现有代码相似性指标无法可靠判断两段程序是否体现相同的算法逻辑，导致AAD评估存在盲区。</div>
+            <div class="en">As LLMs autonomously generate algorithm implementations, distinguishing genuine algorithmic innovation from superficial code rewrites becomes critical for evaluating progress in LLM-based Automated Algorithm Design (LLM-AAD). Existing code similarity metrics cannot reliably identify whether two programs embody the same underlying algorithmic logic, creating a blind spot in the AAD evaluation pipeline.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">标准SFT和RLHF流程缺乏正式隐私保证，易导致罕见或敏感训练样本被记忆。已有差分隐私LLM工作通常仅覆盖SFT阶段，奖励模型训练和PPO对齐阶段仍存在隐私泄露风险。</div>
-            <div class="en">Standard supervised fine-tuning and RLHF pipelines apply no formal privacy guarantees, making them vulnerable to memorization of rare or sensitive training examples. Prior work on differentially private LLMs typically focuses only on the SFT stage, leaving reward model training and PPO alignment as unprotected privacy leakage surfaces.</div>
+            <div class="zh">基于词元的指标（如BLEU、CodeBERT）仅捕捉表层语法相似性，忽略语义算法差异。输出等价方法只检查最终结果，遗漏了求解过程的结构逻辑。两类指标均无法检测LLM是否在反复重新发现逻辑相同但命名不同的启发式算法。</div>
+            <div class="en">Token-based metrics (e.g., BLEU, CodeBLERT) capture surface-level syntactic similarity but are blind to semantic algorithmic differences. Output-equivalence approaches only check final results, missing the structural logic of how a solution is reached. Neither class of metrics is suited to detect, for example, whether two differently named but logically identical heuristics are being repeatedly rediscovered by an LLM.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">PrivMedChat 在三个训练阶段强制执行差分隐私：①医疗SFT阶段的DP-SGD；②基于对话偏好对的奖励模型训练阶段的DP-SGD；③PPO actor和critic处理对话提示时的DP-SGD。通过跨阶段隐私预算组合，提供端到端(ε,δ)-DP保证，仅对直接访问敏感数据的模块注入噪声。</div>
-            <div class="en">PrivMedChat enforces differential privacy across three distinct training stages: (1) DP-SGD during medical supervised fine-tuning, (2) DP-SGD during reward model training on preference pairs derived from dialogues, and (3) DP-SGD applied to the PPO actor and critic when processing dialogue-derived prompts. Privacy budgets are tracked and composed across all stages to provide end-to-end (ε, δ)-DP guarantees. This staged approach confines privacy cost only to components that directly access sensitive dialogue supervision, avoiding unnecessary noise injection into non-dialogue-derived computations.</div>
+            <div class="zh">BehaveSim通过&#34;问题求解轨迹&#34;（PSTrajs）定义算法相似性，即算法在执行过程中产生的中间候选解的有序序列。若两算法在多样化问题实例上的PSTrajs高度对齐，则认为二者相似，捕捉底层逻辑的行为指纹。轨迹对齐通过解序列上的距离度量量化，使该指标基于执行而非文本。该方法对变量命名、代码结构或编程风格不敏感，专注于算法如何遍历搜索空间。</div>
+            <div class="en">BehaveSim defines algorithmic similarity via &#34;problem-solving trajectories&#34; (PSTrajs)—the ordered sequence of intermediate candidate solutions an algorithm produces while executing on a problem instance. Two algorithms are considered similar if their PSTrajs align closely across a diverse set of problem instances, capturing the behavioral fingerprint of the underlying logic. Trajectory alignment is quantified using a distance measure over solution sequences, making the metric execution-based rather than text-based. This approach is agnostic to variable naming, code structure, or programming style, focusing purely on how an algorithm navigates the search space.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">现有摘要未披露具体数值结果（如隐私预算ε值、效用指标或攻击成功率）。框架声称可有效缓解成员推断攻击和训练数据提取风险，同时保持医疗对话能力，但具体隐私-效用权衡数据尚不可评估。</div>
-            <div class="en">Specific numerical results (e.g., privacy budget ε values, utility metrics, or attack success rates) are not fully disclosed in the available abstract. The framework is claimed to mitigate empirical membership inference and training data extraction risks while maintaining functional medical dialogue capabilities, though the precise utility-privacy tradeoff figures are not yet available for assessment.</div>
+            <div class="zh">BehaveSim在算法相似性判断上与人类专家的一致性优于基于语法和输出的基线方法。在组合优化任务实验中，BehaveSim成功识别LLM-AAD系统重新生成功能等价但代码外观不同算法的情形——这是先前指标无法发现的失效模式。论文报告了相对基线的定量提升，但摘要中未完整披露具体数值。</div>
+            <div class="en">BehaveSim demonstrates stronger alignment with human expert judgments of algorithmic similarity compared to syntax-based and output-based baselines. In experiments on combinatorial optimization tasks, BehaveSim successfully identifies cases where LLM-AAD systems regenerate functionally equivalent algorithms with different code appearances—a failure mode invisible to prior metrics. Specific quantitative gains over baselines (e.g., correlation scores) are reported, though exact numbers are not fully detailed in the abstract.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>三阶段DP-SGD（SFT+奖励模型+PPO）的隐私预算组合可能导致总ε值过大，需证明最终隐私保证对临床部署仍有实际意义（如ε≤8）。</li><li>在PPO actor/critic中引入DP-SGD梯度噪声可能破坏策略优化的训练稳定性，需说明差分隐私约束下奖励信号质量如何保持。</li><li>框架仅对对话衍生的监督数据提供DP保护，若基础模型本身在敏感临床语料上预训练，则整体隐私保护可能仍不充分。</li></ul>
+              <ul class="discussion-list"><li>BehaveSim依赖代码执行获取轨迹，对于运行时间长或非确定性算法，计算开销可能较大，存在实际应用限制。</li><li>方法的有效性与所选问题实例密切相关——基准集选择不当可能导致两种不同算法被判为相似，或两种等价算法被判为不同，评估鲁棒性有待验证。</li><li>BehaveSim为LLM-AAD流程中的去重与多样性追踪提供了具体路径，有助于衡量迭代LLM搜索是否真正探索了新算法空间，还是在改写同一逻辑。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Privacy budget composition across three DP-SGD stages (SFT + reward model + PPO) will likely accumulate a large total ε, and the paper must demonstrate that the final privacy guarantee remains practically meaningful (e.g., ε ≤ 8) for clinical deployment.</li><li>Applying DP-SGD to the PPO actor/critic introduces gradient noise during policy optimization, which may destabilize training convergence—the paper needs to address how reward signal quality is preserved under differential privacy constraints.</li><li>The framework&#39;s scope is limited to dialogue-derived supervision; pre-training data and non-dialogue prompts are explicitly excluded from DP protection, which may be insufficient if the base model itself was pre-trained on sensitive clinical corpora.</li></ul>
+              <ul class="discussion-list"><li>Execution dependency is a practical limitation: BehaveSim requires running code on problem instances to obtain trajectories, which may be computationally expensive or infeasible for algorithms with long runtimes or non-deterministic behavior.</li><li>The method&#39;s validity is tied to the choice of problem instances used to elicit trajectories—a poorly chosen benchmark set could make two distinct algorithms appear similar or two equivalent ones appear different, raising questions about evaluation robustness.</li><li>BehaveSim opens a concrete path toward deduplication and diversity tracking in LLM-AAD pipelines, potentially enabling researchers to measure whether iterative LLM search is genuinely exploring new algorithmic territory or cycling through paraphrases.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03054v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02787v1" target="_blank">查看原文 →</a>
       </div>
       
       
       
       <div class="paper-card">
-        <div class="paper-title">TrustMH-Bench是首个从八大信任维度系统评估心理健康LLM可信度的综合基准，揭示了专用心理健康模型在安全...</div>
-        <div class="paper-title-en">TrustMH-Bench: A Comprehensive Benchmark for Evaluating the Trustworthiness of Large Language Models in Mental Health</div>
+        <div class="paper-title">一种基于智能体LLM的工作流，通过自动识别覆盖漏洞并生成形式化属性，实现IC形式验证的覆盖率闭合，并在多个设计上取得可量化的改进。</div>
+        <div class="paper-title-en">Agentic AI-based Coverage Closure for Formal Verification</div>
         <div class="paper-meta">
-          <span>Zixin Xiong, Ziteng Wang, Haotian Fan et al.</span>
+          <span>Sivaram Pothireddypalli, Ashish Raman, Deepak Narayan Gadde et al.</span>
           <span class="badge badge-date">2026-03-03</span>
+          <span class="badge badge-venue">IEEE</span>
           
-          
-          <span class="badge badge-score">评分 7.2</span>
+          <span class="badge badge-score">评分 8.3</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>TrustMH-Bench是首个从八大信任维度系统评估心理健康LLM可信度的综合基准，揭示了专用心理健康模型在安全与伦理方面的显著不足。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TrustMH-Bench is the first comprehensive benchmark that evaluates LLMs for mental health applications across eight trust pillars, revealing that even specialized mental health models fall short on critical safety and ethical dimensions.</div>
+          <div>一种基于智能体LLM的工作流，通过自动识别覆盖漏洞并生成形式化属性，实现IC形式验证的覆盖率闭合，并在多个设计上取得可量化的改进。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">An agentic LLM-driven workflow automates formal verification coverage closure by identifying coverage gaps and generating formal properties, demonstrating measurable coverage improvements on open-source and internal IC designs.</div>
         </div>
 
         
@@ -295,11 +455,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Addresses high-impact real-world problem: trustworthiness evaluation for mental health LLMs is genuinely important and under-researched</li><li>Comprehensive multi-pillar framework covering eight dimensions (Reliability, Crisis Identification, Safety, Fairness, Privacy, etc.) demonstrates domain-specific thinking beyond generic LLM benchmarks</li><li>Strong practical significance with direct applicability to clinical deployment and regulatory compliance, filling a clear gap in existing evaluation paradigms</li></ul>
+                <ul><li>Tackles a real and critical problem in IC verification that directly impacts engineering productivity</li><li>Demonstrates measurable improvements on both open-source and internal benchmarks with complexity-correlated results</li><li>Timely application of agentic AI and LLMs to an important domain (formal verification) that has not been extensively explored</li><li>Published in reputable IEEE venue with industry relevance</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero HuggingFace community engagement (0 upvotes) suggests limited awareness or adoption among researchers despite the important topic</li><li>Author affiliations not provided in abstract, making prestige assessment difficult; appears to lack institutional recognition signals from top-tier organizations</li></ul>
+                <ul><li>Zero community engagement on HuggingFace suggests limited visibility or awareness outside primary industry stakeholders</li><li>Abstract lacks details on specific LLM architectures, agentic workflows, evaluation metrics, and comparative baselines needed to assess rigor</li><li>Author affiliations appear to be primarily from industry (not top-tier academic institutions), reducing prestige signal</li><li>Methodological completeness unclear: no discussion of failure modes, statistical significance, or ablation studies visible in abstract</li></ul>
               </div>
             </div>
           </div>
@@ -309,44 +469,44 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">LLM在心理健康支持中的应用日益广泛，但缺乏针对该高风险领域的系统性可信度评估框架。心理健康AI的失误（如漏判危机或存在偏见）可能带来生命威胁，亟需专项评估体系。</div>
-            <div class="en">LLMs are increasingly being deployed for mental health support, yet no rigorous, domain-specific framework exists to evaluate whether they are truly trustworthy in this high-stakes context. Failures in mental health AI—such as missing a suicide crisis or exhibiting bias—can have life-threatening consequences, making systematic trustworthiness evaluation urgent.</div>
+            <div class="zh">形式验证中的覆盖率闭合是IC流片前的强制要求，但传统穷举方法难以在项目周期内实现完全覆盖。人工分析覆盖漏洞并编写形式化属性耗时易错，成为芯片开发中的关键效率瓶颈。</div>
+            <div class="en">Coverage closure in formal IC verification is a mandatory sign-off requirement, yet traditional exhaustive methods routinely fail to achieve full coverage within project deadlines. The manual effort of analyzing coverage holes and writing formal properties is time-consuming and error-prone, creating a critical productivity bottleneck in chip development.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有LLM可信度基准面向通用任务，无法覆盖危机上报规程、治疗隐私义务等领域特有规范。已有心理健康LLM评估仅关注共情或回复质量，忽视了该领域特有的多维度信任风险。</div>
-            <div class="en">Existing LLM trustworthiness benchmarks (e.g., general safety or bias benchmarks) are designed for open-domain tasks and fail to capture domain-specific norms such as crisis escalation protocols, therapeutic privacy obligations, and clinical ethics. Specialized mental health LLM evaluations to date focus narrowly on empathy or response quality, ignoring multi-dimensional trust risks unique to the mental health domain.</div>
+            <div class="zh">传统形式验证依赖专家手工编写属性，难以随设计复杂度扩展。已有自动化方案缺乏语义理解能力，无法将覆盖报告中的漏洞转化为正确的形式化断言。现有EDA领域的LLM应用主要集中于RTL生成或仿真测试台，而非针对覆盖漏洞的形式属性合成。</div>
+            <div class="en">Traditional formal verification coverage closure relies on manual property writing by domain experts, which does not scale with growing design complexity. Prior automation attempts lack the semantic understanding needed to interpret coverage reports and translate gaps into correct formal assertions. Existing LLM applications in EDA have largely focused on RTL generation or simulation testbenches, not formal property synthesis targeting coverage holes.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">TrustMH-Bench将临床与伦理规范映射为可量化指标，构建八大评估支柱：可靠性、危机识别与上报、安全性、公平性、隐私、鲁棒性、抗谄媚性和伦理。基准覆盖6个通用LLM与6个专用心理健康模型，测试任务源于真实临床标准，将抽象原则转化为可测量场景。</div>
-            <div class="en">TrustMH-Bench establishes a deep mapping from domain-specific clinical and ethical norms to quantitative metrics, operationalizing eight evaluation pillars: Reliability, Crisis Identification and Escalation, Safety, Fairness, Privacy, Robustness, Anti-sycophancy, and Ethics. The benchmark covers both six general-purpose LLMs and six specialized mental health models, enabling a broad comparative analysis. Evaluation tasks are grounded in real-world mental health standards, translating abstract principles (e.g., duty-to-warn, demographic fairness) into concrete, measurable test scenarios.</div>
+            <div class="zh">该框架由LLM驱动的智能体组成，迭代分析形式验证覆盖报告、定位未覆盖行为，并自动生成填补漏洞所需的形式化属性。智能体以闭环方式运行：读取工具输出、推理缺失覆盖点、无需人工干预地生成新断言。框架在开源设计和内部IC设计上均进行了基准测试，支持跨复杂度评估。</div>
+            <div class="en">The paper proposes an agentic AI framework where an LLM-orchestrated agent iteratively analyzes formal verification coverage reports, pinpoints uncovered behaviors (coverage holes), and automatically generates the formal properties needed to close those gaps. The agent operates in a closed-loop fashion: it reads tool output, reasons about missing coverage, and writes new assertions without human intervention. The framework is benchmarked on both open-source designs and proprietary internal IC designs, allowing cross-complexity evaluation. The approach leverages GenAI&#39;s code generation and reasoning capabilities specifically tuned to formal property languages used in hardware verification.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">实验显示，即使是专用心理健康LLM在危机识别与伦理维度上也存在显著不足，领域微调并不能保证整体可信度。部分通用前沿模型在多维度信任指标上优于专用模型，表明任务优化与整体安全之间存在明显差距。无模型能在全部八个维度上同时达到满意水平。</div>
-            <div class="en">Experiments across 12 models reveal that even specialized mental health LLMs fall significantly short on critical pillars such as Crisis Identification and Escalation and Ethics, suggesting that domain fine-tuning alone does not ensure trustworthiness. General-purpose frontier models outperform several specialized models on multi-dimensional trust metrics, indicating a gap between task-specific optimization and holistic safety. Specific numerical scores are not fully disclosed in the abstract, but results consistently show no model achieves satisfactory performance across all eight pillars simultaneously.</div>
+            <div class="zh">在开源及内部设计上的基准测试显示形式覆盖率指标有可量化提升，设计越复杂，改进幅度越大。这一相关性表明，智能体方法在人工难以扩展的场景中效益最为显著。摘要未完整披露具体数值，难以与基线进行直接定量比较。</div>
+            <div class="en">Benchmarking across open-source and internal designs shows measurable increases in formal coverage metrics, with larger improvements observed on more complex designs. The correlation between design complexity and coverage gain suggests the agentic approach is most impactful where manual effort is hardest to scale. Specific numerical results are not fully disclosed in the abstract, limiting direct quantitative comparison against baselines.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>危机上报是得分最低的维度，说明当前LLM在最关键时刻（用户表达自杀意念时）仍不可靠，对真实心理健康平台的部署构成直接风险。</li><li>抗谄媚性维度是本研究的重要创新：心理健康用户易受认可需求驱动，若模型一味迎合扭曲认知（如肯定绝望感），将加剧而非改善病情。</li><li>基准目前仅覆盖英文及12个固定模型，未来需扩展至多语言场景并引入多轮纵向交互测试，因为单轮评估可能遗漏持续治疗对话中涌现的风险。</li></ul>
+              <ul class="discussion-list"><li>方法透明度不足：论文未说明所用LLM骨干、提示工程策略，以及如何处理生成属性错误或无法验证的情况，影响可复现性。</li><li>覆盖率提升与设计复杂度正相关的结论值得审慎：复杂设计的覆盖语义更模糊，存在生成属性虚增覆盖率却未发现真实缺陷的风险。</li><li>论文直接针对流片瓶颈，工业落地潜力大，但缺乏开源实现和与同类LLM-EDA方法的横向对比，限制了社区验证和结果可信度。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Crisis escalation is the most underperforming pillar, meaning current LLMs are unreliable at the most safety-critical moment—when a user expresses suicidal ideation or acute distress—posing direct deployment risks in real mental health platforms.</li><li>The anti-sycophancy pillar is a novel and important addition: mental health users are vulnerable to validation-seeking behavior, and a model that simply agrees with distorted cognitions (e.g., affirming hopelessness) can worsen outcomes rather than help.</li><li>The benchmark&#39;s scope is limited to English-language evaluation and a fixed set of 12 models; future work should extend to multilingual settings and integrate longitudinal interaction testing, as single-turn evaluations may miss risks that emerge over sustained therapeutic conversations.</li></ul>
+              <ul class="discussion-list"><li>Methodological transparency is a key weakness: the paper does not detail which LLM backbone is used, how prompts are engineered, or how the agent handles incorrect/unverifiable generated properties — all critical for reproducibility.</li><li>The claim that improvements correlate with design complexity is intriguing but needs caution: more complex designs also have more ambiguous coverage semantics, raising the risk of generating properties that increase coverage metrics without catching real bugs.</li><li>Industrial adoption potential is high given the direct targeting of a sign-off bottleneck, but the lack of open-source release and limited academic benchmarking (e.g., no comparison against prior LLM-for-EDA baselines) restricts community validation and trust in the reported gains.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03047v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03147v1" target="_blank">查看原文 →</a>
       </div>
       
       
@@ -355,7 +515,7 @@
     
     <details class="category-details" id="embodied_trends" open>
       <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
-        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
       </summary>
       <div class="category-body">
       
@@ -363,20 +523,20 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">ACE-Brain-0以空间智能为通用支架，在单一多模态大语言模型中统一自动驾驶、机器人与无人机任务，避免灾难性遗忘。</div>
-        <div class="paper-title-en">ACE-Brain-0: Spatial Intelligence as a Shared Scaffold for Universal Embodiments</div>
+        <div class="paper-title">Utonia是首个跨五类三维点云领域联合训练的自监督统一编码器，可同时提升感知能力及具身智能与多模态推理任务的性能。</div>
+        <div class="paper-title-en">Utonia: Toward One Encoder for All Point Clouds</div>
         <div class="paper-meta">
-          <span>Ziyang Gong, Zehang Luo, Anke Tang et al.</span>
+          <span>Yujia Zhang, Xiaoyang Wu, Yunhan Yang et al.</span>
           <span class="badge badge-date">2026-03-03</span>
           
           
-          <span class="badge badge-score">评分 7.2</span>
+          <span class="badge badge-score">评分 6.9</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>ACE-Brain-0以空间智能为通用支架，在单一多模态大语言模型中统一自动驾驶、机器人与无人机任务，避免灾难性遗忘。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ACE-Brain-0 proposes spatial intelligence as a universal scaffold to train a single MLLM that generalizes across autonomous driving, robotics, and UAVs without catastrophic forgetting.</div>
+          <div>Utonia是首个跨五类三维点云领域联合训练的自监督统一编码器，可同时提升感知能力及具身智能与多模态推理任务的性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Utonia is a single self-supervised point cloud transformer encoder trained jointly across five diverse 3D domains (remote sensing, outdoor LiDAR, indoor RGB-D, CAD models, video-lifted point clouds) that improves both perception and downstream embodied/multimodal tasks.</div>
         </div>
 
         
@@ -386,11 +546,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Tackles important challenge of universal generalization across heterogeneous embodiments (vehicles, robots, UAVs)</li><li>Novel insight that spatial intelligence serves as common foundation across diverse physical systems demonstrates conceptual depth</li><li>Directly addresses real problems in multi-embodiment learning: long-tail data, gradient interference, catastrophic forgetting</li><li>Practical applications across autonomous driving, robotics, and aerial systems with significant real-world value</li></ul>
+                <ul><li>Addresses critical problem of domain-agnostic representations across diverse point cloud sources (remote sensing, LiDAR, RGB-D, CAD, video-lifted), directly relevant to embodied intelligence systems requiring multimodal perception</li><li>Demonstrates emergent behaviors from joint training and explicit connection to embodied and multimodal reasoning, showing transfer benefits beyond single-domain performance</li><li>Self-supervised learning approach is practical for real-world deployment where labeled data across all domains is scarce, with potential for broad adoption</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero HuggingFace engagement (0 upvotes) suggests limited community visibility or preliminary/recent work status</li><li>Abstract is incomplete and cuts off mid-sentence, indicating paper may be in early submission stage or documentation quality concerns</li><li>Author affiliations not clearly prestigious (no obvious MIT/CMU/Google/DeepMind/Stanford representation based on names alone)</li><li>Insufficient details in abstract to assess experimental methodology, benchmarks, and validation rigor across the three embodiment domains</li></ul>
+                <ul><li>Zero HuggingFace upvotes suggests minimal immediate community adoption or validation, and paper may lack visibility despite strong technical merit</li><li>Author affiliations appear to be primarily from academic institutions without confirmed presence of major industry labs (MIT, CMU, Google, DeepMind, Stanford) based on available information</li></ul>
               </div>
             </div>
           </div>
@@ -400,44 +560,204 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">如何让单一基础模型在自动驾驶、机械臂和无人机等差异悬殊的具身形态上均表现出色，同时保持领域专精能力？现实部署对跨平台泛化的需求日益迫切，专用模型的成本难以为继。</div>
-            <div class="en">How can a single foundation model achieve strong performance across radically different physical embodiments—cars, robot arms, and UAVs—without sacrificing domain-specific proficiency? This matters because real-world deployment increasingly demands agents that transfer skills across platforms rather than requiring separate, costly specialist models for each embodiment.</div>
+            <div class="zh">点云数据来源各异（无人机遥感、自动驾驶LiDAR、RGB-D相机、CAD模型及单目视频重建），几何结构与密度差异巨大。核心问题是：单一编码器能否跨域学习一致的表示空间，且联合训练是否能涌现出领域专用模型所不具备的新能力？</div>
+            <div class="en">Point cloud data comes from radically different sources—drones, autonomous vehicles, RGB-D cameras, CAD tools, and monocular video—each with unique geometry, density, and priors, yet no single model has been trained across all of them. Utonia asks whether one encoder can learn a consistent representation space that transfers universally, and whether joint training across domains produces emergent capabilities beyond what domain-specific models offer.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有通用具身模型在跨形态联合训练时，面临长尾数据分布、梯度干扰和灾难性遗忘等难题。已有方案多采用各形态独立训练或轻量适配器，难以实现真正的跨形态知识迁移。</div>
-            <div class="en">Existing universal embodied models suffer from long-tail data distributions, gradient interference between heterogeneous tasks, and catastrophic forgetting when jointly trained across embodiments. Prior approaches typically handle these issues either by training separate specialist models per embodiment or by using lightweight adapter modules, both of which limit true cross-embodiment knowledge transfer.</div>
+            <div class="zh">现有自监督三维编码器（如Point-MAE、PointContrast）通常在单一领域训练，泛化能力有限。跨域三维学习多依赖独立模型或领域自适应方法，尚无端到端联合训练的统一编码器。</div>
+            <div class="en">Existing self-supervised 3D encoders such as Point-MAE or PointContrast are typically trained and evaluated within a single domain (e.g., ShapeNet objects or indoor ScanNet scenes), limiting their transferability. Multi-domain 3D learning has largely been addressed through separate models or domain adaptation, rather than a single unified encoder trained end-to-end on heterogeneous point cloud sources.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">ACE-Brain-0将三维空间认知（场景几何、深度建模、心理3D空间）作为所有具身形态共享的领域无关能力，嵌入单一多模态大语言模型，统一处理空间推理、自动驾驶感知/规划与机器人操作任务。共享空间表征缓解了梯度干扰，并通过空间归纳偏置保持领域专精能力。</div>
-            <div class="en">ACE-Brain-0 identifies 3D spatial cognition—modeling mental 3D space, depth, and scene geometry—as a domain-agnostic capability shared by all physical embodiments regardless of their morphology. This spatial intelligence scaffold is embedded within a single multimodal large language model (MLLM) that jointly handles spatial reasoning, autonomous driving perception/planning, and robotic manipulation. By grounding all embodiment-specific tasks in a common spatial representation, the model alleviates gradient interference and enables positive cross-embodiment transfer. The unified architecture avoids the need for separate models while preserving domain-specific proficiency through the shared spatial inductive bias.</div>
+            <div class="zh">Utonia以点云Transformer为骨干，在五类点云数据上进行自监督联合预训练，无需领域专用头部网络，直接学习统一表示空间。所学特征可作为视觉-语言-动作（VLA）策略的条件输入以提升机器人操控，也可集成到视觉语言模型（VLM）中增强空间推理，展示了跨具身与多模态任务的通用性。</div>
+            <div class="en">Utonia adopts a point transformer backbone trained with self-supervised objectives jointly on five domain categories: remote sensing, outdoor LiDAR, indoor RGB-D sequences, object-centric CAD models, and point clouds lifted from RGB-only videos. The key contribution is demonstrating that a single shared encoder can be trained across these heterogeneous sources without domain-specific heads during pre-training, yielding a universal representation space. Beyond perception, the learned features are used to condition vision-language-action (VLA) policies for robotic manipulation and are integrated into vision-language models (VLMs) to improve spatial reasoning, showing the encoder&#39;s utility across embodied and multimodal pipelines.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">摘要未披露具体数值，但论文报告ACE-Brain-0在自动驾驶、机器人操作和无人机任务上均具有竞争力。空间支架设计被证明可缓解灾难性遗忘和长尾退化，完整定量对比有待论文正文披露。</div>
-            <div class="en">Specific benchmark numbers are not disclosed in the abstract, but the paper reports that ACE-Brain-0 achieves competitive performance on autonomous driving, robotic manipulation, and UAV-related tasks within a single unified model. The spatial-scaffold design is claimed to mitigate catastrophic forgetting and long-tail degradation relative to naive multi-task baselines, though full quantitative comparisons await the complete paper.</div>
+            <div class="zh">联合训练在全部五类领域的感知任务上均优于领域专用基线，且仅在多域联合训练时出现涌现行为。Utonia特征显著提升了VLA策略的机器人操控成功率，并改善了VLM的空间推理基准性能（具体数值未在摘要中完整披露）。</div>
+            <div class="en">Joint multi-domain training improves perception performance across all five domains compared to domain-specific baselines, with emergent behaviors observed only when domains are trained together. Conditioning VLA policies on Utonia features yields measurable gains in robotic manipulation success rates, and integrating Utonia representations into VLMs improves spatial reasoning benchmarks, though specific numeric results are not fully detailed in the abstract.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>空间认知作为通用桥梁的假设优雅，但需严格消融实验验证三维空间任务是否真正覆盖驾驶、操作和无人机的瓶颈能力。</li><li>论文承认长尾与梯度干扰问题，但摘要未披露具体缓解机制（如数据采样、损失加权或架构门控），核心技术贡献有待正文证实。</li><li>单一大型MLLM服务所有形态面临实时性挑战：无人机和机械臂控制对推理延迟极为敏感，部署可行性需进一步验证。</li></ul>
+              <ul class="discussion-list"><li>联合训练的涌现行为缺乏机制解释：论文声称某些能力仅在多域联合训练时出现，但其背后原因（共享几何原语、密度不变性还是跨域对比信号）尚不明确，需要更深入的消融分析。</li><li>对新领域的扩展性存疑：Utonia覆盖五类精心挑选的领域，对真正分布外的数据（如医学CT或声呐点云）的泛化能力未经验证。</li><li>下游任务增益的归因不够清晰：机器人操控与空间推理的性能提升未对编码器贡献与VLA/VLM其他模块进行充分消融，难以单独评估Utonia的实际作用。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Spatial cognition as a universal bridge is an elegant hypothesis, but its validity depends heavily on whether the chosen 3D spatial tasks truly capture the bottleneck competencies for driving, manipulation, and UAV flight—this needs rigorous ablation studies separating spatial pretraining from other factors.</li><li>The long-tail and gradient interference problems are acknowledged but the specific mitigation mechanisms (e.g., data sampling strategy, loss weighting, or architectural gating) are not detailed in the abstract, leaving the core technical novelty unclear until the full paper is available.</li><li>Scalability and real-world deployment feasibility are open questions: a single large MLLM serving all embodiments may face latency and compute constraints incompatible with real-time UAV or manipulation control loops.</li></ul>
+              <ul class="discussion-list"><li>Emergent behaviors from joint training are intriguing but underexplained: the paper claims behaviors arise &#39;only when domains are trained jointly,&#39; yet the mechanism—whether via shared geometry primitives, density invariance, or cross-domain contrastive signal—remains unclear and warrants deeper analysis.</li><li>Scalability to new domains is an open question: Utonia covers five curated domain types, but it is unknown how well the encoder handles domain shift from truly out-of-distribution sources (e.g., medical CT scans or sonar point clouds) without retraining.</li><li>The downstream gains on robotic manipulation and spatial reasoning are promising but the coupling between the point cloud encoder and the VLA/VLM architectures is not ablated thoroughly, making it hard to isolate Utonia&#39;s specific contribution from other components in those pipelines.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03198v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03283v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">IMR-LLM将LLM驱动的析取图构建与确定性调度及过程树引导的代码生成相结合，解决复杂工业多机器人任务规划问题。</div>
+        <div class="paper-title-en">IMR-LLM: Industrial Multi-Robot Task Planning and Program Generation using Large Language Models</div>
+        <div class="paper-meta">
+          <span>Xiangyu Su, Juzhan Xu, Oliver van Kaick et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
+          
+          
+          <span class="badge badge-score">评分 6.7</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>IMR-LLM将LLM驱动的析取图构建与确定性调度及过程树引导的代码生成相结合，解决复杂工业多机器人任务规划问题。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">IMR-LLM combines LLM-driven disjunctive graph construction with deterministic scheduling and process-tree-guided code generation to tackle complex industrial multi-robot task planning.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles important industrial manufacturing problem with multi-robot coordination and strict sequential constraints beyond simple household tasks</li><li>Novel approach combining LLMs with deterministic solving methods (disjunctive graphs) and process trees for hierarchical planning is technically sound</li><li>High practical significance for real-world manufacturing applications with clear industrial value proposition</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero HuggingFace upvotes indicates minimal community attention and visibility despite relevant topic</li><li>Abstract is incomplete/truncated, making full assessment of methodology rigor and experimental validation difficult</li><li>Author prestige is moderate - while from established institutions, not from top-tier AI research centers like MIT, Stanford, or Google</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何将LLM可靠地应用于工业多机器人协调？工业场景中任务存在严格的顺序约束和复杂依赖关系，远超简单家庭操作任务，规划失败将带来实际生产损失。</div>
+            <div class="en">How can LLMs be reliably applied to industrial multi-robot coordination, where tasks involve strict sequential constraints and complex inter-task dependencies far beyond simple household manipulation? This matters because modern manufacturing increasingly depends on tightly synchronized robot collaboration, and planning failures carry real production costs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有基于LLM的机器人规划方法（如SayCan、Code as Policies）主要针对家庭或单机器人操作任务，依赖LLM端到端生成规划，难以处理组合调度约束。工业多机器人场景引入了类作业车间的依赖关系和严格同步需求，纯LLM推理无法可靠满足，且此前缺乏专用基准测试。</div>
+            <div class="en">Existing LLM-based robot planning methods (e.g., SayCan, Code as Policies) target household or single-robot manipulation tasks and rely on LLMs to produce plans end-to-end, which struggles with combinatorial scheduling constraints. Industrial multi-robot settings introduce job-shop-style dependencies and tight synchronization requirements that pure LLM reasoning cannot reliably satisfy. No dedicated benchmark existed to evaluate LLMs on graded industrial multi-robot task complexity.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">IMR-LLM将问题分为两阶段：高层任务规划与底层程序生成。第一阶段，LLM辅助构建编码任务依赖与资源冲突的析取图，再由确定性求解器获得可行高效的执行顺序；第二阶段，过程树结构引导LLM生成符合调度结果的可执行机器人程序。此外，作者提出IMR-Bench基准，包含三个复杂度等级的工业多机器人场景。</div>
+            <div class="en">IMR-LLM decomposes the problem into two stages: high-level task planning and low-level program generation. In the first stage, LLMs assist in constructing a disjunctive graph encoding task dependencies and resource conflicts, then a deterministic solver (e.g., a scheduling algorithm) finds a feasible and efficient execution order. In the second stage, a process tree structure guides the LLM to generate executable robot programs that respect the computed schedule. The authors also introduce IMR-Bench, a new benchmark with three complexity tiers covering diverse industrial multi-robot scenarios.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在IMR-Bench上的实验表明，IMR-LLM在三个复杂度等级上均显著优于纯LLM基线方法。LLM图构建与确定性调度的混合方案在任务成功率和机器人利用效率上均优于端到端LLM方法。受摘要不完整限制，具体数值未完全披露，但结论在各难度层级上一致成立。</div>
+            <div class="en">Experimental results on IMR-Bench show IMR-LLM significantly outperforms baseline LLM-only planning approaches across all three complexity levels. The hybrid approach of combining LLM graph construction with deterministic scheduling yields higher task success rates and more efficient robot utilization than pure LLM end-to-end methods. Specific numerical gains are not fully disclosed in the available abstract, but the trend holds consistently across easy, medium, and hard task tiers.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>混合架构的核心价值：将组合优化交由确定性调度器处理而非依赖LLM，是关键设计决策，这一关注点分离原则可推广至其他约束机器人规划领域。</li><li>基准测试的价值与局限：IMR-Bench填补了空白，但三级复杂度能否覆盖真实工厂多样性（如动态任务到达、机器故障、5台以上机器人）仍有待验证。</li><li>可扩展性与泛化问题：析取图构建仍依赖LLM输出质量，当任务图规模扩大或出现领域偏移时，LLM能否在无人工校验下稳定构建正确图结构尚未得到充分验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Hybrid architecture insight: Delegating combinatorial optimization to a deterministic scheduler rather than relying solely on LLM reasoning is the key design choice — this separation of concerns likely drives most of the performance gain and is a transferable principle for other constrained robot planning domains.</li><li>Benchmark value and limitations: IMR-Bench fills a real gap, but with three complexity tiers and limited community adoption so far, it is unclear whether the scenarios fully capture real factory diversity (e.g., dynamic task arrivals, machine failures, or &gt;5 robots).</li><li>Scalability and generalization questions: The disjunctive graph construction still relies on LLM output quality; as task graphs grow larger or domain shifts occur (e.g., new manufacturing processes), it remains untested how robustly the LLM can construct correct graphs without human verification.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02669v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">π-StepNFT提出一种无需评论网络和似然估计的在线强化学习框架，通过逐步细粒度引导优化基于流的VLA模型，在M...</div>
+        <div class="paper-title-en">$π$-StepNFT: Wider Space Needs Finer Steps in Online RL for Flow-based VLAs</div>
+        <div class="paper-meta">
+          <span>Siting Wang, Xiaofeng Wang, Zheng Zhu et al.</span>
+          <span class="badge badge-date">2026-03-02</span>
+          
+          
+          <span class="badge badge-score">评分 6.7</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>π-StepNFT提出一种无需评论网络和似然估计的在线强化学习框架，通过逐步细粒度引导优化基于流的VLA模型，在ManiSkill上实现更优的分布外泛化。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">π-StepNFT introduces a critic-free, likelihood-free online RL framework for flow-based VLAs that applies step-wise fine-grained guidance, achieving superior OOD generalization on ManiSkill and competitive few-shot robustness on LIBERO.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles a concrete technical problem (intractable likelihoods in flow-based models) that directly impacts embodied AI research</li><li>Demonstrates strong empirical results on two relevant benchmarks (LIBERO and ManiSkill) with particular strength in generalization and few-shot robustness</li><li>Proposes an elegant solution that eliminates auxiliary networks while requiring only single forward pass per step, improving efficiency and practical applicability</li><li>Well-aligned with current embodied intelligence trends focusing on vision-language-action models and online RL</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero community engagement (0 HuggingFace upvotes) suggests limited visibility or appeal despite technical merit</li><li>Authors appear to be from less prominent institutions (Peking University based on names), reducing prestige factor</li><li>Abstract appears incomplete/truncated at the end (&#39;This property offer&#39;), raising concerns about paper quality and presentation polish</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">基于流匹配的VLA模型在多步采样中存在不可处理的似然函数，导致标准在线强化学习无法直接应用。这一瓶颈使流式VLA无法充分利用环境交互反馈，限制了其在复杂操控任务中的适应能力。</div>
+            <div class="en">Flow-based VLA models generate robot actions via multi-step sampling (e.g., flow matching), but their intractable likelihoods make standard online RL optimization fundamentally difficult. This bottleneck blocks flow-based VLAs from leveraging real-time environmental feedback, limiting their adaptability in complex, open-ended manipulation tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有针对扩散/流式策略的在线RL方法（如DPPO）依赖辅助价值网络或评论网络，计算开销大且架构复杂。基于似然的方法因流模型多步不可逆采样而无法直接使用。这些限制使流式VLA的在线RL难以扩展至多样化的真实场景。</div>
+            <div class="en">Existing online RL methods for diffusion/flow-based policies (e.g., DPPO) rely on auxiliary value networks or critic networks, significantly increasing computational overhead and architectural complexity. Likelihood-based approaches are inapplicable to flow models due to their multi-step, non-invertible sampling processes. These limitations make scaling online RL for flow-based VLAs to diverse, real-world scenarios impractical.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">π-StepNFT是一个无评论网络、无似然估计的框架，每次优化仅需单次前向传播。核心思想是：更宽的动作探索空间需要逐步细粒度引导，将奖励信号分解到每个去噪/流步骤中。&#34;负样本感知&#34;训练目标在每步上对成功与失败轨迹进行对比，引导流模型远离次优动作模式。</div>
+            <div class="en">π-StepNFT (Step-wise Negative-aware Fine-Tuning) is a critic-and-likelihood-free framework that requires only a single forward pass per optimization step, eliminating the need for auxiliary value networks. The core insight is that wider action exploration spaces require finer-grained, step-wise guidance: instead of applying a single reward signal at the trajectory level, the method decomposes guidance across each denoising/flow step. A &#34;negative-aware&#34; training objective explicitly contrasts successful and failed trajectories at each step, steering the flow model away from suboptimal action modes without likelihood computation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在LIBERO基准上，π-StepNFT展现出有竞争力的小样本鲁棒性；在ManiSkill上，其分布外（OOD）场景性能超越基于价值函数的基线方法，原因在于有效抑制了对多模态视觉特征的过拟合。单次前向传播设计相比DPPO等方法显著降低了计算开销。</div>
+            <div class="en">On LIBERO, π-StepNFT demonstrates competitive few-shot robustness, unlocking latent potential in pretrained flow-based VLAs with minimal interaction data. On ManiSkill, it outperforms value-based baselines in out-of-distribution (OOD) scenarios, attributed to its resistance to overfitting multimodal visual features. The single-forward-pass design reduces per-step computational cost compared to critic-dependent methods like DPPO.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>逐步奖励分解是核心设计，但论文未充分消融最优步骤数及结果对步粒度的敏感性。</li><li>负样本感知对比目标依赖成功与失败轨迹的清晰区分，在稀疏或噪声奖励的真实机器人场景中，该假设可能失效，论文未对此进行评估。</li><li>单次前向传播的效率优势论述充分，但缺乏与DPPO等基线的实际训练时间对比数据，难以量化实践中的具体加速比。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Step-wise reward decomposition is a key design choice: applying fine-grained guidance at each flow step rather than at trajectory level is central to the performance gains, but the paper does not fully ablate how many steps are optimal or how sensitive results are to step granularity.</li><li>The negative-aware contrastive objective implicitly assumes a clear signal separating successful from failed rollouts; in sparse or noisy reward settings common in real-world robotics, this separation may degrade, and the paper does not evaluate such conditions.</li><li>While the single-forward-pass efficiency claim is compelling, direct wall-clock training time comparisons with DPPO and other baselines are not prominently reported, making it hard to quantify the practical speedup for practitioners.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02083v1" target="_blank">查看原文 →</a>
       </div>
       
       
