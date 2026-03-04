@@ -145,9 +145,7 @@ def select_top_papers(
     qualified = [sp for sp in scored if sp.score >= min_score]
     if qualified:
         return qualified[:n]
-    # Fallback: no paper met the threshold — return the single highest-scoring candidate,
-    # marked as is_fallback so the template can display a warning and show pros/cons prominently.
-    if scored:
-        scored[0].is_fallback = True
-        return [scored[0]]
-    return []
+    # Fallback: no paper met the threshold.
+    # Return up to 3 highest-scoring papers within this category (scoring already reflects
+    # topic-layer priorities via scoring_note, so top scores = highest-priority topics).
+    return scored[:3]

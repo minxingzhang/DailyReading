@@ -12,7 +12,7 @@ from scripts.render_html import (
     write_daily_page, write_index_page, write_meta_json, load_archive_data,
 )
 from scripts.send_email import send_digest_email
-from scripts.seen_papers import load_seen_ids, save_seen_ids, filter_new_papers, mark_papers_as_seen, prune_stale_ids
+from scripts.seen_papers import load_seen_ids, save_seen_ids, filter_new_papers, mark_papers_as_seen
 
 
 def load_config(config_path: str = "config.yaml") -> dict:
@@ -48,10 +48,6 @@ def run_pipeline(
     # Load seen paper IDs once — O(1) lookups for all subsequent checks
     seen_ids = load_seen_ids(seen_papers_path)
     print(f"  Loaded {len(seen_ids)} previously seen paper IDs")
-
-    # Prune entries older than TTL so Semantic Scholar conference papers can recirculate
-    ttl_days = config.get("seen_ttl_days", 30)
-    seen_ids = prune_stale_ids(seen_ids, ttl_days=ttl_days)
 
     print("Fetching HuggingFace daily papers...")
     hf_papers = fetch_hf_papers()

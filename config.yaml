@@ -4,8 +4,6 @@ schedule:
   fallback_lookback_hours: 168   # 7 days: used when a category has too few candidates
   s2_lookback_years: 2           # Semantic Scholar: conferences within last N years (auto-updates with current year)
 
-seen_ttl_days: 30  # Expire seen paper IDs after N days so S2 conference papers can recirculate
-
 top_conferences:
   - "NeurIPS"
   - "Neural Information Processing Systems"
