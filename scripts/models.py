@@ -22,8 +22,10 @@ class ScoredPaper:
     score: float
     score_breakdown: dict
     rationale: str
-    pros: List[str] = field(default_factory=list)   # key strengths
-    cons: List[str] = field(default_factory=list)   # key weaknesses
+    pros: List[str] = field(default_factory=list)     # key strengths (English)
+    cons: List[str] = field(default_factory=list)     # key weaknesses (English)
+    pros_zh: List[str] = field(default_factory=list)  # key strengths (Chinese)
+    cons_zh: List[str] = field(default_factory=list)  # key weaknesses (Chinese)
 
 
 @dataclass

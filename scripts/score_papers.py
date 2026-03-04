@@ -36,8 +36,10 @@ Respond ONLY with this JSON (use single quotes inside strings if you need quotes
     "paper_completeness": <1-10>
   }},
   "rationale": "<one sentence overall assessment>",
-  "pros": ["<strength 1>", "<strength 2>", "<strength 3>"],
-  "cons": ["<weakness 1>", "<weakness 2>"]
+  "pros": ["<strength 1 in English>", "<strength 2 in English>", "<strength 3 in English>"],
+  "pros_zh": ["<优势1（中文）>", "<优势2（中文）>", "<优势3（中文）>"],
+  "cons": ["<weakness 1 in English>", "<weakness 2 in English>"],
+  "cons_zh": ["<不足1（中文）>", "<不足2（中文）>"]
 }}"""
 
 
@@ -70,6 +72,8 @@ def parse_score_response(response_text: str, paper: Paper) -> ScoredPaper:
         rationale=data.get("rationale", ""),
         pros=data.get("pros", []),
         cons=data.get("cons", []),
+        pros_zh=data.get("pros_zh", []),
+        cons_zh=data.get("cons_zh", []),
     )
 
 

@@ -109,6 +109,7 @@ categories:
       - "robot manipulation policy"
       - "dexterous manipulation"
       - "robot task planning"
+      - "motion planning robot"
       - "reinforcement learning manipulation"
       - "robot foundation model"
       - "language model robot control"
