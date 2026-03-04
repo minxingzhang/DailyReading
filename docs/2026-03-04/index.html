@@ -35,12 +35,9 @@
     .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
     .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
     .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
-    .badge-score { background: #dcfce7; color: #166534; }
     .badge-hf { background: #fef3c7; color: #92400e; }
     .badge-venue { background: #ede9fe; color: #5b21b6; }
     .badge-date { background: #f1f5f9; color: #475569; }
-    .badge-fallback { background: #fff3cd; color: #7c5800; border: 1px solid #ffc107; }
-    .fallback-notice { background: #fffbe6; border: 1px solid #ffc107; border-radius: 6px; padding: 0.6rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; color: #7c5800; }
 
     /* TL;DR block */
     .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
@@ -55,16 +52,6 @@
     .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
     .discussion-list { padding-left: 1.25rem; }
     .discussion-list li { margin-bottom: 0.4rem; }
-
-    /* Pros / Cons */
-    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .pros-box, .cons-box { border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.88rem; }
-    .pros-box { background: #f0fdf4; border: 1px solid #bbf7d0; }
-    .cons-box { background: #fff7f7; border: 1px solid #fecaca; }
-    .pros-box strong { color: #166534; }
-    .cons-box strong { color: #991b1b; }
-    .pros-cons ul { padding-left: 1.1rem; margin-top: 0.3rem; }
-    .pros-cons li { margin-bottom: 0.25rem; }
 
     .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
     .paper-link:hover { text-decoration: underline; }
@@ -98,9 +85,7 @@
           <span>Adel Elzemity, Budi Arief, Shujun Li</span>
           <span class="badge badge-date">2025-03-12</span>
           <span class="badge badge-venue">CCS</span>
-          
-          <span class="badge badge-score">评分 9.5</span>
-          
+
         </div>
 
         
@@ -111,37 +96,7 @@
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CyberLLMInstruct introduces a 54,928-pair pseudo-malicious dataset to expose a critical trade-off: fine-tuning LLMs for cybersecurity tasks boosts task accuracy but drastically degrades safety against adversarial attacks.</div>
         </div>
 
-        
-        <details >
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>解决了重要且紧迫的问题：提升LLM在安全任务上的性能与维持安全性之间的根本性矛盾<span style="display:block;margin-top:0.1rem">Tackles an important and timely problem: the fundamental tension between improving LLM performance on security tasks and maintaining safety against adversarial attacks</span></li>
-                  
-                  <li>提供了大规模、精心策划的数据集（54,928个伪恶意指令对），数据来源多样（CTF竞赛、学术论文、行业数据），对未来研究具有重要价值<span style="display:block;margin-top:0.1rem">Provides a large-scale, well-curated dataset (54,928 pseudo-malicious pairs) with diverse sources (CTF, academic papers, industry data) that will be valuable for future research</span></li>
-                  
-                  <li>在7个开源LLM上进行了全面的实验评估，提供了可量化的结果（如安全分数从0.95下降到0.15），清晰地展示了核心权衡问题<span style="display:block;margin-top:0.1rem">Comprehensive experimental evaluation across 7 open-source LLMs with quantifiable results (e.g., security score drops from 0.95 to 0.15) that clearly demonstrate the core trade-off</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>HuggingFace点赞数为零，缺乏社区采纳信号，表明传播范围有限或论文为最近发表；尚缺乏更广泛影响力的证据<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes and no visible community adoption signal suggest limited dissemination or the paper may be recently published; lacks evidence of broader impact so far</span></li>
-                  
-                  <li>作者来自兰卡斯特大学，不属于顶级AI研究机构，尽管论文被CCS（顶级会议）接收，但可能影响初期知名度<span style="display:block;margin-top:0.1rem">Authors&#39; affiliations (Lancaster University) are not among top-tier AI institutions, which may limit initial visibility despite the paper being accepted at CCS (a top venue)</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
+
 
         <details>
           <summary>科研问题 / Research Question</summary>
@@ -195,9 +150,7 @@
           <span>Daniel Schwartz, Dmitriy Bespalov, Zhe Wang et al.</span>
           <span class="badge badge-date">2025-01-28</span>
           <span class="badge badge-venue">EMNLP</span>
-          
-          <span class="badge badge-score">评分 9.5</span>
-          
+
         </div>
 
         
@@ -208,37 +161,7 @@
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">GAP replaces tree-based jailbreak structures with an interconnected graph that shares knowledge across attack paths, achieving &gt;96% attack success rates while cutting query costs by 62.7%.</div>
         </div>
 
-        
-        <details >
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>解决LLM鲁棒性的关键问题，具有重要的实际影响：攻击成功率提升20.8%，查询成本降低62.7%，代表了显著的进展<span style="display:block;margin-top:0.1rem">Addresses critical problem of LLM robustness with significant practical impact: 20.8% improvement in attack success rates and 62.7% reduction in query costs represents substantial advancement</span></li>
-                  
-                  <li>采用图结构而非树状结构的新颖方法论创新，实现跨攻击路径的知识共享，展现清晰的技术创新<span style="display:block;margin-top:0.1rem">Novel methodological contribution using graph-based structure instead of tree-based approaches enables knowledge sharing across attack paths, demonstrating clear technical innovation</span></li>
-                  
-                  <li>在顶级会议EMNLP发表，对开源和闭源LLM进行全面实验评估，攻击成功率超过96%，展现强有力的实证验证<span style="display:block;margin-top:0.1rem">Published at EMNLP, a top-tier venue, with comprehensive experimental evaluation across both open and closed LLMs achieving &gt;96% success rates showing strong empirical validation</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>HuggingFace零点赞且没有明显的社区参与信号，表明该工作的即时影响力认可度和对广泛受众的可访问性有限<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes and no visible community engagement signal suggests limited immediate impact recognition or accessibility of the work to broader audience</span></li>
-                  
-                  <li>在提供的摘要中未明确披露作者所属机构，使声望评估困难，可能表明来自不太知名的机构<span style="display:block;margin-top:0.1rem">Author affiliations and institutional backgrounds are not clearly disclosed in the provided abstract, making prestige assessment difficult and potentially indicating lesser-known institutions</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
+
 
         <details>
           <summary>科研问题 / Research Question</summary>
@@ -293,8 +216,7 @@
           <span class="badge badge-date">2025-08-18</span>
           <span class="badge badge-venue">ACL</span>
           
-          <span class="badge badge-score">评分 9.1</span>
-          
+
         </div>
 
         
@@ -305,37 +227,7 @@
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes a comprehensive threat taxonomy and adversarial framework for RAG systems, revealing that multilingual pipelines—especially Arabic-English code-switching—introduce unique vulnerabilities beyond those found in English-only evaluations.</div>
         </div>
 
-        
-        <details >
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>针对高度紧迫且关键的问题—RAG系统代表了快速部署的基础设施，具有来自LLM和检索管道的复合脆弱性面<span style="display:block;margin-top:0.1rem">Tackles highly timely and critical problem—RAG systems represent rapidly deployed infrastructure with compounding vulnerability surface from both LLMs and retrieval pipelines</span></li>
-                  
-                  <li>采用综合威胁分类法方法，系统性覆盖多种攻击向量（提示注入、越狱、模型提取、多语言威胁），而非孤立的漏洞<span style="display:block;margin-top:0.1rem">Comprehensive threat taxonomy approach provides systematic coverage of attack vectors (prompt injection, jailbreak, model extraction, multilingual threats) rather than isolated vulnerabilities</span></li>
-                  
-                  <li>具有明确的实际意义，直接适用于保护组织正在部署的生产RAG和代理系统<span style="display:block;margin-top:0.1rem">Clear practical significance with direct applicability to securing production RAG and agentic systems that organizations are actively deploying</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>HuggingFace零赞以及缺乏作者机构信息表明社区可见性和认可度有限，引发对作者信誉和研究影响力的疑虑<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes and no visible author institution information suggests limited community visibility or recognition, raising questions about author credibility and research impact</span></li>
-                  
-                  <li>摘要不完整（在&#39;multilingual prompt&#39;处截断），难以完整评估方法论严谨性、实验全面性和新颖性<span style="display:block;margin-top:0.1rem">Abstract is incomplete (cuts off mid-sentence at &#39;multilingual prompt&#39;), making full assessment of methodology rigor, experimental comprehensiveness, and novelty difficult</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
+
 
         <details>
           <summary>科研问题 / Research Question</summary>
@@ -401,14 +293,9 @@
           <span class="badge badge-date">2026-03-02</span>
           
           
-          <span class="badge badge-score">评分 3.5</span>
-          <span class="badge badge-fallback">⚠ 兜底推送</span>
         </div>
 
-        
-        <div class="fallback-notice">
-          ⚠ <strong>本篇为兜底推送</strong>：当日无论文达到质量阈值（6.0分），此篇为候选中得分最高者，相关性或质量可能有限，请结合下方优缺点分析自行判断。
-        </div>
+
         
 
         <div class="tldr">
@@ -483,8 +370,7 @@
           <span class="badge badge-date">2026-03-03</span>
           <span class="badge badge-venue">CVPR</span>
           
-          <span class="badge badge-score">评分 9.6</span>
-          
+
         </div>
 
         
@@ -495,41 +381,7 @@
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MoD-DPO introduces modality-decoupled preference optimization with modality-aware regularization and language-prior debiasing to reduce cross-modal hallucinations in omni-modal LLMs.</div>
         </div>
 
-        
-        <details >
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>解决了omni-modal LLM中的跨模态幻觉问题，这是当前多模态AI的热点研究方向<span style="display:block;margin-top:0.1rem">Addresses critical problem of hallucinations in multimodal LLMs, which is a trending area as models become more complex</span></li>
-                  
-                  <li>提出了具有良好理论基础的解决方案，结合了模态感知正则化和语言先验去偏差，直指问题根源<span style="display:block;margin-top:0.1rem">Proposes a well-motivated solution combining modality-aware regularization with language-prior debiasing that directly targets root causes</span></li>
-                  
-                  <li>发表在顶级会议CVPR，表明技术质量高且评估方法严谨<span style="display:block;margin-top:0.1rem">Published at top-tier venue (CVPR) indicating strong technical quality and rigorous evaluation methodology</span></li>
-                  
-                  <li>实用的偏好优化框架可扩展且易于集成到现有omni-LLM训练流程中<span style="display:block;margin-top:0.1rem">Practical approach using preference optimization framework that is scalable and implementable in existing omni-LLM training pipelines</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>HuggingFace零点赞表明尽管贡献突出但社区关注度有限<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes suggests limited community adoption or awareness despite strong contributions</span></li>
-                  
-                  <li>作者来自相对专业化机构(USC)而非Google/Meta/OpenAI等主流AI实验室，可能限制了影响力<span style="display:block;margin-top:0.1rem">Authors from relatively specialized institution (USC) rather than major AI labs like Google/Meta/OpenAI, potentially limiting visibility</span></li>
-                  
-                  <li>摘要不完整，难以完全评估方法论；不确定是否提供了充分的消融实验<span style="display:block;margin-top:0.1rem">Abstract is truncated making complete methodology assessment difficult; unclear if comprehensive ablations are provided</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
+
 
         <details>
           <summary>科研问题 / Research Question</summary>
@@ -583,9 +435,7 @@
           <span>Xingyu Tan, Xiaoyang Wang, Qing Liu et al.</span>
           <span class="badge badge-date">2025-05-23</span>
           <span class="badge badge-venue">EMNLP</span>
-          
-          <span class="badge badge-score">评分 9.5</span>
-          
+
         </div>
 
         
@@ -596,37 +446,7 @@
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">HydraRAG is a training-free hybrid RAG framework that unifies knowledge graph topology, document semantics, and tri-factor cross-source verification to improve multi-hop and multi-entity LLM reasoning.</div>
         </div>
 
-        
-        <details >
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>针对混合RAG系统中的多跳推理、多实体问题和多源验证等关键挑战提出解决方案，问题设置具有重要意义<span style="display:block;margin-top:0.1rem">Tackles a significant and timely problem in retrieval-augmented generation by addressing multi-hop reasoning, multi-entity questions, and multi-source verification—all critical challenges in current RAG systems</span></li>
-                  
-                  <li>提出无需训练的框架，统一图拓扑与文档语义，提供实际的效率优势而无需昂贵的微调<span style="display:block;margin-top:0.1rem">Proposes a training-free framework that unifies graph topology with document semantics, offering practical efficiency advantages without requiring expensive fine-tuning</span></li>
-                  
-                  <li>通过agent驱动探索结合结构化和非结构化检索，反映了混合信息检索的前沿研究方向<span style="display:block;margin-top:0.1rem">Combines structured (knowledge graphs) and unstructured (documents) retrieval through agent-driven exploration, a sophisticated approach that reflects current research directions in hybrid information retrieval</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>HuggingFace零点赞数表明尽管在EMNLP发表，但社区关注度有限，可能表明应用范围较窄或曝光不足<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes suggests limited immediate community traction despite the paper being published at EMNLP, possibly indicating narrow application scope or underexposure</span></li>
-                  
-                  <li>摘要出现截断和不完整（&#39;tackle multi-source verifica...&#39;被中断），难以全面评估贡献和方法论的清晰性<span style="display:block;margin-top:0.1rem">Abstract appears truncated and incomplete (&#39;tackle multi-source verifica...&#39; cuts off), making it difficult to assess the full contribution and methodology clarity</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
+
 
         <details>
           <summary>科研问题 / Research Question</summary>
@@ -680,9 +500,7 @@
           <span>Jiacong Xu, Shao-Yuan Lo, Bardia Safaei et al.</span>
           <span class="badge badge-date">2025-02-11</span>
           <span class="badge badge-venue">CVPR</span>
-          
-          <span class="badge badge-score">评分 9.5</span>
-          
+
         </div>
 
         
@@ -693,39 +511,7 @@
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Anomaly-OV is the first MLLM-based specialist for zero-shot anomaly detection and reasoning, supported by a new 125k instruction-tuning dataset and benchmark that exposes GPT-4o&#39;s failure on fine-grained anomaly description.</div>
         </div>
 
-        
-        <details >
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>首个针对零样本异常检测和推理的视觉指令调优数据集和基准评估，填补领域空白<span style="display:block;margin-top:0.1rem">First comprehensive visual instruction tuning dataset (Anomaly-Instruct-125k) and benchmark (VisA-D&amp;R) for zero-shot anomaly detection and reasoning, filling a critical gap in the field</span></li>
-                  
-                  <li>与当前LLM发展趋势高度契合，探索MLLM在实际且未充分研究的任务中的能力<span style="display:block;margin-top:0.1rem">Highly relevant to current LLM development trends by investigating MLLM capabilities on a practical and underexplored task with clear real-world applications</span></li>
-                  
-                  <li>结合零样本学习与多模态推理的扎实方法论，应对真实工业场景中常见的数据有限问题<span style="display:block;margin-top:0.1rem">Solid methodology combining zero-shot learning with multimodal reasoning, addressing practical data-restricted scenarios that are common in industrial settings</span></li>
-                  
-                  <li>CVPR顶级会议发表，说明经过严格同行评审<span style="display:block;margin-top:0.1rem">CVPR publication venue indicates rigorous peer review and acceptance by top-tier computer vision community</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>HuggingFace零点赞表明初期社区关注度有限，虽可能反映最近发表的论文<span style="display:block;margin-top:0.1rem">Zero community attention on HuggingFace (0 upvotes) suggests limited initial awareness or engagement, though this may reflect recent publication timing</span></li>
-                  
-                  <li>摘要不完整，难以全面评估实验方法和结果的完整性；作者机构声誉水平中等，未显示明确的顶级机构背景<span style="display:block;margin-top:0.1rem">Abstract is truncated, making it difficult to fully assess experimental methodology and results completeness; author prestige appears moderate with no obvious top-tier institution affiliations clearly stated</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
+
 
         <details>
           <summary>科研问题 / Research Question</summary>
@@ -791,8 +577,7 @@
           <span class="badge badge-date">2025-05-21</span>
           <span class="badge badge-venue">EMNLP</span>
           
-          <span class="badge badge-score">评分 8.9</span>
-          
+
         </div>
 
         
@@ -803,37 +588,7 @@
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper systematically benchmarks three foundation model integration paradigms (end-to-end VLA, VLM-modular, and LLM-modular pipelines) for embodied robotics across grounding and manipulation tasks, revealing key generalization vs. data-efficiency trade-offs.</div>
         </div>
 
-        
-        <details >
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>直接针对决策层（LLM/VLA在机器人控制中的集成）这一最高优先级问题展开研究<span style="display:block;margin-top:0.1rem">Directly addresses the critical decision layer (LLM/VLA integration for robot control) which is the highest priority in embodied intelligence trends</span></li>
-                  
-                  <li>系统性地对比了三种不同的基础模型集成范式，填补了对其操作特性理解的空白<span style="display:block;margin-top:0.1rem">Provides systematic empirical comparison of three distinct paradigms for FM integration in robotics, filling a gap in understanding their operational characteristics</span></li>
-                  
-                  <li>通过指令理解和物体操作两个具体案例研究展示了实际的机器人应用价值<span style="display:block;margin-top:0.1rem">Includes concrete case studies (instruction grounding and object manipulation) that demonstrate practical relevance to real robotic tasks</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>HuggingFace零upvotes表明尽管主题相关但社区关注度很低，说明影响力和采纳程度有限<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes indicate minimal community engagement despite relevant topic, suggesting limited visibility or adoption impact</span></li>
-                  
-                  <li>作者缺乏来自顶级机构（MIT、CMU、Google、DeepMind、Stanford等）的明确背景支撑<span style="display:block;margin-top:0.1rem">Authors lack clear affiliation with top-tier institutions (MIT, CMU, Google, DeepMind, Stanford) that would elevate prestige and credibility</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
+
 
         <details>
           <summary>科研问题 / Research Question</summary>
