@@ -17,9 +17,9 @@ HuggingFace upvotes: {hf_upvotes}{venue_line}
 Score this paper 1-10 on each dimension:
 1. topic_importance: Is the problem worth solving? Not trivial or marginal?
 2. trend_alignment: Does it align with current frontiers in {category_name}?
-3. community_attention: Based on upvotes and topic appeal (use HF upvotes as signal if >0)
+3. community_attention: BONUS-ONLY signal. Default is 5 (neutral) when upvotes are low or unknown. Only score ABOVE 5 if HF upvotes are high (>=10) or the topic is clearly trending. NEVER score below 5 — lack of community attention is not a weakness.
 4. practical_significance: Does it have concrete practical value, not just theoretical?
-5. author_prestige: Are authors from well-known institutions (MIT, CMU, Google, DeepMind, Stanford, etc.)?
+5. author_prestige: BONUS-ONLY signal. Default is 5 (neutral) for unknown or less prominent institutions. Only score ABOVE 5 if authors are from well-known institutions (MIT, CMU, Google, DeepMind, Stanford, etc.). NEVER score below 5 — unknown affiliation is not a weakness.
 6. paper_completeness: Does it appear to have solid experiments and rigorous methodology?
 
 Weights: topic_importance=25%, trend_alignment=20%, community_attention=15%, practical_significance=20%, author_prestige=10%, paper_completeness=10%

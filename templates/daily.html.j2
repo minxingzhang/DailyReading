@@ -35,13 +35,9 @@
     .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
     .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
     .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
-    .badge-score { background: #dcfce7; color: #166534; }
     .badge-hf { background: #fef3c7; color: #92400e; }
     .badge-venue { background: #ede9fe; color: #5b21b6; }
     .badge-date { background: #f1f5f9; color: #475569; }
-    .badge-fallback { background: #fff3cd; color: #7c5800; border: 1px solid #ffc107; }
-    .fallback-notice { background: #fffbe6; border: 1px solid #ffc107; border-radius: 6px; padding: 0.6rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; color: #7c5800; }
-
     /* TL;DR block */
     .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
     .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
@@ -55,16 +51,6 @@
     .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
     .discussion-list { padding-left: 1.25rem; }
     .discussion-list li { margin-bottom: 0.4rem; }
-
-    /* Pros / Cons */
-    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .pros-box, .cons-box { border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.88rem; }
-    .pros-box { background: #f0fdf4; border: 1px solid #bbf7d0; }
-    .cons-box { background: #fff7f7; border: 1px solid #fecaca; }
-    .pros-box strong { color: #166534; }
-    .cons-box strong { color: #991b1b; }
-    .pros-cons ul { padding-left: 1.1rem; margin-top: 0.3rem; }
-    .pros-cons li { margin-bottom: 0.25rem; }
 
     .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
     .paper-link:hover { text-decoration: underline; }
@@ -99,15 +85,7 @@
           <span class="badge badge-date">{{ paper.published.strftime('%Y-%m-%d') }}</span>
           {% if paper.venue %}<span class="badge badge-venue">{{ paper.venue }}</span>{% endif %}
           {% if paper.hf_upvotes > 0 %}<span class="badge badge-hf">⬆ {{ paper.hf_upvotes }} HF</span>{% endif %}
-          <span class="badge badge-score">评分 {{ "%.1f" | format(sp.score) }}</span>
-          {% if sp.is_fallback %}<span class="badge badge-fallback">⚠ 兜底推送</span>{% endif %}
         </div>
-
-        {% if sp.is_fallback %}
-        <div class="fallback-notice">
-          ⚠ <strong>本篇为兜底推送</strong>：当日无论文达到质量阈值（6.0分），此篇为候选中得分最高者，相关性或质量可能有限，请结合下方优缺点分析自行判断。
-        </div>
-        {% endif %}
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
@@ -115,35 +93,13 @@
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">{{ analysis.tldr_en }}</div>
         </div>
 
-        {% if sp.pros or sp.cons %}
-        <details {% if sp.is_fallback %}open{% endif %}>
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
           <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  {% for i in range(sp.pros_zh | length) %}
-                  <li>{{ sp.pros_zh[i] }}{% if i < (sp.pros | length) %}<span style="display:block;margin-top:0.1rem">{{ sp.pros[i] }}</span>{% endif %}</li>
-                  {% else %}
-                  {% for p in sp.pros %}<li>{{ p }}</li>{% endfor %}
-                  {% endfor %}
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  {% for i in range(sp.cons_zh | length) %}
-                  <li>{{ sp.cons_zh[i] }}{% if i < (sp.cons | length) %}<span style="display:block;margin-top:0.1rem">{{ sp.cons[i] }}</span>{% endif %}</li>
-                  {% else %}
-                  {% for c in sp.cons %}<li>{{ c }}</li>{% endfor %}
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
+            <div class="zh">{{ analysis.significance_zh }}</div>
+            <div class="en">{{ analysis.significance_en }}</div>
           </div>
         </details>
-        {% endif %}
 
         <details>
           <summary>科研问题 / Research Question</summary>

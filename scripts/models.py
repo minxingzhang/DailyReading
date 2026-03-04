@@ -34,6 +34,8 @@ class PaperAnalysis:
     scored_paper: ScoredPaper
     tldr_zh: str
     tldr_en: str
+    significance_zh: str
+    significance_en: str
     research_question_zh: str
     research_question_en: str
     prior_work_zh: str

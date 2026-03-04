@@ -27,6 +27,8 @@ ANALYSIS_TOOL = {
         "properties": {
             "tldr_zh": {"type": "string", "description": "ONE sentence in Chinese: core contribution"},
             "tldr_en": {"type": "string", "description": "ONE sentence in English: core contribution"},
+            "significance_zh": {"type": "string", "description": "2-3 sentences in Chinese: why this paper matters — its importance and potential impact for the research community or practitioners"},
+            "significance_en": {"type": "string", "description": "2-3 sentences in English: why this paper matters — its importance and potential impact for the research community or practitioners"},
             "research_question_zh": {"type": "string", "description": "2-3 sentences: what problem and why it matters (Chinese)"},
             "research_question_en": {"type": "string", "description": "2-3 sentences: what problem and why it matters (English)"},
             "prior_work_zh": {"type": "string", "description": "2-3 sentences: key limitations of existing approaches (Chinese)"},
@@ -48,6 +50,7 @@ ANALYSIS_TOOL = {
         },
         "required": [
             "tldr_zh", "tldr_en",
+            "significance_zh", "significance_en",
             "research_question_zh", "research_question_en",
             "prior_work_zh", "prior_work_en",
             "solution_zh", "solution_en",
@@ -86,6 +89,8 @@ def generate_analysis(scored_paper: ScoredPaper, client: Anthropic) -> PaperAnal
                 scored_paper=scored_paper,
                 tldr_zh=d["tldr_zh"],
                 tldr_en=d["tldr_en"],
+                significance_zh=d["significance_zh"],
+                significance_en=d["significance_en"],
                 research_question_zh=d["research_question_zh"],
                 research_question_en=d["research_question_en"],
                 prior_work_zh=d["prior_work_zh"],
