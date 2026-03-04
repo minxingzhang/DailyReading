@@ -1,11 +1,9 @@
-import json
 import re
 from anthropic import Anthropic
 from scripts.models import ScoredPaper, PaperAnalysis
 
 ANALYSIS_SYSTEM = """You are an expert AI researcher writing concise bilingual paper summaries for busy researchers.
-Each summary must be readable in under 5 minutes. Be concrete and specific.
-Respond ONLY with valid JSON."""
+Each summary must be readable in under 5 minutes. Be concrete and specific."""
 
 ANALYSIS_USER_TEMPLATE = """Write a concise bilingual analysis of this paper. Each section: 2-4 sentences max.
 
@@ -14,24 +12,50 @@ Authors: {authors}
 Abstract: {abstract}
 Score rationale: {rationale}
 
-Respond ONLY with this JSON (all fields required):
-{{
-  "tldr_zh": "<ONE sentence in Chinese: core contribution>",
-  "tldr_en": "<ONE sentence in English: core contribution>",
-  "research_question_zh": "<2-3 sentences: what problem and why it matters>",
-  "research_question_en": "<2-3 sentences: what problem and why it matters>",
-  "prior_work_zh": "<2-3 sentences: 1-2 key limitations of existing approaches>",
-  "prior_work_en": "<2-3 sentences: 1-2 key limitations of existing approaches>",
-  "solution_zh": "<3-4 sentences: core method/framework and main contributions>",
-  "solution_en": "<3-4 sentences: core method/framework and main contributions>",
-  "results_zh": "<2-3 sentences: key findings, include numbers if available>",
-  "results_en": "<2-3 sentences: key findings, include numbers if available>",
-  "discussion_zh": ["<point 1>", "<point 2>", "<point 3>"],
-  "discussion_en": ["<point 1>", "<point 2>", "<point 3>"]
-}}
+Guidelines:
+- Chinese sections: <= 600 characters total
+- English sections: <= 800 words total
+- discussion_zh and discussion_en: exactly 3 items each
+- Be specific and concrete, avoid vague phrases"""
 
-Total Chinese text <= 600 characters. Total English text <= 800 words.
-IMPORTANT: Never use double-quote characters (") inside JSON string values. Use 《》or【】for titles in Chinese, and single quotes (') for emphasis in English."""
+# Tool schema forces valid structured output — no JSON parsing needed
+ANALYSIS_TOOL = {
+    "name": "output_analysis",
+    "description": "Output structured bilingual paper analysis",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "tldr_zh": {"type": "string", "description": "ONE sentence in Chinese: core contribution"},
+            "tldr_en": {"type": "string", "description": "ONE sentence in English: core contribution"},
+            "research_question_zh": {"type": "string", "description": "2-3 sentences: what problem and why it matters (Chinese)"},
+            "research_question_en": {"type": "string", "description": "2-3 sentences: what problem and why it matters (English)"},
+            "prior_work_zh": {"type": "string", "description": "2-3 sentences: key limitations of existing approaches (Chinese)"},
+            "prior_work_en": {"type": "string", "description": "2-3 sentences: key limitations of existing approaches (English)"},
+            "solution_zh": {"type": "string", "description": "3-4 sentences: core method and main contributions (Chinese)"},
+            "solution_en": {"type": "string", "description": "3-4 sentences: core method and main contributions (English)"},
+            "results_zh": {"type": "string", "description": "2-3 sentences: key findings with numbers if available (Chinese)"},
+            "results_en": {"type": "string", "description": "2-3 sentences: key findings with numbers if available (English)"},
+            "discussion_zh": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Exactly 3 discussion points in Chinese",
+            },
+            "discussion_en": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Exactly 3 discussion points in English",
+            },
+        },
+        "required": [
+            "tldr_zh", "tldr_en",
+            "research_question_zh", "research_question_en",
+            "prior_work_zh", "prior_work_en",
+            "solution_zh", "solution_en",
+            "results_zh", "results_en",
+            "discussion_zh", "discussion_en",
+        ],
+    },
+}
 
 
 def build_analysis_prompt(scored_paper: ScoredPaper) -> str:
@@ -44,45 +68,33 @@ def build_analysis_prompt(scored_paper: ScoredPaper) -> str:
     )
 
 
-def parse_analysis_response(response_text: str, scored_paper: ScoredPaper) -> PaperAnalysis:
-    """Parse Claude's JSON response into a PaperAnalysis."""
-    json_match = re.search(r"\{.*\}", response_text, re.DOTALL)
-    if not json_match:
-        raise ValueError(f"No JSON found in response: {response_text[:200]}")
-
-    data = json.loads(json_match.group())
-    return PaperAnalysis(
-        scored_paper=scored_paper,
-        tldr_zh=data["tldr_zh"],
-        tldr_en=data["tldr_en"],
-        research_question_zh=data["research_question_zh"],
-        research_question_en=data["research_question_en"],
-        prior_work_zh=data["prior_work_zh"],
-        prior_work_en=data["prior_work_en"],
-        solution_zh=data["solution_zh"],
-        solution_en=data["solution_en"],
-        results_zh=data["results_zh"],
-        results_en=data["results_en"],
-        discussion_zh=data["discussion_zh"],
-        discussion_en=data["discussion_en"],
-    )
-
-
 def generate_analysis(scored_paper: ScoredPaper, client: Anthropic) -> PaperAnalysis:
-    """Generate bilingual structured analysis using Claude Sonnet. Retries on JSON parse failure."""
+    """Generate bilingual structured analysis using Claude Sonnet with tool_use for reliable output."""
     prompt = build_analysis_prompt(scored_paper)
-    last_error = None
-    for attempt in range(3):
-        message = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=2048,
-            system=ANALYSIS_SYSTEM,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        try:
-            return parse_analysis_response(message.content[0].text, scored_paper)
-        except (json.JSONDecodeError, ValueError, KeyError) as e:
-            last_error = e
-            if attempt < 2:
-                continue
-    raise ValueError(f"Failed to parse analysis after 3 attempts: {last_error}")
+    message = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=2048,
+        system=ANALYSIS_SYSTEM,
+        tools=[ANALYSIS_TOOL],
+        tool_choice={"type": "tool", "name": "output_analysis"},
+        messages=[{"role": "user", "content": prompt}],
+    )
+    for block in message.content:
+        if block.type == "tool_use":
+            d = block.input
+            return PaperAnalysis(
+                scored_paper=scored_paper,
+                tldr_zh=d["tldr_zh"],
+                tldr_en=d["tldr_en"],
+                research_question_zh=d["research_question_zh"],
+                research_question_en=d["research_question_en"],
+                prior_work_zh=d["prior_work_zh"],
+                prior_work_en=d["prior_work_en"],
+                solution_zh=d["solution_zh"],
+                solution_en=d["solution_en"],
+                results_zh=d["results_zh"],
+                results_en=d["results_en"],
+                discussion_zh=d["discussion_zh"],
+                discussion_en=d["discussion_en"],
+            )
+    raise ValueError("No tool_use block found in Anthropic response")
