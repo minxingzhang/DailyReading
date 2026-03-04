@@ -15,14 +15,36 @@
     .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
     .nav a:hover { text-decoration: underline; }
     .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
-    .category { margin-bottom: 3rem; }
-    .category-title { font-size: 1.3rem; font-weight: 700; border-left: 4px solid var(--accent); padding-left: 0.75rem; margin-bottom: 1.5rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
     .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
     .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
     .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
-    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-score { background: #dcfce7; color: #166534; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+
+    /* TL;DR block */
     .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
     .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
     details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
     summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
     summary:hover { background: #f1f5f9; }
@@ -31,9 +53,19 @@
     .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
     .discussion-list { padding-left: 1.25rem; }
     .discussion-list li { margin-bottom: 0.4rem; }
+
+    /* Pros / Cons */
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .pros-box, .cons-box { border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.88rem; }
+    .pros-box { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .cons-box { background: #fff7f7; border: 1px solid #fecaca; }
+    .pros-box strong { color: #166534; }
+    .cons-box strong { color: #991b1b; }
+    .pros-cons ul { padding-left: 1.1rem; margin-top: 0.3rem; }
+    .pros-cons li { margin-bottom: 0.25rem; }
+
     .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
     .paper-link:hover { text-decoration: underline; }
-    .score-badge { display: inline-block; background: #dcfce7; color: #166534; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.8rem; font-weight: 600; margin-left: 0.5rem; }
     footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
   </style>
 </head>
@@ -44,22 +76,28 @@
   </div>
   <nav class="nav">
     <a href="{{ base_url }}/">首页</a>
-    <a href="{{ base_url }}/archive/">归档</a>
     {% for cat in categories %}<a href="#{{ cat.id }}">{{ cat.name_zh }}</a>{% endfor %}
   </nav>
   <div class="container">
     {% for cat in categories %}
-    <div class="category" id="{{ cat.id }}">
-      <h2 class="category-title">{{ cat.name_zh }} <span style="font-weight:400;font-size:1rem;color:#64748b">/ {{ cat.name_en }}</span></h2>
+    <details class="category-details" id="{{ cat.id }}" open>
+      <summary>{{ cat.name_zh }} <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ {{ cat.name_en }}</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">{{ cat.analyses | length }} 篇</span>
+      </summary>
+      <div class="category-body">
+      {% if cat.analyses %}
       {% for analysis in cat.analyses %}
       {% set paper = analysis.scored_paper.paper %}
+      {% set sp = analysis.scored_paper %}
       <div class="paper-card">
         <div class="paper-title">{{ analysis.tldr_zh | truncate(60, True, "...") }}</div>
         <div class="paper-title-en">{{ paper.title }}</div>
         <div class="paper-meta">
-          {{ paper.authors[:3] | join(", ") }}{% if paper.authors | length > 3 %} et al.{% endif %}
-          {% if paper.hf_upvotes > 0 %} · ⬆ {{ paper.hf_upvotes }} on HF{% endif %}
-          <span class="score-badge">评分 {{ "%.1f" | format(analysis.scored_paper.score) }}</span>
+          <span>{{ paper.authors[:3] | join(", ") }}{% if paper.authors | length > 3 %} et al.{% endif %}</span>
+          <span class="badge badge-date">{{ paper.published.strftime('%Y-%m-%d') }}</span>
+          {% if paper.venue %}<span class="badge badge-venue">{{ paper.venue }}</span>{% endif %}
+          {% if paper.hf_upvotes > 0 %}<span class="badge badge-hf">⬆ {{ paper.hf_upvotes }} HF</span>{% endif %}
+          <span class="badge badge-score">评分 {{ "%.1f" | format(sp.score) }}</span>
         </div>
 
         <div class="tldr">
@@ -67,6 +105,24 @@
           <div>{{ analysis.tldr_zh }}</div>
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">{{ analysis.tldr_en }}</div>
         </div>
+
+        {% if sp.pros or sp.cons %}
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul>{% for p in sp.pros %}<li>{{ p }}</li>{% endfor %}</ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul>{% for c in sp.cons %}<li>{{ c }}</li>{% endfor %}</ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        {% endif %}
 
         <details>
           <summary>科研问题 / Research Question</summary>
@@ -111,7 +167,11 @@
         <a class="paper-link" href="{{ paper.url }}" target="_blank">查看原文 →</a>
       </div>
       {% endfor %}
-    </div>
+      {% else %}
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      {% endif %}
+      </div>
+    </details>
     {% endfor %}
   </div>
   <footer>Generated by DailyPaper · Powered by Claude AI · {{ date }}</footer>

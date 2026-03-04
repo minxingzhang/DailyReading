@@ -1,9 +1,46 @@
+import re
 import arxiv
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timezone, timedelta
 from typing import List
 from scripts.models import Paper
+
+# Top conferences across AI / Security / Robotics
+_TOP_CONFERENCES = [
+    "NeurIPS", "ICML", "ICLR", "CVPR", "ICCV", "ECCV", "AAAI", "IJCAI",
+    "ACL", "EMNLP", "NAACL", "COLING",
+    "CCS", "USENIX Security", "IEEE S&P", "NDSS", "RAID", "AsiaCCS",
+    "ICRA", "IROS", "CoRL", "RSS",
+    "KDD", "WWW", "SIGMOD", "VLDB",
+]
+
+_VENUE_RE = re.compile(
+    r'(?:accepted|to appear|published|appearing|presented)\s+(?:at|in|@)\s+'
+    r'([A-Za-z][A-Za-z\s&\-]+?(?:\s+20\d\d)?)\b',
+    re.IGNORECASE,
+)
+
+
+def _extract_venue(comment: str, journal_ref: str) -> str:
+    """Try to detect a top-conference venue from arXiv comment / journal_ref."""
+    text = f"{comment or ''} {journal_ref or ''}"
+    m = _VENUE_RE.search(text)
+    if m:
+        candidate = m.group(1).strip().rstrip(".,")
+        # Only return if it matches a known conference name
+        candidate_upper = candidate.upper()
+        for conf in _TOP_CONFERENCES:
+            if conf.upper() in candidate_upper:
+                return candidate
+        # Return anyway if the pattern fired (e.g. "ECCV 2024")
+        if len(candidate) <= 30:
+            return candidate
+    # Fallback: scan for bare conference names
+    for conf in _TOP_CONFERENCES:
+        if re.search(r'\b' + re.escape(conf) + r'\b', text, re.IGNORECASE):
+            return conf
+    return ""
 
 
 def fetch_arxiv_papers(
@@ -30,6 +67,10 @@ def fetch_arxiv_papers(
     for result in client.results(search):
         if result.published < cutoff:
             break
+        venue = _extract_venue(
+            getattr(result, "comment", "") or "",
+            getattr(result, "journal_ref", "") or "",
+        )
         papers.append(Paper(
             arxiv_id=result.get_short_id(),
             title=result.title,
@@ -39,6 +80,7 @@ def fetch_arxiv_papers(
             published=result.published,
             hf_upvotes=0,
             source="arxiv",
+            venue=venue,
         ))
 
     return papers
@@ -87,6 +129,7 @@ def fetch_hf_papers() -> List[Paper]:
             published=datetime.now(timezone.utc),
             hf_upvotes=hf_upvotes,
             source="hf",
+            venue="",
         ))
 
     return papers
@@ -103,9 +146,13 @@ def merge_and_deduplicate(papers_lists: List[List[Paper]]) -> List[Paper]:
             if paper.arxiv_id not in seen:
                 seen[paper.arxiv_id] = paper
             else:
-                if paper.hf_upvotes > seen[paper.arxiv_id].hf_upvotes:
-                    if not paper.abstract and seen[paper.arxiv_id].abstract:
-                        paper.abstract = seen[paper.arxiv_id].abstract
+                existing = seen[paper.arxiv_id]
+                if paper.hf_upvotes > existing.hf_upvotes:
+                    if not paper.abstract and existing.abstract:
+                        paper.abstract = existing.abstract
+                    # Preserve venue from arXiv version
+                    if not paper.venue and existing.venue:
+                        paper.venue = existing.venue
                     seen[paper.arxiv_id] = paper
 
     return list(seen.values())

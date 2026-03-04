@@ -12,7 +12,7 @@ SCORING_USER_TEMPLATE = """Evaluate this paper for the "{category_name}" categor
 Title: {title}
 Authors: {authors}
 Abstract: {abstract}
-HuggingFace upvotes: {hf_upvotes}
+HuggingFace upvotes: {hf_upvotes}{venue_line}
 
 Score this paper 1-10 on each dimension:
 1. topic_importance: Is the problem worth solving? Not trivial or marginal?
@@ -22,7 +22,9 @@ Score this paper 1-10 on each dimension:
 5. author_prestige: Are authors from well-known institutions (MIT, CMU, Google, DeepMind, Stanford, etc.)?
 6. paper_completeness: Does it appear to have solid experiments and rigorous methodology?
 
-Respond ONLY with this JSON:
+Weights: topic_importance=25%, trend_alignment=20%, community_attention=15%, practical_significance=20%, author_prestige=10%, paper_completeness=10%
+
+Respond ONLY with this JSON (use single quotes inside strings if you need quotes):
 {{
   "score": <weighted_average_float>,
   "breakdown": {{
@@ -33,13 +35,14 @@ Respond ONLY with this JSON:
     "author_prestige": <1-10>,
     "paper_completeness": <1-10>
   }},
-  "rationale": "<one sentence explaining the overall score>"
-}}
-
-Weights: topic_importance=25%, trend_alignment=20%, community_attention=15%, practical_significance=20%, author_prestige=10%, paper_completeness=10%"""
+  "rationale": "<one sentence overall assessment>",
+  "pros": ["<strength 1>", "<strength 2>", "<strength 3>"],
+  "cons": ["<weakness 1>", "<weakness 2>"]
+}}"""
 
 
 def build_scoring_prompt(paper: Paper, category_name: str, category_type: str) -> str:
+    venue_line = f"\nVenue: {paper.venue}" if paper.venue else ""
     return SCORING_USER_TEMPLATE.format(
         category_name=category_name,
         category_type=category_type,
@@ -47,6 +50,7 @@ def build_scoring_prompt(paper: Paper, category_name: str, category_type: str) -
         authors=", ".join(paper.authors[:5]) or "Unknown",
         abstract=paper.abstract[:800],
         hf_upvotes=paper.hf_upvotes,
+        venue_line=venue_line,
     )
 
 
@@ -62,6 +66,8 @@ def parse_score_response(response_text: str, paper: Paper) -> ScoredPaper:
         score=float(data.get("score", 5.0)),
         score_breakdown=data.get("breakdown", {}),
         rationale=data.get("rationale", ""),
+        pros=data.get("pros", []),
+        cons=data.get("cons", []),
     )
 
 
@@ -71,7 +77,7 @@ def score_paper(paper: Paper, category_name: str, category_type: str, client: An
     try:
         message = client.messages.create(
             model="claude-haiku-4-5-20251001",
-            max_tokens=512,
+            max_tokens=768,
             system=SCORING_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": prompt}],
         )

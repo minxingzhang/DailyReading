@@ -7,7 +7,7 @@ from scripts.score_papers import select_top_papers
 from scripts.generate_analysis import generate_analysis
 from scripts.render_html import (
     render_daily_page, render_index_page, render_email_html,
-    write_daily_page, write_index_page,
+    write_daily_page, write_index_page, write_meta_json, load_archive_data,
 )
 from scripts.send_email import send_digest_email
 from scripts.seen_papers import load_seen_ids, save_seen_ids, filter_new_papers, mark_papers_as_seen
@@ -121,21 +121,16 @@ def run_pipeline(
             "analyses": analyses,
         })
 
-    # Render and save daily page
+    # Render and save daily page + meta.json for index accordion
     site_cfg = config.get("site", {})
     daily_html = render_daily_page(today, categories_data, base_url, site_cfg.get("title", "DailyPaper"))
     write_daily_page(today, daily_html, docs_dir)
-    print(f"\nWrote: docs/{today}/index.html")
+    write_meta_json(today, categories_data, docs_dir)
+    print(f"\nWrote: docs/{today}/index.html + meta.json")
 
-    # Update index with archive (exclude non-date dirs like 'plans')
-    archive_dates = sorted(
-        [d for d in os.listdir(docs_dir)
-         if os.path.isdir(os.path.join(docs_dir, d))
-         and not d.startswith(".")
-         and len(d) == 10 and d[4] == "-"],  # YYYY-MM-DD format only
-        reverse=True,
-    )
-    index_html = render_index_page(archive_dates, latest_date=today, base_url=base_url)
+    # Update index with accordion data from all date meta.json files
+    archive_data = load_archive_data(docs_dir)
+    index_html = render_index_page(archive_data, latest_date=today, base_url=base_url)
     write_index_page(index_html, docs_dir)
     print("Updated: docs/index.html")
 
