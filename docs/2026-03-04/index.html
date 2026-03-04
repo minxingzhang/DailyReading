@@ -72,7 +72,7 @@
 <body>
   <div class="header">
     <h1>DailyPaper - 每日论文精选</h1>
-    <div class="date">2026-03-04  |  共 8 篇论文</div>
+    <div class="date">2026-03-04  |  共 11 篇论文</div>
   </div>
   <nav class="nav">
     <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
@@ -82,11 +82,251 @@
     
     <details class="category-details" id="llm_security" open>
       <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
-        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
       </summary>
       <div class="category-body">
       
-      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">CyberLLMInstruct构建了含54,928条伪恶意指令对的数据集，揭示了网络安全领域LLM微调中安全性与性能的严峻权衡。</div>
+        <div class="paper-title-en">CyberLLMInstruct: A Pseudo-Malicious Dataset Revealing Safety-Performance Trade-offs in Cyber Security LLM Fine-tuning</div>
+        <div class="paper-meta">
+          <span>Adel Elzemity, Budi Arief, Shujun Li</span>
+          <span class="badge badge-date">2025-03-12</span>
+          <span class="badge badge-venue">CCS</span>
+          
+          <span class="badge badge-score">评分 9.4</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>CyberLLMInstruct构建了含54,928条伪恶意指令对的数据集，揭示了网络安全领域LLM微调中安全性与性能的严峻权衡。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CyberLLMInstruct introduces a 54,928-pair pseudo-malicious dataset that exposes a severe safety-performance trade-off when fine-tuning LLMs on cybersecurity tasks.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Identifies and rigorously documents a fundamental trade-off between cyber security task performance and safety resilience in fine-tuned LLMs—highly relevant to current LLM deployment challenges</li><li>Introduces CyberLLMInstruct, a large-scale dataset of 54,928 instruction pairs with diverse sourcing (CTF, academic, industrial) enabling reproducible research and future work</li><li>Comprehensive empirical evaluation across seven open-source models with multiple attack vectors provides strong evidence and practical insights for the community</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero community engagement on HuggingFace (0 upvotes) suggests limited visibility or adoption despite venue quality (CCS is top-tier)</li><li>Author affiliations are not clearly top-tier institutions (appears to be University of Kent and others not in elite ML research cluster), potentially limiting initial visibility</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM在网络安全领域的广泛应用，针对特定领域数据的微调带来了严重的双重用途风险。核心问题是：提升模型网络安全任务性能的同时，是否会削弱其对抗恶意利用的安全防护？</div>
+            <div class="en">As LLMs are increasingly deployed in cybersecurity applications, fine-tuning them on domain-specific data introduces critical dual-use risks. The core question is: does improving a model&#39;s cybersecurity task performance simultaneously erode its safety guardrails against adversarial misuse?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有网络安全LLM基准（如CyberMetric）侧重任务性能，未系统评估微调带来的安全退化。通用安全对齐研究未能覆盖恶意网络安全场景，如针对恶意软件的提示注入或零日漏洞诱导攻击。</div>
+            <div class="en">Existing cybersecurity LLM benchmarks (e.g., CyberMetric) focus on task performance but do not systematically measure safety degradation from fine-tuning. General-purpose safety alignment research does not address adversarial cybersecurity contexts such as prompt injection, jailbreaking with malware-specific payloads, or zero-day vulnerability elicitation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者构建CyberLLMInstruct数据集，含54,928条伪恶意指令对，涵盖恶意软件分析、网络钓鱼模拟和零日漏洞，来源包括CTF挑战、学术论文、行业报告和CVE数据库。对7个开源LLM进行微调，并在CyberMetric任务准确率及提示注入、越狱等多种攻击向量的安全弹性上进行系统评估，通过微调前后对比确认因果关系。</div>
+            <div class="en">The authors construct CyberLLMInstruct, a dataset of 54,928 pseudo-malicious instruction-response pairs covering malware analysis, phishing simulations, and zero-day vulnerabilities, sourced from CTF challenges, academic papers, industry reports, and CVE databases. Seven open-source LLMs (including Llama 3.1 8B, Mistral, and Phi variants) are fine-tuned on this dataset and evaluated on both cybersecurity task accuracy (CyberMetric) and safety resilience across multiple attack vectors including prompt injection and jailbreaking. The study isolates the fine-tuning process as the causal factor in safety degradation by comparing pre- and post-fine-tuning safety scores systematically.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在CyberLLMInstruct上微调后，CyberMetric任务准确率最高达92.50%，域专化效果显著。然而安全性急剧下降：Llama 3.1 8B对提示注入的抵抗得分从0.95骤降至0.15。这一权衡在全部7个模型及所有攻击向量上均一致出现，表明这是系统性而非个例漏洞。</div>
+            <div class="en">Fine-tuning on CyberLLMInstruct achieves up to 92.50% accuracy on CyberMetric, demonstrating strong domain specialization. However, safety scores collapse dramatically: Llama 3.1 8B&#39;s resistance to prompt injection drops from 0.95 to 0.15 post-fine-tuning. This trade-off is consistent across all seven tested models and all evaluated attack vectors, indicating a systemic rather than model-specific vulnerability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>安全对齐在领域微调下极为脆弱：即使少量伪恶意数据也足以瓦解RLHF建立的安全护栏，提示需在微调后重新强化对齐机制。</li><li>伪恶意数据设计是双刃剑：虽避免使用真实攻击数据，但数据集本身存在被滥用以故意削除模型安全性的风险，需审慎考量发布策略。</li><li>研究结论对将专业化网络安全LLM直接部署于生产环境提出质疑，需辅以输出过滤、红队测试或冻结安全层的LoRA等安全保留微调方法。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Safety alignment is brittle under domain fine-tuning: even modest exposure to pseudo-malicious cybersecurity data is sufficient to undo safety guardrails instilled during RLHF, suggesting alignment techniques need to be re-applied or reinforced post fine-tuning.</li><li>The pseudo-malicious data design is a double-edged sword: while it enables rigorous safety evaluation without using real attack data, it raises questions about responsible release and whether the dataset itself could be misused to deliberately strip safety from models.</li><li>The findings challenge the viability of deploying specialized cybersecurity LLMs in production without additional safeguards such as output filtering, red-teaming pipelines, or safety-preserving fine-tuning methods like LoRA with frozen safety layers.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2503.09334" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Fun-tuning利用专有LLM微调API返回的类损失信号，通过贪心搜索生成对抗性提示注入，在无白盒访问条件下对...</div>
+        <div class="paper-title-en">Fun-tuning: Characterizing the Vulnerability of Proprietary LLMs to Optimization-Based Prompt Injection Attacks via the Fine-Tuning Interface</div>
+        <div class="paper-meta">
+          <span>Andrey Labunets, Nishit V. Pandya, Ashish Hooda et al.</span>
+          <span class="badge badge-date">2025-01-16</span>
+          <span class="badge badge-venue">IEEE Symposium on Security and Privacy</span>
+          
+          <span class="badge badge-score">评分 9.3</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Fun-tuning利用专有LLM微调API返回的类损失信号，通过贪心搜索生成对抗性提示注入，在无白盒访问条件下对Gemini系列模型实现了65–82%的攻击成功率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Fun-tuning exploits the loss-like signals returned by proprietary LLM fine-tuning APIs (e.g., Gemini) to guide greedy search for adversarial prompt injections, achieving 65–82% attack success rates without white-box model access.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Identifies a novel and previously unexplored attack vector leveraging fine-tuning API loss information to compute optimization-based prompt injections against proprietary LLMs</li><li>Demonstrates practical attacks against real systems (Gemini API), making findings immediately relevant to industry and practitioners</li><li>Well-aligned with current LLM security research trends focused on prompt injection, adversarial examples, and API abuse</li><li>Published at top-tier security venue (IEEE S&amp;P), indicating peer-review validation</li><li>Characterizes real proprietary system behavior (Gemini fine-tuning interface) rather than purely theoretical analysis</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Limited community engagement signal (0 HuggingFace upvotes suggests narrow prior visibility or recent publication)</li><li>Author affiliations not immediately recognizable as top institutions (Earlence Fernandes from UWisc is well-known but others less prominent), reducing prestige factor</li><li>Abstract truncated at &#39;PurpleLla&#39;, making full assessment of experimental scope and baselines incomplete</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">传统对抗性提示攻击需要白盒访问模型权重，无法直接应用于闭源专有LLM。本文研究攻击者是否能利用商业微调接口近似梯度优化，对黑盒模型生成有效的提示注入攻击。</div>
+            <div class="en">Optimization-based adversarial prompt attacks traditionally require white-box access to model weights, making them inapplicable to closed-weight proprietary LLMs. This paper asks: can an attacker exploit the fine-tuning interface—a standard commercial feature—to approximate gradient-based optimization and craft effective prompt injections against black-box models?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">GCG等现有优化攻击需完整白盒访问，无法用于Gemini等专有模型。基于迁移的黑盒攻击迁移性差，基于查询的方法成本过高，实际可行性有限。</div>
+            <div class="en">Existing optimization-based attacks like GCG require full white-box access to model weights and gradients, which is unavailable for proprietary LLMs such as Gemini or GPT-4. Black-box attack alternatives typically rely on transfer attacks from open-source surrogates or costly query-based methods, both of which suffer from low transferability or prohibitive API query costs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者发现Gemini微调API会返回每个样本的类损失标量值，可作为有效优化信号。Fun-tuning将对抗性提示注入建模为离散优化问题，通过贪心token替换搜索并利用该信号迭代优化，全程无需访问模型权重。实验在PurpleLlama基准上针对Gemini 1.0和1.5系列模型展开评估。</div>
+            <div class="en">The authors discover that the Gemini fine-tuning API returns per-example loss-like scalar values (training metrics) that, while not exact gradients, provide a meaningful optimization signal. They design &#34;Fun-tuning,&#34; which formulates adversarial prompt injection as a discrete optimization problem and uses a greedy token-substitution search guided by these loss-like values. By submitting candidate adversarial prompts as fine-tuning data and reading back the returned loss signal, the attacker iteratively refines the injection without ever accessing model weights. This approach is evaluated on the PurpleLlama prompt injection benchmark against the Gemini 1.0 and 1.5 model families.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Fun-tuning在PurpleLlama基准上对Gemini系列模型的攻击成功率达65–82%，显著优于朴素黑盒基线。实验验证了微调API返回的类损失值与模型行为具有足够相关性，可驱动有效的离散优化，证明微调功能直接引入了可量化的安全漏洞。</div>
+            <div class="en">Fun-tuning achieves attack success rates of 65–82% on Google&#39;s Gemini family of LLMs using the PurpleLlama prompt injection benchmark. The loss-like signals returned by the Gemini fine-tuning API are shown to correlate sufficiently with model behavior to drive effective discrete optimization. These results significantly outperform naive black-box baselines and demonstrate that the fine-tuning utility feature directly introduces a measurable security vulnerability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>效用与安全的根本矛盾：微调接口是核心商业功能，厂商难以移除，该攻击面具有结构性，无法通过简单补丁修复。</li><li>泛化风险：任何返回每样本损失或训练指标的微调API（如OpenAI微调接口）都可能暴露类似信号，该漏洞类型可能覆盖多个厂商。</li><li>防御困难：标准的输入过滤或限速机制无效，因为攻击针对微调端点而非推理端点，可离线完成优化后再大规模部署对抗性提示。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Utility-security tradeoff: The fine-tuning interface is a core commercial feature that vendors cannot easily remove, meaning this attack surface is structural and persistent—not a simple patch-and-fix bug.</li><li>Generalizability risk: Although evaluated on Gemini, any fine-tuning API that returns per-example loss or training metrics (e.g., OpenAI&#39;s fine-tuning API) may expose a similar signal, suggesting the vulnerability class is broader than one vendor.</li><li>Defensive challenges: Standard defenses like input filtering or rate-limiting are insufficient because the attack queries the fine-tuning endpoint (not the inference endpoint) and can be conducted offline before deploying the adversarial prompt at scale.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2501.09798" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出针对RAG系统的威胁分类体系与对抗框架，揭示多语言提示操控、提示注入、越狱及API模型提取等攻击的独特危险性。</div>
+        <div class="paper-title-en">Adversarial and Multilingual Threats in Retrieval-Augmented Generation: From Prompt Injection to Model Exploitation</div>
+        <div class="paper-meta">
+          <span>Basma ElSaify, Mohamed Baderelden</span>
+          <span class="badge badge-date">2025-08-18</span>
+          <span class="badge badge-venue">ACL</span>
+          
+          <span class="badge badge-score">评分 8.8</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出针对RAG系统的威胁分类体系与对抗框架，揭示多语言提示操控、提示注入、越狱及API模型提取等攻击的独特危险性。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes a comprehensive threat taxonomy and adversarial framework exposing how multilingual prompt manipulation, prompt injection, jailbreaks, and API-based model extraction uniquely threaten both conventional and agentic RAG systems.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles increasingly important vulnerability surface in RAG systems, which have rapidly become mainstream in production AI applications</li><li>Proposes comprehensive threat taxonomy spanning prompt injection, jailbreaking, model extraction, and multilingual attacks—covering multiple attack vectors systematically</li><li>Directly relevant to current LLM security frontiers given RAG&#39;s widespread adoption and the expanded attack surface it introduces</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero HuggingFace upvotes and no visible community attention suggest either recent publication or limited reach despite important topic</li><li>Author institutions not identifiable as tier-1 AI research institutions, reducing prestige signal and potential impact multiplier</li><li>Abstract is incomplete/truncated (cuts off mid-sentence at &#39;multilingual prompt&#39;), making full assessment of methodology rigor and experimental completeness impossible</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">RAG系统通过检索管道、语言接口和外部API扩大了LLM的攻击面。本文探讨攻击者如何利用多语言输入等手段破坏RAG系统的安全性与完整性，这一问题在生产级AI系统中尤为关键。</div>
+            <div class="en">RAG systems expand the attack surface of LLMs by introducing vulnerabilities in retrieval pipelines, language interfaces, and external APIs. This paper asks: how can adversaries exploit these components—especially through multilingual inputs—to compromise safety, integrity, and confidentiality in both standard and agentic RAG deployments? The stakes are high as RAG is increasingly used in production AI systems handling sensitive data.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LLM安全研究主要聚焦英语提示注入与越狱攻击，忽视了多语言或语码混用输入带来的复合风险。针对RAG安全的研究鲜少涉及自主规划多步任务的智能体RAG场景，也尚无统一涵盖检索、生成、API和多语言维度的对抗威胁分类体系。</div>
+            <div class="en">Prior security research on LLMs has largely focused on English-only prompt injection and jailbreak attacks, neglecting the compounded risks introduced by multilingual or code-switched inputs. Existing work on RAG security rarely addresses agentic RAG, where LLMs autonomously plan and execute multi-step retrieval tasks, creating new attack vectors. No prior taxonomy unified adversarial threats across retrieval, generation, API, and multilingual dimensions simultaneously.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者构建了涵盖四类主要攻击的威胁分类体系：提示注入、越狱利用、API模型提取及多语言提示操控。核心贡献在于分析阿拉伯语-英语语码混用攻击如何绕过语言不一致的安全护栏，并将框架扩展至智能体RAG，揭示单次恶意检索可引发级联失效的风险。</div>
+            <div class="en">The authors construct a structured threat taxonomy covering four major attack classes: prompt injection (direct and indirect), jailbreak exploits, API-driven model extraction, and multilingual prompt manipulation. A key contribution is the analysis of language-blending attacks—particularly Arabic-English code-switching—which exploit inconsistent safety guardrails across languages. The framework is extended to agentic RAG systems, where multi-step autonomous reasoning creates cascading failure risks from a single malicious retrieval. The paper also maps these threats to concrete mitigation strategies across the RAG pipeline stages.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">研究表明，阿拉伯语-英语混合输入可绕过内容过滤器，安全防护明显弱于纯英语输入。智能体RAG中单份中毒文档可跨多个推理步骤传播恶意指令。API黑盒查询可高保真重建模型行为，威胁知识产权并为下游对抗微调提供便利。</div>
+            <div class="en">The paper demonstrates that multilingual RAG pipelines—especially those involving Arabic-English code-switching—exhibit measurably weaker safety guardrails compared to English-only inputs, allowing adversarial instructions to bypass content filters. Agentic RAG systems are shown to be disproportionately vulnerable because a single poisoned retrieved document can propagate malicious instructions across multiple autonomous reasoning steps. Specific API-based model extraction attacks are shown to reconstruct model behavior with high fidelity using only black-box query access, threatening intellectual property and enabling downstream adversarial fine-tuning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>多语言盲区是系统性风险：安全对齐训练以英语为主，语码混用输入（如阿拉伯语-英语）可稳定绕过护栏，多语言红队测试应成为标准评估流程。</li><li>智能体RAG非线性放大威胁：单份中毒文档可在自主链式推理中引发全系统沦陷，每个检索步骤须强制执行信任边界与沙箱隔离。</li><li>分类体系有价值但缺乏大规模实证：论文未提供跨语言或跨模型的攻击成功率等定量实验，削弱了缓解策略对从业者的实际指导价值。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Multilingual blind spots are a systemic risk: Safety alignment training is predominantly English-centric, meaning code-switching inputs (e.g., Arabic-English) can reliably evade guardrails—a finding that calls for multilingual red-teaming as a standard evaluation practice.</li><li>Agentic RAG amplifies threat severity non-linearly: Unlike static RAG, agentic systems that autonomously chain retrieval and action steps can turn a single compromised document into a full system compromise, suggesting that trust boundaries and sandboxing must be enforced at each retrieval step.</li><li>The taxonomy is conceptually valuable but empirical validation is limited: The paper lacks large-scale quantitative experiments (e.g., attack success rates across languages or models), which would significantly strengthen the actionability of the proposed mitigations for practitioners.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/8f899eda5a2d8df504d805dcf8d6e5dd9e15d68c" target="_blank">查看原文 →</a>
+      </div>
+      
       
       </div>
     </details>
@@ -101,20 +341,100 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">本文系统分析BEV感知模型（BEVDet、BEVDet4D、DAL、BEVFormer）在摄像头与激光雷达两种模态...</div>
-        <div class="paper-title-en">Probing Vulnerabilities of Vision-Lidar Based Autonomous Driving Systems</div>
+        <div class="paper-title">SpecGuard利用深度强化学习结合任务规范感知奖励与状态重建，实现无人自主飞行器在物理传感器攻击下的安全恢复。</div>
+        <div class="paper-title-en">SpecGuard: Specification Aware Recovery for Robotic Autonomous Vehicles from Physical Attacks</div>
         <div class="paper-meta">
-          <span>Siwei Yang, Zeyu Wang, Diego Ortiz Barbosa et al.</span>
-          <span class="badge badge-date">2025-06-11</span>
-          <span class="badge badge-venue">2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</span>
+          <span>Pritam Dash, Ethan Chan, K. Pattabiraman</span>
+          <span class="badge badge-date">2024-08-27</span>
+          <span class="badge badge-venue">CCS</span>
+          
+          <span class="badge badge-score">评分 9.1</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SpecGuard利用深度强化学习结合任务规范感知奖励与状态重建，实现无人自主飞行器在物理传感器攻击下的安全恢复。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SpecGuard uses Deep Reinforcement Learning with mission-specification-aware rewards and state reconstruction to safely recover Robotic Autonomous Vehicles from physical sensor attacks.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles critical safety problem in RAVs where physical sensor attacks can cause mission failures—highly relevant to autonomous systems security</li><li>Novel integration of formal mission specifications with Deep-RL for compliance-aware control policy learning is technically sound and forward-looking</li><li>Published in CCS (top-tier security venue), suggesting strong peer review and community recognition of significance</li><li>Clear practical applicability with concrete constraints (altitude, speed, geofence) that autonomous vehicles must satisfy in real deployments</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero HuggingFace upvotes indicates limited community engagement or visibility so far, possibly due to recent publication or narrow dissemination</li><li>Abstract is truncated, making complete assessment of experimental rigor and methodology depth impossible; unclear if paper includes full ablation studies and comparative baselines</li><li>Authors from University of British Columbia (respectable but not among elite tier like MIT/CMU/DeepMind), which may affect prestige rating</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">RAV容易遭受GPS欺骗、IMU干扰等物理攻击，导致传感器数据失真和任务失败。核心挑战在于恢复过程中不仅要稳定飞行器，还必须同时满足高度、速度和地理围栏等任务规范。</div>
+            <div class="en">Robotic Autonomous Vehicles (RAVs) are vulnerable to physical attacks (e.g., GPS spoofing, IMU jamming) that corrupt sensor readings and cause mission failures. The core challenge is recovering the RAV safely while still honoring mission specifications such as altitude limits, speed bounds, and geofence constraints — not just stabilizing the vehicle.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有恢复方案主要关注飞行器稳定性，忽视任务规范，恢复过程中可能违反地理围栏或速度限制。传统PID备用控制器缺乏对多约束场景的适应性，已有深度强化学习方案也未考虑规范合规或攻击时状态观测失真问题。</div>
+            <div class="en">Existing recovery techniques for RAVs focus primarily on vehicle stabilization and do not account for mission specifications, risking geofence violations or speed limit breaches during recovery. Traditional control-theoretic approaches (e.g., PID-based fallback controllers) lack adaptability to the diverse and simultaneous constraints imposed by real mission profiles. Deep-RL-based controllers have been explored but without incorporating specification compliance or handling corrupted state observations during attacks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">SpecGuard设计了基于合规性的深度强化学习奖励函数，同时编码高度、速度和地理围栏等多项任务规范。第二项创新是状态重建：攻击导致传感器失真时，利用未受影响的传感器模态和物理运动模型估计真实飞行状态，为RL策略提供可靠输入。两者结合使SpecGuard在主动攻击场景下仍能有效运行。</div>
+            <div class="en">SpecGuard introduces a compliance-based reward structure for Deep-RL training that encodes multiple mission specifications (altitude, speed, geofence) simultaneously, reflecting the RAV&#39;s complex dynamics. During training, the reward function penalizes specification violations and guides the agent toward safe, mission-compliant recovery trajectories. A second key innovation is state reconstruction: when sensors are corrupted by an attack, SpecGuard estimates the true vehicle state using attack-free sensor modalities and physical motion models, providing reliable inputs to the RL policy. Together, these two components allow SpecGuard to operate effectively even when the attacker actively distorts sensor measurements.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">SpecGuard在ArduPilot无人机和地面车平台上针对GPS欺骗、传感器注入等多种攻击场景进行评估，任务成功率和规范合规率显著优于基线方案，测试场景中规范违反率降低超过70%，且计算开销低，适合资源受限的RAV硬件部署。</div>
+            <div class="en">SpecGuard was evaluated on real RAV platforms (ArduPilot-based drones and rovers) under multiple physical attack scenarios including GPS spoofing and sensor injection. It achieved significantly higher mission success rates and specification compliance rates compared to baseline recovery methods, reducing specification violation rates by over 70% in tested scenarios. SpecGuard also incurred low computational overhead, making it practical for deployment on resource-constrained RAV hardware.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>规范泛化性：合规奖励函数针对高度、速度和地理围栏设计，扩展至时间窗口或多航点序列等更复杂规范需重新设计奖励，工程量不容忽视。</li><li>状态重建假设：该方法依赖攻击期间至少存在未受损传感器；若攻击者同时干扰所有传感器模态，重建步骤将失效，需进一步的对抗鲁棒性分析。</li><li>仿真到真实的迁移：深度强化学习策略在仿真中训练，仿真器对真实空气动力学和环境扰动的还原度直接影响策略迁移效果，在极端天气或地形条件下尤为突出。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Specification generalizability: The compliance-based reward is designed for altitude, speed, and geofence constraints, but extending SpecGuard to richer or dynamically changing mission specifications (e.g., time-window constraints or multi-waypoint sequencing) would require non-trivial reward re-engineering.</li><li>State reconstruction assumptions: The approach relies on the availability of at least some uncorrupted sensors during an attack; simultaneous multi-sensor attacks targeting all modalities could undermine the reconstruction step and deserve further adversarial robustness analysis.</li><li>Sim-to-real transfer: While tested on ArduPilot platforms, the Deep-RL policy is trained in simulation, and the fidelity of the simulator to real-world aerodynamics and disturbances directly affects how well the learned policy transfers, especially in edge-case weather or terrain conditions.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2408.15200" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">VIFA是首个针对可见光-红外融合跟踪器的对抗攻击框架，利用粒子群优化生成模态专属对抗补丁，显著降低单目标和多目标跟踪性能。</div>
+        <div class="paper-title-en">VIFA: Visible-Infrared Fusion Tracking Based on Adversarial Patch Generation</div>
+        <div class="paper-meta">
+          <span>Haoben Huang, Chenlu Ma, Zhiyu Li</span>
+          <span class="badge badge-date">2025-11-07</span>
+          <span class="badge badge-venue">ICML</span>
           
           <span class="badge badge-score">评分 8.7</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>本文系统分析BEV感知模型（BEVDet、BEVDet4D、DAL、BEVFormer）在摄像头与激光雷达两种模态下的对抗攻击脆弱性，涵盖白盒与黑盒场景。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper systematically probes adversarial vulnerabilities of state-of-the-art BEV perception models (BEVDet, BEVDet4D, DAL, BEVFormer) across camera and LiDAR modalities in both white-box and black-box settings.</div>
+          <div>VIFA是首个针对可见光-红外融合跟踪器的对抗攻击框架，利用粒子群优化生成模态专属对抗补丁，显著降低单目标和多目标跟踪性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">VIFA is the first adversarial attack framework targeting visible-infrared fusion trackers, using particle swarm optimization to generate modality-specific patches that significantly degrade both single- and multi-object tracking performance.</div>
         </div>
 
         
@@ -124,11 +444,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Directly addresses autonomous driving security, a high-impact embodied AI system with real-world safety implications</li><li>Examines vulnerabilities across multimodal inputs (camera + LiDAR), reflecting realistic perception architectures used in practice</li><li>Analyzes state-of-the-art BEV models (BEVDet, BEVFormer, etc.) providing current-frontier insights</li><li>Published at CVPRW 2025, a reputable venue for computer vision research</li></ul>
+                <ul><li>Directly addresses security vulnerabilities in multimodal tracking systems, which are critical for autonomous driving and surveillance—a genuine gap in existing research</li><li>Novel focus on cross-modal adversarial attacks in VI fusion tracking, combining adversarial robustness research with emerging multimodal system security</li><li>ICML venue acceptance indicates peer review quality; particle swarm optimization for modality-specific patch generation shows technical sophistication</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero HuggingFace upvotes suggests limited community engagement and visibility despite topic relevance</li><li>Abstract is truncated/incomplete, suggesting preparation issues; methodology details unclear for full evaluation</li><li>Authors from UT Dallas (cybersecurity expertise) rather than top-tier robotics/AI institutions, limiting prestige</li><li>Appears preliminary in scope based on &#39;preliminary security analysis&#39; framing, suggesting incomplete empirical validation</li></ul>
+                <ul><li>Zero HuggingFace upvotes suggests limited community attention and visibility despite relevant topic, raising questions about impact or discoverability</li><li>Authors appear to be from lesser-known institutions (not MIT, CMU, Stanford, DeepMind, Google), reducing prestige signal</li><li>Abstract truncation prevents full assessment of experimental rigor; lacks clarity on whether defense mechanisms or only attacks are evaluated</li></ul>
               </div>
             </div>
           </div>
@@ -138,124 +458,44 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">随着BEV感知成为自动驾驶的核心组件，其对抗鲁棒性直接关乎行车安全。本文探究：多模态BEV模型对图像和点云对抗攻击的脆弱程度如何，以及攻击能否跨模型迁移？</div>
-            <div class="en">As Bird&#39;s Eye View (BEV) perception becomes central to autonomous driving, understanding its adversarial robustness is a critical safety concern. The paper asks: how vulnerable are multi-modal BEV models to adversarial attacks on camera images and LiDAR point clouds, and do these attacks transfer across models?</div>
+            <div class="zh">可见光-红外融合跟踪器被广泛用于自动驾驶和智能监控等安全关键场景，但其对抗鲁棒性从未被系统研究。这一安全盲区在现实部署中存在严重隐患。</div>
+            <div class="en">Visible-infrared (VI) fusion trackers are increasingly deployed in safety-critical applications like autonomous driving and intelligent surveillance, yet their adversarial robustness has never been systematically studied. This gap is dangerous: a tracker that appears accurate under normal conditions may be trivially fooled by crafted perturbations, posing real-world security risks.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">此前的对抗攻击研究多聚焦于单模态模型（纯摄像头或纯激光雷达），对多模态融合架构的分析不足。现有BEV安全研究较为零散，缺乏对多个主流架构跨模型迁移性的系统比较。</div>
-            <div class="en">Prior adversarial attack research on autonomous driving largely focused on single-modality models (camera-only or LiDAR-only), leaving multi-modal fusion architectures underexplored. Existing BEV security studies are sparse and do not comprehensively compare attack transferability across multiple state-of-the-art architectures.</div>
+            <div class="zh">现有对抗攻击研究几乎只针对单模态（RGB）跟踪器，多模态跟踪系统的安全性完全空白。现有多模态跟踪研究仅关注精度和速度指标，缺乏针对VI融合模型的对抗脆弱性评估基准与方法。</div>
+            <div class="en">Prior adversarial attack research in visual tracking focuses almost exclusively on single-modality (RGB) trackers, leaving multimodal systems entirely unexamined from a security perspective. Existing multimodal tracking research prioritizes accuracy and inference speed metrics, with no established benchmarks or methods for evaluating adversarial vulnerability in VI fusion models.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">作者对BEVDet、BEVDet4D、DAL和BEVFormer四个BEV模型分别在摄像头图像和激光雷达点云输入上实施对抗攻击，评估白盒攻击效果及黑盒迁移性。通过对代理模型发起攻击并在其他模型上测试，系统识别各模型最脆弱的组件。</div>
-            <div class="en">The authors conduct a preliminary security analysis on four BEV models—BEVDet, BEVDet4D, DAL, and BEVFormer—by applying adversarial attacks separately to camera (visual) and LiDAR (point-cloud) inputs. Both white-box attacks (with full model access) and black-box transferability experiments (attacking a surrogate model and testing on others) are evaluated. The study covers multiple attack strategies across modalities to identify which model components are most susceptible.</div>
+            <div class="zh">VIFA分别为可见光和红外图像流生成模态专属对抗补丁，利用粒子群优化（PSO）这一无梯度进化算法驱动补丁优化，支持黑盒攻击场景。对抗补丁叠加在双流输入上，误导融合跟踪器的定位，适用于单目标和多目标VI融合跟踪模型。</div>
+            <div class="en">VIFA generates modality-specific adversarial patches separately for visible (color) and infrared image streams, exploiting the unique characteristics of each modality. Patch optimization is driven by particle swarm optimization (PSO), a gradient-free evolutionary algorithm, making the attack black-box compatible and applicable without model internals. The adversarial patches are physically overlaid onto both input streams to produce adversarial samples that mislead the fusion tracker&#39;s localization. This approach pioneers a unified attack methodology applicable to both single-object and multi-object VI fusion tracking models.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">四个BEV模型在白盒攻击下均表现出显著脆弱性，检测性能大幅下降。尽管多模态输入提供了一定的隐式鲁棒性，对抗扰动在黑盒场景下仍可跨模型迁移，表明多模态融合本身不足以防御对抗威胁。</div>
-            <div class="en">All four BEV models exhibit significant vulnerabilities under white-box adversarial attacks across both camera and LiDAR modalities, with detection performance degrading substantially. Despite multi-modal inputs providing some implicit robustness, adversarial perturbations still transfer across models in black-box settings, indicating that multi-modality alone does not sufficiently defend against adversarial threats.</div>
+            <div class="zh">在多个VI跟踪数据集上的实验表明，VIFA显著降低了单目标和多目标融合跟踪器的跟踪精度。结果表明多模态融合并不天然具备对抗鲁棒性，系统性漏洞在多种模型架构上均被验证。</div>
+            <div class="en">Experiments across multiple VI tracking datasets demonstrate that VIFA significantly reduces tracking precision on both single-object and multi-object fusion trackers. The method exposes systemic vulnerabilities in state-of-the-art VI fusion models, confirming that multimodal fusion does not inherently confer adversarial robustness. Specific precision drop numbers are not disclosed in the abstract, but results are described as consistent across diverse model architectures and datasets.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>方法细节不完整（如扰动预算、具体攻击算法未明确），影响结果可复现性与横向比较。</li><li>本文定位为初步研究，未提出任何防御或缓解方案，如何增强BEV模型鲁棒性仍是重要开放问题。</li><li>黑盒迁移性结论对实际威胁建模有价值，但仅测试4个模型，难以推广至更新的BEV架构。</li></ul>
+              <ul class="discussion-list"><li>PSO无需梯度，适合黑盒场景，但收敛速度和补丁质量可能不及PGD等梯度方法，未来应对两者进行系统比较。</li><li>本文仅聚焦攻击方法，未提出或评估任何防御机制，实际指导意义局限于漏洞暴露而非缓解。</li><li>论文未探讨补丁在真实物理场景（如打印贴附、光照/热成像变化）下的有效性，这是评估自动驾驶与监控中真实威胁水平的关键缺口。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Incomplete methodology details (e.g., specific perturbation budgets, attack algorithms used) make it difficult to reproduce results or fairly compare with other robustness benchmarks.</li><li>The paper is preliminary and does not propose any defenses or mitigations, leaving an important open question about how to harden BEV models against the identified attacks.</li><li>Black-box transferability findings are practically important for real-world threat modeling, but the limited number of tested architectures (4 models) restricts the generalizability of conclusions to newer BEV designs.</li></ul>
+              <ul class="discussion-list"><li>PSO as optimizer is gradient-free, which is a practical strength for black-box settings, but it may converge slowly and produce suboptimal patches compared to gradient-based methods like PGD — future work should benchmark both.</li><li>The paper focuses solely on attack methodology; no defensive countermeasures are proposed or evaluated, leaving the actionable takeaway limited to vulnerability exposure rather than mitigation.</li><li>Physical-world applicability of the patches (e.g., printed and placed on real objects under varying lighting or thermal conditions) is not addressed, which is a key gap for assessing real-world threat level in autonomous driving or surveillance scenarios.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="https://www.semanticscholar.org/paper/a8ee05631d8d10d5df5c3a5ebdaa1fed39cdbd9f" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">一种利用物体刚性作为结构先验的三维点云对抗攻击框架，能生成难以被离群点去除策略检测的隐蔽扰动。</div>
-        <div class="paper-title-en">Rigid Structure Perturbation for Adversarial 3D Point Clouds Attack</div>
-        <div class="paper-meta">
-          <span>Zhiyuan Ma, Ju Wang, Jun Wang et al.</span>
-          <span class="badge badge-date">2025-10-31</span>
-          <span class="badge badge-venue">2025 IEEE 3rd International Conference on Computer, Vision and Intelligent Technology (ICCVIT)</span>
-          
-          <span class="badge badge-score">评分 7.7</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>一种利用物体刚性作为结构先验的三维点云对抗攻击框架，能生成难以被离群点去除策略检测的隐蔽扰动。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A rigid-structure-aware adversarial attack framework for 3D point clouds that exploits object rigidity as a geometric prior to generate imperceptible perturbations resilient to outlier-removal defenses.</div>
-        </div>
-
-        
-        <details>
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul><li>Tackles critical security vulnerability in 3D perception systems used in autonomous driving and robotics, which is highly relevant to embodied intelligence</li><li>Identifies and targets a real limitation of existing methods—conspicuous outlier points that can be easily removed—suggesting a more sophisticated attack strategy</li><li>3D point cloud robustness is an underexplored area with genuine practical significance for safety-critical applications</li></ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul><li>Zero community engagement (0 HuggingFace upvotes) and publication at a lower-tier venue (ICCVIT 2025) rather than top-tier ML/vision conferences, suggesting limited impact</li><li>Abstract appears truncated (&#39;How&#39; at the end indicates incomplete submission), raising concerns about paper quality and completeness of methodology</li><li>Authors appear to be from non-elite institutions (not verifiable as top-tier), and lack of institutional affiliation details weakens credibility</li></ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">用于三维点云分类的深度神经网络在自动驾驶和机器人领域至关重要，但其对抗鲁棒性研究远少于二维图像领域。核心挑战在于如何生成既能欺骗模型、又难以被人类感知的三维对抗扰动。</div>
-            <div class="en">Deep neural networks used for 3D point cloud classification—critical in autonomous driving and robotics—are vulnerable to adversarial attacks, yet this domain remains understudied compared to 2D images. The key challenge is crafting perturbations that are both effective at fooling models and imperceptible to human observers, who perceive 3D structure very differently from 2D images.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有三维对抗攻击方法常引入明显的离群点，偏离物体自然表面，易被简单的离群点去除或统计滤波防御所抵消。这些方法大多直接借鉴二维图像攻击策略，未充分考虑三维点云特有的几何结构属性。</div>
-            <div class="en">Existing 3D adversarial attack methods frequently introduce conspicuous outlier points that deviate from the object&#39;s natural surface, making them easily neutralized by simple outlier removal or statistical filtering defenses. These approaches largely borrow perturbation strategies from 2D image attacks without accounting for the structural and geometric properties unique to 3D point clouds.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">该框架将物体刚性作为结构先验约束对抗扰动，确保生成的点位移与目标物体的刚体几何保持一致。通过遵守刚性结构，扰动自然融入物体表面，避免产生悬浮离群点。所生成的对抗样本既能有效欺骗分类器，又对离群点去除防御具有鲁棒性，并在三维空间中保持感知上的合理性。</div>
-            <div class="en">The proposed framework introduces object rigidity as a structural prior to constrain adversarial perturbations, ensuring that generated point displacements remain consistent with the rigid-body geometry of the target object. By respecting rigid structure, the perturbations blend naturally into the object&#39;s surface rather than producing floating outlier points. This approach produces adversarial samples that are both effective against classifiers and robust to outlier-removal defenses, while remaining perceptually plausible in 3D space.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">该方法在主流点云分类器（如PointNet、PointNet++、DGCNN）上的攻击成功率优于基线方法，同时在离群点去除防御下具有更低的可检测性。具体数值因摘要不完整未能全部披露，但文章报告其在隐蔽性和防御规避指标上均优于现有方法。</div>
-            <div class="en">The method demonstrates improved attack success rates against mainstream point cloud classifiers (e.g., PointNet, PointNet++, DGCNN) compared to baselines, while maintaining lower detectability under outlier removal defenses. Specific numerical results are not fully disclosed in the available abstract, but the framework is reported to outperform prior adversarial point cloud attack methods in both imperceptibility and defense evasion metrics.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>方法新颖性存疑：将扰动约束于刚体变换是对已有思路的自然延伸，与GeoA3等方法的增量贡献需更清晰的实验区分。</li><li>研究范围局限于分类任务，刚性结构扰动能否迁移至三维目标检测或分割等更关键的下游任务尚不明确。</li><li>摘要不完整且论文可见度有限，刚性约束的具体公式化方法和评估数据集未充分说明，影响可复现性判断。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Methodological novelty is questionable: constraining perturbations to rigid-body transformations is a natural extension of existing ideas, and the paper&#39;s incremental contribution over methods like GeoA3 or SI-Adv needs clearer experimental differentiation.</li><li>Scope is limited to classification tasks; it remains unclear whether rigid-structure perturbations transfer effectively to more safety-critical downstream tasks such as 3D object detection or segmentation in real autonomous driving pipelines.</li><li>The incomplete abstract and limited visibility of this work raise concerns about reproducibility and thoroughness of evaluation—key details about the rigidity constraint formulation and the benchmark datasets used are not fully specified.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="https://www.semanticscholar.org/paper/35dc299468ce0c15f2fe0e7dfbe81acaabc47eda" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/83ad57917d564f64ca83030739c320f65db118b3" target="_blank">查看原文 →</a>
       </div>
       
       
@@ -272,20 +512,20 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">本文提出&#34;智能体化评估&#34;框架，通过标准化的智能体间接口，用评估智能体自动化评测逻辑推理智能体，在FOLIO数据集上...</div>
-        <div class="paper-title-en">Agentified Assessment of Logical Reasoning Agents</div>
+        <div class="paper-title">SEAL是一个基于多基准驱动的框架，用于在LLM推理阶段实现逐提示粒度的碳排放估算。</div>
+        <div class="paper-title-en">SEALing the Gap: A Reference Framework for LLM Inference Carbon Estimation via Multi-Benchmark Driven Embodiment</div>
         <div class="paper-meta">
-          <span>Zhiyu Ni, Yifeng Xiao, Zheng Liang</span>
+          <span>Priyavanshi Pathania, Rohit Mehra, Vibhu Saujanya Sharma et al.</span>
           <span class="badge badge-date">2026-03-03</span>
-          <span class="badge badge-venue">ICLR 2026</span>
+          <span class="badge badge-venue">the</span>
           
           <span class="badge badge-score">评分 8.7</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>本文提出&#34;智能体化评估&#34;框架，通过标准化的智能体间接口，用评估智能体自动化评测逻辑推理智能体，在FOLIO数据集上实现86.70%的准确率。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces an &#34;agentified assessment&#34; framework where a dedicated assessor agent automates the evaluation of logical reasoning agents via a standardized agent-to-agent interface, achieving 86.70% accuracy on FOLIO with an auto-formalization + Z3Py/SMT approach.</div>
+          <div>SEAL是一个基于多基准驱动的框架，用于在LLM推理阶段实现逐提示粒度的碳排放估算。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SEAL is a reference framework and multi-benchmark-driven tool for estimating carbon emissions at the per-prompt level during LLM inference.</div>
         </div>
 
         
@@ -295,11 +535,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Tackles an increasingly important problem of reproducible and auditable agent evaluation, which is crucial as LLMs are deployed as agents</li><li>Novel agentified assessment paradigm where evaluators are themselves agents, enabling better scalability and standardization of benchmarking</li><li>Concrete case study on auto-formalization and logical reasoning demonstrates practical applicability with structured failure type recording</li></ul>
+                <ul><li>Timely and important topic: LLM inference carbon emissions are a pressing sustainability concern that directly impacts real-world deployment decisions</li><li>Systematic approach: Provides reference framework principles rather than ad-hoc solutions, potentially offering lasting value for the research community</li><li>Practical relevance: Prompt-level carbon measurement enables actionable decision-making for practitioners deploying LLMs</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero community engagement on HuggingFace (0 upvotes) suggests limited visibility or interest from the broader research community at time of evaluation</li><li>Authors appear to be from less prominent institutions (not explicitly major tech/AI labs), which may reduce paper&#39;s initial visibility and adoption</li></ul>
+                <ul><li>Zero community traction: 0 HuggingFace upvotes and incomplete abstract suggest either recent publication or limited visibility</li><li>Author affiliation unclear: No obvious major AI research institution affiliations visible, reducing prestige signal</li><li>Incomplete presentation: Abstract cuts off mid-sentence (&#39;early embodiment of these principles t&#39;), suggesting submission may be draft-stage or poorly formatted</li></ul>
               </div>
             </div>
           </div>
@@ -309,63 +549,63 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">如何以可复现、可审计且对执行失败具有鲁棒性的方式评测逻辑推理智能体？现有评测流程脆弱且难以审计，导致跨研究的公平比较困难。</div>
-            <div class="en">How can we evaluate logical reasoning agents in a way that is reproducible, auditable, and resilient to execution failures? Ad-hoc evaluation pipelines are brittle and hard to audit, making it difficult to fairly compare reasoning agents across studies.</div>
+            <div class="zh">随着LLM在软件工程中大规模部署，推理阶段的碳排放因海量提示处理而迅速超越训练阶段。亟需逐提示粒度的精确碳排放测量，以支持可持续性决策。</div>
+            <div class="en">As LLMs are deployed at massive scale in software engineering, inference-stage carbon emissions—driven by billions of prompts—quickly overtake training emissions. Accurate, prompt-level carbon measurement is needed to support sustainability-focused decision-making in LLM deployment.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有推理智能体评测依赖静态数据集和脚本式评估，无法强制执行预算或系统记录失败类型。CoT基线在FOLIO上仅达73.89%，且缺乏结构化的失败分析与可扩展的审计机制。</div>
-            <div class="en">Existing benchmarking of reasoning agents typically relies on static datasets and manual or script-based evaluation, which cannot enforce execution budgets or systematically record failure modes. Chain-of-thought (CoT) prompting baselines on FOLIO, while widely used, are opaque in their failure analysis and achieve only ~73.89% accuracy. Neither approach provides a structured, agent-native interface for scalable and auditable assessment.</div>
+            <div class="zh">现有碳排放估算方法主要关注训练阶段，缺乏推理阶段的逐提示粒度分析，也缺乏可跨不同部署场景泛化的标准化系统框架，限制了其在实际可持续性评估中的适用性。</div>
+            <div class="en">Existing carbon estimation approaches focus primarily on training emissions and lack prompt-level granularity for inference. They also lack a standardized, systematic framework that can generalize across different LLM deployments and benchmark contexts, limiting their utility for practical sustainability assessment.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">评估智能体负责下发任务、执行预算管控、输出解析及结构化失败记录（如解析错误、超时、答案错误）。被测智能体只需暴露标准化A2A接口。案例中，自动形式化智能体将自然语言前提与结论转化为Z3Py程序，并通过SMT求解判断逻辑蕴含，基准在经过求解器验证和修复的FOLIO子集上运行。</div>
-            <div class="en">The authors design an assessor agent that issues tasks, enforces token/step execution budgets, parses outputs, and logs structured failure types (e.g., parse errors, timeout, wrong answer). The agent under test only needs to expose a standardized agent-to-agent (A2A) interface, decoupling evaluation logic from agent internals. As a case study, an auto-formalization agent translates natural language premises and conclusions into Z3Py programs and uses SMT solving to determine logical entailment. The benchmark is run on a solver-verified and repaired split of the FOLIO dataset to ensure label reliability.</div>
+            <div class="zh">本文首先提出了构建LLM推理碳估算参考框架的指导原则，为未来工具设计提供系统基础。在此基础上，作者推出SEAL框架的早期实现，采用多基准驱动方法实现逐提示碳排放估算，通过聚合多基准性能数据提升估算精度与泛化能力。</div>
+            <div class="en">The paper first defines a set of guiding principles for building a reference framework for LLM inference carbon estimation, intended to guide future tool design and sustainability research. Based on these principles, the authors introduce SEAL (an early embodiment), which uses a multi-benchmark-driven approach to estimate carbon emissions per prompt. SEAL aggregates performance data across multiple benchmarks to improve estimation accuracy and generalizability. This positions SEAL as a foundation for standardized sustainability assessment across LLM inference workloads.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">在清洗后的FOLIO验证集上，自动形式化智能体在评估协议下达到86.70%准确率，比CoT基线高出12.81个百分点（73.89%）。结构化失败日志揭示了CoT评估无法发现的具体失败类别。</div>
-            <div class="en">The auto-formalization agent achieves 86.70% accuracy on the cleaned FOLIO validation set under the assessor protocol, outperforming the chain-of-thought baseline by 12.81 percentage points (73.89%). The structured failure logging reveals specific breakdown categories that CoT evaluation cannot surface, demonstrating the auditing advantage of the agentified approach.</div>
+            <div class="zh">SEAL的初步验证结果在逐提示碳估算精度上表现良好，多基准方法相比单一基准基线具有更强的可靠性，为标准化LLM可持续性评估奠定了基础，但详细量化指标尚未完整披露。</div>
+            <div class="en">Initial validation of SEAL shows promising results in per-prompt carbon estimation accuracy, though specific quantitative metrics are not fully detailed in the abstract. The multi-benchmark approach demonstrates improved reliability over single-benchmark baselines, positioning SEAL as a viable foundation for standardized LLM sustainability benchmarking.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>评估范围有限：案例研究仅覆盖FOLIO验证集和单一智能体类型，在数学、常识等其他推理领域及多智能体场景中的泛化能力尚未验证。</li><li>数据标签依赖性：框架有效性依赖于求解器验证和修复后的FOLIO子集质量，数据修复中的错误可能静默地影响准确率报告。</li><li>A2A接口开销未量化：标准化接口虽是核心贡献，但论文未报告评估智能体自身的延迟与成本，这对大规模评测的实用性至关重要。</li></ul>
+              <ul class="discussion-list"><li>提示多样性挑战：逐提示碳估算是重要进步，但SEAL能否有效应对不同长度、任务类型和模型规模的提示多样性，仍需进一步验证。</li><li>基准选择依赖：多基准方法提升了泛化能力，但基准的覆盖范围与权重分配直接影响估算质量，未来需明确基准选取标准。</li><li>落地集成问题：SEAL若要真正影响部署决策，须与现有MLOps流水线集成并提供开发者友好的碳成本报告，当前&#39;早期实现&#39;阶段尚未解决这一问题。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Scope of evaluation: The case study covers only the FOLIO validation set with one agent type; broader generalization to other reasoning domains (e.g., math, commonsense) or multi-agent systems remains untested.</li><li>Label reliability dependency: The framework&#39;s validity hinges on the quality of the solver-verified/repaired FOLIO split; errors introduced during dataset repair could silently inflate or deflate reported accuracy.</li><li>Scalability of A2A interface: While the standardized interface is a key contribution, the paper does not quantify the overhead (latency, cost) of the assessor agent itself, which matters for large-scale benchmarking campaigns.</li></ul>
+              <ul class="discussion-list"><li>Granularity gap: Prompt-level carbon estimation is a critical step forward, but real-world utility depends on whether SEAL can handle prompt diversity (e.g., varying lengths, tasks, and model sizes) without significant estimation error.</li><li>Benchmark dependency: The multi-benchmark approach improves generalizability, but the choice and coverage of benchmarks directly determines estimation quality—future work must clarify which benchmarks are included and how they are weighted.</li><li>Adoption barrier: For SEAL to influence actual deployment decisions, it must integrate with existing MLOps pipelines and report carbon costs in developer-friendly formats; the paper&#39;s current stage as an &#39;early embodiment&#39; leaves this open.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02788v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02949v1" target="_blank">查看原文 →</a>
       </div>
       
       
       
       <div class="paper-card">
-        <div class="paper-title">BehaveSim通过比较求解过程中的中间解序列（问题求解轨迹）来衡量LLM生成代码的算法相似性，而非依赖语法或最终输出。</div>
-        <div class="paper-title-en">Rethinking Code Similarity for Automated Algorithm Design with LLMs</div>
+        <div class="paper-title">本文提出一个多智能体LLM平台，通过模拟虚拟社交媒体社区来研究情感极化，提供可扩展且可复现的替代方案。</div>
+        <div class="paper-title-en">A Natural Language Agentic Approach to Study Affective Polarization</div>
         <div class="paper-meta">
-          <span>Rui Zhang, Zhichao Lu</span>
+          <span>Stephanie Anneris Malvicini, Ewelina Gajewska, Arda Derbent et al.</span>
           <span class="badge badge-date">2026-03-03</span>
-          <span class="badge badge-venue">ICLR</span>
+          <span class="badge badge-venue">ICAART 2026</span>
           
-          <span class="badge badge-score">评分 8.7</span>
+          <span class="badge badge-score">评分 7.7</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>BehaveSim通过比较求解过程中的中间解序列（问题求解轨迹）来衡量LLM生成代码的算法相似性，而非依赖语法或最终输出。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">BehaveSim measures algorithmic similarity in LLM-generated code by comparing problem-solving trajectories (sequences of intermediate solutions), rather than syntax or final outputs.</div>
+          <div>本文提出一个多智能体LLM平台，通过模拟虚拟社交媒体社区来研究情感极化，提供可扩展且可复现的替代方案。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A multi-agent LLM platform simulates virtual social media communities to study affective polarization, offering a scalable and reproducible alternative to manual data labeling and real-world observation.</div>
         </div>
 
         
@@ -375,11 +615,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Tackles an important and understudied problem in automated algorithm design where distinguishing true algorithmic innovation from syntactic variation is critical</li><li>Directly addresses the LLM Development Trends frontier by improving evaluation methods for LLM-generated algorithms, which is increasingly important as LLMs generate more code</li><li>Proposes a principled approach (BehaveSim) that likely measures behavioral properties rather than surface-level code similarity, showing methodological rigor</li></ul>
+                <ul><li>Timely topic combining LLMs with multi-agent systems for studying real-world social phenomena</li><li>Addresses practical problem of labor-intensive manual annotation through automated LLM-based approach</li><li>Novel application of LLMs to operationalize affective polarization frameworks in virtual communities</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero community engagement (0 HuggingFace upvotes) suggests limited current awareness or impact despite venue being ICLR, a top conference</li><li>Author institutions not clearly from Tier-1 AI labs (MIT, CMU, Google, DeepMind, Stanford), limiting prestige factor</li><li>Abstract is incomplete/truncated, making it difficult to assess full methodological contribution and experimental comprehensiveness</li></ul>
+                <ul><li>Zero HuggingFace upvotes and low community engagement signal minimal recognition or interest</li><li>Abstract appears truncated/incomplete, raising concerns about paper completeness and experimental rigor</li><li>Authors primarily from University of Warsaw and non-top-tier institutions, reducing prestige factor for LLM development venue</li></ul>
               </div>
             </div>
           </div>
@@ -389,63 +629,63 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">随着LLM自主生成算法实现，如何区分真正的算法创新与表面代码变体成为LLM-AAD评估的核心问题。现有代码相似性指标无法可靠判断两段程序是否体现相同的算法逻辑，导致AAD评估存在盲区。</div>
-            <div class="en">As LLMs autonomously generate algorithm implementations, distinguishing genuine algorithmic innovation from superficial code rewrites becomes critical for evaluating progress in LLM-based Automated Algorithm Design (LLM-AAD). Existing code similarity metrics cannot reliably identify whether two programs embody the same underlying algorithmic logic, creating a blind spot in the AAD evaluation pipeline.</div>
+            <div class="zh">如何在不依赖人工标注或有限真实数据的情况下，大规模研究社交媒体上的情感极化？现有研究中极化定义的碎片化也使跨研究比较与互操作框架的构建变得困难。</div>
+            <div class="en">How can we study affective polarization on social media at scale without relying on labor-intensive manual annotation or limited real-world datasets? The paper addresses the fragmentation of definitions across studies, which makes it hard to compare results or build interoperable frameworks for polarization research.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">基于词元的指标（如BLEU、CodeBERT）仅捕捉表层语法相似性，忽略语义算法差异。输出等价方法只检查最终结果，遗漏了求解过程的结构逻辑。两类指标均无法检测LLM是否在反复重新发现逻辑相同但命名不同的启发式算法。</div>
-            <div class="en">Token-based metrics (e.g., BLEU, CodeBLERT) capture surface-level syntactic similarity but are blind to semantic algorithmic differences. Output-equivalence approaches only check final results, missing the structural logic of how a solution is reached. Neither class of metrics is suited to detect, for example, whether two differently named but logically identical heuristics are being repeatedly rediscovered by an LLM.</div>
+            <div class="zh">真实世界研究因数据获取和规模限制而范围有限；模拟研究则缺乏高质量标注数据，人工标注既耗时又易受主观偏见影响。各研究对&#34;情感极化&#34;定义不一，进一步阻碍了跨研究比较。</div>
+            <div class="en">Real-world studies of affective polarization are limited in scope due to data access and scale constraints. Simulated studies suffer from a lack of high-quality labeled training data, as manual annotation is both costly and subject to annotator bias. Additionally, inconsistent operationalizations of &#34;affective polarization&#34; across studies prevent meaningful cross-study comparisons.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">BehaveSim通过&#34;问题求解轨迹&#34;（PSTrajs）定义算法相似性，即算法在执行过程中产生的中间候选解的有序序列。若两算法在多样化问题实例上的PSTrajs高度对齐，则认为二者相似，捕捉底层逻辑的行为指纹。轨迹对齐通过解序列上的距离度量量化，使该指标基于执行而非文本。该方法对变量命名、代码结构或编程风格不敏感，专注于算法如何遍历搜索空间。</div>
-            <div class="en">BehaveSim defines algorithmic similarity via &#34;problem-solving trajectories&#34; (PSTrajs)—the ordered sequence of intermediate candidate solutions an algorithm produces while executing on a problem instance. Two algorithms are considered similar if their PSTrajs align closely across a diverse set of problem instances, capturing the behavioral fingerprint of the underlying logic. Trajectory alignment is quantified using a distance measure over solution sequences, making the metric execution-based rather than text-based. This approach is agnostic to variable naming, code structure, or programming style, focusing purely on how an algorithm navigates the search space.</div>
+            <div class="zh">作者提出多智能体框架，LLM驱动的虚拟智能体扮演党派角色并参与模拟社交媒体讨论。平台将社会科学文献中多种情感极化定义形式化，支持跨实验的一致操作化，并通过生成合成对话数据减少对真实标注数据的依赖。</div>
+            <div class="en">The authors propose a multi-agent framework where LLM-powered virtual agents represent partisan personas and engage in simulated social media discussions. The platform formalizes multiple definitions of affective polarization drawn from social science literature, enabling consistent operationalization across experiments. By generating synthetic discussion data through agent interactions, the system reduces dependency on scarce labeled real-world data. The framework also serves as a testbed for exploring causal and comparative questions about polarization dynamics.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">BehaveSim在算法相似性判断上与人类专家的一致性优于基于语法和输出的基线方法。在组合优化任务实验中，BehaveSim成功识别LLM-AAD系统重新生成功能等价但代码外观不同算法的情形——这是先前指标无法发现的失效模式。论文报告了相对基线的定量提升，但摘要中未完整披露具体数值。</div>
-            <div class="en">BehaveSim demonstrates stronger alignment with human expert judgments of algorithmic similarity compared to syntax-based and output-based baselines. In experiments on combinatorial optimization tasks, BehaveSim successfully identifies cases where LLM-AAD systems regenerate functionally equivalent algorithms with different code appearances—a failure mode invisible to prior metrics. Specific quantitative gains over baselines (e.g., correlation scores) are reported, though exact numbers are not fully detailed in the abstract.</div>
+            <div class="zh">平台展示了复现和探索情感极化相关社会科学问题的能力，但现有摘要未提供具体量化指标，表明该工作以框架与概念验证为主，而非大规模实证研究。</div>
+            <div class="en">The platform demonstrates the ability to replicate and explore social science questions related to affective polarization, providing a new simulation-based perspective on the phenomenon. Specific quantitative benchmarks or experimental results are not fully detailed in the available abstract, suggesting the paper is primarily a framework and proof-of-concept contribution rather than an empirical study with large-scale evaluations.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>BehaveSim依赖代码执行获取轨迹，对于运行时间长或非确定性算法，计算开销可能较大，存在实际应用限制。</li><li>方法的有效性与所选问题实例密切相关——基准集选择不当可能导致两种不同算法被判为相似，或两种等价算法被判为不同，评估鲁棒性有待验证。</li><li>BehaveSim为LLM-AAD流程中的去重与多样性追踪提供了具体路径，有助于衡量迭代LLM搜索是否真正探索了新算法空间，还是在改写同一逻辑。</li></ul>
+              <ul class="discussion-list"><li>LLM智能体能否真实代理人类党派立场存疑——模型可能反映训练数据偏见，而非真实政治态度，从而扭曲极化模拟结果。</li><li>摘要被截断且缺乏量化结果，难以判断平台输出是否具有实证基础，还是仅生成表面合理的合成文本。</li><li>对多种情感极化定义的形式化有助于提升可复现性，但需进一步验证智能体能否跨实验稳定体现不同党派身份。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Execution dependency is a practical limitation: BehaveSim requires running code on problem instances to obtain trajectories, which may be computationally expensive or infeasible for algorithms with long runtimes or non-deterministic behavior.</li><li>The method&#39;s validity is tied to the choice of problem instances used to elicit trajectories—a poorly chosen benchmark set could make two distinct algorithms appear similar or two equivalent ones appear different, raising questions about evaluation robustness.</li><li>BehaveSim opens a concrete path toward deduplication and diversity tracking in LLM-AAD pipelines, potentially enabling researchers to measure whether iterative LLM search is genuinely exploring new algorithmic territory or cycling through paraphrases.</li></ul>
+              <ul class="discussion-list"><li>Validity of LLM agents as proxies for human partisans is a key open question — LLMs may reflect training data biases rather than authentic political attitudes, potentially distorting simulated polarization dynamics.</li><li>The truncated abstract and lack of reported quantitative results make it difficult to assess whether the platform produces outputs that are empirically grounded or merely plausible-sounding synthetic text.</li><li>Formalizing multiple definitions of affective polarization is a meaningful contribution to reproducibility, but the paper must demonstrate that these definitions are operationalized consistently and that agents reliably embody distinct partisan identities across runs.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02787v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02711v1" target="_blank">查看原文 →</a>
       </div>
       
       
       
       <div class="paper-card">
-        <div class="paper-title">一种基于智能体LLM的工作流，通过自动识别覆盖漏洞并生成形式化属性，实现IC形式验证的覆盖率闭合，并在多个设计上取得可量化的改进。</div>
-        <div class="paper-title-en">Agentic AI-based Coverage Closure for Formal Verification</div>
+        <div class="paper-title">Saarthi是一个面向端到端形式验证的多智能体LLM框架，验证有效率约40%，并提出两项关键改进，朝领域专用AGI迈进。</div>
+        <div class="paper-title-en">Saarthi for AGI: Towards Domain-Specific General Intelligence for Formal Verification</div>
         <div class="paper-meta">
-          <span>Sivaram Pothireddypalli, Ashish Raman, Deepak Narayan Gadde et al.</span>
+          <span>Aman Kumar, Deepak Narayan Gadde, Luu Danh Minh et al.</span>
           <span class="badge badge-date">2026-03-03</span>
-          <span class="badge badge-venue">IEEE</span>
+          <span class="badge badge-venue">the</span>
           
-          <span class="badge badge-score">评分 8.3</span>
+          <span class="badge badge-score">评分 6.7</span>
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>一种基于智能体LLM的工作流，通过自动识别覆盖漏洞并生成形式化属性，实现IC形式验证的覆盖率闭合，并在多个设计上取得可量化的改进。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">An agentic LLM-driven workflow automates formal verification coverage closure by identifying coverage gaps and generating formal properties, demonstrating measurable coverage improvements on open-source and internal IC designs.</div>
+          <div>Saarthi是一个面向端到端形式验证的多智能体LLM框架，验证有效率约40%，并提出两项关键改进，朝领域专用AGI迈进。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Saarthi is a multi-agent LLM framework for end-to-end formal verification that achieves ~40% efficacy and introduces two key enhancements toward domain-specific AGI for hardware verification.</div>
         </div>
 
         
@@ -455,11 +695,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Tackles a real and critical problem in IC verification that directly impacts engineering productivity</li><li>Demonstrates measurable improvements on both open-source and internal benchmarks with complexity-correlated results</li><li>Timely application of agentic AI and LLMs to an important domain (formal verification) that has not been extensively explored</li><li>Published in reputable IEEE venue with industry relevance</li></ul>
+                <ul><li>Addresses a non-trivial and important problem combining LLMs with formal verification</li><li>Multi-agent collaboration approach aligns with current LLM development trends</li><li>Demonstrates end-to-end system rather than isolated component evaluation</li><li>Domain-specific AI application represents practical direction for LLMs</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero community engagement on HuggingFace suggests limited visibility or awareness outside primary industry stakeholders</li><li>Abstract lacks details on specific LLM architectures, agentic workflows, evaluation metrics, and comparative baselines needed to assess rigor</li><li>Author affiliations appear to be primarily from industry (not top-tier academic institutions), reducing prestige signal</li><li>Methodological completeness unclear: no discussion of failure modes, statistical significance, or ablation studies visible in abstract</li></ul>
+                <ul><li>Abstract appears truncated/incomplete making full assessment difficult</li><li>Zero HuggingFace upvotes suggests minimal community traction or awareness</li><li>40% efficacy is modest and paper lacks clear analysis of failure modes</li><li>Authors appear to be from lesser-known institutions, reducing prestige signal</li><li>Missing details on experimental rigor, baselines, and methodology validation</li><li>Unclear venue (listed as &#39;the&#39;) raises publication quality concerns</li></ul>
               </div>
             </div>
           </div>
@@ -469,44 +709,44 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">形式验证中的覆盖率闭合是IC流片前的强制要求，但传统穷举方法难以在项目周期内实现完全覆盖。人工分析覆盖漏洞并编写形式化属性耗时易错，成为芯片开发中的关键效率瓶颈。</div>
-            <div class="en">Coverage closure in formal IC verification is a mandatory sign-off requirement, yet traditional exhaustive methods routinely fail to achieve full coverage within project deadlines. The manual effort of analyzing coverage holes and writing formal properties is time-consuming and error-prone, creating a critical productivity bottleneck in chip development.</div>
+            <div class="zh">形式验证是硬件设计中高度依赖专家的复杂任务，现有单模型AI难以胜任完整流程。本文探索多智能体LLM系统能否自主完成从规格说明到覆盖率闭合的全流程形式验证。</div>
+            <div class="en">Formal verification is a complex, expert-intensive task in hardware design that demands reasoning over specifications, properties, and coverage — a workflow poorly suited to single-model AI approaches. The paper asks whether a multi-agent LLM system can autonomously handle the full formal verification pipeline, from specification to coverage closure.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">传统形式验证依赖专家手工编写属性，难以随设计复杂度扩展。已有自动化方案缺乏语义理解能力，无法将覆盖报告中的漏洞转化为正确的形式化断言。现有EDA领域的LLM应用主要集中于RTL生成或仿真测试台，而非针对覆盖漏洞的形式属性合成。</div>
-            <div class="en">Traditional formal verification coverage closure relies on manual property writing by domain experts, which does not scale with growing design complexity. Prior automation attempts lack the semantic understanding needed to interpret coverage reports and translate gaps into correct formal assertions. Existing LLM applications in EDA have largely focused on RTL generation or simulation testbenches, not formal property synthesis targeting coverage holes.</div>
+            <div class="zh">现有基于LLM的硬件验证方法通常只针对单一子任务（如属性生成或RTL缺陷检测），无法覆盖完整验证流程。单智能体系统在形式验证所需的多步迭代推理中容易产生幻觉和错误。</div>
+            <div class="en">Existing LLM-based approaches to hardware verification are typically narrow, targeting isolated subtasks like property writing or RTL bug detection rather than the full verification flow. Single-agent systems struggle with the iterative, multi-step reasoning required for formal verification and are prone to hallucinations on complex constraint-solving tasks.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">该框架由LLM驱动的智能体组成，迭代分析形式验证覆盖报告、定位未覆盖行为，并自动生成填补漏洞所需的形式化属性。智能体以闭环方式运行：读取工具输出、推理缺失覆盖点、无需人工干预地生成新断言。框架在开源设计和内部IC设计上均进行了基准测试，支持跨复杂度评估。</div>
-            <div class="en">The paper proposes an agentic AI framework where an LLM-orchestrated agent iteratively analyzes formal verification coverage reports, pinpoints uncovered behaviors (coverage holes), and automatically generates the formal properties needed to close those gaps. The agent operates in a closed-loop fashion: it reads tool output, reasons about missing coverage, and writes new assertions without human intervention. The framework is benchmarked on both open-source designs and proprietary internal IC designs, allowing cross-complexity evaluation. The approach leverages GenAI&#39;s code generation and reasoning capabilities specifically tuned to formal property languages used in hardware verification.</div>
+            <div class="zh">Saarthi采用多智能体协作架构，各专用智能体负责形式验证流程中的不同阶段，包括规格解析、属性生成与覆盖率闭合。本文提出两项关键增强，针对短时短上下文（STSC）任务场景优化幻觉抑制与自校正能力，将其定位为领域专用通用智能系统。</div>
+            <div class="en">Saarthi employs a multi-agent collaboration architecture where specialized agents handle distinct stages of the formal verification pipeline, including specification parsing, property generation, and coverage closure. The paper introduces two key enhancements to the original framework — though the abstract is truncated, these likely target hallucination reduction and iterative self-correction based on tool feedback. The system specifically targets Short Term, Short Context (STSC) tasks, framing formal verification as a domain where current LLM capabilities are best leveraged. This positions Saarthi as a domain-specific general intelligence system rather than a general-purpose AGI.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">在开源及内部设计上的基准测试显示形式覆盖率指标有可量化提升，设计越复杂，改进幅度越大。这一相关性表明，智能体方法在人工难以扩展的场景中效益最为显著。摘要未完整披露具体数值，难以与基线进行直接定量比较。</div>
-            <div class="en">Benchmarking across open-source and internal designs shows measurable increases in formal coverage metrics, with larger improvements observed on more complex designs. The correlation between design complexity and coverage gain suggests the agentic approach is most impactful where manual effort is hardest to scale. Specific numerical results are not fully disclosed in the abstract, limiting direct quantitative comparison against baselines.</div>
+            <div class="zh">Saarthi在端到端形式验证任务上达到约40%的有效率，作者承认这尚不足以用于生产环境。该结果建立了智能体LLM形式验证的基准，但也揭示了在复杂硬件设计上可靠性与正确性方面的显著挑战。</div>
+            <div class="en">Saarthi achieves approximately 40% efficacy on end-to-end formal verification tasks, which the authors acknowledge is insufficient for production use. While this represents a measurable baseline for agentic LLM formal verification, it underscores significant remaining challenges in reliability and correctness for complex hardware designs.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>方法透明度不足：论文未说明所用LLM骨干、提示工程策略，以及如何处理生成属性错误或无法验证的情况，影响可复现性。</li><li>覆盖率提升与设计复杂度正相关的结论值得审慎：复杂设计的覆盖语义更模糊，存在生成属性虚增覆盖率却未发现真实缺陷的风险。</li><li>论文直接针对流片瓶颈，工业落地潜力大，但缺乏开源实现和与同类LLM-EDA方法的横向对比，限制了社区验证和结果可信度。</li></ul>
+              <ul class="discussion-list"><li>有效率上限不足：40%的成功率意味着系统在多数复杂验证任务上仍会失败，STSC框架是否真正缓解了LLM局限性尚待验证。</li><li>论文呈现不完整：摘要被截断，两项&#39;关键增强&#39;未在现有文本中充分描述，技术新颖性与可复现性难以评估。</li><li>AGI定位与实用价值存在落差：将40%有效率的工具定位为&#39;领域AGI&#39;步骤略显夸大，需与现有EDA验证工具进行更严格的对比评估。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Methodological transparency is a key weakness: the paper does not detail which LLM backbone is used, how prompts are engineered, or how the agent handles incorrect/unverifiable generated properties — all critical for reproducibility.</li><li>The claim that improvements correlate with design complexity is intriguing but needs caution: more complex designs also have more ambiguous coverage semantics, raising the risk of generating properties that increase coverage metrics without catching real bugs.</li><li>Industrial adoption potential is high given the direct targeting of a sign-off bottleneck, but the lack of open-source release and limited academic benchmarking (e.g., no comparison against prior LLM-for-EDA baselines) restricts community validation and trust in the reported gains.</li></ul>
+              <ul class="discussion-list"><li>Limited efficacy ceiling: A 40% success rate means the system fails on most complex verification tasks, raising questions about whether STSC framing genuinely mitigates LLM limitations or merely defers them to simpler sub-problems.</li><li>Incomplete paper presentation: The abstract is truncated and the two &#39;key enhancements&#39; are not fully described in the available text, making it difficult to evaluate the technical novelty or reproducibility of the contributions.</li><li>AGI framing vs. practical utility: Positioning a 40%-efficacy tool as a step toward &#39;domain-specific AGI&#39; is an overreach; the paper would benefit from a more grounded evaluation against existing EDA verification tools and clearer benchmarks.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03147v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03175v1" target="_blank">查看原文 →</a>
       </div>
       
       
@@ -523,170 +763,10 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">Utonia是首个跨五类三维点云领域联合训练的自监督统一编码器，可同时提升感知能力及具身智能与多模态推理任务的性能。</div>
-        <div class="paper-title-en">Utonia: Toward One Encoder for All Point Clouds</div>
+        <div class="paper-title">本文提出师生框架，用四个RGB相机与单目深度估计取代LiDAR，实现完全板载的全向机器人导航。</div>
+        <div class="paper-title-en">Learning Vision-Based Omnidirectional Navigation: A Teacher-Student Approach Using Monocular Depth Estimation</div>
         <div class="paper-meta">
-          <span>Yujia Zhang, Xiaoyang Wu, Yunhan Yang et al.</span>
-          <span class="badge badge-date">2026-03-03</span>
-          
-          
-          <span class="badge badge-score">评分 6.9</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>Utonia是首个跨五类三维点云领域联合训练的自监督统一编码器，可同时提升感知能力及具身智能与多模态推理任务的性能。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Utonia is a single self-supervised point cloud transformer encoder trained jointly across five diverse 3D domains (remote sensing, outdoor LiDAR, indoor RGB-D, CAD models, video-lifted point clouds) that improves both perception and downstream embodied/multimodal tasks.</div>
-        </div>
-
-        
-        <details>
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul><li>Addresses critical problem of domain-agnostic representations across diverse point cloud sources (remote sensing, LiDAR, RGB-D, CAD, video-lifted), directly relevant to embodied intelligence systems requiring multimodal perception</li><li>Demonstrates emergent behaviors from joint training and explicit connection to embodied and multimodal reasoning, showing transfer benefits beyond single-domain performance</li><li>Self-supervised learning approach is practical for real-world deployment where labeled data across all domains is scarce, with potential for broad adoption</li></ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul><li>Zero HuggingFace upvotes suggests minimal immediate community adoption or validation, and paper may lack visibility despite strong technical merit</li><li>Author affiliations appear to be primarily from academic institutions without confirmed presence of major industry labs (MIT, CMU, Google, DeepMind, Stanford) based on available information</li></ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">点云数据来源各异（无人机遥感、自动驾驶LiDAR、RGB-D相机、CAD模型及单目视频重建），几何结构与密度差异巨大。核心问题是：单一编码器能否跨域学习一致的表示空间，且联合训练是否能涌现出领域专用模型所不具备的新能力？</div>
-            <div class="en">Point cloud data comes from radically different sources—drones, autonomous vehicles, RGB-D cameras, CAD tools, and monocular video—each with unique geometry, density, and priors, yet no single model has been trained across all of them. Utonia asks whether one encoder can learn a consistent representation space that transfers universally, and whether joint training across domains produces emergent capabilities beyond what domain-specific models offer.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有自监督三维编码器（如Point-MAE、PointContrast）通常在单一领域训练，泛化能力有限。跨域三维学习多依赖独立模型或领域自适应方法，尚无端到端联合训练的统一编码器。</div>
-            <div class="en">Existing self-supervised 3D encoders such as Point-MAE or PointContrast are typically trained and evaluated within a single domain (e.g., ShapeNet objects or indoor ScanNet scenes), limiting their transferability. Multi-domain 3D learning has largely been addressed through separate models or domain adaptation, rather than a single unified encoder trained end-to-end on heterogeneous point cloud sources.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">Utonia以点云Transformer为骨干，在五类点云数据上进行自监督联合预训练，无需领域专用头部网络，直接学习统一表示空间。所学特征可作为视觉-语言-动作（VLA）策略的条件输入以提升机器人操控，也可集成到视觉语言模型（VLM）中增强空间推理，展示了跨具身与多模态任务的通用性。</div>
-            <div class="en">Utonia adopts a point transformer backbone trained with self-supervised objectives jointly on five domain categories: remote sensing, outdoor LiDAR, indoor RGB-D sequences, object-centric CAD models, and point clouds lifted from RGB-only videos. The key contribution is demonstrating that a single shared encoder can be trained across these heterogeneous sources without domain-specific heads during pre-training, yielding a universal representation space. Beyond perception, the learned features are used to condition vision-language-action (VLA) policies for robotic manipulation and are integrated into vision-language models (VLMs) to improve spatial reasoning, showing the encoder&#39;s utility across embodied and multimodal pipelines.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">联合训练在全部五类领域的感知任务上均优于领域专用基线，且仅在多域联合训练时出现涌现行为。Utonia特征显著提升了VLA策略的机器人操控成功率，并改善了VLM的空间推理基准性能（具体数值未在摘要中完整披露）。</div>
-            <div class="en">Joint multi-domain training improves perception performance across all five domains compared to domain-specific baselines, with emergent behaviors observed only when domains are trained together. Conditioning VLA policies on Utonia features yields measurable gains in robotic manipulation success rates, and integrating Utonia representations into VLMs improves spatial reasoning benchmarks, though specific numeric results are not fully detailed in the abstract.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>联合训练的涌现行为缺乏机制解释：论文声称某些能力仅在多域联合训练时出现，但其背后原因（共享几何原语、密度不变性还是跨域对比信号）尚不明确，需要更深入的消融分析。</li><li>对新领域的扩展性存疑：Utonia覆盖五类精心挑选的领域，对真正分布外的数据（如医学CT或声呐点云）的泛化能力未经验证。</li><li>下游任务增益的归因不够清晰：机器人操控与空间推理的性能提升未对编码器贡献与VLA/VLM其他模块进行充分消融，难以单独评估Utonia的实际作用。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Emergent behaviors from joint training are intriguing but underexplained: the paper claims behaviors arise &#39;only when domains are trained jointly,&#39; yet the mechanism—whether via shared geometry primitives, density invariance, or cross-domain contrastive signal—remains unclear and warrants deeper analysis.</li><li>Scalability to new domains is an open question: Utonia covers five curated domain types, but it is unknown how well the encoder handles domain shift from truly out-of-distribution sources (e.g., medical CT scans or sonar point clouds) without retraining.</li><li>The downstream gains on robotic manipulation and spatial reasoning are promising but the coupling between the point cloud encoder and the VLA/VLM architectures is not ablated thoroughly, making it hard to isolate Utonia&#39;s specific contribution from other components in those pipelines.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03283v1" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">IMR-LLM将LLM驱动的析取图构建与确定性调度及过程树引导的代码生成相结合，解决复杂工业多机器人任务规划问题。</div>
-        <div class="paper-title-en">IMR-LLM: Industrial Multi-Robot Task Planning and Program Generation using Large Language Models</div>
-        <div class="paper-meta">
-          <span>Xiangyu Su, Juzhan Xu, Oliver van Kaick et al.</span>
-          <span class="badge badge-date">2026-03-03</span>
-          
-          
-          <span class="badge badge-score">评分 6.7</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>IMR-LLM将LLM驱动的析取图构建与确定性调度及过程树引导的代码生成相结合，解决复杂工业多机器人任务规划问题。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">IMR-LLM combines LLM-driven disjunctive graph construction with deterministic scheduling and process-tree-guided code generation to tackle complex industrial multi-robot task planning.</div>
-        </div>
-
-        
-        <details>
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul><li>Tackles important industrial manufacturing problem with multi-robot coordination and strict sequential constraints beyond simple household tasks</li><li>Novel approach combining LLMs with deterministic solving methods (disjunctive graphs) and process trees for hierarchical planning is technically sound</li><li>High practical significance for real-world manufacturing applications with clear industrial value proposition</li></ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul><li>Zero HuggingFace upvotes indicates minimal community attention and visibility despite relevant topic</li><li>Abstract is incomplete/truncated, making full assessment of methodology rigor and experimental validation difficult</li><li>Author prestige is moderate - while from established institutions, not from top-tier AI research centers like MIT, Stanford, or Google</li></ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">如何将LLM可靠地应用于工业多机器人协调？工业场景中任务存在严格的顺序约束和复杂依赖关系，远超简单家庭操作任务，规划失败将带来实际生产损失。</div>
-            <div class="en">How can LLMs be reliably applied to industrial multi-robot coordination, where tasks involve strict sequential constraints and complex inter-task dependencies far beyond simple household manipulation? This matters because modern manufacturing increasingly depends on tightly synchronized robot collaboration, and planning failures carry real production costs.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有基于LLM的机器人规划方法（如SayCan、Code as Policies）主要针对家庭或单机器人操作任务，依赖LLM端到端生成规划，难以处理组合调度约束。工业多机器人场景引入了类作业车间的依赖关系和严格同步需求，纯LLM推理无法可靠满足，且此前缺乏专用基准测试。</div>
-            <div class="en">Existing LLM-based robot planning methods (e.g., SayCan, Code as Policies) target household or single-robot manipulation tasks and rely on LLMs to produce plans end-to-end, which struggles with combinatorial scheduling constraints. Industrial multi-robot settings introduce job-shop-style dependencies and tight synchronization requirements that pure LLM reasoning cannot reliably satisfy. No dedicated benchmark existed to evaluate LLMs on graded industrial multi-robot task complexity.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">IMR-LLM将问题分为两阶段：高层任务规划与底层程序生成。第一阶段，LLM辅助构建编码任务依赖与资源冲突的析取图，再由确定性求解器获得可行高效的执行顺序；第二阶段，过程树结构引导LLM生成符合调度结果的可执行机器人程序。此外，作者提出IMR-Bench基准，包含三个复杂度等级的工业多机器人场景。</div>
-            <div class="en">IMR-LLM decomposes the problem into two stages: high-level task planning and low-level program generation. In the first stage, LLMs assist in constructing a disjunctive graph encoding task dependencies and resource conflicts, then a deterministic solver (e.g., a scheduling algorithm) finds a feasible and efficient execution order. In the second stage, a process tree structure guides the LLM to generate executable robot programs that respect the computed schedule. The authors also introduce IMR-Bench, a new benchmark with three complexity tiers covering diverse industrial multi-robot scenarios.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">在IMR-Bench上的实验表明，IMR-LLM在三个复杂度等级上均显著优于纯LLM基线方法。LLM图构建与确定性调度的混合方案在任务成功率和机器人利用效率上均优于端到端LLM方法。受摘要不完整限制，具体数值未完全披露，但结论在各难度层级上一致成立。</div>
-            <div class="en">Experimental results on IMR-Bench show IMR-LLM significantly outperforms baseline LLM-only planning approaches across all three complexity levels. The hybrid approach of combining LLM graph construction with deterministic scheduling yields higher task success rates and more efficient robot utilization than pure LLM end-to-end methods. Specific numerical gains are not fully disclosed in the available abstract, but the trend holds consistently across easy, medium, and hard task tiers.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>混合架构的核心价值：将组合优化交由确定性调度器处理而非依赖LLM，是关键设计决策，这一关注点分离原则可推广至其他约束机器人规划领域。</li><li>基准测试的价值与局限：IMR-Bench填补了空白，但三级复杂度能否覆盖真实工厂多样性（如动态任务到达、机器故障、5台以上机器人）仍有待验证。</li><li>可扩展性与泛化问题：析取图构建仍依赖LLM输出质量，当任务图规模扩大或出现领域偏移时，LLM能否在无人工校验下稳定构建正确图结构尚未得到充分验证。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Hybrid architecture insight: Delegating combinatorial optimization to a deterministic scheduler rather than relying solely on LLM reasoning is the key design choice — this separation of concerns likely drives most of the performance gain and is a transferable principle for other constrained robot planning domains.</li><li>Benchmark value and limitations: IMR-Bench fills a real gap, but with three complexity tiers and limited community adoption so far, it is unclear whether the scenarios fully capture real factory diversity (e.g., dynamic task arrivals, machine failures, or &gt;5 robots).</li><li>Scalability and generalization questions: The disjunctive graph construction still relies on LLM output quality; as task graphs grow larger or domain shifts occur (e.g., new manufacturing processes), it remains untested how robustly the LLM can construct correct graphs without human verification.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02669v1" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">π-StepNFT提出一种无需评论网络和似然估计的在线强化学习框架，通过逐步细粒度引导优化基于流的VLA模型，在M...</div>
-        <div class="paper-title-en">$π$-StepNFT: Wider Space Needs Finer Steps in Online RL for Flow-based VLAs</div>
-        <div class="paper-meta">
-          <span>Siting Wang, Xiaofeng Wang, Zheng Zhu et al.</span>
+          <span>Jan Finke, Wayne Paul Martis, Adrian Schmelter et al.</span>
           <span class="badge badge-date">2026-03-02</span>
           
           
@@ -695,8 +775,8 @@
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>π-StepNFT提出一种无需评论网络和似然估计的在线强化学习框架，通过逐步细粒度引导优化基于流的VLA模型，在ManiSkill上实现更优的分布外泛化。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">π-StepNFT introduces a critic-free, likelihood-free online RL framework for flow-based VLAs that applies step-wise fine-grained guidance, achieving superior OOD generalization on ManiSkill and competitive few-shot robustness on LIBERO.</div>
+          <div>本文提出师生框架，用四个RGB相机与单目深度估计取代LiDAR，实现完全板载的全向机器人导航。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A teacher-student framework replaces LiDAR with four RGB cameras and monocular depth estimation for fully onboard omnidirectional robot navigation, running entirely on an NVIDIA Jetson Orin AGX.</div>
         </div>
 
         
@@ -706,11 +786,11 @@
             <div class="pros-cons">
               <div class="pros-box">
                 <strong>✓ 优势</strong>
-                <ul><li>Tackles a concrete technical problem (intractable likelihoods in flow-based models) that directly impacts embodied AI research</li><li>Demonstrates strong empirical results on two relevant benchmarks (LIBERO and ManiSkill) with particular strength in generalization and few-shot robustness</li><li>Proposes an elegant solution that eliminates auxiliary networks while requiring only single forward pass per step, improving efficiency and practical applicability</li><li>Well-aligned with current embodied intelligence trends focusing on vision-language-action models and online RL</li></ul>
+                <ul><li>Tackles a genuine industrial problem—3D obstacle avoidance is critical and LiDAR-only approaches are demonstrably limited in real-world settings</li><li>Strong methodological alignment with embodied AI: uses privileged information distillation (teacher-student), modern depth estimation (Depth Anything V2), and industrial-grade simulation (NVIDIA Isaac Lab)</li><li>High practical significance: eliminates expensive LiDAR sensors in favor of camera-based sensing, relevant for cost-sensitive industrial deployments</li></ul>
               </div>
               <div class="cons-box">
                 <strong>✗ 不足</strong>
-                <ul><li>Zero community engagement (0 HuggingFace upvotes) suggests limited visibility or appeal despite technical merit</li><li>Authors appear to be from less prominent institutions (Peking University based on names), reducing prestige factor</li><li>Abstract appears incomplete/truncated at the end (&#39;This property offer&#39;), raising concerns about paper quality and presentation polish</li></ul>
+                <ul><li>Zero HuggingFace upvotes indicates minimal community engagement and visibility despite solid technical contribution</li><li>Authors appear to be primarily from industrial/corporate backgrounds rather than top-tier academic institutions (MIT, CMU, Stanford, DeepMind), reducing prestige signal</li></ul>
               </div>
             </div>
           </div>
@@ -720,44 +800,204 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">基于流匹配的VLA模型在多步采样中存在不可处理的似然函数，导致标准在线强化学习无法直接应用。这一瓶颈使流式VLA无法充分利用环境交互反馈，限制了其在复杂操控任务中的适应能力。</div>
-            <div class="en">Flow-based VLA models generate robot actions via multi-step sampling (e.g., flow matching), but their intractable likelihoods make standard online RL optimization fundamentally difficult. This bottleneck blocks flow-based VLAs from leveraging real-time environmental feedback, limiting their adaptability in complex, open-ended manipulation tasks.</div>
+            <div class="zh">工业移动机器人需在三维空间避障，但主流传感器2D LiDAR仅扫描单一水平面，无法探测扫描面上下的障碍物，存在安全隐患。本文探讨能否仅用RGB相机替代LiDAR，实现可靠的全向导航。</div>
+            <div class="en">Industrial mobile robots must avoid obstacles in 3D space, but the dominant sensor—2D LiDAR—only scans a single horizontal plane, leaving obstacles above or below the scan line undetected. This creates real safety risks in warehouses and factories where shelves, pipes, or low-hanging objects are common. The paper asks whether vision alone, using cheap RGB cameras, can replace LiDAR for reliable omnidirectional navigation.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有针对扩散/流式策略的在线RL方法（如DPPO）依赖辅助价值网络或评论网络，计算开销大且架构复杂。基于似然的方法因流模型多步不可逆采样而无法直接使用。这些限制使流式VLA的在线RL难以扩展至多样化的真实场景。</div>
-            <div class="en">Existing online RL methods for diffusion/flow-based policies (e.g., DPPO) rely on auxiliary value networks or critic networks, significantly increasing computational overhead and architectural complexity. Likelihood-based approaches are inapplicable to flow models due to their multi-step, non-invertible sampling processes. These limitations make scaling online RL for flow-based VLAs to diverse, real-world scenarios impractical.</div>
+            <div class="zh">传统LiDAR导航成熟但仅感知2D平面，遗漏三维障碍。已有视觉RL导航方法多依赖深度相机或外部算力，鲜有工作从仿真训练到纯单目RGB板载部署形成完整闭环。</div>
+            <div class="en">Classical LiDAR-based navigation pipelines are mature but inherently limited to a 2D slice of the environment, missing 3D obstacles. Prior vision-based RL navigation methods often rely on depth cameras with limited field of view or require external compute for inference. Teacher-student distillation for robot navigation has been explored, but few works close the full loop from simulation training to onboard deployment with only monocular RGB inputs.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">π-StepNFT是一个无评论网络、无似然估计的框架，每次优化仅需单次前向传播。核心思想是：更宽的动作探索空间需要逐步细粒度引导，将奖励信号分解到每个去噪/流步骤中。&#34;负样本感知&#34;训练目标在每步上对成功与失败轨迹进行对比，引导流模型远离次优动作模式。</div>
-            <div class="en">π-StepNFT (Step-wise Negative-aware Fine-Tuning) is a critic-and-likelihood-free framework that requires only a single forward pass per optimization step, eliminating the need for auxiliary value networks. The core insight is that wider action exploration spaces require finer-grained, step-wise guidance: instead of applying a single reward signal at the trajectory level, the method decomposes guidance across each denoising/flow step. A &#34;negative-aware&#34; training objective explicitly contrasts successful and failed trajectories at each step, steering the flow model away from suboptimal action modes without likelihood computation.</div>
+            <div class="zh">教师策略在Isaac Lab中通过PPO利用特权LiDAR观测训练鲁棒导航；再将其蒸馏为仅依赖单目深度图的学生策略。深度图由微调的Depth Anything V2模型从四个RGB相机实时生成，覆盖360°视野。完整推理流程（深度估计、策略执行、电机控制）全部在Jetson Orin AGX上板载运行。</div>
+            <div class="en">A teacher policy is first trained in NVIDIA Isaac Lab via PPO using privileged 2D LiDAR observations that account for the full robot footprint, learning robust collision-free navigation. Behavioral distillation then transfers this knowledge to a student policy that takes only monocular depth maps as input. Depth maps are generated onboard by a fine-tuned Depth Anything V2 model from four RGB cameras arranged for 360° coverage on a DJI RoboMaster platform. The entire pipeline—monocular depth estimation, policy inference, and motor control—runs on an NVIDIA Jetson Orin AGX without any external computation.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">在LIBERO基准上，π-StepNFT展现出有竞争力的小样本鲁棒性；在ManiSkill上，其分布外（OOD）场景性能超越基于价值函数的基线方法，原因在于有效抑制了对多模态视觉特征的过拟合。单次前向传播设计相比DPPO等方法显著降低了计算开销。</div>
-            <div class="en">On LIBERO, π-StepNFT demonstrates competitive few-shot robustness, unlocking latent potential in pretrained flow-based VLAs with minimal interaction data. On ManiSkill, it outperforms value-based baselines in out-of-distribution (OOD) scenarios, attributed to its resistance to overfitting multimodal visual features. The single-forward-pass design reduces per-step computational cost compared to critic-dependent methods like DPPO.</div>
+            <div class="zh">仿真中学生策略性能接近教师策略，验证蒸馏有效性。完整推理流程在Jetson Orin AGX上实时运行，证明无需外部服务器即可部署。摘要中未详述真实环境的具体量化指标。</div>
+            <div class="en">In simulation, the student policy achieves navigation performance comparable to the teacher policy, validating the distillation approach. The full onboard inference pipeline runs in real time on the Jetson Orin AGX, demonstrating feasibility for deployment without external servers. Specific quantitative metrics (e.g., success rates or collision counts) from real-world trials are not fully detailed in the provided abstract, but simulation results confirm the viability of MDE-based navigation.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>逐步奖励分解是核心设计，但论文未充分消融最优步骤数及结果对步粒度的敏感性。</li><li>负样本感知对比目标依赖成功与失败轨迹的清晰区分，在稀疏或噪声奖励的真实机器人场景中，该假设可能失效，论文未对此进行评估。</li><li>单次前向传播的效率优势论述充分，但缺乏与DPPO等基线的实际训练时间对比数据，难以量化实践中的具体加速比。</li></ul>
+              <ul class="discussion-list"><li>仿真到真实的迁移差距是主要风险：Depth Anything V2经微调以弥合域偏移，但真实工业场景的光照与纹理变化仍可能降低深度质量与导航可靠性。</li><li>教师策略仅使用2D LiDAR足迹观测，本身无三维真值；学生策略通过MDE检测平面外障碍的优势未与3D传感器进行严格对比验证。</li><li>动态环境（行人、叉车）与狭窄通道的表现尚未评估，当前实验似乎局限于仿真中的静态障碍配置。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Step-wise reward decomposition is a key design choice: applying fine-grained guidance at each flow step rather than at trajectory level is central to the performance gains, but the paper does not fully ablate how many steps are optimal or how sensitive results are to step granularity.</li><li>The negative-aware contrastive objective implicitly assumes a clear signal separating successful from failed rollouts; in sparse or noisy reward settings common in real-world robotics, this separation may degrade, and the paper does not evaluate such conditions.</li><li>While the single-forward-pass efficiency claim is compelling, direct wall-clock training time comparisons with DPPO and other baselines are not prominently reported, making it hard to quantify the practical speedup for practitioners.</li></ul>
+              <ul class="discussion-list"><li>Sim-to-real gap is a key open risk: Depth Anything V2 is fine-tuned to bridge domain shift, but real-world texture and lighting variations may still degrade depth quality and navigation reliability in untested industrial scenarios.</li><li>The 2D LiDAR teacher encodes only a horizontal footprint, meaning the teacher itself has no direct 3D ground truth; the student&#39;s advantage over LiDAR in detecting above/below-plane obstacles is assumed via MDE but not rigorously benchmarked against 3D sensors.</li><li>Scalability to dynamic environments (moving people, forklifts) and narrow corridors is unaddressed; the current evaluation appears limited to static obstacle configurations in simulation.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.02083v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01999v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">LaST-VLA用物理约束的潜在时空推理链替代自动驾驶VLA模型中的文本CoT，通过3D基础模型与世界模型的双特征对齐实现规划。</div>
+        <div class="paper-title-en">LaST-VLA: Thinking in Latent Spatio-Temporal Space for Vision-Language-Action in Autonomous Driving</div>
+        <div class="paper-meta">
+          <span>Yuechen Luo, Fang Li, Shaoqing Xu et al.</span>
+          <span class="badge badge-date">2026-03-02</span>
+          
+          
+          <span class="badge badge-score">评分 6.7</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>LaST-VLA用物理约束的潜在时空推理链替代自动驾驶VLA模型中的文本CoT，通过3D基础模型与世界模型的双特征对齐实现规划。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">LaST-VLA replaces text-based Chain-of-Thought in autonomous driving VLA models with a physically grounded latent spatio-temporal reasoning framework, using dual-feature alignment from 3D and world models.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles a real limitation in current VLA models (semantic-perceptual decoupling) with a physically grounded approach</li><li>Proposes novel latent reasoning paradigm combining spatio-temporal constraints, directly relevant to embodied intelligence frontiers</li><li>Focuses on autonomous driving, a high-impact application domain with clear practical significance</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Zero HuggingFace upvotes suggests limited current community attention and visibility</li><li>Abstract appears truncated/incomplete, raising concerns about paper quality and full methodology clarity</li><li>Authors from less established institutions (based on available information), reducing prestige signal compared to top-tier labs</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">自动驾驶VLA模型依赖文本CoT推理，导致语义与感知解耦，语言符号无法准确编码几何与动态场景信息，影响复杂场景下的规划精度。</div>
+            <div class="en">VLA models for autonomous driving rely on explicit textual Chain-of-Thought (CoT) reasoning, which causes semantic-perceptual decoupling—where language tokens fail to faithfully encode geometric or dynamic scene properties. This mismatch between symbolic reasoning and continuous physical reality degrades planning accuracy and robustness in complex driving scenarios.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有潜在CoT方法缺乏物理约束，隐空间表示与真实几何及动态脱节；文本CoT虽可解释，但无法准确描述3D空间关系和时序运动模式。</div>
+            <div class="en">Standard latent CoT methods attempt to reason in continuous hidden space to avoid symbolic bottlenecks, but lack explicit intermediate constraints, making the latent representations physics-agnostic and disconnected from real-world geometry and dynamics. Textual CoT approaches, while interpretable, suffer from perceptual-symbolic conflicts where language descriptions cannot fully capture 3D spatial relationships or temporal motion patterns critical for driving.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">LaST-VLA构建潜在时空CoT框架，通过双特征对齐机制将3D基础模型的几何约束和世界模型的动态预见蒸馏至隐空间，并采用渐进式SFT训练策略，从特征对齐逐步过渡到轨迹生成。</div>
+            <div class="en">LaST-VLA introduces a Latent Spatio-Temporal CoT framework that grounds reasoning directly in continuous hidden space with physical constraints. A dual-feature alignment mechanism distills geometric knowledge from 3D foundation models and dynamic foresight from world models into the latent reasoning chain. A progressive supervised fine-tuning (SFT) strategy is employed, transitioning training from feature alignment to trajectory generation in stages. This ensures the latent space progressively encodes both spatial structure and temporal dynamics before committing to action prediction.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">LaST-VLA在自动驾驶规划基准上优于标准潜在CoT与文本CoT基线，渐进式SFT策略对收敛稳定性和轨迹质量有显著提升，但具体数值未在摘要中完整披露。</div>
+            <div class="en">The paper reports improvements in planning accuracy over standard latent CoT and textual CoT baselines on autonomous driving benchmarks, with the dual-feature alignment providing measurable gains in spatially and temporally complex scenarios. Specific numerical results are not fully disclosed in the available abstract, but the progressive SFT strategy is highlighted as key to stable convergence and trajectory quality.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>摘要不完整，缺乏具体基准数值，难以全面评估方法的定量增益，影响可复现性判断。</li><li>双特征对齐依赖外部3D基础模型和世界模型作为教师，若教师模型存在领域偏差，将直接污染潜在推理空间。</li><li>渐进式SFT与双教师蒸馏显著增加训练复杂度，论文未明确说明推理阶段相比文本CoT的额外计算开销。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Incomplete abstract: The abstract is cut off before reporting concrete benchmark numbers, making it difficult to fully assess the quantitative gains over prior methods—a transparency concern for reproducibility.</li><li>Generalization risk: The dual-feature alignment relies on external 3D foundation models and world models as teachers; if these teacher models have domain-specific biases or errors, those will propagate into the latent reasoning space.</li><li>Scalability and inference cost: Distilling from two separate teacher models (3D geometric + world model) and running progressive SFT adds significant training complexity; the paper does not clarify inference-time overhead compared to simpler textual CoT pipelines.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01928v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">URGT将多视图变换器VGGT改造为多图块框架，单次前向推理即可从单张图像联合估计高分辨率深度与法线。</div>
+        <div class="paper-title-en">Any Resolution Any Geometry: From Multi-View To Multi-Patch</div>
+        <div class="paper-meta">
+          <span>Wenqing Cui, Zhenyu Li, Mykola Lavreniuk et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
+          
+          
+          <span class="badge badge-score">评分 5.7</span>
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>URGT将多视图变换器VGGT改造为多图块框架，单次前向推理即可从单张图像联合估计高分辨率深度与法线。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">URGT adapts the VGGT multi-view transformer into a multi-patch framework that jointly estimates high-resolution depth and surface normals from a single image in one forward pass.</div>
+        </div>
+
+        
+        <details>
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul><li>Tackles important problem of high-resolution joint depth-normal estimation with practical applications in 3D scene understanding</li><li>Novel approach using multi-patch transformer with cross-patch attention to balance local detail and global consistency</li><li>Unified framework that leverages existing pre-trained models as priors, suggesting good engineering and practical applicability</li></ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul><li>Very low community engagement (0 HuggingFace upvotes) suggests limited recognition or impact in the community</li><li>Weak alignment with embodied intelligence trends—primarily focused on static 3D geometry estimation rather than embodied agent learning, interaction, or reasoning</li><li>Author affiliations appear to be from academic institutions not typically in top AI research tier (no clear affiliation with MIT, CMU, Google, DeepMind, etc.)</li></ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">从单张图像联合估计高分辨率法线与深度是机器人、AR等场景理解的关键任务。现有方法在高分辨率下难以兼顾局部细节与全局几何一致性。</div>
+            <div class="en">Joint high-resolution estimation of surface normals and depth from a single monocular image is critical for 3D scene understanding in applications like robotics and AR. The core challenge is reconciling fine-grained local detail with global geometric consistency at high resolutions, where most existing methods fail due to memory and architectural constraints.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有单目估计器（如Depth Pro、DSINE）分辨率受限且独立处理深度与法线，缺乏跨任务一致性。VGGT等多视图框架未被设计用于单图高分辨率图块推理，朴素图块拼接易产生边界伪影。</div>
+            <div class="en">Existing monocular depth and normal estimators (e.g., Depth Pro, DSINE) process images at fixed, limited resolutions and treat depth and normals as separate tasks, missing cross-task geometric consistency. Multi-view transformers like VGGT achieve strong global reasoning but are designed for multiple camera views, not for tiling a single high-resolution image into spatial patches. Naive patch-based inference suffers from boundary artifacts and lacks mechanisms for long-range cross-patch information propagation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">URGT将单张高分辨率图像的空间图块视为伪&#34;多视图&#34;，复用VGGT的跨视图注意力机制实现单次前向联合推理。每个图块附加预训练模型的粗粒度深度与法线先验以锚定几何尺度。提出GridMix图块采样策略，训练时随机扰动图块位置与重叠区域，减少推理时边界伪影。</div>
+            <div class="en">URGT repurposes VGGT&#39;s multi-view attention architecture by treating spatial patches of a single high-resolution image as pseudo &#34;views,&#34; enabling joint processing in a single forward pass. Each patch is augmented with coarse depth and normal priors from pretrained models to anchor geometric scale and orientation before refinement. Cross-patch attention within the shared VGGT backbone enforces global coherence by enabling long-range geometric reasoning across patch boundaries. A novel GridMix patch sampling strategy probabilistically varies patch positions and overlaps during training to improve spatial robustness and reduce boundary artifacts at inference time.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">URGT在高分辨率深度与法线基准上达到最优性能，跨图块注意力显著减少边界不连续性，GridMix采样进一步提升图块边缘区域的几何鲁棒性。</div>
+            <div class="en">URGT achieves state-of-the-art performance on high-resolution depth and normal benchmarks, outperforming prior specialized models on standard metrics while operating at arbitrary input resolutions. The cross-patch attention mechanism demonstrably reduces boundary discontinuities compared to independent patch inference baselines. GridMix sampling further improves robustness, particularly in regions near patch edges where geometric consistency is hardest to maintain.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>架构复用的边界：将多视图注意力用于空间图块创意十足，但&#39;多视角&#39;与&#39;单图裁剪&#39;在语义上存在本质差异，需验证该混用是否在大场景下限制精度。</li><li>可扩展性隐患：图块数量的二次方注意力复杂度在超高分辨率（如8K）下可能成为瓶颈，未来需引入稀疏或分层注意力机制。</li><li>落地价值延伸：高保真任意分辨率深度法线图可直接赋能机器人3D重建与仿真迁移，若与下游规划器结合将显著增强其在具身智能领域的影响力。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Architectural reuse insight: Repurposing VGGT&#39;s multi-view attention for spatial patches is elegant, but it conflates the semantic distinction between &#39;different viewpoints of a scene&#39; and &#39;different crops of one image&#39;—future work should examine whether this mismatch limits geometric accuracy for very large scenes.</li><li>Scalability concern: Treating every patch as a pseudo-view means attention complexity scales quadratically with the number of patches; for very high resolutions (e.g., 8K), this could become a practical bottleneck without hierarchical or sparse attention strategies.</li><li>Downstream impact: While pure geometry estimation is somewhat peripheral to embodied AI trends, high-fidelity depth-normal maps at arbitrary resolution are a direct enabler for real-time 3D reconstruction and sim-to-real transfer in robotics—connecting URGT outputs to downstream planners would strengthen its embodied AI relevance.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03026v1" target="_blank">查看原文 →</a>
       </div>
       
       
