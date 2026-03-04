@@ -143,4 +143,11 @@ def select_top_papers(
     scored.sort(key=lambda x: x.score, reverse=True)
     # 宁缺勿滥: only publish papers that meet the quality bar
     qualified = [sp for sp in scored if sp.score >= min_score]
-    return qualified[:n]
+    if qualified:
+        return qualified[:n]
+    # Fallback: no paper met the threshold — return the single highest-scoring candidate,
+    # marked as is_fallback so the template can display a warning and show pros/cons prominently.
+    if scored:
+        scored[0].is_fallback = True
+        return [scored[0]]
+    return []

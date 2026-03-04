@@ -26,6 +26,7 @@ class ScoredPaper:
     cons: List[str] = field(default_factory=list)     # key weaknesses (English)
     pros_zh: List[str] = field(default_factory=list)  # key strengths (Chinese)
     cons_zh: List[str] = field(default_factory=list)  # key weaknesses (Chinese)
+    is_fallback: bool = False  # True when selected below min_score threshold (no better papers available)
 
 
 @dataclass
