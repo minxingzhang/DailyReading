@@ -30,7 +30,8 @@ Respond ONLY with this JSON (all fields required):
   "discussion_en": ["<point 1>", "<point 2>", "<point 3>"]
 }}
 
-Total Chinese text <= 600 characters. Total English text <= 800 words."""
+Total Chinese text <= 600 characters. Total English text <= 800 words.
+IMPORTANT: Never use double-quote characters (") inside JSON string values. Use 《》or【】for titles in Chinese, and single quotes (') for emphasis in English."""
 
 
 def build_analysis_prompt(scored_paper: ScoredPaper) -> str:
@@ -68,12 +69,20 @@ def parse_analysis_response(response_text: str, scored_paper: ScoredPaper) -> Pa
 
 
 def generate_analysis(scored_paper: ScoredPaper, client: Anthropic) -> PaperAnalysis:
-    """Generate bilingual structured analysis using Claude Sonnet."""
+    """Generate bilingual structured analysis using Claude Sonnet. Retries on JSON parse failure."""
     prompt = build_analysis_prompt(scored_paper)
-    message = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=2048,
-        system=ANALYSIS_SYSTEM,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return parse_analysis_response(message.content[0].text, scored_paper)
+    last_error = None
+    for attempt in range(3):
+        message = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=2048,
+            system=ANALYSIS_SYSTEM,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        try:
+            return parse_analysis_response(message.content[0].text, scored_paper)
+        except (json.JSONDecodeError, ValueError, KeyError) as e:
+            last_error = e
+            if attempt < 2:
+                continue
+    raise ValueError(f"Failed to parse analysis after 3 attempts: {last_error}")
