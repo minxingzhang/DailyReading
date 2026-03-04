@@ -15,6 +15,49 @@ _TOP_CONFERENCES = [
     "KDD", "WWW", "SIGMOD", "VLDB",
 ]
 
+# Semantic Scholar uses full venue names; map canonical short names → known S2 strings
+_CONF_ALIASES: dict = {
+    "NeurIPS": ["NeurIPS", "Neural Information Processing Systems", "NIPS",
+                "Advances in Neural Information Processing"],
+    "ICML":    ["ICML", "International Conference on Machine Learning"],
+    "ICLR":    ["ICLR", "International Conference on Learning Representations"],
+    "CVPR":    ["CVPR", "Computer Vision and Pattern Recognition"],
+    "ICCV":    ["ICCV", "International Conference on Computer Vision"],
+    "ECCV":    ["ECCV", "European Conference on Computer Vision"],
+    "AAAI":    ["AAAI", "Association for the Advancement of Artificial Intelligence"],
+    "IJCAI":   ["IJCAI", "International Joint Conference on Artificial Intelligence"],
+    "ACL":     ["ACL", "Annual Meeting of the Association for Computational Linguistics"],
+    "EMNLP":   ["EMNLP", "Empirical Methods in Natural Language Processing"],
+    "NAACL":   ["NAACL", "North American Chapter of the Association for Computational Linguistics"],
+    "COLING":  ["COLING", "International Conference on Computational Linguistics"],
+    "CCS":     ["CCS", "Computer and Communications Security"],
+    "USENIX Security": ["USENIX Security", "USENIX Security Symposium"],
+    "IEEE S&P": ["IEEE Symposium on Security and Privacy", "IEEE S&P", "Security and Privacy"],
+    "NDSS":    ["NDSS", "Network and Distributed System Security"],
+    "RAID":    ["RAID", "Research in Attacks, Intrusions"],
+    "AsiaCCS": ["AsiaCCS", "Asia Conference on Computer and Communications Security"],
+    "ICRA":    ["ICRA", "International Conference on Robotics and Automation"],
+    "IROS":    ["IROS", "International Conference on Intelligent Robots and Systems"],
+    "CoRL":    ["CoRL", "Conference on Robot Learning"],
+    "RSS":     ["RSS", "Robotics: Science and Systems"],
+    "WACV":    ["WACV", "Winter Conference on Applications of Computer Vision"],
+    "SIGGRAPH": ["SIGGRAPH"],
+    "KDD":     ["KDD", "Knowledge Discovery and Data Mining"],
+    "WWW":     ["WWW", "The Web Conference", "World Wide Web"],
+}
+
+
+def _match_top_conference(venue: str, top_conferences: List[str]) -> str:
+    """Return canonical conference name if S2 venue matches, else empty string."""
+    venue_u = venue.upper()
+    for conf in top_conferences:
+        aliases = _CONF_ALIASES.get(conf, [conf])
+        for alias in aliases:
+            if alias.upper() in venue_u:
+                return conf
+    return ""
+
+
 _VENUE_RE = re.compile(
     r'(?:accepted|to appear|published|appearing|presented)\s+(?:at|in|@)\s+'
     r'([A-Za-z][A-Za-z\s&\-]+?(?:\s+20\d\d)?)\b',
@@ -158,7 +201,6 @@ def fetch_semantic_scholar_papers(
         print(f"  [S2] API error: {e}")
         return []
 
-    conf_upper = [c.upper() for c in top_conferences]
     papers = []
 
     for item in data.get("data", []):
@@ -168,15 +210,8 @@ def fetch_semantic_scholar_papers(
         if year < min_year:
             continue
 
-        # Match venue against top conferences
-        venue_matched = ""
-        if venue:
-            venue_u = venue.upper()
-            for conf, conf_u in zip(top_conferences, conf_upper):
-                if conf_u in venue_u or venue_u in conf_u:
-                    venue_matched = venue
-                    break
-
+        # Match venue against top conferences (using aliases for full S2 names)
+        venue_matched = _match_top_conference(venue, top_conferences) if venue else ""
         if not venue_matched:
             continue
 
