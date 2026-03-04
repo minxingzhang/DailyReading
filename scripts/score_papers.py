@@ -77,14 +77,20 @@ def parse_score_response(response_text: str, paper: Paper) -> ScoredPaper:
     )
 
 
-def _venue_bonus(paper: Paper) -> float:
+def _venue_bonus(paper: Paper, current_year: int = 2026) -> float:
     """Bonus/penalty based on conference acceptance and community signal.
 
-    Conference papers are strongly preferred. Non-conference papers only pass
-    through if they have meaningful community attention (high HF upvotes).
+    Conference papers are strongly preferred, with newer years scoring higher.
+    Non-conference papers only pass through if they have strong community attention.
     """
     if paper.source == "conference" or paper.venue:
-        return 1.5
+        pub_year = paper.published.year if paper.published else current_year
+        if pub_year >= current_year:
+            return 2.0   # current year: highest priority
+        elif pub_year >= current_year - 1:
+            return 1.7   # 1 year ago
+        else:
+            return 1.5   # 2 years ago (oldest in window)
     # Non-conference: gate on HF trending signal
     if paper.hf_upvotes >= 20:
         return 1.0
@@ -100,6 +106,7 @@ def score_paper(
     category_type: str,
     client: Anthropic,
     scoring_note: str = "",
+    current_year: int = 2026,
 ) -> ScoredPaper:
     """Score a single paper using Claude Haiku."""
     prompt = build_scoring_prompt(paper, category_name, category_type, scoring_note)
@@ -111,10 +118,10 @@ def score_paper(
             messages=[{"role": "user", "content": prompt}],
         )
         sp = parse_score_response(message.content[0].text, paper)
-        sp.score = min(10.0, max(1.0, sp.score + _venue_bonus(paper)))
+        sp.score = min(10.0, max(1.0, sp.score + _venue_bonus(paper, current_year)))
         return sp
     except Exception as e:
-        base = min(10.0, max(1.0, 5.0 + _venue_bonus(paper)))
+        base = min(10.0, max(1.0, 5.0 + _venue_bonus(paper, current_year)))
         return ScoredPaper(paper=paper, score=base, score_breakdown={}, rationale=f"Error: {e}")
 
 
@@ -125,8 +132,15 @@ def select_top_papers(
     n: int,
     client: Anthropic,
     scoring_note: str = "",
+    current_year: int = 2026,
+    min_score: float = 6.0,
 ) -> List[ScoredPaper]:
-    """Score all papers and return top n by score."""
-    scored = [score_paper(p, category_name, category_type, client, scoring_note) for p in papers]
+    """Score all papers and return top n by score, excluding low-quality papers."""
+    scored = [
+        score_paper(p, category_name, category_type, client, scoring_note, current_year)
+        for p in papers
+    ]
     scored.sort(key=lambda x: x.score, reverse=True)
-    return scored[:n]
+    # 宁缺勿滥: only publish papers that meet the quality bar
+    qualified = [sp for sp in scored if sp.score >= min_score]
+    return qualified[:n]

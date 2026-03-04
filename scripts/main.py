@@ -34,7 +34,9 @@ def run_pipeline(
     client = Anthropic(api_key=anthropic_api_key)
     # Use Beijing date (UTC+8) for display and dedup key
     from datetime import timedelta
-    today = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d")
+    beijing_now = datetime.now(timezone.utc) + timedelta(hours=8)
+    today = beijing_now.strftime("%Y-%m-%d")
+    current_year = beijing_now.year
 
     if seen_papers_path is None:
         seen_papers_path = os.path.join(
@@ -55,7 +57,8 @@ def run_pipeline(
     all_selected_papers = []  # accumulate for marking as seen after pipeline succeeds
 
     top_conferences = config.get("top_conferences", [])
-    s2_min_year = config["schedule"].get("s2_min_year", 2024)
+    s2_lookback_years = config["schedule"].get("s2_lookback_years", 2)
+    s2_min_year = current_year - s2_lookback_years
 
     for cat_id, cat_cfg in config["categories"].items():
         print(f"\nProcessing: {cat_cfg['name_en']}")
@@ -65,7 +68,7 @@ def run_pipeline(
             query=cat_cfg.get("semantic_query", cat_cfg["name_en"]),
             top_conferences=top_conferences,
             min_year=s2_min_year,
-            max_results=50,
+            max_results=100,
         )
         print(f"  S2 conference candidates: {len(s2_papers)}")
 
@@ -120,6 +123,7 @@ def run_pipeline(
             n=cat_cfg["papers_per_day"],
             client=client,
             scoring_note=cat_cfg.get("scoring_note", ""),
+            current_year=current_year,
         )
         print(f"  Selected {len(top_papers)} papers")
 

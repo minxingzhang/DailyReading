@@ -115,7 +115,7 @@
                 <strong>✓ 优势</strong>
                 <ul>
                   {% for i in range(sp.pros_zh | length) %}
-                  <li>{{ sp.pros_zh[i] }}{% if i < (sp.pros | length) %}<span style="display:block;color:#4ade80;opacity:0.7;font-size:0.85em;margin-top:0.1rem">{{ sp.pros[i] }}</span>{% endif %}</li>
+                  <li>{{ sp.pros_zh[i] }}{% if i < (sp.pros | length) %}<span style="display:block;margin-top:0.1rem">{{ sp.pros[i] }}</span>{% endif %}</li>
                   {% else %}
                   {% for p in sp.pros %}<li>{{ p }}</li>{% endfor %}
                   {% endfor %}
@@ -125,7 +125,7 @@
                 <strong>✗ 不足</strong>
                 <ul>
                   {% for i in range(sp.cons_zh | length) %}
-                  <li>{{ sp.cons_zh[i] }}{% if i < (sp.cons | length) %}<span style="display:block;color:#f87171;opacity:0.7;font-size:0.85em;margin-top:0.1rem">{{ sp.cons[i] }}</span>{% endif %}</li>
+                  <li>{{ sp.cons_zh[i] }}{% if i < (sp.cons | length) %}<span style="display:block;margin-top:0.1rem">{{ sp.cons[i] }}</span>{% endif %}</li>
                   {% else %}
                   {% for c in sp.cons %}<li>{{ c }}</li>{% endfor %}
                   {% endfor %}

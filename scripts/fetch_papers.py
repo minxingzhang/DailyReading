@@ -182,7 +182,7 @@ def fetch_semantic_scholar_papers(
     query: str,
     top_conferences: List[str],
     min_year: int = 2024,
-    max_results: int = 50,
+    max_results: int = 100,
 ) -> List[Paper]:
     """Fetch conference-accepted papers from Semantic Scholar API."""
     url = "https://api.semanticscholar.org/graph/v1/paper/search"

@@ -2,7 +2,7 @@ schedule:
   cron: "0 23 * * *"
   lookback_hours: 48
   fallback_lookback_hours: 168   # 7 days: used when a category has too few candidates
-  s2_min_year: 2024              # Semantic Scholar: only conferences from this year onwards
+  s2_lookback_years: 2           # Semantic Scholar: conferences within last N years (auto-updates with current year)
 
 top_conferences:
   - "NeurIPS"
@@ -123,7 +123,7 @@ categories:
 llm:
   scoring_model: "claude-haiku-4-5-20251001"
   analysis_model: "claude-sonnet-4-6"
-  max_candidates_per_category: 30
+  max_candidates_per_category: 50
 
 email:
   sender_name: "DailyPaper Bot"
