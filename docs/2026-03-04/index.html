@@ -39,6 +39,8 @@
     .badge-hf { background: #fef3c7; color: #92400e; }
     .badge-venue { background: #ede9fe; color: #5b21b6; }
     .badge-date { background: #f1f5f9; color: #475569; }
+    .badge-fallback { background: #fff3cd; color: #7c5800; border: 1px solid #ffc107; }
+    .fallback-notice { background: #fffbe6; border: 1px solid #ffc107; border-radius: 6px; padding: 0.6rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; color: #7c5800; }
 
     /* TL;DR block */
     .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
@@ -72,7 +74,7 @@
 <body>
   <div class="header">
     <h1>DailyPaper - 每日论文精选</h1>
-    <div class="date">2026-03-04  |  共 7 篇论文</div>
+    <div class="date">2026-03-04  |  共 8 篇论文</div>
   </div>
   <nav class="nav">
     <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
@@ -90,24 +92,27 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">Fun-tuning利用商业LLM微调API返回的损失信号，实现黑盒对抗性提示注入攻击，攻击成功率达65%–82%。</div>
-        <div class="paper-title-en">Fun-tuning: Characterizing the Vulnerability of Proprietary LLMs to Optimization-Based Prompt Injection Attacks via the Fine-Tuning Interface</div>
+        <div class="paper-title">CyberLLMInstruct数据集揭示了一个关键权衡：对LLM进行网络安全微调可提升任务准确率，但会严重削弱其...</div>
+        <div class="paper-title-en">CyberLLMInstruct: A Pseudo-Malicious Dataset Revealing Safety-Performance Trade-offs in Cyber Security LLM Fine-tuning</div>
         <div class="paper-meta">
-          <span>Andrey Labunets, Nishit V. Pandya, Ashish Hooda et al.</span>
-          <span class="badge badge-date">2025-01-16</span>
-          <span class="badge badge-venue">IEEE Symposium on Security and Privacy</span>
+          <span>Adel Elzemity, Budi Arief, Shujun Li</span>
+          <span class="badge badge-date">2025-03-12</span>
+          <span class="badge badge-venue">CCS</span>
           
-          <span class="badge badge-score">评分 9.8</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>Fun-tuning利用商业LLM微调API返回的损失信号，实现黑盒对抗性提示注入攻击，攻击成功率达65%–82%。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Fun-tuning exploits the loss signals returned by proprietary LLM fine-tuning APIs (e.g., Gemini) to perform black-box optimization-based prompt injection attacks, achieving 65–82% attack success rates.</div>
+          <span class="badge badge-score">评分 9.5</span>
+          
         </div>
 
         
-        <details>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>CyberLLMInstruct数据集揭示了一个关键权衡：对LLM进行网络安全微调可提升任务准确率，但会严重削弱其对抗攻击的安全性。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CyberLLMInstruct introduces a 54,928-pair pseudo-malicious dataset to expose a critical trade-off: fine-tuning LLMs for cybersecurity tasks boosts task accuracy but drastically degrades safety against adversarial attacks.</div>
+        </div>
+
+        
+        <details >
           <summary>优缺点分析 / Pros &amp; Cons</summary>
           <div class="detail-content">
             <div class="pros-cons">
@@ -115,11 +120,11 @@
                 <strong>✓ 优势</strong>
                 <ul>
                   
-                  <li>揭示了专有LLM微调界面中的新型攻击面（微调API损失信号），对Gemini等实际专有LLM系统具有实际可利用性，直接解决了日益增长的安全问题<span style="display:block;margin-top:0.1rem">Identifies a novel attack surface (fine-tuning API loss signals) that is practically exploitable against real proprietary LLM systems like Gemini, directly addressing a growing security concern</span></li>
+                  <li>解决了重要且紧迫的问题：提升LLM在安全任务上的性能与维持安全性之间的根本性矛盾<span style="display:block;margin-top:0.1rem">Tackles an important and timely problem: the fundamental tension between improving LLM performance on security tasks and maintaining safety against adversarial attacks</span></li>
                   
-                  <li>通过使用由损失信息引导的贪心搜索演示了具体的基于优化的对抗性提示生成，提供了威胁的概念验证证据<span style="display:block;margin-top:0.1rem">Demonstrates concrete optimization-based adversarial prompt generation using greedy search guided by loss information, providing proof-of-concept evidence of the threat</span></li>
+                  <li>提供了大规模、精心策划的数据集（54,928个伪恶意指令对），数据来源多样（CTF竞赛、学术论文、行业数据），对未来研究具有重要价值<span style="display:block;margin-top:0.1rem">Provides a large-scale, well-curated dataset (54,928 pseudo-malicious pairs) with diverse sources (CTF, academic papers, industry data) that will be valuable for future research</span></li>
                   
-                  <li>在顶级安全会议IEEE S&amp;P上发表，表明研究方法和发现经过了严格的同行评审和验证<span style="display:block;margin-top:0.1rem">Published at IEEE S&amp;P, a top-tier security venue, indicating rigorous peer review and validation of the methodology and findings</span></li>
+                  <li>在7个开源LLM上进行了全面的实验评估，提供了可量化的结果（如安全分数从0.95下降到0.15），清晰地展示了核心权衡问题<span style="display:block;margin-top:0.1rem">Comprehensive experimental evaluation across 7 open-source LLMs with quantifiable results (e.g., security score drops from 0.95 to 0.15) that clearly demonstrate the core trade-off</span></li>
                   
                 </ul>
               </div>
@@ -127,9 +132,9 @@
                 <strong>✗ 不足</strong>
                 <ul>
                   
-                  <li>HuggingFace上社区参与度为零（0点赞），表明在专业安全研究圈子外的可见性或兴趣有限，尽管这可能反映了发行场地/发布时间的因素<span style="display:block;margin-top:0.1rem">Zero community engagement on HuggingFace (0 upvotes) suggests limited visibility or interest outside specialized security research circles, though this may reflect venue/publication timing</span></li>
+                  <li>HuggingFace点赞数为零，缺乏社区采纳信号，表明传播范围有限或论文为最近发表；尚缺乏更广泛影响力的证据<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes and no visible community adoption signal suggest limited dissemination or the paper may be recently published; lacks evidence of broader impact so far</span></li>
                   
-                  <li>摘要似乎被截断（提到&#39;PurpleLla&#39;但无上下文），难以全面评估实验范围、基准和完整的方法论<span style="display:block;margin-top:0.1rem">Abstract appears truncated (mentions &#39;PurpleLla&#39; without context), making it difficult to fully assess experimental scope, baselines, and complete methodology</span></li>
+                  <li>作者来自兰卡斯特大学，不属于顶级AI研究机构，尽管论文被CCS（顶级会议）接收，但可能影响初期知名度<span style="display:block;margin-top:0.1rem">Authors&#39; affiliations (Lancaster University) are not among top-tier AI institutions, which may limit initial visibility despite the paper being accepted at CCS (a top venue)</span></li>
                   
                 </ul>
               </div>
@@ -141,50 +146,50 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">封闭权重的LLM通常被认为可以抵御基于梯度的攻击。本文探讨攻击者能否滥用微调接口提取足够的优化信号，对Gemini等专有模型发动对抗性提示注入攻击。</div>
-            <div class="en">Closed-weight LLMs are generally considered safe from gradient-based adversarial attacks because their weights are inaccessible. This paper asks: can an attacker abuse the fine-tuning interface—a standard developer utility—to extract enough optimization signal to craft adversarial prompt injections against proprietary models like Gemini?</div>
+            <div class="zh">在网络安全数据上微调LLM，如何同时影响任务性能与对抗攻击的安全韧性？这一问题至关重要，因为在对抗性领域部署LLM会带来双重使用风险。</div>
+            <div class="en">How does fine-tuning LLMs on cybersecurity-specific data affect both task performance and safety resilience against adversarial inputs? This matters because deploying LLMs in adversarial domains like cybersecurity creates dual-use risks where improved capability may come at the cost of exploitability.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">GCG等现有优化攻击需直接访问模型权重和梯度，无法用于封闭权重模型。基于迁移的黑盒攻击依赖开源替代模型，但对专有架构迁移效果差。此前无研究系统性地将微调API作为对抗性提示优化的攻击面。</div>
-            <div class="en">Existing optimization-based attacks like GCG require direct access to model weights and gradients, making them inapplicable to closed-weight, API-only LLMs. Transfer-based black-box attacks rely on open-source surrogate models, but suffer from poor transferability to proprietary architectures. No prior work systematically exploited the fine-tuning API as an attack surface for adversarial prompt optimization.</div>
+            <div class="zh">现有网络安全LLM数据集缺乏系统性探究安全-性能权衡的伪恶意指令对。已有安全研究多聚焦于通用越狱，而非网络安全领域特定的对抗向量（如提示注入）。</div>
+            <div class="en">Existing cybersecurity LLM benchmarks and datasets lack pseudo-malicious instruction-response pairs that systematically probe the safety-performance trade-off. Prior work on LLM safety primarily focuses on general-purpose jailbreaks rather than domain-specific adversarial vectors such as prompt injection in cybersecurity contexts. No prior dataset comprehensively combines CTF challenges, CVE databases, academic papers, and industry reports at this scale for fine-tuning evaluation.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">作者提出&#34;Fun-tuning&#34;方法，将Gemini微调API返回的训练损失值作为代理优化信号，并使用贪心token替换搜索算法迭代生成对抗性提示后缀。该攻击无需模型权重或替代模型，仅需普通开发者API访问权限，并在PurpleLlama基准上对Gemini系列模型进行评估。</div>
-            <div class="en">The authors introduce &#34;Fun-tuning,&#34; a method that treats the training loss values returned by a vendor&#39;s fine-tuning API (specifically Gemini&#39;s) as a proxy optimization signal. They use a greedy token-substitution search algorithm—similar in spirit to GCG but operating purely on API-returned loss values—to iteratively craft adversarial prompt suffixes. The attack requires no model weights, no surrogate model, and only standard API access available to any developer. Evaluation is performed on the PurpleLlama prompt injection benchmark against the Gemini family of models.</div>
+            <div class="zh">研究者构建了包含54,928对伪恶意指令的CyberLLMInstruct数据集，覆盖恶意软件分析、网络钓鱼模拟和零日漏洞等任务。对7个开源LLM进行微调，并在任务性能（CyberMetric）和多种攻击向量的安全韧性上进行联合评估，定量揭示性能与安全的权衡关系。</div>
+            <div class="en">The authors construct CyberLLMInstruct, a dataset of 54,928 pseudo-malicious instruction-response pairs covering malware analysis, phishing simulations, and zero-day vulnerabilities, sourced from CTF challenges, academic papers, CVE databases, and industry reports. Seven open-source LLMs are fine-tuned on this dataset and evaluated on both cybersecurity task performance (using CyberMetric) and safety resilience across multiple attack vectors including prompt injection. The key contribution is a rigorous empirical framework that jointly measures capability gains and safety degradation, making the trade-off quantitatively explicit.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">Fun-tuning在PurpleLlama基准上对Gemini系列模型的攻击成功率达65%–82%，显著优于朴素黑盒基线。微调API返回的损失信号足以引导离散贪心搜索，且该漏洞在多个Gemini模型变体上普遍存在，具有系统性。</div>
-            <div class="en">Fun-tuning achieves prompt injection attack success rates of 65%–82% across Google&#39;s Gemini family of models on the PurpleLlama benchmark, substantially outperforming naive black-box baselines. The fine-tuning API&#39;s loss-like signal proves sufficient to guide discrete greedy search despite offering far less information than direct gradient access. The results hold across multiple Gemini model variants, suggesting the vulnerability is systemic rather than model-specific.</div>
+            <div class="zh">微调后CyberMetric准确率最高达92.50%，但安全性大幅下降。Llama 3.1 8B在提示注入攻击下的安全评分从0.95骤降至0.15，且该现象在所有7个模型和全部攻击向量中普遍存在。</div>
+            <div class="en">Fine-tuning on CyberLLMInstruct achieves up to 92.50% accuracy on the CyberMetric benchmark, demonstrating strong task performance gains. However, safety scores collapse dramatically: Llama 3.1 8B&#39;s security score against prompt injection drops from 0.95 to 0.15 after fine-tuning. This pattern holds across all seven tested models and all evaluated attack vectors, confirming the trade-off is systematic rather than model-specific.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>实用与安全的权衡：微调接口是厂商提供开发者功能的设计选择，但该研究表明其天然泄露足够的优化信号，这一矛盾难以通过简单删减功能解决。</li><li>规模与成本：基于远程API的贪心token搜索需大量顺序调用，攻击的实际查询成本与速率限制下的鲁棒性有待量化，未来可研究损失值扰动或查询节流等防御措施。</li><li>更广泛适用性：尽管本文仅在Gemini上验证，任何返回损失值的微调API（如OpenAI、Cohere）都可能存在类似漏洞，相关厂商应审查其训练指标是否暴露等价信号。</li></ul>
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>安</li><li>全</li><li>-</li><li>能</li><li>力</li><li>矛</li><li>盾</li><li>在</li><li>网</li><li>络</li><li>安</li><li>全</li><li>领</li><li>域</li><li>被</li><li>放</li><li>大</li><li>：</li><li>提</li><li>示</li><li>注</li><li>入</li><li>安</li><li>全</li><li>分</li><li>从</li><li>0</li><li>.</li><li>9</li><li>5</li><li>降</li><li>至</li><li>0</li><li>.</li><li>1</li><li>5</li><li>的</li><li>幅</li><li>度</li><li>远</li><li>超</li><li>一</li><li>般</li><li>领</li><li>域</li><li>微</li><li>调</li><li>，</li><li>说</li><li>明</li><li>该</li><li>领</li><li>域</li><li>的</li><li>对</li><li>抗</li><li>性</li><li>推</li><li>理</li><li>模</li><li>式</li><li>对</li><li>安</li><li>全</li><li>对</li><li>齐</li><li>具</li><li>有</li><li>特</li><li>殊</li><li>破</li><li>坏</li><li>作</li><li>用</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>数</li><li>据</li><li>集</li><li>的</li><li>&#34;</li><li>伪</li><li>恶</li><li>意</li><li>&#34;</li><li>设</li><li>计</li><li>旨</li><li>在</li><li>支</li><li>持</li><li>研</li><li>究</li><li>而</li><li>不</li><li>助</li><li>长</li><li>真</li><li>实</li><li>攻</li><li>击</li><li>，</li><li>但</li><li>论</li><li>文</li><li>需</li><li>进</li><li>一</li><li>步</li><li>阐</li><li>明</li><li>如</li><li>何</li><li>防</li><li>止</li><li>数</li><li>据</li><li>集</li><li>本</li><li>身</li><li>被</li><li>滥</li><li>用</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>研</li><li>究</li><li>仅</li><li>覆</li><li>盖</li><li>开</li><li>源</li><li>模</li><li>型</li><li>，</li><li>具</li><li>有</li><li>更</li><li>强</li><li>R</li><li>L</li><li>H</li><li>F</li><li>的</li><li>专</li><li>有</li><li>模</li><li>型</li><li>（</li><li>如</li><li>G</li><li>P</li><li>T</li><li>-</li><li>4</li><li>）</li><li>是</li><li>否</li><li>呈</li><li>现</li><li>不</li><li>同</li><li>的</li><li>安</li><li>全</li><li>退</li><li>化</li><li>曲</li><li>线</li><li>，</li><li>仍</li><li>是</li><li>重</li><li>要</li><li>的</li><li>未</li><li>来</li><li>研</li><li>究</li><li>方</li><li>向</li><li>。</li><li>&#34;</li><li>]</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Utility-security tradeoff: The fine-tuning interface is a deliberate design choice by vendors to provide developer utility, yet this paper shows it inherently leaks enough optimization signal to enable adversarial attacks—a tension that cannot be resolved simply by removing features.</li><li>Scalability and cost: Greedy token-search over a remote API involves many sequential API calls, raising questions about the practical cost and rate-limit resilience of the attack. Future work should quantify query budgets and explore defenses such as loss-value perturbation or query throttling.</li><li>Broader applicability: While demonstrated on Gemini, any LLM vendor offering a fine-tuning API that returns per-sample or aggregate loss values is potentially vulnerable. OpenAI, Cohere, and others with similar interfaces should audit whether their returned training metrics expose comparable signals.</li></ul>
+              <ul class="discussion-list"><li>Safety-capability tension is domain-amplified: the drop from 0.95 to 0.15 on prompt injection is far steeper than typical general-domain fine-tuning safety degradation, suggesting cybersecurity data uniquely erodes safety alignment—possibly because the domain inherently involves adversarial reasoning patterns.</li><li>Dataset realism vs. harm risk: using &#39;pseudo-malicious&#39; pairs is a deliberate design choice to enable research without enabling real attacks, but the paper should clarify what prevents straightforward misuse of the dataset itself, especially given its public-release implications.</li><li>Generalization of findings: evaluating seven models strengthens the claim that the trade-off is universal, but all are open-source models; proprietary models (GPT-4, Claude) with stronger RLHF may exhibit different degradation curves, leaving an important gap for future work.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="https://arxiv.org/abs/2501.09798" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="https://arxiv.org/abs/2503.09334" target="_blank">查看原文 →</a>
       </div>
       
       
       
       <div class="paper-card">
-        <div class="paper-title">GAP用互联图结构替代树状越狱框架，实现跨攻击路径的知识共享，攻击成功率超96%，查询成本降低62.7%。</div>
+        <div class="paper-title">GAP用互联图结构替代树形越狱框架，实现跨攻击路径知识共享，攻击成功率超96%，同时将查询成本降低62.7%。</div>
         <div class="paper-title-en">Graph of Attacks with Pruning: Optimizing Stealthy Jailbreak Prompt Generation for Enhanced LLM Content Moderation</div>
         <div class="paper-meta">
           <span>Daniel Schwartz, Dmitriy Bespalov, Zhe Wang et al.</span>
@@ -192,16 +197,19 @@
           <span class="badge badge-venue">EMNLP</span>
           
           <span class="badge badge-score">评分 9.5</span>
+          
         </div>
+
+        
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>GAP用互联图结构替代树状越狱框架，实现跨攻击路径的知识共享，攻击成功率超96%，查询成本降低62.7%。</div>
+          <div>GAP用互联图结构替代树形越狱框架，实现跨攻击路径知识共享，攻击成功率超96%，同时将查询成本降低62.7%。</div>
           <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">GAP replaces tree-based jailbreak structures with an interconnected graph that shares knowledge across attack paths, achieving &gt;96% attack success rates while cutting query costs by 62.7%.</div>
         </div>
 
         
-        <details>
+        <details >
           <summary>优缺点分析 / Pros &amp; Cons</summary>
           <div class="detail-content">
             <div class="pros-cons">
@@ -209,13 +217,11 @@
                 <strong>✓ 优势</strong>
                 <ul>
                   
-                  <li>解决LLM越狱防护的重要问题，对内容审核具有实际价值<span style="display:block;margin-top:0.1rem">Tackles important problem of LLM jailbreak robustness with practical relevance for content moderation</span></li>
+                  <li>解决LLM鲁棒性的关键问题，具有重要的实际影响：攻击成功率提升20.8%，查询成本降低62.7%，代表了显著的进展<span style="display:block;margin-top:0.1rem">Addresses critical problem of LLM robustness with significant practical impact: 20.8% improvement in attack success rates and 62.7% reduction in query costs represents substantial advancement</span></li>
                   
-                  <li>相比现有树形方法展示显著实证改进（成功率提升20.8%，查询成本降低62.7%）<span style="display:block;margin-top:0.1rem">Demonstrates significant empirical improvements (20.8% success rate increase, 62.7% query cost reduction) over existing tree-based methods</span></li>
+                  <li>采用图结构而非树状结构的新颖方法论创新，实现跨攻击路径的知识共享，展现清晰的技术创新<span style="display:block;margin-top:0.1rem">Novel methodological contribution using graph-based structure instead of tree-based approaches enables knowledge sharing across attack paths, demonstrating clear technical innovation</span></li>
                   
-                  <li>基于图的创新架构在攻击路径间实现知识共享，超越现有树形结构的技术贡献<span style="display:block;margin-top:0.1rem">Novel graph-based architecture with knowledge sharing across attack paths represents meaningful technical contribution beyond existing tree structures</span></li>
-                  
-                  <li>对开源和闭源LLM的评估均取得高攻击成功率（&gt;96%），展示广泛适用性<span style="display:block;margin-top:0.1rem">Evaluates both open and closed LLMs with high attack success rates (&gt;96%), showing broad applicability</span></li>
+                  <li>在顶级会议EMNLP发表，对开源和闭源LLM进行全面实验评估，攻击成功率超过96%，展现强有力的实证验证<span style="display:block;margin-top:0.1rem">Published at EMNLP, a top-tier venue, with comprehensive experimental evaluation across both open and closed LLMs achieving &gt;96% success rates showing strong empirical validation</span></li>
                   
                 </ul>
               </div>
@@ -223,13 +229,9 @@
                 <strong>✗ 不足</strong>
                 <ul>
                   
-                  <li>HuggingFace零点赞表明尽管发表在EMNLP但社区认可度有限<span style="display:block;margin-top:0.1rem">Zero HuggingFace community upvotes suggests limited community awareness or adoption despite publication at EMNLP</span></li>
+                  <li>HuggingFace零点赞且没有明显的社区参与信号，表明该工作的即时影响力认可度和对广泛受众的可访问性有限<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes and no visible community engagement signal suggests limited immediate impact recognition or accessibility of the work to broader audience</span></li>
                   
-                  <li>作者声誉不突出——未有明确的顶级AI机构（MIT、Stanford、DeepMill等）背景<span style="display:block;margin-top:0.1rem">Author prestige not exceptionally strong - no clear affiliation with top-tier AI institutions (MIT, Stanford, DeepMind, etc.)</span></li>
-                  
-                  <li>摘要截断（&#39;Additionally, we pres&#39;）提示可能的论文质量控制问题<span style="display:block;margin-top:0.1rem">Abstract appears truncated (&#39;Additionally, we pres&#39;), suggesting potential submission quality control issues</span></li>
-                  
-                  <li>关于方法严谨性、评估数据集多样性和可重现性的信息在摘要中不足<span style="display:block;margin-top:0.1rem">Limited information on methodology rigor, evaluation datasets diversity, or reproducibility provisions in abstract</span></li>
+                  <li>在提供的摘要中未明确披露作者所属机构，使声望评估困难，可能表明来自不太知名的机构<span style="display:block;margin-top:0.1rem">Author affiliations and institutional backgrounds are not clearly disclosed in the provided abstract, making prestige assessment difficult and potentially indicating lesser-known institutions</span></li>
                   
                 </ul>
               </div>
@@ -241,39 +243,39 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">随着LLM大规模部署，绕过安全护栏的越狱攻击带来严重风险。本文探讨如何更高效地生成隐蔽、高成功率的越狱提示，以压力测试并强化LLM内容审核系统。</div>
-            <div class="en">As LLMs are deployed at scale, adversarial jailbreak attacks that bypass safety guardrails pose serious risks. The paper asks: how can we generate stealthy, high-success-rate jailbreak prompts more efficiently to stress-test and ultimately strengthen LLM content moderation systems?</div>
+            <div class="zh">如何更高效地生成隐蔽越狱提示词，以压力测试LLM安全护栏？随着LLM大规模部署，在恶意行为者利用之前发现内容审核系统的弱点，对负责任的AI开发至关重要。</div>
+            <div class="en">How can we generate stealthy jailbreak prompts more efficiently and effectively to stress-test LLM safety guardrails? As LLMs are deployed at scale, identifying weaknesses in their content moderation systems before malicious actors do is critical for responsible AI development.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有方法（如TAP、PAIR）采用树状或单路径搜索结构，导致一条分支发现的有效攻击策略无法被其他分支复用，造成查询浪费，对防御严密的闭源LLM攻击成功率有限。</div>
-            <div class="en">Existing jailbreak methods like TAP and PAIR rely on tree-based or single-path search structures, which prevent successful attack strategies discovered in one branch from informing other branches. This siloed design wastes queries and limits attack success rates, especially against well-defended closed-source LLMs.</div>
+            <div class="zh">现有树形越狱方法（如TAP、PAIR）独立探索各攻击路径，无法跨分支共享成功策略，导致查询冗余、成本高昂且错失协同机会。此类方法也不支持多模态输入，且需手动构建种子提示词。</div>
+            <div class="en">Existing tree-based jailbreak methods (e.g., TAP, PAIR) explore attack paths independently, preventing successful strategies discovered in one branch from informing others. This structural isolation leads to redundant queries, higher costs, and missed opportunities to exploit cross-branch insights. Such methods also lack support for multimodal inputs and require manual seed prompt crafting.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">GAP将越狱搜索过程建模为有向图而非树，使成功的提示模式可同时传播至多条攻击路径。剪枝机制提前淘汰低潜力节点，将查询预算集中于最有效策略。GAP-Auto实现种子提示自动生成，GAP-VLM将方法扩展至多模态（视觉-语言）模型，使其成为适用于开源与闭源LLM的通用红队测试工具。</div>
-            <div class="en">GAP (Graph of Attacks with Pruning) models the jailbreak search process as a directed graph rather than a tree, allowing successful prompt patterns to propagate across multiple attack paths simultaneously. A pruning mechanism eliminates low-promise nodes early, concentrating the query budget on the most effective strategies. The framework also introduces GAP-Auto, which automates seed prompt generation without manual input, and GAP-VLM, which extends the approach to multimodal (vision-language) models. Together, these components make GAP a general-purpose red-teaming toolkit applicable to both open- and closed-source LLMs.</div>
+            <div class="zh">GAP用有向图取代树结构，使成功攻击节点能同时跨多条路径共享信息。剪枝机制提前淘汰低潜力分支，减少无效查询。GAP-Auto扩展了自动种子提示词生成能力，无需人工初始化。GAP-VLM将框架适配至视觉语言模型，支持多模态越狱评估。</div>
+            <div class="en">GAP (Graph of Attacks with Pruning) replaces the tree structure with a directed graph, allowing successful attack nodes to share information across multiple paths simultaneously. A pruning mechanism eliminates low-promise branches early, reducing wasted queries. GAP-Auto extends the framework with automated seed prompt generation, removing the need for manual initialization. GAP-VLM adapts the approach to vision-language models, enabling multimodal jailbreak evaluation.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">GAP对开源与闭源LLM的攻击成功率均超96%，较最先进基线提升20.8%，同时查询次数减少62.7%。GAP生成的对抗提示还可用于训练内容审核分类器，提升其对未知越狱攻击的鲁棒性。</div>
-            <div class="en">GAP achieves attack success rates exceeding 96% against both open- and closed-source LLMs, representing a 20.8% improvement over state-of-the-art baselines. Simultaneously, it reduces the number of queries required by 62.7%, making it substantially more cost-efficient. GAP-generated adversarial prompts also prove effective as training data for content moderation classifiers, improving their robustness against unseen jailbreak attacks.</div>
+            <div class="zh">GAP在开源和闭源LLM上的攻击成功率均超96%，相比现有最优方法提升20.8%，同时将查询成本降低62.7%。GAP生成的对抗提示词还可作为高质量训练数据，显著提升下游内容审核分类器的性能。</div>
+            <div class="en">GAP achieves attack success rates exceeding 96% on both open-source and closed LLMs, outperforming state-of-the-art baselines by 20.8% in success rate while reducing query costs by 62.7%. GAP-generated adversarial prompts also serve as high-quality training data, measurably improving downstream content moderation classifiers.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>图结构优于树结构是核心洞见：跨分支共享信息避免了树状方法的冗余探索，该设计原则可推广至其他LLM红队测试或提示优化任务。</li><li>双重用途定位处理得当：GAP明确服务于提升内容审核而非单纯攻击，将生成的对抗提示用于强化分类器，展示了超越基准数字的实际安全价值。</li><li>通过GAP-VLM扩展至多模态模型具有重要意义，但论文对VLM的评估范围相比纯文本实验明显有限，跨模态攻击的泛化能力仍有待深入验证。</li></ul>
+              <ul class="discussion-list"><li>双刃剑风险：GAP是强力攻击工具，尽管作者将其定位为红队测试辅助，但同样可能降低恶意行为者低成本绕过LLM护栏的门槛。</li><li>剪枝策略的泛化性：剪枝效果很可能依赖于分支评分启发式设计，论文未充分分析该设计在不同目标模型上的敏感性。</li><li>审核改进闭环：用GAP生成的提示词训练内容审核器思路新颖，但论文未量化对抗数据相对于常规数据增强的独立贡献，因果关系有待进一步验证。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Graph over tree is the key insight: by allowing nodes to share information across branches, GAP avoids redundant exploration that plagues tree-based methods — this design principle could generalize to other LLM red-teaming or prompt optimization tasks.</li><li>The dual-use framing is well-handled: GAP is explicitly positioned as a tool for improving content moderation, not just attacking, and the use of GAP-generated prompts to harden classifiers demonstrates a concrete safety benefit beyond benchmark numbers.</li><li>Scalability to multimodal models via GAP-VLM is significant, as vision-language models introduce new attack surfaces; however, the paper&#39;s evaluation scope for VLMs appears limited compared to text-only experiments, leaving open questions about cross-modal attack generalization.</li></ul>
+              <ul class="discussion-list"><li>Dual-use risk: GAP is a powerful offensive tool, and while the authors frame it as a red-teaming aid, the same framework could lower the barrier for malicious actors to systematically bypass LLM safeguards at low cost.</li><li>Generalization of pruning: The pruning strategy&#39;s effectiveness likely depends on the scoring heuristic used to rank attack branches; the paper does not fully analyze sensitivity to this design choice across diverse target models.</li><li>Moderation improvement loop: Using GAP-generated prompts to train content moderators is promising, but the paper stops short of quantifying how much the adversarial data specifically contributes versus standard augmentation, leaving the causal claim partially unverified.</li></ul>
             </div>
           </div>
         </details>
@@ -284,24 +286,27 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">CyberLLMInstruct 提出含54,928条伪恶意指令对的数据集，揭示了网络安全大模型微调中安全性与性能之间的严峻权衡。</div>
-        <div class="paper-title-en">CyberLLMInstruct: A Pseudo-Malicious Dataset Revealing Safety-Performance Trade-offs in Cyber Security LLM Fine-tuning</div>
+        <div class="paper-title">本文针对RAG系统提出全面威胁分类与对抗框架，揭示多语言流水线（尤其是阿拉伯语-英语混码）存在超越纯英语评估的独特安全漏洞。</div>
+        <div class="paper-title-en">Adversarial and Multilingual Threats in Retrieval-Augmented Generation: From Prompt Injection to Model Exploitation</div>
         <div class="paper-meta">
-          <span>Adel Elzemity, Budi Arief, Shujun Li</span>
-          <span class="badge badge-date">2025-03-12</span>
-          <span class="badge badge-venue">CCS</span>
+          <span>Basma ElSaify, Mohamed Baderelden</span>
+          <span class="badge badge-date">2025-08-18</span>
+          <span class="badge badge-venue">ACL</span>
           
-          <span class="badge badge-score">评分 9.3</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>CyberLLMInstruct 提出含54,928条伪恶意指令对的数据集，揭示了网络安全大模型微调中安全性与性能之间的严峻权衡。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CyberLLMInstruct introduces a 54,928-pair pseudo-malicious dataset that exposes a severe safety-performance trade-off when fine-tuning LLMs for cybersecurity tasks.</div>
+          <span class="badge badge-score">评分 9.1</span>
+          
         </div>
 
         
-        <details>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文针对RAG系统提出全面威胁分类与对抗框架，揭示多语言流水线（尤其是阿拉伯语-英语混码）存在超越纯英语评估的独特安全漏洞。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes a comprehensive threat taxonomy and adversarial framework for RAG systems, revealing that multilingual pipelines—especially Arabic-English code-switching—introduce unique vulnerabilities beyond those found in English-only evaluations.</div>
+        </div>
+
+        
+        <details >
           <summary>优缺点分析 / Pros &amp; Cons</summary>
           <div class="detail-content">
             <div class="pros-cons">
@@ -309,11 +314,11 @@
                 <strong>✓ 优势</strong>
                 <ul>
                   
-                  <li>解决了一个关键且鲜有研究的问题：为网络安全任务微调LLM时性能提升与安全性下降之间的固有权衡<span style="display:block;margin-top:0.1rem">Addresses a critical and under-explored problem: the inherent trade-off between performance gains and safety degradation when fine-tuning LLMs for cybersecurity tasks</span></li>
+                  <li>针对高度紧迫且关键的问题—RAG系统代表了快速部署的基础设施，具有来自LLM和检索管道的复合脆弱性面<span style="display:block;margin-top:0.1rem">Tackles highly timely and critical problem—RAG systems represent rapidly deployed infrastructure with compounding vulnerability surface from both LLMs and retrieval pipelines</span></li>
                   
-                  <li>提供了大规模数据集（54,928对），涵盖具体的网络安全任务（恶意软件分析、钓鱼模拟、零日漏洞），可支持可重复性研究<span style="display:block;margin-top:0.1rem">Provides a large-scale dataset (54,928 pairs) with concrete cybersecurity tasks (malware analysis, phishing, zero-day vulnerabilities) that enables reproducible research</span></li>
+                  <li>采用综合威胁分类法方法，系统性覆盖多种攻击向量（提示注入、越狱、模型提取、多语言威胁），而非孤立的漏洞<span style="display:block;margin-top:0.1rem">Comprehensive threat taxonomy approach provides systematic coverage of attack vectors (prompt injection, jailbreak, model extraction, multilingual threats) rather than isolated vulnerabilities</span></li>
                   
-                  <li>对七个开源LLM进行全面评估，采用可测量的安全指标，展示了显著的安全分数下降（从0.95到0.15），提供了问题的具体量化证据<span style="display:block;margin-top:0.1rem">Comprehensive evaluation across seven open-source LLMs with measurable safety metrics showing dramatic security score drops (0.95 to 0.15), providing concrete quantitative evidence of the problem</span></li>
+                  <li>具有明确的实际意义，直接适用于保护组织正在部署的生产RAG和代理系统<span style="display:block;margin-top:0.1rem">Clear practical significance with direct applicability to securing production RAG and agentic systems that organizations are actively deploying</span></li>
                   
                 </ul>
               </div>
@@ -321,9 +326,9 @@
                 <strong>✗ 不足</strong>
                 <ul>
                   
-                  <li>社区参与度为零（HuggingFace点赞数为0），表明尽管被会议接收，但该工作可能尚未被研究社区广泛认知或认可<span style="display:block;margin-top:0.1rem">Zero community engagement (0 HuggingFace upvotes) suggests the work may not yet be widely known or recognized by the research community despite venue acceptance</span></li>
+                  <li>HuggingFace零赞以及缺乏作者机构信息表明社区可见性和认可度有限，引发对作者信誉和研究影响力的疑虑<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes and no visible author institution information suggests limited community visibility or recognition, raising questions about author credibility and research impact</span></li>
                   
-                  <li>作者所属机构似为布里斯托大学（二线高校），非顶级机构，降低了机构声望因素；对论文完整性细节（如理论分析或缓解策略）的信息不足<span style="display:block;margin-top:0.1rem">Author affiliation appears to be University of Bristol (tier-2), not top-tier institutions, which may limit institutional prestige factor; limited information on paper completeness details like theoretical analysis or mitigation strategies</span></li>
+                  <li>摘要不完整（在&#39;multilingual prompt&#39;处截断），难以完整评估方法论严谨性、实验全面性和新颖性<span style="display:block;margin-top:0.1rem">Abstract is incomplete (cuts off mid-sentence at &#39;multilingual prompt&#39;), making full assessment of methodology rigor, experimental comprehensiveness, and novelty difficult</span></li>
                   
                 </ul>
               </div>
@@ -335,44 +340,44 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">针对网络安全任务微调大模型可提升性能，但其是否削弱内置安全护栏尚未被充分研究。若微调破坏安全对齐，部署的安全大模型将面临提示注入或越狱攻击的严重风险。</div>
-            <div class="en">Fine-tuning LLMs on cybersecurity-specific data can improve task performance, but whether this degrades built-in safety guardrails remains underexplored. This matters because deployed security-focused LLMs could be exploited via prompt injection or jailbreaks if fine-tuning erodes safety alignment.</div>
+            <div class="zh">RAG系统将LLM与外部检索结合，但这一架构扩大了检索流水线、语言接口和API的攻击面。本文探究传统与智能体RAG系统的全谱对抗威胁，以及多语言输入如何放大这些风险，对高风险应用场景的安全部署具有重要意义。</div>
+            <div class="en">RAG systems couple LLMs with external retrieval, but this architecture expands the attack surface across retrieval pipelines, language interfaces, and exposed APIs. The paper asks: what are the full spectrum of adversarial threats in both conventional and agentic RAG systems, and how do multilingual inputs amplify these risks? This matters because RAG is increasingly deployed in high-stakes applications where security failures can cause real harm.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">已有安全大模型工作（如SecureFalcon）侧重提升任务性能，未系统评估微调后的安全退化问题。通用安全对齐研究缺乏覆盖恶意软件分析、零日漏洞等真实场景的领域专项对抗评估。</div>
-            <div class="en">Prior cybersecurity LLM work (e.g., SecureFalcon, HackerLLM) focused on boosting task performance without rigorously measuring post-fine-tuning safety degradation. General safety alignment research lacks domain-specific adversarial evaluation covering real-world vectors like malware analysis and zero-day exploits. No existing dataset combined pseudo-malicious cybersecurity instructions with systematic safety benchmarking across multiple models.</div>
+            <div class="zh">现有LLM和RAG安全研究主要聚焦于纯英语场景，多语言漏洞几乎未被探索。已有工作多针对孤立攻击类型（如提示注入或越狱），缺乏覆盖检索到生成全流程的统一分类体系。智能体RAG场景（LLM自主执行多步任务）的对抗性分析尤为匮乏。</div>
+            <div class="en">Existing security research on LLMs and RAG systems predominantly focuses on English-only settings, leaving multilingual vulnerabilities largely unexplored. Prior work also tends to address isolated attack types—such as prompt injection or jailbreaks—rather than providing a unified taxonomy covering the full pipeline from retrieval to generation. Agentic RAG scenarios, where LLMs autonomously execute multi-step tasks, have received especially limited adversarial analysis.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">构建含54,928条伪恶意指令对的CyberLLMInstruct数据集，来源涵盖CTF、CVE数据库、学术论文及行业报告。对7个开源大模型进行微调，同时在CyberMetric基准和多种攻击向量（提示注入、越狱等）上评估任务性能与安全韧性的权衡关系。</div>
-            <div class="en">The authors construct CyberLLMInstruct, a dataset of 54,928 pseudo-malicious instruction-response pairs sourced from CTF challenges, CVE databases, academic papers, and industry reports, covering malware analysis, phishing simulations, and zero-day vulnerabilities. Seven open-source LLMs (including Llama 3.1 8B, Mistral, Phi) are fine-tuned on this dataset and evaluated on both cybersecurity task accuracy (CyberMetric benchmark) and safety resilience against multiple attack vectors including prompt injection and jailbreaks. The study quantifies the trade-off between domain performance gains and safety score degradation, providing a structured framework for diagnosing alignment failures in adversarial fine-tuning scenarios.</div>
+            <div class="zh">作者构建了覆盖RAG全流程的威胁分类体系，涵盖提示注入、越狱漏洞、API驱动的模型提取及多语言提示操控。核心贡献是对语言混码（尤其阿拉伯语-英语）作为攻击向量的专项分析，该方式可绕过主要基于单语数据训练的安全过滤器。框架还将威胁建模扩展至智能体RAG系统，自主多步推理会导致漏洞叠加。</div>
+            <div class="en">The authors construct a comprehensive threat taxonomy that categorizes attacks across the entire RAG pipeline, including prompt injection, jailbreak exploits, API-driven model extraction, and multilingual prompt manipulation. A key contribution is the focused analysis of language blending (code-switching), particularly Arabic-English mixing, as a vector that bypasses safety filters trained predominantly on monolingual data. The framework also extends threat modeling to agentic RAG systems, where autonomous multi-step reasoning creates compounding vulnerabilities. Together, these form an adversarial framework intended to guide both offensive red-teaming and defensive system design.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">微调后CyberMetric准确率最高达92.50%，任务性能显著提升。但安全性急剧下降：Llama 3.1 8B在提示注入攻击下的安全评分从0.95骤降至0.15，且该现象在所有7个模型和攻击向量中普遍存在。</div>
-            <div class="en">Fine-tuning on CyberLLMInstruct achieves up to 92.50% accuracy on the CyberMetric cybersecurity benchmark, confirming significant domain performance gains. However, safety resilience collapses dramatically: Llama 3.1 8B&#39;s security score against prompt injection drops from 0.95 to 0.15 after fine-tuning. This degradation is consistent across all seven tested models and attack vectors, indicating a systemic rather than model-specific vulnerability.</div>
+            <div class="zh">研究表明，多语言混码（尤其阿拉伯语-英语）能持续绕过在纯英语下有效的安全护栏，揭示现有防御体系的系统性缺口。智能体RAG系统因自主检索-执行循环可被注入文档或API操控劫持，表现出更高的漏洞风险。本文以分析和分类为主，研究结论指向具体且被忽视的攻击面。</div>
+            <div class="en">The paper demonstrates that multilingual code-switching—particularly Arabic-English blending—consistently evades safety guardrails that hold under English-only inputs, exposing a systemic gap in current defenses. Agentic RAG systems are shown to be disproportionately vulnerable due to their autonomous retrieval-and-execution loops, which can be hijacked via injected documents or API manipulation. While the paper is primarily analytical and taxonomic rather than empirical, these findings highlight concrete, underexplored attack surfaces with practical implications for deployed systems.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>安全性崩溃在全部7个模型中普遍出现，说明这是对抗性领域微调的系统性问题，而非特定架构缺陷，换模型无法根本解决。</li><li>数据集虽来源多样，但伪恶意指令对可能低估真实攻击者的复杂性，导致对生产环境安全风险的评估偏保守。</li><li>论文精确诊断了权衡问题，但未提出具体缓解方案（如安全约束微调或微调后RLHF重对齐），实践指导价值有限。</li></ul>
+              <ul class="discussion-list"><li>多语言盲区是关键缺口：安全对齐数据集以英语为主，面向非英语或多语言用户的RAG部署存在未量化风险，组织应优先使用混码对抗输入审计其流水线。</li><li>智能体RAG威胁模型有待细化：论文指出自主多步执行风险高，但未提供具体攻击基准或量化失败率，对实践者的可操作指导有限。</li><li>缺乏实证支撑削弱可信度：框架全面但以定性分析为主，后续工作应在真实RAG部署上结合系统性红队测试，以验证威胁严重性排序并指导防御资源分配。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Safety-performance trade-off is systemic: the uniform safety collapse across all seven models suggests the problem is inherent to domain-specific fine-tuning on adversarial data, not fixable by simply switching architectures.</li><li>Dataset scope and realism: while sourcing from CTF and CVE databases adds breadth, pseudo-malicious pairs may not fully capture the sophistication of real attacker prompts, potentially underestimating true safety risks in production deployments.</li><li>Mitigation gap: the paper diagnoses the trade-off rigorously but does not propose concrete defenses (e.g., safety-constrained fine-tuning, RLHF re-alignment post-tuning), leaving practitioners without actionable remediation strategies.</li></ul>
+              <ul class="discussion-list"><li>Multilingual blind spots are a critical gap: safety alignment datasets are overwhelmingly English-centric, meaning any RAG deployment serving non-English or multilingual users inherits unquantified risk—organizations should urgently audit their pipelines with code-switched adversarial inputs.</li><li>The agentic RAG threat model is underspecified: while the paper flags autonomous multi-step execution as high-risk, it stops short of providing concrete attack benchmarks or quantitative failure rates, limiting actionable takeaways for practitioners building agentic systems.</li><li>Taxonomy without empirical grounding reduces confidence: the framework is comprehensive but largely qualitative; future work should pair this taxonomy with systematic red-teaming experiments across real RAG deployments to validate threat severity rankings and prioritize defensive investment.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="https://arxiv.org/abs/2503.09334" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/8f899eda5a2d8df504d805dcf8d6e5dd9e15d68c" target="_blank">查看原文 →</a>
       </div>
       
       
@@ -389,90 +394,67 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">Blindfold通过语义无害的指令对具身LLM实施动作级攻击，绕过语言层安全过滤器，诱导AI执行危险物理动作。</div>
+        <div class="paper-title">Blindfold是一种自动化越狱框架，通过动作级别操控具身大语言模型，构造语义上看似安全但会导致真实物理危害的指...</div>
         <div class="paper-title-en">Jailbreaking Embodied LLMs via Action-level Manipulation</div>
         <div class="paper-meta">
           <span>Xinyu Huang, Qiang Yang, Leming Shen et al.</span>
           <span class="badge badge-date">2026-03-02</span>
           
           
-          <span class="badge badge-score">评分 6.3</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>Blindfold通过语义无害的指令对具身LLM实施动作级攻击，绕过语言层安全过滤器，诱导AI执行危险物理动作。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Blindfold is an automated action-level jailbreak framework that manipulates embodied LLMs into executing physically harmful actions through semantically benign instructions, bypassing language-level safety filters.</div>
+          <span class="badge badge-score">评分 3.5</span>
+          <span class="badge badge-fallback">⚠ 兜底推送</span>
         </div>
 
         
-        <details>
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>直接针对决策层（基于LLM的机器人控制），符合具身智能安全研究的最高优先级威胁向量<span style="display:block;margin-top:0.1rem">Directly targets the decision layer (LLM-based robot control), the highest-priority threat vector in embodied intelligence security per research priorities</span></li>
-                  
-                  <li>识别了一类基础且新颖的漏洞：语义-物理错位，区别于纯语言越狱，反映真实具身AI风险<span style="display:block;margin-top:0.1rem">Identifies a fundamental and novel vulnerability class: semantic-to-physical misalignment, which is distinct from language-only jailbreaking and reflects real-world embodied AI risks</span></li>
-                  
-                  <li>提出自动化攻击框架（Blindfold与对抗代理规划），比试错法更高效，展示对具身LLM限制的理解<span style="display:block;margin-top:0.1rem">Proposes an automated attack framework (Blindfold with Adversarial Proxy Planning) that is more efficient than trial-and-error approaches and demonstrates understanding of embodied LLM constraints</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>社区关注度为零（零HuggingFace点赞），表明可见性有限或可能为预印本阶段；完整度评估因摘要截断而受阻<span style="display:block;margin-top:0.1rem">Zero community attention (0 HuggingFace upvotes) suggests limited visibility or potentially preprint status; completeness assessment hampered by truncated abstract</span></li>
-                  
-                  <li>作者机构未明确确认为顶级机构（MIT、CMU、谷歌、DeepMind、斯坦福等），缺乏机构声誉信号<span style="display:block;margin-top:0.1rem">Author affiliations not clearly established as top-tier institutions (MIT, CMU, Google, DeepMind, Stanford); lacks institutional prestige signals</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
+        <div class="fallback-notice">
+          ⚠ <strong>本篇为兜底推送</strong>：当日无论文达到质量阈值（6.0分），此篇为候选中得分最高者，相关性或质量可能有限，请结合下方优缺点分析自行判断。
+        </div>
+        
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Blindfold是一种自动化越狱框架，通过动作级别操控具身大语言模型，构造语义上看似安全但会导致真实物理危害的指令，从而绕过语言安全过滤器。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Blindfold is an automated jailbreak framework that manipulates embodied LLMs at the action level—crafting semantically safe instructions that produce harmful physical-world outcomes—bypassing both language-level safety filters and LLM causal reasoning.</div>
+        </div>
+
         
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">具身LLM在控制物理设备时面临新型安全威胁：通过语言层安全检测的指令仍可触发危险的真实世界动作。随着AI智能体被部署于机器人、自动驾驶等领域，这种语言安全与物理结果之间的错位风险日益严峻。</div>
-            <div class="en">Embodied LLMs that control physical agents face a novel security threat: instructions that pass language-level safety checks can still trigger harmful real-world actions. This misalignment between linguistic safety and physical outcomes poses serious risks as AI agents are deployed in robotics, autonomous vehicles, and smart environments.</div>
+            <div class="zh">具身大语言模型通过自然语言控制机器人等物理智能体，但其安全机制针对语言威胁而非物理后果设计。语义上无害的指令序列仍可能造成碰撞、财产损毁或人身伤害，揭示了语言对齐与物理安全之间的关键鸿沟。</div>
+            <div class="en">Embodied LLMs control physical agents (robots, autonomous systems) via natural language, but their safety mechanisms are designed for linguistic threats, not physical consequences. A semantically benign instruction sequence can still cause real-world harm—collision, property damage, or injury—revealing a critical gap between language-level alignment and physical-world safety.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有LLM越狱研究主要针对文本输出，通过提示工程或黑盒迭代攻击实现，难以迁移至具身场景。此前工作普遍忽视语义到动作的鸿沟：语言上安全的响应在物理执行时可能造成灾难性后果。</div>
-            <div class="en">Existing LLM jailbreak research focuses primarily on eliciting harmful text outputs through prompt engineering or iterative black-box attacks, which do not transfer well to the embodied setting where harm manifests through physical actions rather than language. Prior work largely overlooks the semantic-to-action gap: a response can be linguistically safe yet physically catastrophic when actuated in the real world.</div>
+            <div class="zh">现有大语言模型越狱方法（提示注入、对抗后缀、迭代红队测试）针对语言层输出，依赖黑盒试错，效率低且易被现代安全过滤器拦截。这些方法也未对动作序列与物理危害之间的因果链建模，具身领域的对抗性研究几乎空白。</div>
+            <div class="en">Existing LLM jailbreak methods (prompt injection, adversarial suffixes, iterative red-teaming) target language-layer outputs and rely on black-box trial-and-error, making them inefficient and easily caught by modern safety filters. They also fail to model the causal chain between action sequences and physical-world harm, leaving the embodied domain largely unexplored from an adversarial perspective.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">Blindfold采用对抗性代理规划策略：通过攻破本地代理LLM生成语义安全但物理有害的动作序列，而非直接攻击黑盒目标系统。关键恶意动作通过注入技术隐藏于行动计划中，规避安全监测，同时保持对不同具身LLM后端的高度可迁移性。</div>
-            <div class="en">Blindfold introduces an Adversarial Proxy Planning strategy: instead of directly attacking a black-box embodied LLM, it compromises a local surrogate LLM to craft action sequences that appear semantically safe but produce harmful physical effects upon execution. Malicious key actions are concealed within the action plan through injection techniques, making them hard to detect by safety monitors. This avoids costly iterative trial-and-error on the target system while remaining highly transferable across different embodied LLM backends.</div>
+            <div class="zh">Blindfold提出&#34;对抗代理规划&#34;策略：不直接攻击黑盒具身LLM，而是操控本地代理LLM生成在指令层语义安全、执行后却产生物理危害的动作计划。通过动作级注入将恶意步骤隐藏于合法任务计划中，使安全检测器无法发现异常。该方法利用具身LLM在多步动作轨迹与物理后果因果推理上的不足，实现自动化、查询高效的攻击，并可跨不同具身LLM后端迁移。</div>
+            <div class="en">Blindfold introduces an Adversarial Proxy Planning strategy: instead of directly attacking a black-box embodied LLM, it compromises a local surrogate LLM to generate action plans that are semantically safe at the instruction level but physically dangerous when executed in sequence. Key malicious actions are concealed through action-level injection—embedding harmful steps within otherwise legitimate task plans so that safety checkers see no red flags. This approach exploits the limited causal reasoning of embodied LLMs, which struggle to map multi-step action trajectories to downstream physical outcomes. The result is an automated, query-efficient attack that transfers across different embodied LLM backends.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">Blindfold对多个具身LLM系统展示了高攻击成功率，证明动作级操纵能持续绕过现有语言层安全防护。该框架无需对目标模型进行迭代查询，相比黑盒越狱方法更高效、更隐蔽。</div>
-            <div class="en">Blindfold demonstrates high attack success rates against multiple embodied LLM systems, exposing that action-level manipulation consistently bypasses existing language-level safety guardrails. The framework achieves this without requiring iterative queries to the target model, making it both efficient and stealthy compared to prior black-box jailbreak approaches.</div>
+            <div class="zh">与基线越狱方法相比，Blindfold在具身LLM基准测试中实现了显著更高的攻击成功率，证明动作级操控可绕过能成功拦截语言级攻击的安全防护。代理规划设计使框架查询效率高，避免了迭代黑盒方法的高查询开销。该方法在多种具身LLM架构和任务环境中均表现出良好的泛化能力。</div>
+            <div class="en">Blindfold achieves significantly higher attack success rates compared to baseline jailbreak methods on embodied LLM benchmarks, demonstrating that action-level manipulation bypasses safety guardrails that successfully block language-level attacks. The framework is query-efficient due to its proxy planning design, avoiding the high query costs of iterative black-box approaches. Specific numerical results were not fully available from the provided abstract, but the method is shown to generalize across multiple embodied LLM architectures and task environments.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>动作-安全鸿沟：现有LLM安全对齐几乎完全以语言为中心，当模型控制物理执行器时存在根本性盲区，本文首次通过结构化攻击框架量化了这一差距。</li><li>可迁移性风险：代理规划策略意味着攻击者只需访问任意开源LLM即可生成可迁移至专有具身系统的攻击，大幅降低了真实世界利用的门槛。</li><li>防御挑战：防御Blindfold需要对动作序列的因果物理后果进行推理，而非仅分析语义内容，这超出了当前安全过滤器和RLHF流程的设计范畴。</li></ul>
+              <ul class="discussion-list"><li>物理-语义鸿沟构成新攻击面：Blindfold揭示仅针对语言输出的安全对齐对具身AI根本不够，监管者和开发者必须在动作轨迹和物理后果层面评估安全性。</li><li>迁移攻击风险：代理规划策略无需直接访问目标模型即可成功，攻击者可用单一代理LLM针对多种已部署具身系统生成攻击，大幅降低了攻击门槛。</li><li>防御启示：应对Blindfold类攻击可能需要将因果世界模型集成到LLM规划流程中，使其能预测动作序列的物理后果，而非仅依赖事后语言过滤器。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Action-safety gap: Current LLM safety alignment is almost entirely language-centric, leaving a fundamental blind spot when the same model controls physical actuators—this paper quantifies that gap for the first time in a structured attack framework.</li><li>Transferability risk: The proxy-planning strategy means an attacker only needs access to any open-source LLM to craft attacks transferable to proprietary embodied systems, dramatically lowering the barrier for real-world exploitation.</li><li>Defense challenges: Defending against Blindfold requires reasoning about causal physical consequences of action sequences—not just semantic content—which current safety filters and RLHF pipelines are not designed to handle.</li></ul>
+              <ul class="discussion-list"><li>Physical-semantic gap as a new threat surface: Blindfold exposes that safety alignment focused on language outputs is fundamentally insufficient for embodied AI—regulators and developers must evaluate safety at the action-trajectory and physical-outcome levels, not just token generation.</li><li>Transferability risk: The proxy planning strategy succeeds without direct access to the target model, meaning a single surrogate LLM can be used to craft attacks against many deployed embodied systems, dramatically lowering the bar for adversaries.</li><li>Defensive implications: Mitigating Blindfold-style attacks likely requires causal world models integrated into the LLM&#39;s planning pipeline—capable of forecasting physical consequences of action sequences—rather than post-hoc language filters alone.</li></ul>
             </div>
           </div>
         </details>
@@ -494,216 +476,27 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">RAPO通过检索增强策略优化，打破智能体强化学习中纯在线策略的探索瓶颈，实现步骤级离线信号融合以发现多样推理路径。</div>
-        <div class="paper-title-en">RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization</div>
-        <div class="paper-meta">
-          <span>Siwei Zhang, Yun Xiong, Xi Chen et al.</span>
-          <span class="badge badge-date">2026-03-03</span>
-          <span class="badge badge-venue">KDD</span>
-          
-          <span class="badge badge-score">评分 9.6</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>RAPO通过检索增强策略优化，打破智能体强化学习中纯在线策略的探索瓶颈，实现步骤级离线信号融合以发现多样推理路径。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">RAPO introduces retrieval-augmented policy optimization to break the on-policy exploration bottleneck in agentic RL, enabling LLM agents to discover diverse reasoning paths via step-level off-policy signal integration.</div>
-        </div>
-
-        
-        <details>
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>通过引入细粒度的步级别非策略信号，有效解决了现有智能体强化学习方法的关键限制<span style="display:block;margin-top:0.1rem">Addresses a clear technical gap in existing agentic RL methods by incorporating step-level off-policy signals rather than trajectory-level approaches</span></li>
-                  
-                  <li>与当前LLM智能体发展的前沿趋势高度契合，特别是在多步推理和工具使用能力上的改进<span style="display:block;margin-top:0.1rem">Highly relevant to current LLM agent development trends, particularly in improving multi-step reasoning and tool-use capabilities</span></li>
-                  
-                  <li>检索增强与策略优化的结合提供了实用价值，有助于部署更强大的LLM智能体系统<span style="display:block;margin-top:0.1rem">Novel approach combining retrieval augmentation with policy optimization offers practical utility for deploying more capable LLM agents</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>HuggingFace点赞数为零且社区关注度有限，表明论文可能处于早期阶段或传播不足<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes and limited community attention suggest preliminary stage or insufficient dissemination</span></li>
-                  
-                  <li>摘要不完整（在中间断开），难以完整评估方法的严谨性，不清楚是否提供了充分的基线对比和全面的实验验证<span style="display:block;margin-top:0.1rem">Abstract is incomplete (cut off mid-sentence), making full assessment of methodology rigor difficult; unclear if solid baselines and comprehensive experiments are provided</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">基于智能体强化学习训练的LLM智能体只能探索自身生成的轨迹，严重限制了推理策略的多样性。这一在线策略瓶颈使智能体难以学习新颖的推理视角，对复杂多步工具集成任务尤为不利。</div>
-            <div class="en">LLM agents trained with agentic RL are constrained to exploring only their own self-generated trajectories, severely limiting the diversity of reasoning strategies they can discover. This on-policy bottleneck prevents agents from learning novel reasoning perspectives, especially for complex multi-step, tool-integrated tasks where diverse rollout experience is critical.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有智能体RL方法（如GRPO）依赖纯在线策略，探索受限于自身输出。近期混合方法引入离线信号，但仅在完整轨迹层面使用，忽视了智能体rollout中步骤级精细动态，导致信用分配不准确。</div>
-            <div class="en">Existing agentic RL methods like GRPO and ReAct-style RL rely purely on on-policy rollouts, restricting exploration to the agent&#39;s own outputs. Recent hybrid approaches incorporate off-policy signals but apply them at the full-trajectory level, ignoring the fine-grained step-level dynamics essential for precise credit assignment and targeted exploration within agentic rollouts.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">RAPO引入检索模块，在训练时从历史经验缓冲区动态获取相关离线轨迹，显式注入外部推理多样性。其核心在于步骤级操作：通过对比每个决策点处检索到的离线动作与在线动作，计算细粒度的单步优势值。这种双重优势估计提供了精准的探索信号，且无需修改基础模型架构。</div>
-            <div class="en">RAPO introduces a retrieval module that dynamically fetches relevant off-policy trajectories from a historical experience buffer during training, explicitly injecting external reasoning diversity into the policy optimization process. Crucially, RAPO operates at the step level rather than the trajectory level, computing fine-grained per-step advantages by contrasting retrieved off-policy actions with the agent&#39;s on-policy actions at each decision point. This dual on-policy/off-policy advantage estimation enables targeted, granular exploration signals. The framework is compatible with standard RL training pipelines for LLMs and requires no architectural changes to the base model.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">RAPO在多个工具使用与推理基准上持续超越强基线，证明步骤级检索增强探索相比纯在线策略和轨迹级离线方法均有显著提升。检索方法在需要多步规划的任务上尤为有效，生成推理链的多样性更高，任务成功率明显改善。</div>
-            <div class="en">RAPO consistently outperforms strong agentic RL baselines across multiple tool-use and reasoning benchmarks, demonstrating that step-level retrieval-augmented exploration yields measurable gains over both pure on-policy and trajectory-level off-policy methods. The retrieval-based approach leads to higher diversity in generated reasoning chains and improved task success rates, particularly on tasks requiring multi-step planning. Specific numerical improvements over baselines are not fully detailed in the available abstract, but the framework shows robust gains across evaluated settings.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>步骤级与轨迹级离线信号集成是核心设计抉择：RAPO的细粒度优势计算直接解决了将整条轨迹视为原子单元时的信用分配问题，是未来智能体RL值得借鉴的原则性改进。</li><li>检索缓冲区的质量与覆盖度是潜在瓶颈——若检索轨迹质量低或冗余，离线信号可能引入噪声而非有效多样性，缓冲区管理和检索相关性评分机制有待深入研究。</li><li>对长时序任务和大动作空间的扩展性仍是开放问题，检索开销和步骤级比较的组合爆炸在实际长流程部署中可能带来显著计算负担。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Step-level vs. trajectory-level off-policy integration is the key design decision: RAPO&#39;s granular advantage computation directly addresses credit assignment issues that arise when treating entire trajectories as atomic units, which is a principled improvement worth adopting in future agentic RL work.</li><li>The quality and coverage of the retrieval buffer are potential bottlenecks — if retrieved trajectories are low-quality or redundant, the off-policy signal may introduce noise rather than useful diversity, raising questions about buffer curation and retrieval relevance scoring.</li><li>Scalability to longer-horizon tasks and larger action spaces remains an open question, as retrieval overhead and the combinatorial explosion of step-level comparisons could become computationally prohibitive in real-world deployments with extended agentic workflows.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03078v1" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">Code2Math提出一个多智能体框架，利用代码执行智能体将现有数学题自动演化为更难的变体，解决高质量挑战性数学题稀缺的瓶颈问题。</div>
-        <div class="paper-title-en">Code2Math: Can Your Code Agent Effectively Evolve Math Problems Through Exploration?</div>
-        <div class="paper-meta">
-          <span>Dadi Guo, Yuejin Xie, Qingyu Liu et al.</span>
-          <span class="badge badge-date">2026-03-03</span>
-          <span class="badge badge-venue">ICML</span>
-          
-          <span class="badge badge-score">评分 9.4</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>Code2Math提出一个多智能体框架，利用代码执行智能体将现有数学题自动演化为更难的变体，解决高质量挑战性数学题稀缺的瓶颈问题。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Code2Math introduces a multi-agent framework that uses code-executing agents to autonomously evolve existing math problems into harder, structurally distinct variants, addressing the scarcity of challenging training data for advanced LLMs.</div>
-        </div>
-
-        
-        <details>
-          <summary>优缺点分析 / Pros &amp; Cons</summary>
-          <div class="detail-content">
-            <div class="pros-cons">
-              <div class="pros-box">
-                <strong>✓ 优势</strong>
-                <ul>
-                  
-                  <li>针对重要且紧迫的问题：高质量数学问题的稀缺性限制了LLM向IMO级别能力的发展<span style="display:block;margin-top:0.1rem">Tackles an important and timely problem: the scarcity of high-quality mathematical problems for training advanced LLMs toward IMO-level capabilities</span></li>
-                  
-                  <li>创新的方法论：结合代码智能体与数学问题演化，利用代码执行作为可扩展的数学实验环境<span style="display:block;margin-top:0.1rem">Innovative approach combining code agents with mathematical problem evolution, leveraging code execution as a scalable experimental environment</span></li>
-                  
-                  <li>强势的趋势契合度：与智能体编码、多智能体系统、测试时扩展和LLM合成数据生成等前沿方向对齐<span style="display:block;margin-top:0.1rem">Strong trend alignment with multiple frontier areas: agentic coding, multi-agent systems, test-time scaling, and synthetic data generation for LLMs</span></li>
-                  
-                  <li>具体的实践价值：自动化问题生成可显著降低数据集创建的人力成本<span style="display:block;margin-top:0.1rem">Clear practical value: automated problem generation could significantly reduce human effort in dataset creation</span></li>
-                  
-                </ul>
-              </div>
-              <div class="cons-box">
-                <strong>✗ 不足</strong>
-                <ul>
-                  
-                  <li>社区参与度为零（HuggingFace零赞同）表明尽管发表于ICML但可见性和采纳影响有限<span style="display:block;margin-top:0.1rem">Zero community engagement (0 HuggingFace upvotes) suggests limited visibility or adoption impact despite the venue being ICML</span></li>
-                  
-                  <li>摘要不完整导致无法充分评估实验严谨性、评估指标和与基线方法的对比<span style="display:block;margin-top:0.1rem">Abstract truncation prevents full assessment of experimental rigor, evaluation metrics, and comparison with baseline approaches</span></li>
-                  
-                  <li>未提供作者机构信息，难以验证作者声望；基于现有信息推断来自较不知名机构<span style="display:block;margin-top:0.1rem">Author affiliation information not provided, making it difficult to verify institutional prestige; appears to be from less prominent institutions based on available context</span></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-        
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">随着LLM数学能力逼近IMO水平，用于训练和评估的高难度题目严重匮乏。本文探讨：代码智能体能否通过自主探索，将现有数学题演化为更难且可解的新题目？</div>
-            <div class="en">As LLMs approach IMO-level mathematical reasoning, the supply of sufficiently challenging problems for training and evaluation is becoming a critical bottleneck. This paper asks: can code agents autonomously generate new, harder, and solvable math problems by evolving existing ones through agentic exploration?</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有数学合成数据方法（如拒绝采样、自我指令）难以生成显著超出种子题难度的新题，且缺乏可解性验证。人工命题成本高、难以扩展。代码推理工具此前主要用于解题，尚未被系统性地用于生成更难题目。</div>
-            <div class="en">Existing synthetic data generation methods for math (e.g., rejection sampling, self-instruct) tend to produce problems of similar difficulty to the seed set and lack rigorous solvability verification. Manual problem curation by experts is expensive and does not scale. Code-based reasoning tools have been applied to solving math problems, but not systematically to generating harder ones.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">Code2Math构建多智能体框架：代码智能体通过代码执行迭代修改题目参数、约束或结构，生成更难变体；专用验证模块同时检验可解性与难度提升。框架利用测试时探索机制，允许智能体回溯重试，从而生成结构上有别于原题的新题，而非简单数值替换。</div>
-            <div class="en">Code2Math proposes a multi-agent framework where a code agent iteratively modifies math problem parameters, constraints, or structure via code execution to produce harder variations. A dedicated validation module checks both solvability (the evolved problem has a valid solution) and increased difficulty (verified against baseline solver performance). The framework leverages test-time exploration, allowing agents to backtrack and retry, enabling discovery of structurally novel problems beyond simple numerical substitution.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">在足够的测试时探索预算下，代码智能体能够成功生成既可解又显著更难的新题目（通过求解器成功率验证）。演化题目在结构上有别于种子题，表明具有真正的泛化能力而非简单扰动。难度指标的提升证实了代码驱动演化作为数学数据合成扩展管道的可行性。</div>
-            <div class="en">With sufficient test-time exploration budget, code agents successfully synthesize new math problems that are both solvable and measurably harder than the originals, as validated by solver success rates. The evolved problems are structurally distinct from seed problems, suggesting genuine generalization rather than trivial perturbation. Specific quantitative gains in difficulty metrics demonstrate that code-driven evolution is a viable scalable pipeline for math data synthesis.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>探索预算与成本权衡：更多探索能提升题目质量，但大规模生成时计算开销可能过高，需进一步优化效率。</li><li>难度衡量的可靠性：以求解器成功率作为难度代理指标，未必能完整反映人类感知的难度或与IMO评价标准对齐。</li><li>演化题目的多样性：尽管结构上有别于种子题，演化题目是否能覆盖足够多样的数学主题和推理类型，从而有效提升LLM训练效果，仍有待验证。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Scalability vs. quality trade-off: increasing exploration budget improves problem quality, but computational cost may be prohibitive for very large-scale data generation without further efficiency optimizations.</li><li>Difficulty measurement reliability: the paper relies on solver success rates as a proxy for difficulty, which may not fully capture human-perceived challenge or align with IMO-style evaluation criteria.</li><li>Generalization of evolved problems: while structurally distinct from seeds, it remains unclear whether the evolved problems cover a diverse enough distribution of mathematical topics and reasoning types to broadly improve LLM training.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03202v1" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">MoD-DPO通过模态解耦的偏好优化与语言先验去偏惩罚，有效减少全模态大语言模型中的跨模态幻觉。</div>
+        <div class="paper-title">MoD-DPO通过模态解耦偏好优化与语言先验去偏惩罚，有效减少全模态大语言模型中的跨模态幻觉。</div>
         <div class="paper-title-en">MoD-DPO: Towards Mitigating Cross-modal Hallucinations in Omni LLMs using Modality Decoupled Preference Optimization</div>
         <div class="paper-meta">
           <span>Ashutosh Chaubey, Jiacheng Pang, Mohammad Soleymani</span>
           <span class="badge badge-date">2026-03-03</span>
           <span class="badge badge-venue">CVPR</span>
           
-          <span class="badge badge-score">评分 9.4</span>
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>MoD-DPO通过模态解耦的偏好优化与语言先验去偏惩罚，有效减少全模态大语言模型中的跨模态幻觉。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MoD-DPO introduces modality-decoupled preference optimization with modality-aware regularization and a language-prior debiasing penalty to reduce cross-modal hallucinations in omni-modal LLMs.</div>
+          <span class="badge badge-score">评分 9.6</span>
+          
         </div>
 
         
-        <details>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>MoD-DPO通过模态解耦偏好优化与语言先验去偏惩罚，有效减少全模态大语言模型中的跨模态幻觉。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MoD-DPO introduces modality-decoupled preference optimization with modality-aware regularization and language-prior debiasing to reduce cross-modal hallucinations in omni-modal LLMs.</div>
+        </div>
+
+        
+        <details >
           <summary>优缺点分析 / Pros &amp; Cons</summary>
           <div class="detail-content">
             <div class="pros-cons">
@@ -711,11 +504,13 @@
                 <strong>✓ 优势</strong>
                 <ul>
                   
-                  <li>针对多模态大语言模型中的关键问题（幻觉和虚假跨模态相关性）进行研究，这是当前LLM发展的前沿方向<span style="display:block;margin-top:0.1rem">Addresses a highly relevant problem in multimodal LLMs (hallucinations and spurious cross-modal correlations) that is central to current LLM development trends</span></li>
+                  <li>解决了omni-modal LLM中的跨模态幻觉问题，这是当前多模态AI的热点研究方向<span style="display:block;margin-top:0.1rem">Addresses critical problem of hallucinations in multimodal LLMs, which is a trending area as models become more complex</span></li>
                   
-                  <li>提出设计良好的技术方案，结合模态解耦正则化和语言先验去偏化，具有明确的方法学贡献<span style="display:block;margin-top:0.1rem">Proposes a well-motivated technical approach combining modality-decoupled regularization with language-prior debiasing, showing clear methodological contributions</span></li>
+                  <li>提出了具有良好理论基础的解决方案，结合了模态感知正则化和语言先验去偏差，直指问题根源<span style="display:block;margin-top:0.1rem">Proposes a well-motivated solution combining modality-aware regularization with language-prior debiasing that directly targets root causes</span></li>
                   
-                  <li>发表在CVPR顶级会议上，解决具有现实应用价值的问题，具有部署潜力<span style="display:block;margin-top:0.1rem">Published at CVPR, a top-tier venue, and tackles practical issues with potential for real-world deployment in audiovisual understanding systems</span></li>
+                  <li>发表在顶级会议CVPR，表明技术质量高且评估方法严谨<span style="display:block;margin-top:0.1rem">Published at top-tier venue (CVPR) indicating strong technical quality and rigorous evaluation methodology</span></li>
+                  
+                  <li>实用的偏好优化框架可扩展且易于集成到现有omni-LLM训练流程中<span style="display:block;margin-top:0.1rem">Practical approach using preference optimization framework that is scalable and implementable in existing omni-LLM training pipelines</span></li>
                   
                 </ul>
               </div>
@@ -723,9 +518,11 @@
                 <strong>✗ 不足</strong>
                 <ul>
                   
-                  <li>HuggingFace平台零upvote表明社区关注度较低，可能反映了工作的可及性或影响力不足<span style="display:block;margin-top:0.1rem">Zero community engagement on HuggingFace (0 upvotes) suggests limited awareness or adoption, which may indicate the work&#39;s current accessibility or perceived impact</span></li>
+                  <li>HuggingFace零点赞表明尽管贡献突出但社区关注度有限<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes suggests limited community adoption or awareness despite strong contributions</span></li>
                   
-                  <li>摘要不完整且被截断，难以充分评估工作的完整性，缺少数据集、实验结果和比较基准等关键细节<span style="display:block;margin-top:0.1rem">Abstract is truncated and incomplete, making it difficult to fully assess the completeness of the contribution; missing details on datasets, experimental results, and comparative baselines</span></li>
+                  <li>作者来自相对专业化机构(USC)而非Google/Meta/OpenAI等主流AI实验室，可能限制了影响力<span style="display:block;margin-top:0.1rem">Authors from relatively specialized institution (USC) rather than major AI labs like Google/Meta/OpenAI, potentially limiting visibility</span></li>
+                  
+                  <li>摘要不完整，难以完全评估方法论；不确定是否提供了充分的消融实验<span style="display:block;margin-top:0.1rem">Abstract is truncated making complete methodology assessment difficult; unclear if comprehensive ablations are provided</span></li>
                   
                 </ul>
               </div>
@@ -737,39 +534,39 @@
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">全模态大语言模型在处理音频、视频和文本时，易因模态间的虚假相关性或语言先验主导而产生跨模态幻觉。这一问题严重影响模型可靠性，因为模型必须将响应正确归因于相关输入模态，而非依赖统计捷径。</div>
-            <div class="en">Omni-modal LLMs that jointly process audio, video, and text are prone to cross-modal hallucinations, where spurious correlations between modalities or dominant language priors cause the model to generate responses not grounded in the actual input. This is a critical reliability problem, as deployed omni LLMs must accurately attribute each part of their response to the correct input modality rather than statistical shortcuts.</div>
+            <div class="zh">全模态大语言模型在联合处理音频、视频和文本时，容易因模态间的虚假相关或语言先验主导而产生跨模态幻觉，而非基于真实输入信号作答，严重影响模型可靠性。</div>
+            <div class="en">Omni-modal LLMs (handling audio, video, and text jointly) suffer from cross-modal hallucinations — generating responses driven by spurious correlations between modalities or dominant language priors rather than the actual input signal. This is a critical reliability problem as omni LLMs are deployed in real-world audiovisual understanding tasks where grounding to the correct modality is essential.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有幻觉缓解方法（如标准DPO和RLHF）主要针对单模态场景，未显式建模多模态间的交互关系。已有方法也缺乏对忽视音视频输入的纯文本响应的惩罚机制，语言先验过度依赖问题在全模态场景中仍未得到有效解决。</div>
-            <div class="en">Existing hallucination mitigation methods such as standard DPO and RLHF focus primarily on unimodal settings (vision-language or audio-language) and do not explicitly model the interaction between multiple simultaneous modalities. Prior approaches also lack mechanisms to penalize text-only responses that ignore audio or visual input, leaving language-prior over-reliance largely unaddressed in the omni-modal regime.</div>
+            <div class="zh">标准DPO等方法对所有模态一视同仁，无法区分与当前查询相关的模态；针对视觉语言模型的语言先验去偏方法也未系统扩展至包含音频的全模态场景，难以应对更复杂的跨模态交互。</div>
+            <div class="en">Existing hallucination mitigation methods such as standard Direct Preference Optimization (DPO) treat all modalities uniformly, failing to distinguish which modality is relevant to a given query. Language-prior debiasing has been explored in vision-language models but has not been systematically extended to omni-modal settings with audio, making those approaches insufficient for the richer cross-modal interaction space in omni LLMs.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">MoD-DPO在直接偏好优化基础上引入两类模态感知正则项：一类对无关模态的扰动保持不变性，另一类对相关模态的扰动保持敏感性。同时，语言先验去偏惩罚项明确抑制模型仅依赖文本先验生成幻觉响应的倾向。该框架与模型无关，易于集成到现有全模态LLM训练流程中。</div>
-            <div class="en">MoD-DPO extends Direct Preference Optimization with two modality-aware regularization terms: one enforces invariance when irrelevant modalities are corrupted (the model&#39;s answer should not change), and one enforces sensitivity when the relevant modality is perturbed (the model&#39;s answer should change). Additionally, a language-prior debiasing penalty explicitly discourages the model from producing hallucination-prone responses that rely solely on textual priors without grounding in audio or visual input. The framework is model-agnostic and straightforward to integrate on top of existing omni LLM training pipelines.</div>
+            <div class="zh">MoD-DPO在DPO基础上引入两类模态感知正则项：对无关模态加噪时强制输出不变性，对相关模态扰动时强制输出敏感性；同时加入语言先验去偏惩罚，抑制模型仅凭文本即可生成的幻觉回答，迫使模型真正依赖音视频输入。</div>
+            <div class="en">MoD-DPO extends DPO by introducing two modality-aware regularization terms: one enforces invariance when irrelevant modalities are corrupted (the model&#39;s answer should not change), and another enforces sensitivity when the relevant modality is perturbed (the model&#39;s answer should change). Together, these terms explicitly discourage spurious cross-modal dependencies during preference learning. Additionally, a language-prior debiasing penalty penalizes the model for responses that could be generated from text alone, pushing it to genuinely ground answers in the audiovisual input.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">MoD-DPO在多个音视频幻觉基准上的感知准确率和抗幻觉能力均优于标准DPO及基线全模态LLM。模态定位能力得到持续提升，但摘要中未披露具体的汇总数值。跨基准的一致性提升表明正则化项具有良好的泛化能力。</div>
-            <div class="en">MoD-DPO consistently improves perception accuracy and hallucination resistance across multiple audiovisual hallucination benchmarks compared to standard DPO and baseline omni LLMs. The method outperforms prior approaches in modality grounding, though specific aggregate numbers are not fully detailed in the abstract. The gains are reported to be consistent across benchmarks, suggesting the regularization terms generalize beyond specific dataset biases.</div>
+            <div class="zh">MoD-DPO在多个音视频幻觉评测基准上持续优于标准DPO及基线全模态模型，在感知准确率和幻觉抵抗力两个维度均有提升，尤其在减少音视频跨模态混淆方面效果显著。</div>
+            <div class="en">MoD-DPO consistently outperforms standard DPO and baseline omni LLMs across multiple audiovisual hallucination benchmarks, improving both perception accuracy and hallucination resistance. Specific benchmark gains demonstrate that modality-decoupled regularization is more effective than undifferentiated preference optimization, particularly in reducing audio-visual cross-modal confusion.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>模态扰动策略直觉合理，但论文需说明扰动的具体实现方式（如音频是置噪、掩码还是打乱），因为该设计直接影响训练信号质量。</li><li>语言先验去偏惩罚项存在过度矫正风险：对纯文本响应的强惩罚可能损害那些答案本可合理从语言上下文推导的问题的性能，相关消融实验不可或缺。</li><li>论文的社区影响力有限，实验验证需在更多全模态LLM架构和更多样化的真实音视频数据集上进行，以充分证明方法的泛化能力。</li></ul>
+              <ul class="discussion-list"><li>模态扩展性存疑：MoD-DPO针对音视频设计，当引入更多模态（如深度、触觉）时，无关模态扰动对数量呈组合增长，正则项的可扩展性尚未验证。</li><li>偏好对构建的数据敏感性：框架依赖基于扰动构建的偏好对，音频或视频的扰动方式对正则效果影响较大，缺乏系统性的敏感性分析。</li><li>通用能力权衡未明确：实验仅在幻觉专项基准上评估，模态解耦优化是否会对通用音视频理解任务带来性能损耗，仍需进一步验证。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>The modality corruption strategy (perturbing irrelevant vs. relevant modalities) is intuitive, but the paper needs to clarify how corruption is implemented in practice—e.g., whether audio is masked, replaced with noise, or shuffled—since this design choice directly impacts the quality of the training signal.</li><li>The language-prior debiasing penalty risks over-correction: aggressively penalizing text-only responses could hurt performance on questions where the answer is legitimately derivable from language context alone, and ablations quantifying this trade-off are essential.</li><li>Community engagement is noted as limited, and the empirical validation would benefit from testing on a wider range of omni LLM architectures (e.g., beyond one or two base models) and more diverse real-world audiovisual datasets to establish broader generalizability.</li></ul>
+              <ul class="discussion-list"><li>Scalability to more modalities: MoD-DPO is designed for audio-visual omni LLMs, but it is unclear how the modality-decoupled regularization scales when adding further modalities (e.g., depth, tactile), since the number of irrelevant-modality corruption pairs grows combinatorially.</li><li>Data dependency for preference pairs: The framework relies on constructing corruption-based preference pairs, and the quality of those corruptions (e.g., how audio or video is perturbed) likely has a strong impact on the effectiveness of the regularization terms — a sensitivity analysis would strengthen the claims.</li><li>Generalization beyond hallucination benchmarks: Results are evaluated on hallucination-specific benchmarks; it remains to be shown whether modality-decoupled optimization preserves or improves general audiovisual understanding tasks, or introduces trade-offs in performance on non-hallucination benchmarks.</li></ul>
             </div>
           </div>
         </details>
@@ -778,16 +575,309 @@
       </div>
       
       
+      
+      <div class="paper-card">
+        <div class="paper-title">HydraRAG是一个无需训练的混合RAG框架，通过整合知识图谱拓扑、文档语义与三因子跨源验证，提升LLM的多跳与多实体推理能力。</div>
+        <div class="paper-title-en">Hydra: Structured Cross-Source Enhanced Large Language Model Reasoning</div>
+        <div class="paper-meta">
+          <span>Xingyu Tan, Xiaoyang Wang, Qing Liu et al.</span>
+          <span class="badge badge-date">2025-05-23</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+          <span class="badge badge-score">评分 9.5</span>
+          
+        </div>
+
+        
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>HydraRAG是一个无需训练的混合RAG框架，通过整合知识图谱拓扑、文档语义与三因子跨源验证，提升LLM的多跳与多实体推理能力。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">HydraRAG is a training-free hybrid RAG framework that unifies knowledge graph topology, document semantics, and tri-factor cross-source verification to improve multi-hop and multi-entity LLM reasoning.</div>
+        </div>
+
+        
+        <details >
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul>
+                  
+                  <li>针对混合RAG系统中的多跳推理、多实体问题和多源验证等关键挑战提出解决方案，问题设置具有重要意义<span style="display:block;margin-top:0.1rem">Tackles a significant and timely problem in retrieval-augmented generation by addressing multi-hop reasoning, multi-entity questions, and multi-source verification—all critical challenges in current RAG systems</span></li>
+                  
+                  <li>提出无需训练的框架，统一图拓扑与文档语义，提供实际的效率优势而无需昂贵的微调<span style="display:block;margin-top:0.1rem">Proposes a training-free framework that unifies graph topology with document semantics, offering practical efficiency advantages without requiring expensive fine-tuning</span></li>
+                  
+                  <li>通过agent驱动探索结合结构化和非结构化检索，反映了混合信息检索的前沿研究方向<span style="display:block;margin-top:0.1rem">Combines structured (knowledge graphs) and unstructured (documents) retrieval through agent-driven exploration, a sophisticated approach that reflects current research directions in hybrid information retrieval</span></li>
+                  
+                </ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul>
+                  
+                  <li>HuggingFace零点赞数表明尽管在EMNLP发表，但社区关注度有限，可能表明应用范围较窄或曝光不足<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes suggests limited immediate community traction despite the paper being published at EMNLP, possibly indicating narrow application scope or underexposure</span></li>
+                  
+                  <li>摘要出现截断和不完整（&#39;tackle multi-source verifica...&#39;被中断），难以全面评估贡献和方法论的清晰性<span style="display:block;margin-top:0.1rem">Abstract appears truncated and incomplete (&#39;tackle multi-source verifica...&#39; cuts off), making it difficult to assess the full contribution and methodology clarity</span></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何让LLM在无需额外训练的前提下，可靠地跨结构化知识图谱与非结构化文本进行推理？这一挑战在涉及多实体的多跳问题中尤为突出，单一来源检索往往无法获取充分且可信的证据。</div>
+            <div class="en">How can LLMs reliably reason over heterogeneous knowledge sources—structured knowledge graphs and unstructured text—without requiring additional model training? The challenge is especially acute for multi-hop questions spanning multiple entities, where single-source retrieval fails to gather sufficient or trustworthy evidence.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有混合RAG系统虽同时从知识图谱和文本中检索，但两者大多独立处理，难以应对多跳推理链或跨模态证据冲突。现有图RAG方法往往未充分利用KG拓扑结构，将实体路径遍历简化为关键词匹配。此外，这些系统缺乏评估来源可信度的机制，导致LLM易受噪声或矛盾内容干扰。</div>
+            <div class="en">Existing hybrid RAG systems retrieve from both KGs and text documents but treat them largely independently, limiting their ability to handle multi-hop reasoning chains or verify conflicting evidence across modalities. Graph-based RAG methods often underutilize KG topology, reducing entity-path traversal to simple keyword lookups rather than structured graph exploration. These systems also lack principled mechanisms for assessing source trustworthiness, leaving LLMs vulnerable to noisy or contradictory retrieved content.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">HydraRAG采用智能体驱动的探索机制，交替进行KG多跳路径遍历与非结构化文档检索，提升证据多样性与精准度。其核心创新为三因子跨源验证模块：①来源可信度评估，②KG与文本跨源互证，③实体路径对齐。框架完全无需训练，可直接部署于任意LLM之上。</div>
+            <div class="en">HydraRAG introduces an agent-driven exploration mechanism that interleaves structured KG traversal (following multi-hop entity paths) with unstructured document retrieval, increasing both diversity and precision of evidence. Its core innovation is a tri-factor cross-source verification module comprising: (1) source trustworthiness assessment, (2) cross-source corroboration between KG and text, and (3) entity-path alignment to reconcile graph and document evidence. The framework is entirely training-free, making it directly deployable on top of any existing LLM. By unifying graph topology, document semantics, and source reliability into a single pipeline, HydraRAG enables deeper and more faithful reasoning without model fine-tuning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">HydraRAG在多跳QA基准上展示了有效性，KG与文本协同检索相比单源及简单混合基线提升了证据覆盖率。三因子验证机制通过过滤低可信度证据，显著提升了答案忠实度。摘要中未披露完整数值，但报告在精准度与可靠性指标上优于先前混合RAG方法。</div>
+            <div class="en">The paper demonstrates HydraRAG&#39;s effectiveness on multi-hop QA benchmarks, where agent-driven KG-text co-retrieval improves evidence coverage compared to single-source and naive hybrid baselines. The tri-factor verification mechanism specifically improves answer faithfulness by filtering conflicting or low-trustworthiness evidence before LLM reasoning. Exact numerical scores are not fully disclosed in the abstract, but the framework is reported to outperform prior hybrid RAG approaches on both precision and reliability metrics.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>智能体多跳遍历在大规模KG（如Wikidata）上的延迟与计算成本未被评估，系统可扩展性存疑。</li><li>三因子验证依赖预设的来源可信度分数，在来源质量动态变化的开放域场景中，这些分数如何初始化与更新尚不明确。</li><li>论文目前社区关注度较低，尚未在MuSiQue或2WikiMultiHopQA等标准多跳基准上获得独立复现验证，结论说服力有待加强。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability to large KGs is unaddressed: agent-driven multi-hop traversal over billion-scale knowledge graphs (e.g., Wikidata) could incur prohibitive latency, and the paper does not benchmark runtime or retrieval cost.</li><li>The tri-factor verification relies on pre-defined trustworthiness scores for sources, raising questions about how these scores are initialized or updated in open-domain settings where source quality is dynamic.</li><li>Community traction is currently low, suggesting the framework has not yet been validated on diverse real-world tasks; independent replication on benchmarks like MuSiQue or 2WikiMultiHopQA would strengthen its claims.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.17464" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出首个面向零样本异常检测与推理的多模态大语言模型专家系统Anomaly-OV，并构建包含12.5万条数据的指...</div>
+        <div class="paper-title-en">Towards Zero-Shot Anomaly Detection and Reasoning with Multimodal Large Language Models</div>
+        <div class="paper-meta">
+          <span>Jiacong Xu, Shao-Yuan Lo, Bardia Safaei et al.</span>
+          <span class="badge badge-date">2025-02-11</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+          <span class="badge badge-score">评分 9.5</span>
+          
+        </div>
+
+        
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出首个面向零样本异常检测与推理的多模态大语言模型专家系统Anomaly-OV，并构建包含12.5万条数据的指令微调数据集与评测基准。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Anomaly-OV is the first MLLM-based specialist for zero-shot anomaly detection and reasoning, supported by a new 125k instruction-tuning dataset and benchmark that exposes GPT-4o&#39;s failure on fine-grained anomaly description.</div>
+        </div>
+
+        
+        <details >
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul>
+                  
+                  <li>首个针对零样本异常检测和推理的视觉指令调优数据集和基准评估，填补领域空白<span style="display:block;margin-top:0.1rem">First comprehensive visual instruction tuning dataset (Anomaly-Instruct-125k) and benchmark (VisA-D&amp;R) for zero-shot anomaly detection and reasoning, filling a critical gap in the field</span></li>
+                  
+                  <li>与当前LLM发展趋势高度契合，探索MLLM在实际且未充分研究的任务中的能力<span style="display:block;margin-top:0.1rem">Highly relevant to current LLM development trends by investigating MLLM capabilities on a practical and underexplored task with clear real-world applications</span></li>
+                  
+                  <li>结合零样本学习与多模态推理的扎实方法论，应对真实工业场景中常见的数据有限问题<span style="display:block;margin-top:0.1rem">Solid methodology combining zero-shot learning with multimodal reasoning, addressing practical data-restricted scenarios that are common in industrial settings</span></li>
+                  
+                  <li>CVPR顶级会议发表，说明经过严格同行评审<span style="display:block;margin-top:0.1rem">CVPR publication venue indicates rigorous peer review and acceptance by top-tier computer vision community</span></li>
+                  
+                </ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul>
+                  
+                  <li>HuggingFace零点赞表明初期社区关注度有限，虽可能反映最近发表的论文<span style="display:block;margin-top:0.1rem">Zero community attention on HuggingFace (0 upvotes) suggests limited initial awareness or engagement, though this may reflect recent publication timing</span></li>
+                  
+                  <li>摘要不完整，难以全面评估实验方法和结果的完整性；作者机构声誉水平中等，未显示明确的顶级机构背景<span style="display:block;margin-top:0.1rem">Abstract is truncated, making it difficult to fully assess experimental methodology and results completeness; author prestige appears moderate with no obvious top-tier institution affiliations clearly stated</span></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">现实场景中难以收集大量正常样本，零样本异常检测（ZSAD）因此更具实用价值。现有研究几乎未涉及异常推理任务，且缺乏相应数据集与基准，制约了多模态大语言模型在该领域的发展。</div>
+            <div class="en">Zero-Shot Anomaly Detection (ZSAD) is critical for real-world scenarios where collecting large normal-sample datasets is impractical. Beyond detection, reasoning about *why* a region is anomalous is equally important yet almost entirely unstudied. The lack of dedicated datasets and benchmarks has blocked progress at the intersection of MLLMs and anomaly detection.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">传统无监督异常检测方法依赖大量正常样本，泛化能力受限。基于CLIP的ZSAD方法缺乏语言层面的异常推理能力。GPT-4o等通用多模态大语言模型在细粒度异常定位与描述上表现欠佳。</div>
+            <div class="en">Traditional unsupervised AD methods rely on hundreds of normal training images per category, making them impractical for data-restricted domains. Existing ZSAD approaches using CLIP-based models handle detection but lack language-grounded reasoning about anomaly causes. General-purpose MLLMs like GPT-4o have strong visual reasoning but, as this paper demonstrates, fail to accurately localize and describe fine-grained anomalous details.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">本文构建Anomaly-Instruct-125k指令微调数据集和VisA-D&amp;R评测基准，并提出专家模型Anomaly-OV。受人类视觉检测行为启发，Anomaly-OV采用&#34;二次观察&#34;机制：先粗定位异常区域，再放大局部进行细粒度描述与推理，有效捕捉细微缺陷。</div>
+            <div class="en">The authors introduce Anomaly-Instruct-125k, the first visual instruction-tuning dataset for anomaly detection and reasoning, and VisA-D&amp;R, a benchmark evaluating both detection and reasoning on real industrial images. They then propose Anomaly-OneVision (Anomaly-OV), a specialist MLLM fine-tuned on this dataset. Inspired by human visual inspection behavior, Anomaly-OV employs a look-twice mechanism — first performing coarse anomaly localization, then zooming into suspicious regions for fine-grained description and reasoning, enabling precise grounding of subtle defects.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Anomaly-OV在VisA-D&amp;R基准上的检测与推理指标均显著优于GPT-4o及其他通用多模态大语言模型。实验证实GPT-4o在细粒度异常定位上存在明显短板，Anomaly-OV在未见工业类别上表现出强泛化能力。</div>
+            <div class="en">Anomaly-OV significantly outperforms GPT-4o and other general MLLMs on the VisA-D&amp;R benchmark across both detection and reasoning metrics. The benchmark reveals that GPT-4o struggles with fine-grained anomaly localization, confirming a critical gap in current frontier models. Anomaly-OV demonstrates strong zero-shot generalization across unseen industrial categories without requiring any category-specific normal training samples.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>数据偏差：Anomaly-Instruct-125k主要来源于MVTec/VisA等工业数据集，可能导致模型在医疗影像等其他异常场景的泛化能力受限。</li><li>评测可靠性：VisA-D&amp;R对推理质量的评估方式（如LLM裁判还是人工标注）尚不明确，影响跨模型比较的公信力。</li><li>推理效率：二阶段放大推理机制相比单次推理增加了计算开销，在实时工业检测场景中的部署成本值得关注。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Dataset quality and bias: Anomaly-Instruct-125k&#39;s construction process (likely sourced from existing AD datasets like MVTec/VisA) may introduce domain bias toward industrial textures, limiting generalizability to medical imaging or other anomaly domains.</li><li>Evaluation scope: VisA-D&amp;R benchmarks reasoning quality, but it is unclear how reasoning quality is objectively measured (e.g., LLM-as-judge vs. human evaluation), which affects the reliability of cross-model comparisons.</li><li>Look-twice mechanism cost: The two-stage zoom-in inference pipeline likely increases latency and compute cost compared to single-pass MLLMs, raising practical deployment concerns for real-time inspection systems.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.07601" target="_blank">查看原文 →</a>
+      </div>
+      
+      
       </div>
     </details>
     
     <details class="category-details" id="embodied_trends" open>
       <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
-        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
       </summary>
       <div class="category-body">
       
-      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文系统比较三种基础模型集成范式（端到端VLA、VLM模块化、LLM模块化）在机器人抓取与操作任务中的表现，揭示泛...</div>
+        <div class="paper-title-en">From Grounding to Manipulation: Case Studies of Foundation Model Integration in Embodied Robotic Systems</div>
+        <div class="paper-meta">
+          <span>Xiuchao Sui, Daiying Tian, Qi Sun et al.</span>
+          <span class="badge badge-date">2025-05-21</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+          <span class="badge badge-score">评分 8.9</span>
+          
+        </div>
+
+        
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文系统比较三种基础模型集成范式（端到端VLA、VLM模块化、LLM模块化）在机器人抓取与操作任务中的表现，揭示泛化能力与数据效率之间的权衡。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper systematically benchmarks three foundation model integration paradigms (end-to-end VLA, VLM-modular, and LLM-modular pipelines) for embodied robotics across grounding and manipulation tasks, revealing key generalization vs. data-efficiency trade-offs.</div>
+        </div>
+
+        
+        <details >
+          <summary>优缺点分析 / Pros &amp; Cons</summary>
+          <div class="detail-content">
+            <div class="pros-cons">
+              <div class="pros-box">
+                <strong>✓ 优势</strong>
+                <ul>
+                  
+                  <li>直接针对决策层（LLM/VLA在机器人控制中的集成）这一最高优先级问题展开研究<span style="display:block;margin-top:0.1rem">Directly addresses the critical decision layer (LLM/VLA integration for robot control) which is the highest priority in embodied intelligence trends</span></li>
+                  
+                  <li>系统性地对比了三种不同的基础模型集成范式，填补了对其操作特性理解的空白<span style="display:block;margin-top:0.1rem">Provides systematic empirical comparison of three distinct paradigms for FM integration in robotics, filling a gap in understanding their operational characteristics</span></li>
+                  
+                  <li>通过指令理解和物体操作两个具体案例研究展示了实际的机器人应用价值<span style="display:block;margin-top:0.1rem">Includes concrete case studies (instruction grounding and object manipulation) that demonstrate practical relevance to real robotic tasks</span></li>
+                  
+                </ul>
+              </div>
+              <div class="cons-box">
+                <strong>✗ 不足</strong>
+                <ul>
+                  
+                  <li>HuggingFace零upvotes表明尽管主题相关但社区关注度很低，说明影响力和采纳程度有限<span style="display:block;margin-top:0.1rem">Zero HuggingFace upvotes indicate minimal community engagement despite relevant topic, suggesting limited visibility or adoption impact</span></li>
+                  
+                  <li>作者缺乏来自顶级机构（MIT、CMU、Google、DeepMind、Stanford等）的明确背景支撑<span style="display:block;margin-top:0.1rem">Authors lack clear affiliation with top-tier institutions (MIT, CMU, Google, DeepMind, Stanford) that would elevate prestige and credibility</span></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何将基础模型集成到机器人系统中，以最好地支持复杂指令跟随和动态环境中的动作生成？现有研究对端到端与模块化集成策略之间的操作权衡理解不足，尤其在数据有限的条件下。</div>
+            <div class="en">How should foundation models be integrated into robotic systems to best support complex instruction following and versatile action generation in dynamic environments? Despite growing adoption of FMs in embodied AI, the operational trade-offs between end-to-end and modular integration strategies remain poorly understood, especially under limited data conditions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有研究分别探索了VLA模型（如RT-2、OpenVLA）和模块化LLM规划器，但缺乏跨范式的标准化对比评估。现有基准鲜少同时测试细粒度跨模态消歧与少样本技能迁移，实践者缺乏明确的架构选型依据。</div>
+            <div class="en">Prior work has explored VLA models (e.g., RT-2, OpenVLA) and modular LLM-based planners separately, but direct comparative evaluations across paradigms on standardized robotic tasks are scarce. Existing benchmarks rarely stress-test fine-grained cross-modal disambiguation or few-shot skill transfer jointly, leaving practitioners without clear architectural guidance.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者定义三种范式：(1)端到端VLA模型联合编码感知与动作输出；(2)以VLM负责感知的模块化流水线；(3)以多模态LLM为高层规划器的模块化流水线。通过两个案例研究——复杂指令定位任务与物体操作技能迁移任务——在零样本与少样本设置下系统评估各范式的泛化能力与数据效率。</div>
+            <div class="en">The authors define three paradigms: (1) end-to-end VLA models that jointly encode perception and output actions, (2) modular pipelines using VLMs for perception with separate action modules, and (3) modular pipelines using multimodal LLMs as high-level planners. They conduct two case studies: a complex instruction grounding task requiring cross-modal disambiguation, and an object manipulation task evaluating VLA fine-tuning for skill transfer. Experiments span both zero-shot and few-shot settings to probe generalization limits and data efficiency across paradigms.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在复杂指令定位任务中，模块化流水线展现出更强的零样本泛化能力；而端到端VLA模型在少量数据微调后，在操作技能迁移上表现出较高的数据效率。研究表明，没有单一范式在所有任务中均占优，架构选择具有显著的任务依赖性。</div>
+            <div class="en">Modular pipelines with VLMs or LLMs show stronger zero-shot generalization on the complex instruction grounding task, benefiting from the broad pretraining of large models. End-to-end VLA models, while lower in zero-shot performance, demonstrate competitive data efficiency when fine-tuned with small task-specific datasets for manipulation skill transfer. The study reveals that no single paradigm dominates across both tasks, confirming context-dependent architectural trade-offs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>模块化与端到端的权衡：模块化流水线可利用强大的预训练模型实现零样本泛化，但组件间的延迟与错误传播对实时机器人是重要挑战。</li><li>微调敏感性：VLA少样本微调在操作任务中有效，但将大型预训练VLA适配到窄任务分布时，灾难性遗忘风险有待深入探讨。</li><li>评测范围局限：两个案例研究均在受控环境中进行，架构建议在非结构化真实场景中的有效性仍需进一步验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Modularity vs. end-to-end: Modular pipelines offer interpretability and leverage strong pretrained VLMs/LLMs for zero-shot tasks, but introduce latency and error propagation between components—a critical concern for real-time robotics.</li><li>Fine-tuning sensitivity: VLA fine-tuning for manipulation is effective with few examples, but the paper likely underexplores catastrophic forgetting risks when adapting large pretrained VLAs to narrow task distributions.</li><li>Benchmark scope: Both case studies use controlled settings; generalization claims should be validated in unstructured real-world environments with greater perceptual noise and task variability before architectural recommendations are fully adopted.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.15685" target="_blank">查看原文 →</a>
+      </div>
+      
       
       </div>
     </details>
