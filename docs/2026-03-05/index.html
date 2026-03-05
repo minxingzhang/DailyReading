@@ -70,7 +70,7 @@
     
     <details class="category-details" id="llm_security" open>
       <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
-        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
       </summary>
       <div class="category-body">
       
@@ -78,70 +78,208 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">本文提出一种基于攻击树的目标驱动风险评估框架，针对集成LLM的医疗系统，通过具体攻击路径和前提条件细化威胁建模。</div>
-        <div class="paper-title-en">Goal-Driven Risk Assessment for LLM-Powered Systems: A Healthcare Case Study</div>
+        <div class="paper-title">TombRaider是一种双智能体越狱框架，利用大语言模型的历史知识检索能力绕过安全过滤器，在无防御模型上实现接近...</div>
+        <div class="paper-title-en">TombRaider: Entering the Vault of History to Jailbreak Large Language Models</div>
         <div class="paper-meta">
-          <span>Neha Nagaraja, Hayretdin Bahsi</span>
-          <span class="badge badge-date">2026-03-04</span>
-          <span class="badge badge-venue">the</span>
+          <span>Junchen Ding, Jiahao Zhang, Yi Liu et al.</span>
+          <span class="badge badge-date">2025-01-27</span>
+          <span class="badge badge-venue">EMNLP</span>
           
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>本文提出一种基于攻击树的目标驱动风险评估框架，针对集成LLM的医疗系统，通过具体攻击路径和前提条件细化威胁建模。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes a goal-driven, attack-tree-based risk assessment framework for LLM-integrated systems, demonstrated through a healthcare case study that contextualizes threats with specific attack vectors, preconditions, and kill-chain paths.</div>
+          <div>TombRaider是一种双智能体越狱框架，利用大语言模型的历史知识检索能力绕过安全过滤器，在无防御模型上实现接近100%的攻击成功率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TombRaider is a two-agent jailbreak framework that exploits LLMs&#39; historical knowledge retrieval to bypass safety filters, achieving nearly 100% attack success rates on undefended models.</div>
         </div>
 
         <details open>
           <summary>重要性与意义 / Significance</summary>
           <div class="detail-content">
-            <div class="zh">随着LLM在医疗等高风险领域的部署加速，本文提供了一套可操作的安全评估方法，填补了抽象威胁建模与具体风险优先级之间的空白，对安全工程师具有实用参考价值。</div>
-            <div class="en">As LLMs are increasingly deployed in high-stakes domains like healthcare, rigorous and actionable security frameworks are urgently needed. This work bridges the gap between abstract threat modeling and concrete risk prioritization, offering practitioners a structured methodology applicable to any LLM-powered critical system. The attack-tree approach could serve as a reusable template for security engineers tackling novel LLM attack surfaces.</div>
+            <div class="zh">TombRaider揭示了一个此前被忽视的攻击面——大语言模型的历史知识存储，即使在标准安全对齐下仍然存在。其双智能体设计为红队测试提供了可复用的攻击框架，对模型开发者和安全研究者具有重要警示意义。</div>
+            <div class="en">TombRaider exposes a previously underexplored attack surface — LLMs&#39; long-term historical knowledge stores — that persists even when standard safety alignment is applied. Its near-perfect success rates on major deployed models signal an urgent gap for developers and safety researchers to address. The dual-agent design also provides a reusable red-teaming blueprint for systematically auditing knowledge-retrieval vulnerabilities.</div>
           </div>
         </details>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">如何对结合LLM与传统软件的系统进行结构化、可操作的风险评估？现有抽象威胁模型难以支持准确的可能性与影响评分，在医疗AI等关键场景中尤为突出。</div>
-            <div class="en">How can security engineers conduct structured, actionable risk assessments for systems that combine LLMs with conventional software components, especially given novel attack surfaces like prompt injection and adversarial model manipulation? This matters because vague or abstract threat models fail to support accurate likelihood and impact scoring, leading to poor risk prioritization in safety-critical deployments such as healthcare AI.</div>
+            <div class="zh">现有大语言模型安全机制主要在提示层面过滤有害内容，但忽视了模型历史知识检索能力带来的风险。TombRaider探究：基于模型自身历史知识构造的对抗性提示，能否持续绕过主流生产级模型的安全过滤器？</div>
+            <div class="en">Current LLM safety mechanisms focus on filtering harmful instructions at the prompt level, but largely ignore the risk posed by a model&#39;s ability to store and retrieve historical knowledge. TombRaider asks: can adversarial prompts constructed from a model&#39;s own historical knowledge consistently circumvent safety filters across diverse, production-grade LLMs?</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有STRIDE、PASTA等威胁建模方法面向传统软件，产出的威胁描述过于抽象，难以精确评估可能性与影响。LLM安全研究多孤立分析提示注入等攻击类型，缺乏与系统整体杀伤链的整合，限制了实际风险优先级判断。</div>
-            <div class="en">Existing threat modeling methods (e.g., STRIDE, PASTA) were designed for conventional software systems and produce threats that are often too abstract to enable precise likelihood or impact assessment. Prior LLM-specific security work tends to catalog attack types — such as prompt injection or jailbreaking — in isolation, without integrating them into end-to-end kill-chain scenarios within a broader system context. This limits their practical utility for risk prioritization in complex, multi-component deployments.</div>
+            <div class="zh">现有越狱方法（如提示注入、角色扮演&#34;DAN&#34;和对抗性后缀优化）要么需要大量人工设计，要么已被现代防护机制识别拦截。这些方法均将大语言模型视为无状态响应器，未将模型内部历史知识作为攻击向量加以利用。</div>
+            <div class="en">Existing jailbreak methods — such as prompt injection, role-playing (e.g., &#34;DAN&#34;), and optimization-based adversarial suffixes — either require heavy manual crafting or are increasingly caught by modern guardrails. They treat the LLM as a stateless responder and do not leverage the model&#39;s encoded world knowledge as an attack vector. As defenses have matured, these techniques have seen diminishing success rates, motivating the search for structurally different attack surfaces.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">本文提出基于攻击树的目标驱动评估方法，每个叶节点明确具体攻击向量、前提条件和攻击路径，将对抗性ML攻击、提示注入与传统网络攻击整合为统一威胁场景。以医疗LLM系统（如临床决策支持助手）为案例，支持更精确的可能性与影响评分。</div>
-            <div class="en">The authors propose a goal-driven risk assessment approach that structures threats using attack trees, where each leaf node specifies concrete attack vectors, required preconditions, and step-by-step attack paths. The method explicitly models cyber kill chain cycles that combine adversarial ML attacks, prompt injection, and conventional cyberattacks into unified threat scenarios. A healthcare LLM system (e.g., a clinical decision-support assistant) serves as the case study to ground the methodology in realistic deployment context. This contextual detail enables more precise likelihood and impact scoring compared to purely abstract threat enumeration.</div>
+            <div class="zh">TombRaider采用双智能体流水线：检查员智能体首先从目标模型中提取与有害话题相关的历史或事实知识；攻击者智能体随后利用这些知识构造将请求包装为历史或事实背景的对抗性提示，从而绕过安全过滤器。该方法无需模型微调或白盒访问，具有广泛适用性。</div>
+            <div class="en">TombRaider uses a two-agent pipeline: an inspector agent first queries the target LLM to surface relevant historical, factual, or contextual knowledge related to the harmful topic; an attacker agent then uses this extracted knowledge to craft adversarial prompts that frame requests as historically or factually grounded, thereby slipping past safety filters. The key insight is that LLMs are less likely to refuse queries when they are embedded within a historically legitimized narrative. This approach requires no model fine-tuning or white-box access, making it broadly applicable across different LLM providers.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">案例研究生成了详细攻击树，揭示提示注入链式数据泄露等组合攻击路径，实现更细粒度的风险优先级排序。论文以方法论贡献为主，未报告明确的量化风险评分或实证验证指标。</div>
-            <div class="en">The paper demonstrates the framework through a healthcare case study, producing detailed attack trees that reveal how combined kill-chain attacks (e.g., prompt injection chained with data exfiltration) can compromise an LLM-powered clinical system. The structured threat contextualization enables finer-grained risk prioritization compared to conventional abstract threat lists. Specific quantitative risk scores or empirical validation metrics are not prominently reported, reflecting the framework&#39;s primarily methodological contribution.</div>
+            <div class="zh">TombRaider在六个主流大语言模型上的评估中超越了最先进的越狱基线方法。在无防御模型上攻击成功率接近100%；在部署了防御机制的模型上，攻击成功率仍超过55.4%，展现出跨不同安全配置的强鲁棒性。</div>
+            <div class="en">TombRaider was evaluated on six popular LLMs and outperformed state-of-the-art jailbreak baselines. It achieved nearly 100% attack success rate (ASR) on undefended (&#34;bare&#34;) models. Even against deployed defense mechanisms, it maintained over 55.4% ASR, demonstrating robust performance across diverse safety configurations.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>医疗场景之外的泛化性：攻击树模板围绕医疗LLM构建，适配金融、法律AI等其他关键领域所需的改造工作量尚不明确。</li><li>缺乏实证验证：仅有单一定性案例，未与安全工程师用户研究或STRIDE等基线方法对比，难以评估目标驱动攻击树是否切实提升了风险优先级准确性。</li><li>威胁景观快速演变：提示注入与对抗性ML攻击持续迭代，静态攻击树结构需频繁更新，论文未说明如何融入新发现的攻击技术。</li></ul>
+              <ul class="discussion-list"><li>知识即风险：模型的历史知识广度通常是优势，但在对抗性利用下转化为安全漏洞，说明仅靠提示层过滤不够，需要基于知识的安全训练。</li><li>55.4%的防御缺口：尽管有防御时的攻击成功率低于无防御场景，但55.4%在实际部署中仍极为危险，表明现有防护机制（如分类器）对知识检索类攻击存在根本性不足。</li><li>摘要不完整的隐患：摘要存在截断（&#39;Our findings highlig...&#39;），关键声明（如测试模型列表、伦理保障措施）尚不明确，论文的可复现性与负责任披露情况有待核实。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Generalizability beyond healthcare: The attack-tree templates are built around a healthcare LLM case, and it remains unclear how much manual re-engineering is needed to adapt them to other critical domains (e.g., finance, legal AI) with different data flows and regulatory constraints.</li><li>Lack of empirical validation: The framework is evaluated through a single qualitative case study without user studies involving actual security engineers or comparison against baseline methods (e.g., STRIDE alone), making it hard to assess whether goal-driven attack trees genuinely improve risk prioritization accuracy.</li><li>LLM threat landscape evolution: Prompt injection and adversarial ML attacks are rapidly evolving; the static attack-tree structure may require frequent updates, and the paper does not address how the framework accommodates newly discovered attack techniques or model-specific vulnerabilities.</li></ul>
+              <ul class="discussion-list"><li>Knowledge as a liability: The paper reveals that a model&#39;s breadth of historical knowledge — typically a feature — becomes a security liability when adversarially exploited, suggesting that knowledge-grounded safety training (not just prompt-level filtering) is needed.</li><li>Defense gap at 55.4%: While the &gt;55.4% ASR against defenses is lower than the near-100% on bare models, it still represents a practically dangerous success rate, indicating existing guardrails (e.g., input/output classifiers) are fundamentally insufficient against knowledge-retrieval attacks.</li><li>Incomplete abstract concern: The abstract appears truncated (&#39;Our findings highlig...&#39;), raising questions about whether key claims — such as the specific models tested, attack categories, or ethical safeguards — are fully substantiated in the final paper; reproducibility and responsible disclosure protocols are not yet visible.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03633v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="https://arxiv.org/abs/2501.18628" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">攻击者可通过篡改网页字体的字符映射注入用户不可见的恶意提示，成功绕过LLM安全机制，实现恶意内容传播与敏感数据泄露。</div>
+        <div class="paper-title-en">Invisible Prompts, Visible Threats: Malicious Font Injection in External Resources for Large Language Models</div>
+        <div class="paper-meta">
+          <span>Junjie Xiong, Changjia Zhu, Shuhang Lin et al.</span>
+          <span class="badge badge-date">2025-05-22</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>攻击者可通过篡改网页字体的字符映射注入用户不可见的恶意提示，成功绕过LLM安全机制，实现恶意内容传播与敏感数据泄露。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper demonstrates that attackers can inject malicious prompts invisible to users by remapping font code-to-glyph mappings in webpages, successfully bypassing LLM safety filters via indirect prompt injection through web search and MCP-integrated tools.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM被广泛集成网络搜索和MCP工具，本文揭示了一种现有安全机制无法防御的隐蔽攻击面，对LLM部署安全具有重要警示意义，呼吁开发者加强外部内容处理的安全防护。</div>
+            <div class="en">As LLMs are increasingly deployed with real-time web access and MCP tool integration, this work exposes a practical and stealthy attack surface that existing safety mechanisms fail to address. The font injection vector is especially dangerous because it is visually undetectable to human users and content moderators. This research provides a concrete call to action for developers and security researchers to harden LLM pipelines that consume external content.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">攻击者如何利用外部网页中的字体篡改，向具备网络搜索或MCP工具的LLM注入隐藏恶意指令？随着LLM日益作为自主代理处理不可信外部内容，此类攻击对人类监督构成盲区。</div>
+            <div class="en">How can adversaries exploit font manipulation in external web resources to inject hidden malicious instructions into LLMs equipped with web search or MCP-enabled tools? This matters because LLMs increasingly act as autonomous agents that fetch and process untrusted external content, making them susceptible to indirect prompt injection attacks that are invisible to human oversight.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有研究主要关注直接文本对抗输入或可见越狱提示，可被内容过滤器或人工审查检测。现有间接提示注入研究未探索利用字体字符映射作为隐写信道隐藏恶意指令，留下显著安全盲区。</div>
+            <div class="en">Prior prompt injection research largely focuses on direct text-based adversarial inputs or visible jailbreak prompts that can be detected by content filters or human review. Indirect prompt injection via external resources has been studied, but existing work has not explored the use of font-level code-to-glyph remapping as a steganographic channel to hide malicious instructions. This leaves a critical blind spot in LLM security when processing rendered web content.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">研究者构造自定义恶意字体，将Unicode码位重映射为不同字形，使网页对人类显示无害但LLM解析时读取隐藏指令。在&#34;恶意内容传播&#34;和&#34;敏感数据泄露&#34;两种场景下进行评估，攻击仅需控制外部资源，无需修改模型本身。</div>
+            <div class="en">The authors craft malicious custom fonts that remap Unicode code points to visually different glyphs, embedding hidden instructions into webpages that appear innocuous to human readers but are parsed correctly by LLMs reading the underlying text. They evaluate this attack across two scenarios: &#34;malicious content relay,&#34; where the LLM is tricked into spreading harmful content, and &#34;sensitive data leakage,&#34; where MCP-enabled tools are exploited to exfiltrate private data. The attack requires no modification to the LLM itself—only control over an external resource the model retrieves. This demonstrates that the injection vector is entirely on the attacker&#39;s side, making it hard to patch at the model level.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">攻击成功率因数据敏感性和提示设计而异。在恶意内容传播场景中，注入提示成功诱导LLM输出攻击者指定的有害内容；在MCP敏感数据泄露场景中，攻击成功窃取私密信息，成功率受数据敏感度和提示精度影响。</div>
+            <div class="en">The attack achieves varying success rates depending on data sensitivity and prompt design, demonstrating that LLM safety mechanisms can be bypassed via font-injected indirect prompts retrieved from external resources. In the malicious content relay scenario, the injected prompts successfully caused LLMs to reproduce attacker-specified harmful outputs. In the sensitive data leakage scenario via MCP tools, the attack successfully exfiltrated private information with success rates influenced by how sensitive the targeted data was and how precisely the hidden prompt was crafted.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>隐蔽性挑战：恶意内容编码于字体渲染层，文本过滤器和人工审查均无法发现，仅LLM解析器可读取，形成不对称检测难题。</li><li>MCP风险范围：MCP工具可访问本地文件、API和系统资源，注入攻击的危害远超单次对话，具有更大破坏潜力。</li><li>防御方向：可从LLM端规范化文本（剥离自定义字体映射）、沙箱化外部资源获取、监控由网页内容触发的异常输出行为等角度入手。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Detectability gap: Because the malicious content is encoded at the font-rendering layer, standard text-based content filters and human moderators cannot see the injected instructions — only the LLM&#39;s text parser can, creating an asymmetric detection challenge.</li><li>Scope of MCP risk: The MCP integration scenario is particularly alarming because MCP tools can have privileged access to local files, APIs, and system resources, meaning a successful injection could have consequences far beyond a single conversation.</li><li>Mitigation directions: Defenses could include LLM-side rendering-agnostic text normalization (stripping custom font mappings before processing), sandboxing external resource retrieval, and output monitoring for anomalous behavior patterns triggered by web content.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.16957" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">G-Safeguard利用图神经网络对多智能体对话图进行异常检测与攻击修复，在提示注入攻击下可恢复超过40%的性能损失。</div>
+        <div class="paper-title-en">G-Safeguard: A Topology-Guided Security Lens and Treatment on LLM-based Multi-agent Systems</div>
+        <div class="paper-meta">
+          <span>Shilong Wang, Gui-Min Zhang, Miao Yu et al.</span>
+          <span class="badge badge-date">2025-02-16</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>G-Safeguard利用图神经网络对多智能体对话图进行异常检测与攻击修复，在提示注入攻击下可恢复超过40%的性能损失。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">G-Safeguard uses graph neural networks over multi-agent utterance graphs to detect and remediate adversarial attacks in LLM-based multi-agent systems, recovering over 40% of lost performance under prompt injection attacks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM多智能体系统在关键领域的部署，G-Safeguard提出了一种可插拔、拓扑感知的防御范式，兼容多种主流框架，为多智能体安全研究开辟了新方向。</div>
+            <div class="en">As LLM-based multi-agent systems (MAS) are deployed in high-stakes domains, securing them against adversarial attacks is critical but understudied. G-Safeguard offers a plug-and-play, topology-aware defense that is both backbone-agnostic and scalable, making it practically applicable across diverse real-world MAS deployments. This work establishes a new paradigm for viewing MAS security through the lens of graph structure, opening directions for future research in multi-agent robustness.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLM多智能体系统在自主决策等关键任务中日益广泛，但对提示注入、虚假信息传播等攻击高度脆弱。现有防御方法缺乏对智能体通信网络层面的系统性建模，本文探索能否利用智能体交互的拓扑结构来检测和缓解此类攻击。</div>
+            <div class="en">LLM-based multi-agent systems are increasingly used in critical applications such as autonomous decision-making and collaborative problem-solving, but they are highly vulnerable to adversarial attacks, misinformation propagation, and prompt injection. Existing defenses lack a principled, system-level view of how attacks spread across agent communication networks. This paper asks: can the structural topology of agent interactions serve as a reliable signal for detecting and mitigating such attacks?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LLM安全防御多针对单智能体场景，依赖输入过滤或提示级防护，无法有效应对多智能体通信中的攻击传播。针对多智能体的防御方法通常缺乏统一框架，且未利用智能体交互的图结构信息。</div>
+            <div class="en">Most existing defenses against adversarial attacks in LLM systems focus on single-agent settings, using input filtering or prompt-level safeguards that do not generalize to multi-agent communication dynamics. Multi-agent-specific defenses tend to be ad hoc, targeting specific attack types without a unified framework. None of these approaches exploit the graph structure of agent interactions as a diagnostic and remediation signal.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">G-Safeguard将多智能体通信构建为对话图，以GNN检测异常节点或子图，随后通过拓扑干预隔离受攻击智能体，阻止攻击扩散。该框架模块化设计，无需重训练基础模型，可与主流MAS架构无缝集成。</div>
+            <div class="en">G-Safeguard constructs a multi-agent utterance graph, where nodes represent agents and edges encode communication exchanges, then applies graph neural networks (GNNs) to detect anomalous nodes or subgraphs indicative of adversarial activity. Upon detection, a topological intervention strategy is employed to isolate or remediate compromised agents, preventing attack propagation through the system. The framework is designed to be modular and compatible with mainstream MAS architectures and diverse LLM backbones without requiring retraining of the base models.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">G-Safeguard在提示注入攻击下恢复超过40%的性能，在多种攻击策略、不同LLM骨干及大规模MAS场景下均表现出良好的泛化性和可扩展性，并可无缝集成主流MAS框架。</div>
+            <div class="en">G-Safeguard recovers over 40% of performance degradation caused by prompt injection attacks, demonstrating strong effectiveness across multiple attack strategies. The method generalizes well to different LLM backbones and scales to large MAS configurations. It also integrates seamlessly with mainstream MAS frameworks, validating its practical adaptability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>拓扑信号的鲁棒性：当攻击者刻意模仿正常通信模式以规避GNN检测时，基于图结构的异常信号是否依然可靠，需进一步验证。</li><li>实时性开销：在动态增长的对话图上运行GNN推理可能引入延迟，在对响应时间敏感的实际部署中需评估其可行性。</li><li>干预粒度：节点隔离等拓扑干预手段较为粗粒度，未来可探索消息过滤或对抗性修正等更精细的修复策略，以减少对正常协作的干扰。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Topology as a security signal: The key insight — that adversarial activity distorts the communication graph structure — is intuitive and powerful, but the paper should clarify how robust this signal is when attackers deliberately mimic normal communication patterns to evade GNN-based detection.</li><li>Scalability trade-offs: While the paper claims scalability to large-scale MAS, GNN inference over dynamically growing utterance graphs may introduce latency overhead that could be prohibitive in real-time, latency-sensitive deployments.</li><li>Intervention granularity: The topological intervention (e.g., node isolation) is a blunt instrument — future work should explore finer-grained remediation strategies, such as partial message filtering or adversarial correction, to avoid disrupting legitimate agent collaboration.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.11127" target="_blank">查看原文 →</a>
       </div>
       
       
@@ -150,149 +288,11 @@
     
     <details class="category-details" id="embodied_security" open>
       <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
-        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">2 篇</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
       </summary>
       <div class="category-body">
       
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">VisionGuard利用物理对抗样本的时空不一致性，检测并缓解自动驾驶车辆感知模块所受的物理对抗攻击。</div>
-        <div class="paper-title-en">VisionGuard: Secure and Robust Visual Perception of Autonomous Vehicles in Practice</div>
-        <div class="paper-meta">
-          <span>Xingshuo Han, Haozhao Wang, Kangqiao Zhao et al.</span>
-          <span class="badge badge-date">2024-12-02</span>
-          <span class="badge badge-venue">CCS</span>
-          
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>VisionGuard利用物理对抗样本的时空不一致性，检测并缓解自动驾驶车辆感知模块所受的物理对抗攻击。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">VisionGuard detects and mitigates physical adversarial attacks on autonomous vehicle perception by exploiting spatiotemporal inconsistencies between predicted and observed driving states.</div>
-        </div>
-
-        <details open>
-          <summary>重要性与意义 / Significance</summary>
-          <div class="detail-content">
-            <div class="zh">物理对抗攻击直接威胁自动驾驶安全，亟需通用防御方案。VisionGuard与攻击类型无关，具备更强的实际部署价值，推动感知层安全走向实用化。</div>
-            <div class="en">Physical adversarial attacks on AV perception (e.g., manipulated stop signs or LiDAR spoofing) are a direct safety threat to real-world deployment; a practical, general-purpose defense is urgently needed. VisionGuard&#39;s spatiotemporal consistency framework is attack-agnostic, making it more deployable than narrow, attack-specific defenses. This work advances the field toward production-ready AV security at the perception layer.</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">自动驾驶车辆依赖DNN视觉感知模块，该模块易受物理对抗样本（如对抗性贴片、LiDAR欺骗）攻击，直接威胁行车安全。如何构建能跨攻击类型泛化的实用防御方案是核心挑战。</div>
-            <div class="en">Autonomous vehicles rely on DNN-based visual perception modules that are known to be vulnerable to physical adversarial examples — real-world perturbations like adversarial patches or spoofed objects that fool cameras and LiDAR. This vulnerability poses direct safety risks in deployment scenarios where attackers can manipulate the physical environment. The core challenge is building a defense that generalizes across diverse attack types and real driving conditions.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有防御方法多针对特定攻击类型（如对抗贴片或LiDAR欺骗），泛化能力有限。部分方法需修改DNN模型或假设已知攻击信息，实用性不足，缺乏统一的跨攻击类型防御框架。</div>
-            <div class="en">Existing defenses against physical adversarial examples are largely attack-specific — designed for adversarial patches, or object hiding, or LiDAR spoofing in isolation — and thus fail to generalize. Many methods also require modifying the underlying DNN model or assume white-box knowledge of the attack, limiting practical applicability. No prior work provides a unified, model-agnostic defense across the full spectrum of PAE types encountered in real AV deployments.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">VisionGuard构建历史运动状态模型（速度、航向、目标轨迹），预测当前状态并与实际感知结果比对，检测对抗操控引发的时空不一致。系统以插件形式覆盖现有VPM，无需重训练，并集成缓解模块恢复正常感知输出，实现&#34;检测+缓解&#34;双重防护。</div>
-            <div class="en">VisionGuard introduces a spatiotemporal consistency detection mechanism: it models the historical motion states of the AV (e.g., speed, heading, object trajectories) to predict expected current states, then flags discrepancies caused by adversarial manipulation of the perception module. The framework is designed to be model-agnostic and attack-agnostic, operating as a wrapper over existing VPMs without requiring retraining. Upon detecting an anomaly, VisionGuard also applies mitigation strategies to suppress the adversarial effect and restore safe perception outputs. This dual detect-and-mitigate design distinguishes it from prior detection-only approaches.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">VisionGuard在摄像头与LiDAR的多类物理对抗攻击下均展现出有效的检测与缓解能力，时空不一致性信号在多种驾驶场景和攻击强度下保持鲁棒，覆盖全面的攻击类型评估基准。</div>
-            <div class="en">VisionGuard demonstrates effective detection and mitigation across multiple PAE attack types targeting both camera and LiDAR inputs in real-world-oriented evaluations. The spatiotemporal inconsistency signal proves robust across varied driving scenarios and attack intensities. Specific detection rates and false positive figures are not fully visible from the abstract, but the method is validated against a comprehensive attack suite covering diverse AV threat scenarios.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>时空建模依赖平稳可预测的车辆动态，急刹车或急转弯等正常异常运动可能引发误报，良性运动异常下的鲁棒性值得深入评估。</li><li>防御仅覆盖感知层，若攻击者污染历史状态数据或攻击规划决策层，检测机制可能被绕过。</li><li>时空一致性检测的延迟开销对实时安全至关重要，需明确其是否满足量产AV系统（通常每帧&lt;100ms）的时序要求。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Spatiotemporal modeling assumes smooth, predictable vehicle dynamics — edge cases like sudden stops, sharp turns, or sensor noise could generate false positives, and the paper&#39;s robustness to benign motion anomalies warrants closer scrutiny.</li><li>The approach operates at the perception layer and does not address higher-level decision or planning attacks; an adversary who compromises the prediction model itself (e.g., by poisoning historical state data) could potentially evade detection.</li><li>Latency overhead of the spatiotemporal consistency check is critical for real-time AV safety: the paper should clarify whether detection operates within the tight timing budgets of production AV stacks (typically &lt;100ms per frame).</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="https://www.semanticscholar.org/paper/b2738838d92acb0ecc2cbccfc1e4904b54a09a95" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">提出基于梯度校准与去相关的对抗伪装框架，使物理对抗纹理在不同距离和视角下均能有效欺骗目标检测器。</div>
-        <div class="paper-title-en">Physical Adversarial Camouflage through Gradient Calibration and Regularization</div>
-        <div class="paper-meta">
-          <span>Jiawei Liang, Siyuan Liang, Jianjie Huang et al.</span>
-          <span class="badge badge-date">2025-08-07</span>
-          <span class="badge badge-venue">IJCAI</span>
-          
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>提出基于梯度校准与去相关的对抗伪装框架，使物理对抗纹理在不同距离和视角下均能有效欺骗目标检测器。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A new adversarial camouflage framework uses gradient calibration and decorrelation to generate physically robust textures that fool object detectors across varying distances and viewpoints.</div>
-        </div>
-
-        <details open>
-          <summary>重要性与意义 / Significance</summary>
-          <div class="detail-content">
-            <div class="zh">物理对抗攻击对自动驾驶等安全关键系统构成直接威胁。本文明确指出物理伪装梯度优化中两个被忽视的失效模式，并提供具体算法解决方案，推动了真实场景对抗鲁棒性研究。</div>
-            <div class="en">Physical adversarial attacks on object detectors pose direct safety risks in autonomous driving and surveillance systems, making robust defenses and attack understanding critical. This work identifies two previously underexplored failure modes in gradient optimization for physical camouflage and provides concrete algorithmic fixes, advancing the community&#39;s understanding of real-world adversarial robustness.</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">如何优化对抗伪装纹理，使其在不同距离和视角等多变物理条件下持续欺骗深度目标检测器？现有方法在真实场景泛化能力不足，导致安全关键系统的威胁评估存在盲区。</div>
-            <div class="en">How can adversarial camouflage textures be optimized to remain effective against deep object detectors across variable physical conditions, including different distances and viewing angles? This problem matters because existing methods fail to generalize in real-world deployments, limiting their practical threat assessment utility and leaving safety-critical systems under-evaluated.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有方法（如DAS、FCA、ACTIVE）通过可微渲染优化纹理，但远距离采样点稀疏导致部分纹理区域梯度缺失，多视角梯度更新还会产生冲突，降低优化稳定性和攻击成功率。</div>
-            <div class="en">Existing physical adversarial camouflage methods (e.g., DAS, FCA, ACTIVE) optimize textures via differentiable rendering but suffer from uneven gradient coverage: distant objects are sampled sparsely, leaving texture regions unoptimized. Multi-angle gradient updates also create conflicting gradient signals, destabilizing optimization and degrading attack success rates in practice.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">本文提出两个互补模块：梯度校准策略将稀疏采样点的梯度传播至未采样邻近点，保证不同距离下空间一致的纹理更新；梯度去相关方法识别并抑制多视角渲染产生的冲突梯度方向，提升优化稳定性。两者协同提高纹理优化的空间覆盖率与方向一致性。</div>
-            <div class="en">The paper proposes two complementary components within a unified gradient optimization framework. First, a gradient calibration strategy propagates gradients from sparsely sampled texture points to neighboring unsampled points, ensuring spatially consistent updates regardless of object distance. Second, a gradient decorrelation method detects and resolves conflicting gradient directions from multi-angle renders by prioritizing dominant gradient components and suppressing contradictory ones. Together, these mechanisms improve both the spatial coverage and directional consistency of texture optimization.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">所提框架在多个距离和视角下的攻击成功率均超越DAS、FCA、ACTIVE等基线方法。梯度校准显著改善远距离攻击性能，梯度去相关则提升多视角优化的收敛稳定性。</div>
-            <div class="en">The proposed framework outperforms existing physical adversarial camouflage baselines (DAS, FCA, ACTIVE) on standard benchmarks, achieving higher attack success rates across multiple distances and viewpoints. Gradient calibration specifically improves performance at longer ranges where sparse sampling previously caused degradation, while decorrelation yields more stable convergence during multi-angle optimization.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>迁移性存疑：实验主要针对YOLOv5等CNN检测器，对DETA、RT-DETR等Transformer检测器的迁移攻击效果尚未验证，影响真实威胁评估的完整性。</li><li>仿真与现实差距：渲染仿真无法完全复现真实打印色差、光照变化和材质反射，缺乏量化的sim-to-real分析削弱了实用说服力。</li><li>防御启示：所发现的稀疏梯度与冲突梯度两类失效模式，可反向指导对抗训练或针对性防御设计，具有潜在的防御研究价值。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Generalization to unseen detectors: The framework is evaluated on specific detectors (e.g., YOLOv5), but transferability to transformer-based detectors like DETA or RT-DETR remains untested, which is critical for real-world threat assessment.</li><li>Physical-digital gap: Rendered simulations approximate but do not fully replicate real printing artifacts, lighting shifts, and material reflectance—quantifying this sim-to-real gap would strengthen practical relevance.</li><li>Defensive implications: The two identified failure modes (sparse gradients, conflicting updates) could conversely inform adversarial training or certified defense designs that explicitly target these optimization vulnerabilities.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="https://arxiv.org/abs/2508.05414" target="_blank">查看原文 →</a>
-      </div>
-      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
       
       </div>
     </details>
@@ -307,208 +307,208 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">IPO让LLM直接充当偏好分类器，无需外部奖励模型，通过DPO实现自我改进。</div>
-        <div class="paper-title-en">IPO: Your Language Model is Secretly a Preference Classifier</div>
+        <div class="paper-title">本文评估LLM作为法语医学开放式问答的自动裁判，发现对小模型进行轻量级微调（SFT+GRPO）可媲美大模型，并降低...</div>
+        <div class="paper-title-en">Who Judges the Judge? Evaluating LLM-as-a-Judge for French Medical open-ended QA</div>
         <div class="paper-meta">
-          <span>Shivank Garg, Ayush Singh, Shweta Singh et al.</span>
-          <span class="badge badge-date">2025-02-22</span>
-          <span class="badge badge-venue">ACL</span>
+          <span>Ikram Belmadani, Oumaima El Khettari, Pacôme Constant dit Beaufils et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          <span class="badge badge-venue">HeaLing</span>
           
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>IPO让LLM直接充当偏好分类器，无需外部奖励模型，通过DPO实现自我改进。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">IPO eliminates external reward models by using the LLM itself as a preference classifier for self-improvement via Direct Preference Optimization (DPO).</div>
+          <div>本文评估LLM作为法语医学开放式问答的自动裁判，发现对小模型进行轻量级微调（SFT+GRPO）可媲美大模型，并降低对生成器的敏感性。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper evaluates LLMs as automatic judges for French medical open-ended QA and shows that lightweight fine-tuning (SFT + GRPO) of small models can match large models in alignment with expert annotations while reducing sensitivity to the answer generator.</div>
         </div>
 
         <details open>
           <summary>重要性与意义 / Significance</summary>
           <div class="detail-content">
-            <div class="zh">IPO去除了对独立奖励模型和人工标注的依赖，大幅降低了RLHF的计算与资金成本，使更多研究者可以低成本对齐LLM。同时开辟了生成模型内在偏好建模的新研究方向。</div>
-            <div class="en">IPO directly tackles the high computational and financial burden of RLHF pipelines by removing the need for a separately trained reward model or costly human annotations. This approach democratizes LLM alignment, making it accessible to researchers and practitioners without large-scale labeling infrastructure. It also opens a new research direction around intrinsic preference modeling within generative LLMs.</div>
+            <div class="zh">本文解决了医学NLP评估中专家标注成本高的瓶颈问题，为法语等低资源语言提供了可扩展的评估方案。裁判性能依赖于生成器这一发现，对LLM评估方法论具有重要警示意义。</div>
+            <div class="en">This work directly addresses the bottleneck of costly expert annotation in medical NLP evaluation, a critical barrier for deploying QA systems in clinical settings. By demonstrating that small adapted models can serve as reliable judges, it enables scalable evaluation pipelines for low-resource languages like French. The finding that judge performance is generator-dependent is a key methodological warning for the broader LLM evaluation community.</div>
           </div>
         </details>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">如何在不依赖外部奖励模型或大规模人工标注数据的情况下，将LLM与人类偏好对齐？当前RLHF流程成本高昂，制约了广泛应用。</div>
-            <div class="en">How can we align LLMs with human preferences without relying on expensive external reward models or large-scale human-labeled preference datasets? This matters because standard RLHF pipelines require substantial compute and annotation budgets, creating barriers for many research and deployment settings.</div>
+            <div class="zh">LLM能否可靠替代人类专家，评估法语医学开放式问答的语义等价性？由于人工标注成本高、BLEU等指标无法捕捉医学语义，这一问题对临床NLP系统评估至关重要。</div>
+            <div class="en">Can LLMs reliably replace human experts in evaluating semantic equivalence for French medical open-ended QA? This matters because manual expert annotation is expensive and slow, yet automated metrics like BLEU/ROUGE fail to capture medical semantic nuance, creating a critical gap in evaluating clinical NLP systems.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">标准RLHF需训练独立奖励模型，成本高；宪法AI等方法虽减少人工介入，但仍需辅助模型或多阶段微调；DPO简化了训练流程，但仍依赖预先收集的偏好对数据。</div>
-            <div class="en">Standard RLHF trains a separate reward model on human preference labels, which is expensive in both labeling cost and compute. Constitutional AI and self-rewarding approaches partially reduce human involvement but still require iterative fine-tuning stages or auxiliary models. Direct Preference Optimization (DPO) simplifies training but still depends on pre-collected preference pair datasets.</div>
+            <div class="zh">现有LLM裁判研究主要针对英语通用领域，医学和非英语场景研究不足。BLEU等词汇指标无法识别医学答案的语义等价性。此前研究也未系统探讨生成器选择如何影响裁判模型与人类专家的一致性。</div>
+            <div class="en">Existing LLM-as-a-Judge approaches are predominantly evaluated on English general-domain tasks, leaving medical and non-English settings underexplored. Standard lexical metrics (BLEU, ROUGE) are inadequate for medical OEQA where paraphrased correct answers must be recognized. Prior work has not systematically studied how the choice of answer generator biases judge model agreement with human experts.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">IPO将生成式LLM复用为偏好分类器：模型生成多个候选回复，再由自身判断优劣，构造偏好对用于DPO训练，形成完全自包含的对齐闭环。在RewardBench上对不同规模、架构和训练阶段的模型进行了系统评估，验证了该分类能力的普适性。</div>
-            <div class="en">IPO repurposes the generative LLM itself as a preference classifier by prompting it to judge which of its own generated responses is better for a given instruction. The model generates multiple candidate responses, ranks them using its own implicit preference signal, and constructs preference pairs for DPO training—creating a fully self-contained alignment loop. The approach is evaluated on RewardBench across models of varying sizes, architectures, and training stages to validate the classification capability. This pipeline removes any external reward model or human annotator from the preference collection stage.</div>
+            <div class="zh">作者在含专家标注的法语医学OEQA数据集上，对闭源模型、通用大模型及生物医学领域适配模型进行系统评测，按生成器分类计算裁判与专家的一致性（Cohen&#39;s κ）。随后对小型开源模型进行SFT与GRPO强化学习微调，以少量标注数据提升准确性和对生成器的鲁棒性。</div>
+            <div class="en">The authors benchmark a range of judge models — closed-access (e.g., GPT-4-class), large general-purpose open models, and biomedical domain-adapted models — on a French medical OEQA dataset with expert annotations. They measure judge-expert agreement (Cohen&#39;s κ) broken down by which model generated the candidate answers, revealing generator bias. They then fine-tune a compact open model using supervised fine-tuning (SFT) followed by Group Relative Policy Optimization (GRPO), a reinforcement learning approach, with limited labeled data to improve both accuracy and robustness to generator identity.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">RewardBench评估表明，不同规模与架构的生成式LLM无需额外训练即具备可观的偏好分类能力。利用IPO生成的偏好对进行DPO训练后，模型回复质量有显著提升，且模型规模越大，偏好分类准确率越高。</div>
-            <div class="en">Evaluation on RewardBench shows that generative LLMs across different sizes and architectures possess meaningful preference classification ability without any additional reward-model training. The self-improvement loop using IPO-generated preference pairs and DPO training yields measurable gains in response quality, demonstrating that the approach is viable for iterative self-alignment. Specific numeric benchmarks vary by model scale, with larger models showing stronger preference classification accuracy.</div>
+            <div class="zh">领域适配模型与大型通用模型与专家标注的一致性最高，但裁判得分因答案生成器不同而显著波动。经SFT+GRPO微调的小模型在少量数据下大幅缩小与大模型的差距，并明显降低生成器敏感性。</div>
+            <div class="en">Domain-adapted and large general-purpose models achieve the strongest alignment with expert annotations across generators. LLM judge agreement varies substantially depending on which model produced the answer being judged, confirming a generator-sensitivity bias. The SFT+GRPO adapted compact model substantially closes the gap with larger models and markedly reduces this generator sensitivity, even when trained on limited data.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>自我评判偏差：模型评估自身输出时可能倾向于与自身生成分布一致的回复，而非真正更优的回复，多轮迭代后可能放大已有偏见。</li><li>标签质量与成本的权衡：IPO虽降低了成本，但自生成偏好标签的质量可能低于基于大规模人工标注训练的专用奖励模型，在安全敏感任务上尤为明显。</li><li>迭代漂移风险：缺乏外部锚定信号的多轮自我改进可能导致奖励黑客或分布漂移，模型可能优化自身偏好指标而非真实人类价值观。</li></ul>
+              <ul class="discussion-list"><li>裁判分数随答案生成器变化而波动，说明不控制生成器的单一裁判评测可能产生误导性排名，需引入生成器感知评估框架。</li><li>SFT+GRPO流程为低资源医学NLP提供了实用方案，其他非英语医学领域可用少量标注数据适配小模型，降低对闭源API的依赖。</li><li>研究仅限于法语单一数据集，其结论能否推广至其他医学专科、语言或长篇临床答案，仍需进一步验证。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Reliability of self-judging: Using a model to evaluate its own outputs introduces a self-consistency bias—the model may prefer responses that match its own generation distribution rather than those that are genuinely better, potentially amplifying existing model biases over iterations.</li><li>Scalability vs. quality trade-off: While IPO reduces cost, the quality of preference labels from the model itself may be lower than those from dedicated reward models trained on large human-annotated datasets, especially for nuanced or safety-critical tasks.</li><li>Iterative drift risk: Repeated self-improvement cycles without any external grounding signal could lead to reward hacking or distributional drift, where the model optimizes for its own idiosyncratic preference metric rather than true human values.</li></ul>
+              <ul class="discussion-list"><li>Generator-aware evaluation is essential: since judge scores shift based on which model produced the answer, benchmark comparisons that use a single judge without controlling for generator identity may produce misleading rankings of medical QA systems.</li><li>The SFT+GRPO pipeline offers a practical recipe for low-resource medical NLP: practitioners in other non-English medical domains could adapt a small open model with modest annotation budgets rather than relying on expensive closed-source APIs.</li><li>A key open question is generalizability — the study is confined to French and one medical QA dataset; whether these findings transfer to other medical specialties, languages, or longer-form clinical answers remains to be validated.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="https://arxiv.org/abs/2502.16182" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04033v1" target="_blank">查看原文 →</a>
       </div>
       
       
       
       <div class="paper-card">
-        <div class="paper-title">本文提出隐式跨语言奖励方法（ICLR），通过隐式奖励标注与迭代多语言DPO微调，将英语偏好对齐能力迁移至其他语言。</div>
-        <div class="paper-title-en">Implicit Cross-Lingual Rewarding for Efficient Multilingual Preference Alignment</div>
+        <div class="paper-title">DPAD通过生成目标描述并与上下文对比，引导多模态大模型在推理分割中保持聚焦，避免推理链偏离目标区域。</div>
+        <div class="paper-title-en">Discriminative Perception via Anchored Description for Reasoning Segmentation</div>
         <div class="paper-meta">
-          <span>Wen Yang, Junhong Wu, Chen Wang et al.</span>
-          <span class="badge badge-date">2025-03-06</span>
-          <span class="badge badge-venue">ACL</span>
+          <span>Tao Yang, Qing Zhou, Yanliang Li et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          <span class="badge badge-venue">CVPR</span>
           
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>本文提出隐式跨语言奖励方法（ICLR），通过隐式奖励标注与迭代多语言DPO微调，将英语偏好对齐能力迁移至其他语言。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes Implicit Cross-Lingual Rewarding (ICLR), which transfers preference alignment from English DPO models to other languages via implicit reward annotation and iterative multilingual DPO fine-tuning.</div>
+          <div>DPAD通过生成目标描述并与上下文对比，引导多模态大模型在推理分割中保持聚焦，避免推理链偏离目标区域。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">DPAD introduces a discriminative perception reward that forces MLLMs to generate anchored captions of target objects and contrasts their semantic relevance against surrounding context to keep reasoning chains focused during segmentation.</div>
         </div>
 
         <details open>
           <summary>重要性与意义 / Significance</summary>
           <div class="detail-content">
-            <div class="zh">本研究直接解决多语言偏好对齐中的数据稀缺瓶颈，提供了一种无需各目标语言人工标注偏好数据的低成本、可扩展对齐路径，具有广泛的实际应用价值。</div>
-            <div class="en">This work directly tackles the data scarcity bottleneck in multilingual LLM alignment, a problem that affects the majority of the world&#39;s language speakers. By reusing existing English-aligned models as reward sources, it offers a low-cost, scalable path to multilingual alignment without requiring human-annotated preference data in each target language.</div>
+            <div class="zh">该工作揭示了基于强化学习的推理分割中几何奖励的盲区，提出的判别感知机制为视觉定位任务提供了可推广的轻量补充方案。</div>
+            <div class="en">This work identifies a critical blind spot in RL-based reasoning segmentation: geometric rewards alone cannot penalize unfocused or irrelevant reasoning chains. By introducing a discriminative caption-contrast mechanism, DPAD offers a principled and lightweight complement to existing localization rewards that can generalize to other multimodal reasoning tasks requiring fine-grained visual grounding.</div>
           </div>
         </details>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">如何在无需大规模多语言偏好标注的情况下，将主要针对英语的DPO偏好对齐高效扩展到其他语言？为大多数语言构建人工偏好数据集成本极高，这使全球大多数语言无法受益于先进的对齐模型。</div>
-            <div class="en">How can preference alignment—predominantly achieved for English LLMs via DPO—be efficiently extended to other languages without large-scale multilingual preference annotation? This matters because building human preference datasets for each language is prohibitively expensive, leaving most of the world&#39;s languages underserved by state-of-the-art aligned models.</div>
+            <div class="zh">现有推理分割模型的推理链缺乏对目标区域的锚定约束，容易在复杂场景中偏向无关上下文，导致分割性能下降。</div>
+            <div class="en">Reasoning segmentation with MLLMs relies on generating intermediate reasoning chains before producing segmentation masks, but there is no mechanism ensuring these chains stay focused on the target object rather than drifting into irrelevant context. This unfocused reasoning leads to verbose, ambiguous chains that degrade segmentation accuracy in complex scenes with cluttered backgrounds or similar-looking distractors.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">标准DPO和RLHF方法依赖特定语言的偏好数据集，而大多数非英语语言此类数据极度匮乏。现有多语言对齐方法多依赖机器翻译偏好对或跨语言奖励模型，存在翻译噪声且难以捕捉语言特有的细微偏好。</div>
-            <div class="en">Standard DPO and RLHF approaches rely on language-specific preference datasets, which are scarce or nonexistent for most non-English languages. Prior multilingual alignment efforts often resort to machine-translated preference pairs or cross-lingual reward models, both of which suffer from translation noise and fail to capture nuanced language-specific preferences. These limitations leave a significant quality gap between English and non-English aligned models.</div>
+            <div class="zh">现有方法仅用IoU等几何奖励监督最终分割结果，无法约束中间推理过程是否聚焦目标，导致推理链散漫且与目标语义脱节。</div>
+            <div class="en">Existing RL-based reasoning segmentation methods (e.g., those building on LISA or ReasonSeg) use geometric rewards such as IoU or mask accuracy to supervise the final segmentation output. These rewards are applied only at the endpoint of the reasoning chain and provide no signal about whether intermediate reasoning steps are semantically anchored to the correct region. As a result, models can achieve a correct final mask while still generating reasoning that is scattered and disconnected from the target object&#39;s properties.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">作者直接从英语DPO对齐模型与参考模型的对数似然比中提取隐式奖励模型，无需显式奖励训练。该隐式奖励用于跨语言指令-回复对的偏好标注，再通过DPO微调迭代训练（在Llama3上迭代两轮），逐步实现从英语到其他语言的偏好知识迁移。</div>
-            <div class="en">The authors derive an implicit reward model directly from the log-likelihood ratio of an English DPO-aligned model and its reference model, requiring no explicit reward training. This implicit reward is applied to cross-lingual instruction-following pairs—using English instructions to score multilingual (e.g., Chinese, French) responses—to automatically annotate preference labels. The annotated multilingual pairs are then used for DPO fine-tuning, and the process is repeated iteratively (two iterations on Llama3) to progressively improve cross-lingual preference transfer. The key contribution is a data-efficient pipeline that bootstraps multilingual alignment entirely from an existing English-aligned model.</div>
+            <div class="zh">DPAD要求模型在推理链中生成目标描述性标注，再通过对比目标区域与周围上下文的语义相关性构建判别奖励，与几何奖励联合优化，促使推理链简洁且锚定目标。</div>
+            <div class="en">DPAD (Discriminative Perception via Anchored Description) introduces an auxiliary objective that compels the MLLM to produce a descriptive caption specifically characterizing the referred object during its reasoning chain. This caption is then used as a query to compute semantic relevance scores against both the referred region and the broader image context, creating a contrastive discrimination signal. The resulting discriminative reward penalizes reasoning that fails to semantically distinguish the target from its surroundings, directly complementing the standard geometric localization reward. The two rewards are combined within the RL training loop, encouraging the model to generate concise, target-anchored reasoning chains.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">在Llama3上迭代两轮后，所提方法在多语言指令跟随质量上显著优于使用翻译偏好数据或直接跨语言DPO的基线方法，且每轮迭代均带来持续的对齐质量提升。</div>
-            <div class="en">Fine-tuning Llama3 for two iterations with the proposed method yielded notable improvements in multilingual instruction-following quality across target languages. The approach outperforms baselines that use translated preference data or direct cross-lingual DPO without implicit reward transfer. Specific win-rate and benchmark score improvements are reported, demonstrating that iterative reward annotation consistently boosts alignment quality with each round.</div>
+            <div class="zh">DPAD在ReasonSeg和RefCOCO等基准上达到最优IoU，推理链更短且语义更连贯；消融实验证实判别奖励对性能提升不可缺少。</div>
+            <div class="en">DPAD achieves state-of-the-art performance on standard reasoning segmentation benchmarks including ReasonSeg and RefCOCO series, outperforming prior RL-based and non-RL baselines on overall IoU metrics. The model produces noticeably shorter and more semantically coherent reasoning chains compared to baselines that use geometric rewards alone. Ablation studies confirm that removing the discriminative caption-contrast reward causes a measurable drop in both segmentation accuracy and reasoning chain quality.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>隐式奖励质量完全依赖英语DPO模型的校准水平，若英语模型存在系统性偏差（如冗长偏好），这些偏差将通过标注流程传播至所有目标语言。</li><li>评估方式以英语指令评判多语言回复，假设语言间语义等价，可能对目标语言中文化上恰当但风格与英语规范不同的回复造成不利影响。</li><li>论文仅报告了两轮迭代结果，更多轮次的性能变化、奖励漂移或模型坍塌风险，以及收益是否快速饱和等问题尚待探究。</li></ul>
+              <ul class="discussion-list"><li>标注质量瓶颈：判别奖励依赖自动生成的目标描述质量，若描述不准确则对比信号可能误导训练。</li><li>密集场景泛化性：论文主要评估单目标场景，多个语义相似目标共存时对比边际收窄，方法的扩展性有待验证。</li><li>奖励权重敏感性：几何奖励与判别奖励的平衡引入额外超参数，其在不同模型骨干和数据集上的泛化性仍需进一步考察。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Scalability concern: The implicit reward quality depends entirely on the English DPO model&#39;s calibration. If the English model has systematic biases (e.g., verbosity bias), these will propagate into all target languages through the annotation pipeline.</li><li>Evaluation gap: The paper uses English instructions to evaluate multilingual responses, which assumes semantic equivalence across languages. This may disadvantage responses that are culturally appropriate in the target language but stylistically differ from English norms.</li><li>Iteration ceiling: Only two iterations are reported on Llama3. It remains unclear how performance scales with more iterations, whether reward drift or model collapse becomes an issue, and whether the gains saturate quickly.</li></ul>
+              <ul class="discussion-list"><li>Caption quality bottleneck: The discriminative reward depends on the quality of the auto-generated object caption; if the MLLM produces an inaccurate or overly generic caption for ambiguous objects, the contrastive signal may mislead training rather than anchor it.</li><li>Scalability to dense scenes: The paper evaluates primarily on single-target referring segmentation; it is unclear how the caption-contrast mechanism scales when multiple semantically similar objects coexist in a scene and the contrastive margin between target and context becomes small.</li><li>Reward design sensitivity: The balance between the geometric reward and the new discriminative reward introduces an additional hyperparameter; the paper&#39;s sensitivity analysis on this weighting is important but may not generalize across different MLLM backbones or dataset distributions.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="https://arxiv.org/abs/2503.04647" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04002v1" target="_blank">查看原文 →</a>
       </div>
       
       
       
       <div class="paper-card">
-        <div class="paper-title">HEAL将LLM偏好对齐评估重构为假设空间重排序问题，提出两项互补指标与统一基准UniHypoBench，弥补单响应评估的盲区。</div>
-        <div class="paper-title-en">HEAL: A Hypothesis-Based Preference-Aware Analysis Framework</div>
+        <div class="paper-title">本文提出两种基于原型的方法（PBR与PCM），将局部上下文与全局语料语义融合用于修辞角色标注，并发布首个美国最高法...</div>
+        <div class="paper-title-en">Coupling Local Context and Global Semantic Prototypes via a Hierarchical Architecture for Rhetorical Roles Labeling</div>
         <div class="paper-meta">
-          <span>Yifu Huo, Chenglong Wang, Qiren Zhu et al.</span>
-          <span class="badge badge-date">2025-08-27</span>
-          <span class="badge badge-venue">EMNLP</span>
+          <span>Anas Belfathi, Nicolas Hernandez, Laura Monceaux et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          <span class="badge badge-venue">EACL 2026</span>
           
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>HEAL将LLM偏好对齐评估重构为假设空间重排序问题，提出两项互补指标与统一基准UniHypoBench，弥补单响应评估的盲区。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">HEAL reframes LLM preference alignment evaluation as a hypothesis-space re-ranking problem, introducing two complementary metrics and a unified benchmark (UniHypoBench) to expose blind spots in standard single-response evaluation.</div>
+          <div>本文提出两种基于原型的方法（PBR与PCM），将局部上下文与全局语料语义融合用于修辞角色标注，并发布首个美国最高法院意见书数据集SCOTUS-Law。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes two prototype-based methods (PBR and PCM) to integrate local context with global corpus-level semantics for rhetorical role labeling, and introduces SCOTUS-Law, the first annotated U.S. Supreme Court opinion dataset for this task.</div>
         </div>
 
         <details open>
           <summary>重要性与意义 / Significance</summary>
           <div class="detail-content">
-            <div class="zh">HEAL揭示了当前偏好优化评估的系统性盲区：单响应指标无法衡量模型对全部可能输出的排序能力。其可复用基准与两项可解释指标为研究者提供了更严格审查DPO等方法的实用工具，有望直接影响未来对齐方法的设计与比较方式。</div>
-            <div class="en">HEAL exposes a systematic blind spot in current preference optimization evaluation: single-response metrics like win-rate cannot capture how well a model ranks the full distribution of plausible outputs. By providing a reusable benchmark and two interpretable metrics, HEAL gives researchers a practical diagnostic tool to audit DPO and similar methods more rigorously. This could directly influence how future alignment methods are designed and compared.</div>
+            <div class="zh">本文为法律、医疗等高风险领域的篇章理解提供了将语料级语义注入句子标注模型的有效方案。SCOTUS-Law数据集填补了法律NLP资源的空白，提供三级标注粒度，原型方法具有模型无关性，可迁移至其他结构化文档理解任务。</div>
+            <div class="en">This work advances discourse understanding in high-stakes domains (law, medicine, science) by providing a principled way to inject corpus-level semantic structure into sentence-level labeling models. The SCOTUS-Law dataset fills a critical gap in legal NLP resources, offering three granularity levels for rhetorical annotation. The prototype methods are model-agnostic and transferable to other structured document understanding tasks.</div>
           </div>
         </details>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">当前偏好优化方法（如DPO）的评估仅基于单一采样响应，忽略了模型实际可能生成的更广泛&#34;假设空间&#34;。这种单点评估可能高估或误判真实对齐质量。HEAL的核心问题是：经过偏好优化的模型能否真正按照人类偏好对所有合理响应进行排序？</div>
-            <div class="en">Current evaluation of preference optimization methods (e.g., DPO) judges a model on a single sampled response, ignoring the broader &#34;hypothetical space&#34; of outputs the model could realistically generate. This single-point assessment may overstate or mischaracterize true alignment quality. HEAL asks: how well does a preference-optimized model actually rank all plausible responses in alignment with human preferences?</div>
+            <div class="zh">修辞角色标注（RRL）为文档中每句话分配功能标签（如&#34;论点&#34;&#34;裁决&#34;&#34;背景&#34;），是法律和医学文本摘要与信息抽取的关键前置任务。当前模型难以同时捕捉局部序列依赖与语料级别的全局篇章模式。</div>
+            <div class="en">Rhetorical Role Labeling (RRL) assigns a functional label (e.g., &#34;argument,&#34; &#34;ruling,&#34; &#34;background&#34;) to each sentence in a document, which is essential for downstream tasks like summarization and information extraction in legal and medical text. The challenge is that sentence-level predictions must respect both local sequential dependencies and global document-level discourse patterns. Current models struggle to capture corpus-wide prototypical structures that define how rhetorical roles are typically expressed.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有偏好对齐评估协议（胜率、奖励模型打分）仅评估单一&#34;选中vs拒绝&#34;响应对，无法衡量模型在不同质量响应上的序一致性，也无法捕捉偏好信号的强度，导致偏好学习内在机制难以被深入理解。</div>
-            <div class="en">Existing evaluation protocols for preference alignment (win-rate, reward-model scoring) assess only a single chosen vs. rejected response pair, which is a narrow snapshot of model behavior. They cannot measure ordinal consistency across a spectrum of response qualities or capture the strength of preference signals. This leaves key questions about the intrinsic mechanics of preference learning unanswered.</div>
+            <div class="zh">现有层次化模型能有效捕捉文档内局部依赖，但忽略了语料级别的角色语义模式。纯文档内上下文方法无法利用同一修辞角色在大量文档中表现出的一致语言特征。此前也缺乏针对美国最高法院意见书的多粒度标注数据集。</div>
+            <div class="en">Existing hierarchical models (e.g., BiLSTM/Transformer over sentence encoders) effectively capture local context within a document but are blind to corpus-level, role-specific semantic patterns. Methods relying purely on in-document context cannot leverage the consistent linguistic signatures that a given rhetorical role exhibits across many documents. No prior work had provided a multi-granularity annotated dataset for U.S. Supreme Court opinions, limiting legal RRL research.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">HEAL将偏好对齐评估重构为在假设空间（每条指令对应的多样候选响应集合）上的重排序任务，提出两项指标：排序准确率（衡量模型排序与人类偏好标签的序一致性）和偏好强度相关性（衡量模型置信度是否与人类偏好程度对应）。作者同时构建了UniHypoBench——一个整合多样指令-响应对与多级偏好标注的统一基准，并利用HEAL对多种DPO类方法的内在机制进行了深入实验分析。</div>
-            <div class="en">HEAL reformulates preference alignment evaluation as a re-ranking task over a hypothesis space—a set of diverse candidate responses for each instruction. It introduces two metrics: ranking accuracy (measuring ordinal consistency between model rankings and human preference labels) and preference strength correlation (measuring whether the model&#39;s confidence tracks the degree of human preference). To support this framework, the authors construct UniHypoBench, a unified benchmark aggregating diverse instruction-response pairs with multi-level preference annotations. Experiments use HEAL to probe the intrinsic mechanisms of preference learning across multiple DPO-style methods.</div>
+            <div class="zh">本文提出两种互补的原型扩展方法：PBR通过距离辅助损失使同类句子嵌入在隐空间聚类；PCM显式构建语料级类别原型均值嵌入，并在训练与推理时以特征调制方式注入模型。同时发布SCOTUS-Law数据集，涵盖类别、修辞功能、步骤三个标注粒度。</div>
+            <div class="en">The authors propose two complementary prototype-based extensions to hierarchical RRL models. Prototype-Based Regularization (PBR) learns soft per-class prototypes by adding a distance-based auxiliary loss that encourages sentence embeddings of the same role to cluster together in latent space. Prototype-Conditioned Modulation (PCM) explicitly constructs corpus-level prototypes (averaged embeddings per class) and injects them into the model via feature modulation at both training and inference time. Additionally, the authors introduce SCOTUS-Law: U.S. Supreme Court opinions annotated at three levels — broad category, rhetorical function, and fine-grained step — enabling multi-granularity RRL evaluation.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">实验表明，标准DPO类方法在假设空间上的排序准确率有限，尽管其单响应胜率表现强劲，说明现有指标高估了对齐质量。偏好强度相关性分析进一步显示，模型置信度与人类偏好程度之间的校准往往较差。该框架识别出单响应评估系统性遗漏的偏好学习失效模式。</div>
-            <div class="en">Experiments reveal that standard DPO-style methods achieve limited ranking accuracy across the hypothesis space despite strong single-response win-rates, suggesting current metrics overestimate alignment quality. Preference strength correlation further shows that model confidence is often poorly calibrated relative to the degree of human preference. The framework identifies specific failure modes in preference learning that single-response evaluation systematically misses.</div>
+            <div class="zh">PBR与PCM在法律、医学、科学基准上均持续超越强基线，PCM总体优于PBR，表明显式语料原型比软原型提供更强的全局引导。SCOTUS-Law数据集具有一定挑战性，三种标注粒度下性能存在明显差异。</div>
+            <div class="en">Both PBR and PCM achieve consistent improvements over strong hierarchical baselines across legal (SCOTUS-Law, ECHR), medical, and scientific benchmarks. PCM, which uses explicit corpus prototypes, generally outperforms PBR, suggesting that hard, precomputed prototypes provide stronger global guidance than learned soft ones. The new SCOTUS-Law dataset proves challenging, with performance varying meaningfully across its three annotation granularity levels.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>UniHypoBench的可扩展性：为多样假设空间构建多级偏好标注成本高昂，未来应探索自动化标注流程或从更强奖励模型蒸馏以扩大基准规模。</li><li>超越DPO的泛化性：HEAL主要在DPO类方法上验证，排序准确率与偏好强度相关性对RLHF、PPO等方法是否同样有诊断价值仍需验证。</li><li>指标敏感性：排序准确率对所有偏好对等权处理，但某些偏好差距在安全上更关键，引入加权或风险敏感排序指标可使HEAL在部署场景中更具可操作性。</li></ul>
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>原</li><li>型</li><li>质</li><li>量</li><li>瓶</li><li>颈</li><li>：</li><li>P</li><li>C</li><li>M</li><li>以</li><li>类</li><li>均</li><li>值</li><li>嵌</li><li>入</li><li>构</li><li>建</li><li>原</li><li>型</li><li>，</li><li>在</li><li>训</li><li>练</li><li>数</li><li>据</li><li>稀</li><li>少</li><li>或</li><li>类</li><li>别</li><li>分</li><li>布</li><li>极</li><li>度</li><li>不</li><li>均</li><li>（</li><li>如</li><li>法</li><li>律</li><li>语</li><li>料</li><li>中</li><li>的</li><li>稀</li><li>有</li><li>修</li><li>辞</li><li>角</li><li>色</li><li>）</li><li>时</li><li>可</li><li>能</li><li>引</li><li>入</li><li>噪</li><li>声</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>跨</li><li>域</li><li>泛</li><li>化</li><li>性</li><li>：</li><li>原</li><li>型</li><li>依</li><li>赖</li><li>领</li><li>域</li><li>内</li><li>训</li><li>练</li><li>数</li><li>据</li><li>构</li><li>建</li><li>，</li><li>P</li><li>C</li><li>M</li><li>原</li><li>型</li><li>在</li><li>少</li><li>样</li><li>本</li><li>或</li><li>零</li><li>样</li><li>本</li><li>跨</li><li>法</li><li>域</li><li>/</li><li>文</li><li>档</li><li>类</li><li>型</li><li>迁</li><li>移</li><li>中</li><li>的</li><li>效</li><li>果</li><li>尚</li><li>不</li><li>明</li><li>确</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>S</li><li>C</li><li>O</li><li>T</li><li>U</li><li>S</li><li>-</li><li>L</li><li>a</li><li>w</li><li>标</li><li>注</li><li>复</li><li>杂</li><li>度</li><li>：</li><li>三</li><li>粒</li><li>度</li><li>标</li><li>注</li><li>体</li><li>系</li><li>价</li><li>值</li><li>高</li><li>但</li><li>标</li><li>注</li><li>一</li><li>致</li><li>性</li><li>挑</li><li>战</li><li>大</li><li>，</li><li>细</li><li>粒</li><li>度</li><li>&#34;</li><li>步</li><li>骤</li><li>&#34;</li><li>标</li><li>签</li><li>预</li><li>测</li><li>难</li><li>度</li><li>明</li><li>显</li><li>更</li><li>高</li><li>，</li><li>提</li><li>示</li><li>需</li><li>深</li><li>入</li><li>研</li><li>究</li><li>标</li><li>注</li><li>规</li><li>范</li><li>。</li><li>&#34;</li><li>]</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Scalability of UniHypoBench: constructing multi-level preference annotations for diverse hypothesis spaces is laborious; future work should explore automated annotation pipelines or distillation from stronger reward models to scale the benchmark.</li><li>Generalization beyond DPO: HEAL is demonstrated primarily on DPO-style methods; it remains to be shown whether the ranking accuracy and preference strength correlation metrics are equally diagnostic for RLHF, PPO, or contrastive decoding approaches.</li><li>Metric sensitivity: ranking accuracy treats all pairwise orderings equally, but some preference gaps are more safety-critical than others; incorporating weighted or risk-sensitive ranking metrics could make HEAL more actionable for deployment-critical alignment.</li></ul>
+              <ul class="discussion-list"><li>Prototype quality bottleneck: PCM&#39;s corpus prototypes are computed as simple class-mean embeddings, which may be noisy when training data is limited or class distributions are highly skewed — a common issue in legal corpora with rare rhetorical roles.</li><li>Cross-domain generalizability: The prototype construction relies on in-domain training data; it remains unclear how well PCM prototypes transfer in few-shot or zero-shot settings across legal jurisdictions or document types.</li><li>Annotation complexity of SCOTUS-Law: Introducing three granularity levels is valuable but raises inter-annotator agreement challenges; the paper&#39;s results across granularity levels suggest that fine-grained &#39;step&#39; labels are substantially harder to predict, pointing to a need for annotation guidelines research.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="https://arxiv.org/abs/2508.19922" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03856v1" target="_blank">查看原文 →</a>
       </div>
       
       
@@ -525,208 +525,208 @@
       
       
       <div class="paper-card">
-        <div class="paper-title">SAT将动作块重构为无序的关节级轨迹序列，使单一Transformer策略能够通过模仿学习在异构机器人手上实现灵巧操作。</div>
-        <div class="paper-title-en">Structural Action Transformer for 3D Dexterous Manipulation</div>
+        <div class="paper-title">ReinboT将离线强化学习融入视觉-语言-动作模型，通过预测稠密回报实现CALVIN混合质量数据集上的最优机器人操作性能。</div>
+        <div class="paper-title-en">ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning</div>
         <div class="paper-meta">
-          <span>Xiaohan Lei, Min Wang, Bohong Weng et al.</span>
-          <span class="badge badge-date">2026-03-04</span>
+          <span>Hongyin Zhang, Zifeng Zhuang, Han Zhao et al.</span>
+          <span class="badge badge-date">2025-05-12</span>
+          <span class="badge badge-venue">ICML</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ReinboT将离线强化学习融入视觉-语言-动作模型，通过预测稠密回报实现CALVIN混合质量数据集上的最优机器人操作性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ReinboT integrates offline reinforcement learning into a Vision-Language-Action model by predicting dense returns, achieving state-of-the-art robotic manipulation on the CALVIN mixed-quality benchmark.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">ReinboT解决了机器人学习中对高质量数据的依赖瓶颈，降低了真实场景部署的数据采集门槛。其出色的少样本学习与分布外泛化能力，对具身智能从业者具有重要实践价值。</div>
+            <div class="en">ReinboT addresses a critical bottleneck in robot learning: dependence on high-quality demonstration data. By enabling VLA models to learn robustly from mixed-quality datasets, it lowers the data collection barrier for real-world robot deployment. Its strong few-shot and out-of-distribution generalization results suggest practical impact for embodied AI practitioners.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当训练数据质量参差不齐时，机器人操作策略如何保持鲁棒性？现实场景中数据采集不可避免产生次优示范，这会显著降低模仿学习模型的性能。</div>
+            <div class="en">How can robotic manipulation policies remain robust when training data is of mixed or variable quality? This matters because real-world robot data collection inevitably produces suboptimal demonstrations, and imitation learning models degrade significantly under such conditions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">RT-2等现有VLA模型依赖模仿学习，对数据质量高度敏感，难以从次优轨迹中提取有效信号。离线RL方法虽能处理混合质量数据，但通常用于小型、非语言条件模型，泛化性与可扩展性受限。</div>
+            <div class="en">Existing VLA models like RT-2 and OpenVLA rely on imitation learning, which is highly sensitive to data quality and struggles to extract useful signal from suboptimal trajectories. Offline RL methods can handle mixed-quality data but have typically been applied to smaller, non-language-conditioned models, limiting their generality and scalability in complex manipulation settings.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ReinboT基于GPT架构，将离线RL的累积回报最大化目标直接融入VLA模型。核心创新在于稠密回报预测：模型对每一步预测细粒度回报信号，感知操作子任务的质量分布，而非平等对待所有数据。该回报条件机制引导动作生成朝向更高回报的未来，最终实现语言理解、视觉感知与回报感知动作规划的统一建模。</div>
+            <div class="en">ReinboT is an end-to-end VLA model built on a GPT-style backbone that incorporates the offline RL objective of maximizing cumulative reward directly into the architecture. The key innovation is dense return prediction: the model predicts fine-grained return signals at each step, capturing the quality distribution of manipulation sub-tasks rather than treating all data equally. This return-conditioned mechanism guides action generation toward higher-reward futures, analogous to Decision Transformer but applied at the vision-language-action level. The result is a unified model that jointly performs language grounding, visual perception, and reward-aware action planning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">ReinboT在CALVIN混合质量数据集上达到最优性能，在多步操作任务完成率上超越现有VLA基线，并在少样本学习效率和分布外泛化能力上均优于纯模仿学习方法。</div>
+            <div class="en">ReinboT achieves state-of-the-art performance on the CALVIN mixed-quality dataset, outperforming prior VLA baselines in multi-step manipulation task completion. It demonstrates superior few-shot learning efficiency and stronger out-of-distribution generalization compared to imitation learning counterparts, though specific numeric improvements over baselines are not fully detailed in the abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>稠密回报预测是核心差异点：相比标准离线RL的稀疏奖励，逐步预测回报迫使模型显式推理子任务质量，在长时序操作链中尤为关键。</li><li>CALVIN基准专为混合质量数据设计，是理想测试平台，但该环境为仿真环境，向真实硬件的迁移能力仍有待验证。</li><li>该方法将Decision Transformer扩展至多模态VLA场景，引出关键问题：性能对回报标签质量的敏感度如何？回报标注噪声可能削弱其相对于模仿学习的核心优势。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Dense return prediction is the core differentiator: unlike sparse reward signals used in standard offline RL, predicting step-level returns forces the model to explicitly reason about sub-task quality, which is especially valuable in long-horizon manipulation chains.</li><li>The CALVIN benchmark specifically includes mixed-quality data splits, making it an ideal testbed — but readers should note that CALVIN is a simulated environment, and transfer to real hardware with noisy sensors and actuation remains an open validation gap.</li><li>The approach conceptually extends Decision Transformer to the multi-modal VLA setting, raising an important question: how sensitive is performance to the quality of the return labels themselves? Noisy or misspecified returns could undermine the key advantage over imitation learning.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.07395" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ViViDex利用强化学习对人类视频轨迹进行去噪，再蒸馏为无需特权信息的统一视觉灵巧操作策略。</div>
+        <div class="paper-title-en">ViViDex: Learning Vision-Based Dexterous Manipulation from Human Videos</div>
+        <div class="paper-meta">
+          <span>Zerui Chen, Shizhe Chen, Cordelia Schmid et al.</span>
+          <span class="badge badge-date">2024-04-24</span>
+          <span class="badge badge-venue">ICRA</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ViViDex利用强化学习对人类视频轨迹进行去噪，再蒸馏为无需特权信息的统一视觉灵巧操作策略。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ViViDex learns a unified vision-based dexterous manipulation policy for multi-fingered robot hands by using RL with trajectory-guided rewards to filter noisy human video demonstrations, then distilling successful episodes into a privileged-information-free visual policy.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">ViViDex消除了对真实物体状态等特权信息的依赖，使机器人灵巧操作策略更具现实可部署性，为从互联网人类视频中大规模学习机器人技能提供了实用路径。</div>
+            <div class="en">ViViDex bridges the gap between abundant human video data and deployable robot dexterous manipulation policies, removing the need for privileged object state information that is unavailable in real-world settings. Its unified policy handles diverse objects and poses, making it a practical step toward scalable robot learning from internet-scale human demonstrations.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文旨在仅利用人类视频监督，为多指机器人手学习可泛化的统一视觉操作策略，解决灵巧操作数据获取难、泛化差的核心挑战。</div>
+            <div class="en">The paper targets learning a single, generalizable vision-based policy for multi-fingered robot hands to manipulate varied objects in diverse poses, using only human video as supervision. This is critical because dexterous manipulation is notoriously hard to teleoperate or program, and human videos offer a scalable, naturalistic data source.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法从人类视频中估计的轨迹噪声大、物理不合理；同时，大多数灵巧操作策略依赖真实物体状态作为特权信息，难以在真实场景中部署。</div>
+            <div class="en">Prior methods using human videos for robot policy learning suffer from noisy pose and trajectory estimates (e.g., from hand-object reconstruction models), leading to physically implausible motions that hurt policy quality. Additionally, many existing dexterous manipulation policies rely on ground-truth object states at training or inference time, making them inapplicable outside of simulation or heavily instrumented setups.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ViViDex分两阶段：先为每段人类视频用轨迹引导奖励训练状态策略以获取高质量轨迹；再将成功回放数据汇总，训练以点云为输入的统一视觉策略，并引入坐标变换增强点云表示以提升跨姿态泛化能力。</div>
+            <div class="en">ViViDex operates in two stages: first, for each human video, it trains a state-based RL policy using trajectory-guided rewards derived from the video, producing visually natural and physically plausible manipulation trajectories without noise artifacts. Second, successful rollouts from these state-based policies are collected to train a unified visual policy that takes point cloud observations as input, with no privileged object information required. A key contribution is a coordinate transformation applied to the point cloud representation, which enhances the spatial alignment between the robot hand and the object to improve generalization across object poses.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">ViViDex在多类物体和多样姿态上超越现有基线，轨迹引导RL阶段显著提升物理合理性，坐标变换在大姿态变化场景下带来稳定的泛化性能提升。</div>
+            <div class="en">ViViDex demonstrates improved performance over prior baselines in vision-based dexterous manipulation across multiple object categories and diverse poses, with the trajectory-guided RL stage producing physically plausible motions that directly translate to better downstream visual policy quality. The coordinate transformation for point clouds provides additional consistent gains in generalization, particularly under large pose variation of objects.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>两阶段流程的可扩展性：每段视频单独训练RL策略计算代价高，面对海量互联网视频时需探索摊销或少样本初始化方案。</li><li>仿真到真实的迁移：框架在仿真中验证，真实深度相机的点云噪声可能影响坐标变换效果，真实机器人实验有待开展。</li><li>跨类别泛化能力：统一策略在固定物体集上训练，对全新物体几何形状的零样本泛化能力尚不明确，是重要的后续研究方向。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability of the two-stage pipeline: Training a separate RL policy per video is computationally expensive and may not scale to thousands of internet videos; future work should explore amortized or few-shot RL initialization to reduce per-video training cost.</li><li>Sim-to-real transfer gap: The framework is validated in simulation; point cloud observations and the coordinate transformation may behave differently with real sensor noise (e.g., from depth cameras), and real-world validation remains an important open question.</li><li>Generalization beyond seen object categories: The unified policy is trained on a fixed set of objects; whether the point-cloud representation and coordinate transformation generalize to entirely novel object geometries without fine-tuning is unclear and worth investigating.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2404.15709" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ManipTrans通过两阶段模仿与残差学习，将人类双手灵巧操作技能迁移至机器人手，并构建了大规模数据集DexManipNet。</div>
+        <div class="paper-title-en">ManipTrans: Efficient Dexterous Bimanual Manipulation Transfer via Residual Learning</div>
+        <div class="paper-meta">
+          <span>Kailin Li, Puhao Li, Tengyu Liu et al.</span>
+          <span class="badge badge-date">2025-03-27</span>
           <span class="badge badge-venue">CVPR</span>
           
         </div>
 
         <div class="tldr">
           <div class="tldr-label">核心贡献</div>
-          <div>SAT将动作块重构为无序的关节级轨迹序列，使单一Transformer策略能够通过模仿学习在异构机器人手上实现灵巧操作。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SAT reframes robot action chunks as unordered joint-wise trajectory sequences, enabling a single Transformer policy to perform dexterous manipulation across heterogeneous robotic hands via imitation learning from 3D observations.</div>
+          <div>ManipTrans通过两阶段模仿与残差学习，将人类双手灵巧操作技能迁移至机器人手，并构建了大规模数据集DexManipNet。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ManipTrans transfers human bimanual dexterous skills to robotic hands via a two-stage imitation + residual learning pipeline, producing DexManipNet, a large-scale dataset of complex hand-object manipulation sequences.</div>
         </div>
 
         <details open>
           <summary>重要性与意义 / Significance</summary>
           <div class="detail-content">
-            <div class="zh">SAT解决了具身AI中最难的开放问题之一：在不同运动结构的机器人手之间迁移灵巧操作技能。其将关节数视为可变序列长度的设计，为利用异构数据集训练通用灵巧操作策略提供了原则性且可扩展的路径，有望大幅降低部署新机器人手的数据和工程成本。</div>
-            <div class="en">SAT tackles one of the hardest open problems in embodied AI: transferring dexterous manipulation skills across robot hands with different kinematic structures. By treating joint count as a variable sequence length, it offers a principled and scalable path toward universal dexterous manipulation policies trained on heterogeneous datasets. This could significantly reduce the data and engineering cost of deploying dexterous robots in new embodiments.</div>
+            <div class="zh">ManipTrans通过自动化生成大规模高保真双手操作序列，直接缓解了具身AI的数据瓶颈问题。DexManipNet涵盖笔帽拧合等此前未被探索的任务，为下游策略训练提供了宝贵资源，显著降低了获取灵巧操作数据的成本。</div>
+            <div class="en">ManipTrans directly tackles the data bottleneck in embodied AI by automating the generation of large-scale, high-fidelity bimanual manipulation sequences in simulation. The resulting DexManipNet dataset covers previously unexplored tasks (e.g., pen capping), offering a valuable resource for training downstream manipulation policies. This work lowers the barrier for researchers who need diverse dexterous manipulation data without costly teleoperation setups.</div>
           </div>
         </details>
 
         <details>
           <summary>科研问题 / Research Question</summary>
           <div class="detail-content">
-            <div class="zh">单一模仿学习策略如何在关节数量和类型各异的机器人手之间泛化灵巧操作技能？由于高自由度机器人手的运动学差异显著，为每种硬件单独训练专用策略代价极高，因此该问题至关重要。</div>
-            <div class="en">How can a single imitation learning policy generalize dexterous manipulation skills across robotic hands with different numbers and types of joints (cross-embodiment)? This is critical because high-DoF robotic hands vary widely in kinematics, making it infeasible to retrain specialized policies for every new hardware configuration.</div>
+            <div class="zh">如何将人类双手灵巧操作技能高效迁移至仿真机器人手，以生成大规模、高质量的具身AI训练数据？现有方法要么依赖耗时费力的真实遥操作，要么难以处理双手协作任务的复杂接触约束。</div>
+            <div class="en">How can human bimanual dexterous manipulation skills be efficiently transferred to robotic hands in simulation to generate large-scale, high-quality training data for embodied AI? This is critical because existing methods either rely on labor-intensive real-world teleoperation or struggle with the complexity and contact-richness of bimanual tasks.</div>
           </div>
         </details>
         <details>
           <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
           <div class="detail-content">
-            <div class="zh">现有灵巧操作方法通常依赖2D图像观测，并将动作表示为固定长度的时间序列，这本质上假设了固定的机体结构。这种以时间为中心的表示方式无法原生适应不同机器人手的关节数量差异，导致模型设计与数据集强耦合，无法有效实现跨机体迁移。</div>
-            <div class="en">Existing dexterous manipulation methods typically rely on 2D image observations and represent actions as fixed-length temporal sequences, which inherently assumes a fixed embodiment structure. These temporal-centric formulations cannot natively accommodate varying joint counts across different robot hands, forcing dataset-specific model designs and preventing effective cross-embodiment transfer.</div>
+            <div class="zh">基于强化学习的动作迁移方法在高维灵巧双手任务中成功率低且需大量奖励设计；真实遥操作成本高、难以规模化；现有模仿方法缺乏在物理交互约束下纠正人手与机器人手运动学差异的机制。</div>
+            <div class="en">Reinforcement learning-based retargeting methods struggle with the high dimensionality and complex contact dynamics of dexterous bimanual tasks, often yielding low success rates or requiring extensive reward engineering. Real-world teleoperation produces authentic data but is expensive, hard to scale, and limited in task diversity. Existing imitation approaches lack mechanisms to correct for kinematic mismatches between human and robot hand morphologies under physical interaction constraints.</div>
           </div>
         </details>
         <details>
           <summary>解决方案 / Solution</summary>
           <div class="detail-content">
-            <div class="zh">SAT提出以结构为中心的动作表示：将每个动作块分解为可变长度、无序的逐关节轨迹集合，而非单一时间向量。Transformer将关节数作为序列长度原生处理，无需改变网络架构即可适应不同机体。为解决跨机体的关节身份歧义，设计了具身关节码本（Embodied Joint Codebook），将每个关节的功能角色和运动学属性编码为可学习嵌入。此外，模型基于3D观测输入，以捕捉接触密集型灵巧任务所需的空间关系。</div>
-            <div class="en">SAT introduces a structural-centric action representation: each action chunk is decomposed into a variable-length, unordered set of per-joint trajectories rather than a single temporal vector. A Transformer processes this set natively, treating joint count as sequence length and thus handling embodiment heterogeneity without architectural changes. To resolve joint identity ambiguity across embodiments, an Embodied Joint Codebook encodes each joint&#39;s functional role and kinematic properties as learned embeddings. The model also operates on 3D observations to capture spatial relations critical for contact-rich dexterous tasks.</div>
+            <div class="zh">ManipTrans分两阶段运行：首先预训练通用轨迹模仿器以学习广泛的人手运动先验；然后针对具体任务微调轻量级残差模块，修正形态差异并满足交互约束。残差设计无需重训全模型即可高效适配，最终应用于多个手-物体数据集生成DexManipNet。</div>
+            <div class="en">ManipTrans operates in two stages: first, a generalist trajectory imitator is pre-trained to mimic diverse human hand motions across many demonstrations, learning a broad motion prior. Second, a lightweight residual module is fine-tuned on top of the imitator for each specific task, correcting errors introduced by morphological differences and enforcing interaction constraints (e.g., stable object grasps). This residual design enables efficient adaptation without retraining the full model, achieving both high fidelity to human motion and physical plausibility. The pipeline is applied to multiple existing hand-object datasets to produce DexManipNet.</div>
           </div>
         </details>
         <details>
           <summary>主要结论 / Key Results</summary>
           <div class="detail-content">
-            <div class="zh">完整数值结果在摘要中未完全披露，但SAT在涉及异构机器人手的3D灵巧操作基准上据报告优于现有以时间为中心及基于2D观测的基线方法。结构化表示在跨关节配置不同机体的技能迁移中展现出更强的泛化能力。</div>
-            <div class="en">Specific numerical results are not fully available from the provided abstract, but SAT is reported to outperform existing temporal-centric and 2D-based baselines on 3D dexterous manipulation benchmarks involving heterogeneous robotic hands. The structural formulation demonstrates improved generalization when transferring skills across embodiments with different joint configurations.</div>
+            <div class="zh">ManipTrans在成功率、运动保真度和计算效率上均超越现有最优方法，成功迁移了笔帽拧合、双手物体传递等此前无法处理的复杂任务，并由此构建了涵盖多类别任务的大规模DexManipNet数据集。</div>
+            <div class="en">ManipTrans surpasses state-of-the-art methods in success rate, motion fidelity, and computational efficiency across bimanual manipulation benchmarks. The method successfully transfers complex tasks such as pen capping and bimanual object handover that previous approaches failed to handle. DexManipNet, built using ManipTrans, is a large-scale dataset covering multiple task categories with previously unavailable bimanual interaction sequences.</div>
           </div>
         </details>
         <details>
           <summary>值得关注的讨论点 / Discussion Points</summary>
           <div class="detail-content">
             <div class="zh">
-              <ul class="discussion-list"><li>跨机体泛化边界：SAT在极高自由度或拓扑结构非人形的机器人手上的泛化能力尚不明确，因为具身关节码本的表达能力取决于功能角色的预定义或学习质量。</li><li>3D感知依赖性：SAT依赖3D观测输入，可能需要深度传感器或3D重建模块，在仅有RGB相机的场景中部署受限。</li><li>评估完整性不足：摘要未披露具体任务种类、成功率或对比基线，难以判断性能提升是否在多样化操作场景中均保持稳健。</li></ul>
+              <ul class="discussion-list"><li>形态差异泛化性：残差模块有效弥合了人手与机器人手的运动学差异，但对非拟人化机械手（如三指夹爪）的泛化能力尚未验证。</li><li>仿真到现实的迁移：DexManipNet完全在仿真中生成，基于该数据集训练的策略能否直接部署到真实机器人上尚未得到验证。</li><li>数据规模与质量的权衡：自动化大规模生成数据时，若残差模块在分布外动作上静默失败，可能引入物理上不合理的序列，影响下游训练质量。</li></ul>
             </div>
             <div class="en">
-              <ul class="discussion-list"><li>Cross-embodiment generalization boundary: It remains unclear how well SAT scales to extremely high-DoF hands or morphologically exotic embodiments (e.g., hands with non-anthropomorphic topology), since the Embodied Joint Codebook&#39;s expressiveness depends on how well functional roles can be pre-defined or learned.</li><li>3D perception dependency: SAT&#39;s reliance on 3D observations (vs. 2D RGB) raises practical deployment concerns—it likely requires depth sensors or 3D reconstruction, which may limit applicability in settings where only RGB cameras are available.</li><li>Evaluation completeness: The abstract does not specify task diversity, success rates, or comparison baselines, making it difficult to assess whether the reported gains are robust across varied manipulation scenarios or confined to specific benchmark conditions.</li></ul>
+              <ul class="discussion-list"><li>Morphology gap: The residual module elegantly handles the kinematic mismatch between 5-fingered human hands and robotic hands, but its generalization to highly non-anthropomorphic robot hands (e.g., 3-finger grippers) remains an open question.</li><li>Simulation-to-reality gap: DexManipNet is generated entirely in simulation; whether policies trained on it transfer to real robots without significant performance degradation has not yet been demonstrated.</li><li>Dataset diversity vs. quality trade-off: Scaling to large-scale data via automation risks accumulating physically implausible sequences if the residual module fails silently on out-of-distribution motions, potentially corrupting downstream training.</li></ul>
             </div>
           </div>
         </details>
 
-        <a class="paper-link" href="http://arxiv.org/abs/2603.03960v1" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">RoboCasa365是一个大规模家庭机器人基准，包含365个任务、2500个厨房环境及超1600小时演示数据，用...</div>
-        <div class="paper-title-en">RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots</div>
-        <div class="paper-meta">
-          <span>Soroush Nasiriany, Sepehr Nasiriany, Abhiram Maddukuri et al.</span>
-          <span class="badge badge-date">2026-03-04</span>
-          <span class="badge badge-venue">ICLR</span>
-          
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>RoboCasa365是一个大规模家庭机器人基准，包含365个任务、2500个厨房环境及超1600小时演示数据，用于系统评估通用机器人策略。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">RoboCasa365 is a large-scale household robot benchmark with 365 tasks, 2,500 kitchen environments, and 1,600+ hours of demonstration data designed to systematically evaluate generalist robot policies.</div>
-        </div>
-
-        <details open>
-          <summary>重要性与意义 / Significance</summary>
-          <div class="detail-content">
-            <div class="zh">RoboCasa365填补了具身AI中缺乏可复现大规模基准的空白，为多任务学习、基础模型训练和终身学习提供了统一评测平台，对机器人学习社区具有重要基础设施价值。</div>
-            <div class="en">RoboCasa365 fills a critical void in embodied AI by providing the first reproducible, large-scale simulation benchmark specifically designed for household mobile manipulation at scale. Its 600+ hours of human demonstrations and 1,600+ hours of synthetic data make it a uniquely rich resource for training and comparing generalist robot policies. Researchers can now systematically evaluate methods across multi-task learning, foundation model training, and lifelong learning under controlled, comparable conditions.</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">当前机器人学习领域缺乏可复现的大规模基准，难以系统评估通用机器人在真实家庭场景中的能力，RoboCasa365旨在解决这一核心问题。</div>
-            <div class="en">How close are we to building generalist robots capable of performing diverse everyday tasks in human environments? The field currently lacks a reproducible, large-scale benchmark that enables systematic, apples-to-apples comparison of robot learning methods across realistic household scenarios.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有基准（如RLBench、MetaWorld）任务种类少、环境多样性不足，且缺乏大规模演示数据，无法有效支撑通用策略的训练与评估。</div>
-            <div class="en">Existing robot learning benchmarks are typically small in scale, narrow in task diversity, or lack sufficient demonstration data for training generalist policies. Platforms like RLBench, MetaWorld, and earlier RoboCasa iterations cover limited task sets and environments, making it hard to assess true generalization. None provide the combination of hundreds of tasks, thousands of environment variations, and thousands of hours of demonstration data in a single unified framework.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">RoboCasa365在RoboCasa平台上扩展至365个家庭任务，涵盖2500个程序化厨房环境，提供600+小时人工遥操作及1600+小时合成演示数据，支持多任务学习、基础模型训练和终身学习三类评测设置。</div>
-            <div class="en">RoboCasa365 extends the RoboCasa simulation platform to include 365 everyday household tasks spanning manipulation, navigation, and interaction within 2,500 procedurally varied kitchen environments. The benchmark provides over 600 hours of human teleoperation demonstrations and over 1,600 hours of synthetically generated demonstrations, enabling both imitation learning and reinforcement learning research. It is explicitly structured to support three evaluation settings: multi-task learning, robot foundation model training, and lifelong/continual learning. State-of-the-art methods including behavior cloning, diffusion policies, and foundation model approaches are benchmarked and analyzed on this framework.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">基准测试揭示现有最优方法（如扩散策略、行为克隆）在长时域任务和跨环境泛化上存在明显性能差距，表明当前方法距真正通用机器人仍有较大距离。</div>
-            <div class="en">Extensive experiments with state-of-the-art methods (including behavior cloning and diffusion-based policies) reveal significant performance gaps across tasks and settings, highlighting the benchmark&#39;s difficulty and the distance remaining to true generalist capability. The scale and diversity of RoboCasa365 expose limitations in current methods that smaller benchmarks mask, particularly in long-horizon and cross-environment generalization. Specific aggregate success rates are not fully disclosed in the abstract, but the benchmark is designed to produce fine-grained, reproducible metrics across all 365 tasks.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>仿真到真实的迁移问题：RoboCasa365完全基于仿真，论文未提供策略向真实机器人迁移的充分证据，实际部署价值有待验证。</li><li>场景覆盖局限：全部365个任务均限定在厨房场景，客厅、卧室等其他家庭环境的泛化能力未被评估。</li><li>合成数据质量存疑：1600+小时合成演示数据规模可观，但其质量与多样性相比人工演示的差距及对策略性能的影响需进一步深入分析。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Sim-to-real gap: RoboCasa365 is purely simulation-based, and the paper does not provide strong evidence that policies trained here transfer reliably to physical robots — a critical open question for practical impact.</li><li>Scope limitation: All 365 tasks are confined to kitchen environments; generalization to other household settings (living rooms, bathrooms) or outdoor scenarios remains unaddressed by this benchmark.</li><li>Data quality vs. quantity: While 1,600+ hours of synthetic demonstrations are impressive in volume, the quality and diversity of synthetically generated data relative to human demonstrations, and its downstream effect on policy performance, requires deeper analysis.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.04356v1" target="_blank">查看原文 →</a>
-      </div>
-      
-      
-      
-      <div class="paper-card">
-        <div class="paper-title">EmbodiedSplat是一个在线前馈框架，能从流式图像中实时重建3D高斯泼溅场景并嵌入开放词汇CLIP语义，无需逐场景优化。</div>
-        <div class="paper-title-en">EmbodiedSplat: Online Feed-Forward Semantic 3DGS for Open-Vocabulary 3D Scene Understanding</div>
-        <div class="paper-meta">
-          <span>Seungjun Lee, Zihan Wang, Yunsong Wang et al.</span>
-          <span class="badge badge-date">2026-03-04</span>
-          <span class="badge badge-venue">CVPR</span>
-          
-        </div>
-
-        <div class="tldr">
-          <div class="tldr-label">核心贡献</div>
-          <div>EmbodiedSplat是一个在线前馈框架，能从流式图像中实时重建3D高斯泼溅场景并嵌入开放词汇CLIP语义，无需逐场景优化。</div>
-          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">EmbodiedSplat is an online feed-forward framework that simultaneously reconstructs 3D Gaussian Splatting scenes and embeds open-vocabulary CLIP semantics in near real-time from streaming images, without per-scene optimization.</div>
-        </div>
-
-        <details open>
-          <summary>重要性与意义 / Significance</summary>
-          <div class="detail-content">
-            <div class="zh">EmbodiedSplat使具身智能体能在探索过程中实时理解3D场景，对机器人导航、目标定位和任务规划至关重要。它消除了逐场景优化的需求，填补了离线3D理解方法与机器人实时需求之间的鸿沟。</div>
-            <div class="en">EmbodiedSplat directly enables embodied AI agents to understand 3D scenes on-the-fly during exploration, a capability critical for robot navigation, object localization, and task planning. By eliminating per-scene optimization, it bridges the gap between offline 3D understanding methods and the real-time demands of robotic systems. This work sets a new paradigm for generalizable, feed-forward semantic 3D scene understanding deployable in novel environments.</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>科研问题 / Research Question</summary>
-          <div class="detail-content">
-            <div class="zh">具身智能体如何在不依赖逐场景优化的情况下，从超过300帧流式图像中在线、近实时地完成3D场景重建与语义理解？这对机器人主动探索中的即时场景理解至关重要。</div>
-            <div class="en">How can an embodied agent reconstruct and semantically understand a 3D scene in an online, near real-time manner from over 300 streaming images, without requiring per-scene optimization? This is critical because real-world robotic tasks demand immediate scene comprehension during active exploration, not after lengthy offline processing.</div>
-          </div>
-        </details>
-        <details>
-          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
-          <div class="detail-content">
-            <div class="zh">现有开放词汇3DGS方法（如LangSplat）需要离线逐场景优化，不适用于实时具身任务。前馈式3DGS重建方法（如pixelSplat）缺乏语义理解能力，此前无工作同时解决在线重建、开放词汇语义与新场景泛化三者的结合。</div>
-            <div class="en">Existing open-vocabulary 3D Gaussian Splatting methods (e.g., LangSplat, Feature3DGS) require offline, per-scene optimization, making them unsuitable for real-time embodied applications. Feed-forward 3DGS reconstruction methods like pixelSplat or MVSplat lack semantic understanding capabilities. No prior work jointly addresses online reconstruction, open-vocabulary semantics, and feed-forward generalization to novel scenes simultaneously.</div>
-          </div>
-        </details>
-        <details>
-          <summary>解决方案 / Solution</summary>
-          <div class="detail-content">
-            <div class="zh">EmbodiedSplat提出在线稀疏系数场与CLIP全局码本，将2D CLIP嵌入以紧凑方式绑定到每个3D高斯上。前馈设计无需场景特定重训练，支持对新场景的泛化。稀疏系数表示降低了存储高维CLIP特征的内存开销，可扩展至300帧以上的大场景。</div>
-            <div class="en">EmbodiedSplat introduces an Online Sparse Coefficients Field paired with a CLIP Global Codebook to bind 2D CLIP embeddings to each 3D Gaussian in a compact, generalizable representation. The feed-forward design processes streaming images incrementally without scene-specific retraining, enabling generalization to novel environments. A sparse coefficient representation reduces the per-Gaussian memory cost of storing high-dimensional CLIP features, making the system scalable to large scenes with 300+ frames. Integration with real-time 2D vision-language models allows near real-time semantic 3D reconstruction end-to-end.</div>
-          </div>
-        </details>
-        <details>
-          <summary>主要结论 / Key Results</summary>
-          <div class="detail-content">
-            <div class="zh">EmbodiedSplat可在线处理超过300帧流式图像，结合实时2D模型后接近实时运行。系统在无需逐场景微调的情况下对新场景表现出强泛化能力，在开放词汇3D语义理解基准上优于离线优化基线。</div>
-            <div class="en">EmbodiedSplat processes over 300 streaming images in an online manner while maintaining near real-time throughput when paired with real-time 2D models. The system demonstrates strong generalizability to novel scenes without per-scene fine-tuning, outperforming offline optimization baselines on open-vocabulary 3D semantic understanding benchmarks. Specific quantitative metrics (e.g., mIoU, localization accuracy) are reported in the full paper.</div>
-          </div>
-        </details>
-        <details>
-          <summary>值得关注的讨论点 / Discussion Points</summary>
-          <div class="detail-content">
-            <div class="zh">
-              <ul class="discussion-list"><li>在线稀疏系数场在超长轨迹（1000帧以上）下的内存与延迟行为尚未充分验证，长时间探索的可扩展性仍是开放问题。</li><li>CLIP全局码本基于固定数据集训练，对域偏移（如工业或室外场景）的鲁棒性有待进一步评估。</li><li>系统近实时性能依赖高质量2D视觉语言模型输出，2D阶段的语义错误（如弱光下分割失败）会直接传播至3D表示。</li></ul>
-            </div>
-            <div class="en">
-              <ul class="discussion-list"><li>Scalability to very long trajectories (1000+ frames) remains an open question, as the Online Sparse Coefficients Field&#39;s memory and latency behavior under extended exploration is not fully characterized.</li><li>The CLIP Global Codebook is trained on a fixed dataset; its robustness to domain shifts (e.g., industrial or outdoor environments far from training data) needs further evaluation.</li><li>While near real-time is achieved with real-time 2D models, the dependency on high-quality 2D vision-language model outputs means semantic errors from the 2D stage (e.g., poor segmentation in low light) propagate directly into the 3D representation.</li></ul>
-            </div>
-          </div>
-        </details>
-
-        <a class="paper-link" href="http://arxiv.org/abs/2603.04254v1" target="_blank">查看原文 →</a>
+        <a class="paper-link" href="https://arxiv.org/abs/2503.21860" target="_blank">查看原文 →</a>
       </div>
       
       
