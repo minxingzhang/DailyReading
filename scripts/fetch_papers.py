@@ -76,8 +76,10 @@ def _extract_venue(comment: str, journal_ref: str) -> str:
         for conf in _TOP_CONFERENCES:
             if conf.upper() in candidate_upper:
                 return candidate
-        # Return anyway if the pattern fired (e.g. "ECCV 2024")
-        if len(candidate) <= 30:
+        # Return anyway if the pattern fired (e.g. "ECCV 2024"),
+        # but reject stop-words captured by the non-greedy regex (e.g. "the")
+        _STOP = {'the', 'a', 'an', 'at', 'in', 'on', 'for', 'and', 'or', 'of'}
+        if len(candidate) >= 4 and candidate.lower() not in _STOP:
             return candidate
     # Fallback: scan for bare conference names
     for conf in _TOP_CONFERENCES:
