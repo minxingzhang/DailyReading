@@ -107,24 +107,27 @@ def fetch_arxiv_papers(
     )
 
     papers = []
-    for result in client.results(search):
-        if result.published < cutoff:
-            break
-        venue = _extract_venue(
-            getattr(result, "comment", "") or "",
-            getattr(result, "journal_ref", "") or "",
-        )
-        papers.append(Paper(
-            arxiv_id=result.get_short_id(),
-            title=result.title,
-            authors=[a.name for a in result.authors],
-            abstract=result.summary.replace("\n", " "),
-            url=result.entry_id,
-            published=result.published,
-            hf_upvotes=0,
-            source="arxiv",
-            venue=venue,
-        ))
+    try:
+        for result in client.results(search):
+            if result.published < cutoff:
+                break
+            venue = _extract_venue(
+                getattr(result, "comment", "") or "",
+                getattr(result, "journal_ref", "") or "",
+            )
+            papers.append(Paper(
+                arxiv_id=result.get_short_id(),
+                title=result.title,
+                authors=[a.name for a in result.authors],
+                abstract=result.summary.replace("\n", " "),
+                url=result.entry_id,
+                published=result.published,
+                hf_upvotes=0,
+                source="arxiv",
+                venue=venue,
+            ))
+    except Exception as e:
+        print(f"  [arXiv] Fetch interrupted ({type(e).__name__}: {e}), using {len(papers)} partial results")
 
     return papers
 

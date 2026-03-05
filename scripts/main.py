@@ -64,15 +64,14 @@ def run_pipeline(
     for cat_id, cat_cfg in config["categories"].items():
         print(f"\nProcessing: {cat_cfg['name_en']}")
 
-        # Support one or multiple S2 queries per category (list broadens conference paper pool)
+        # Support one or multiple S2 queries; sleep 15s between each to stay under free-tier limit
         raw_queries = cat_cfg.get("semantic_queries") or []
         if not raw_queries and cat_cfg.get("semantic_query"):
             raw_queries = [cat_cfg["semantic_query"]]
 
         s2_seen: dict = {}
-        for i, sq in enumerate(raw_queries):
-            # Brief pause before each S2 call to stay within the free-tier rate limit
-            _time.sleep(3)
+        for sq in raw_queries:
+            _time.sleep(15)
             batch = fetch_semantic_scholar_papers(
                 query=sq,
                 top_conferences=top_conferences,
