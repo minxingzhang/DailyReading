@@ -25,7 +25,7 @@
       {% set paper = analysis.scored_paper.paper %}
       <div class="paper">
         <div class="paper-title">{{ paper.title | truncate(80) }}</div>
-        <div class="paper-meta">{{ paper.authors[:2] | join(", ") }}{% if paper.authors | length > 2 %} et al.{% endif %}</div>
+        <div class="paper-meta">{{ paper.authors[:2] | join(", ") }}{% if paper.authors | length > 2 %} et al.{% endif %}{% if paper.venue %} · <strong>{{ paper.venue }}</strong>{% endif %}</div>
         <div class="summary">{{ analysis.tldr_zh }}</div>
         <a class="read-more" href="{{ full_url }}#{{ cat.id }}">查看完整分析 →</a>
       </div>
