@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-06 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-06  |  共 10 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">仅用100个精心筛选的&#34;离群&#34;良性样本微调大语言模型，即可严重破坏其安全对齐，揭示了微调流程中一个被严重低估的安全漏洞。</div>
+        <div class="paper-title-en">Benign Samples Matter! Fine-tuning On Outlier Benign Samples Severely Breaks Safety</div>
+        <div class="paper-meta">
+          <span>Zihan Guan, Mengxuan Hu, Ronghang Zhu et al.</span>
+          <span class="badge badge-date">2025-05-11</span>
+          <span class="badge badge-venue">ICML</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>仅用100个精心筛选的&#34;离群&#34;良性样本微调大语言模型，即可严重破坏其安全对齐，揭示了微调流程中一个被严重低估的安全漏洞。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Fine-tuning LLMs on just 100 carefully selected &#34;outlier&#34; benign samples can severely break safety alignment, exposing a critical and underappreciated vulnerability in the fine-tuning pipeline.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文表明，微调阶段的安全威胁比已知的更为精准高效——攻击者无需恶意数据，仅凭策略性筛选的良性数据即可奏效。这一发现在七个主流大模型上均可迁移，迫使研究界重新审视良性微调数据的安全假设。</div>
+            <div class="en">This paper demonstrates that safety threats during fine-tuning are far more targeted and efficient than previously recognized — an attacker needs no malicious data, only strategically selected benign data. With high transferability across seven mainstream LLMs, the findings challenge the assumption that benign fine-tuning datasets are inherently safe, urging the community to rethink fine-tuning safety protocols.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">攻击者能否仅使用无害的良性数据在微调阶段破坏大语言模型的安全对齐？这一问题至关重要，因为许多部署流程默认良性数据集是安全的，缺乏针对性防护。</div>
+            <div class="en">Can an attacker degrade LLM safety alignment using only benign, innocuous data during fine-tuning, without injecting any explicitly harmful content? This matters because many LLM deployment pipelines allow user-provided fine-tuning datasets that are assumed safe as long as they contain no overtly malicious samples.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有研究表明，包含少量恶意样本的混合数据集会破坏安全对齐；近期研究也发现纯良性数据集同样存在风险，但均将其视为被动现象，未将其作为可利用的攻击面加以研究。</div>
+            <div class="en">Prior work has shown that fine-tuning on mixed datasets containing even a few malicious samples can compromise LLM safety. More recent studies found that purely benign datasets can also degrade safety, but treated this as a passive, uncontrolled phenomenon rather than an exploitable attack surface. No prior work systematically identified which benign samples are most harmful or proposed a method to extract them for targeted attack.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者将问题建模为离群点检测：良性数据集中某些统计异常样本对安全降级贡献最大。提出Self-Inf-N方法，结合自影响分数与嵌入空间最近邻距离对样本打分排序，并仅用排名靠前的离群样本进行微调，构成高效红队攻击，无需任何恶意数据。</div>
+            <div class="en">The authors frame the problem as outlier detection: within a benign dataset, certain samples are statistically anomalous and disproportionately responsible for safety degradation during fine-tuning. They propose Self-Inf-N, a method combining self-influence scores (measuring how much a sample affects the model&#39;s own loss) with nearest-neighbor distance in embedding space to score and rank samples by their safety-degrading potential. The top-ranked outlier samples are then used exclusively for fine-tuning, forming a targeted red-teaming attack. This approach requires no access to harmful data and is computationally lightweight compared to full dataset fine-tuning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">仅使用Self-Inf-N筛选的100个离群样本进行微调，即可在七个主流大模型上造成严重的安全对齐降级，显著优于随机良性样本基线，且在不同架构间具有高度可迁移性。</div>
+            <div class="en">Fine-tuning on only 100 outlier samples selected by Self-Inf-N leads to severe safety alignment degradation across seven mainstream LLMs, significantly outperforming random benign sample selection baselines. The attack demonstrates high transferability across different model architectures, meaning outliers identified on one model can compromise others. The method also remains effective in practical deployment scenarios where full model access may be limited.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>仅需100个样本即可实现强力攻击，说明当前大模型的安全对齐极为脆弱，易受训练数据分布边缘区域的影响。</li><li>跨架构的可迁移性意味着针对单一模型的防护不足，平台级的数据集筛查机制迫在眉睫。</li><li>离群样本在内容上并无明显恶意，极难被现有内容审核工具识别，这对提供微调服务的API平台（如OpenAI）构成严峻挑战。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Outlier-based targeting is highly efficient: achieving strong safety degradation with only 100 samples suggests that the safety alignment of current LLMs is brittle and concentrated in a small, identifiable region of the training data distribution.</li><li>The transferability finding is particularly alarming — if outlier samples identified on one LLM architecture can break safety in another, defenders cannot rely on model-specific hardening alone, and platform-level dataset screening becomes essential.</li><li>The work raises an unresolved tension: outlier samples are, by definition, unusual but not overtly harmful, making them extremely difficult to filter using content-based moderation tools, posing a serious challenge for API-based fine-tuning service providers like OpenAI and Hugging Face.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.06843" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文针对GCG优化式越狱攻击提出三项改进：多样化目标模板、自适应多坐标更新策略及重启机制，显著提升攻击收敛速度与成功率。</div>
+        <div class="paper-title-en">Improved Techniques for Optimization-Based Jailbreaking on Large Language Models</div>
+        <div class="paper-meta">
+          <span>Xiaojun Jia, Tianyu Pang, Chao Du et al.</span>
+          <span class="badge badge-date">2024-05-31</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文针对GCG优化式越狱攻击提出三项改进：多样化目标模板、自适应多坐标更新策略及重启机制，显著提升攻击收敛速度与成功率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes three concrete improvements to GCG-style optimization-based jailbreaking attacks on LLMs: diverse target templates, adaptive multi-coordinate token replacement, and a restarting strategy, collectively achieving faster convergence and higher attack success rates.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了主流对齐机制的脆弱性，为红队测试提供更高效工具，推动社区开发更鲁棒的安全防御。所提技术具有普适性，可扩展至其他优化式攻击方法。</div>
+            <div class="en">As LLMs are increasingly deployed in sensitive contexts, understanding and exposing weaknesses in alignment mechanisms is crucial for building more robust safety systems. This work advances the red-teaming toolkit by making optimization-based jailbreaks substantially more efficient, pressuring the community to develop stronger defenses. The techniques introduced are broadly applicable beyond GCG, offering a systematic blueprint for future adversarial attack research on aligned LLMs.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何提升优化式越狱攻击的效率与成功率？现有GCG方法收敛慢、成功率有限，难以充分暴露对齐LLM的真实脆弱性，亟需更强的红队测试工具。</div>
+            <div class="en">The paper asks: how can optimization-based jailbreaking attacks on aligned LLMs be made more efficient and effective? This matters because existing methods like GCG are slow to converge and have limited success rates, leaving the true vulnerability of aligned LLMs underexplored. Faster, stronger attacks are necessary red-teaming tools for probing and ultimately improving LLM safety.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">GCG依赖单一目标模板&#34;Sure&#34;，极大限制了攻击多样性；每步固定替换单个token导致收敛缓慢且易陷入局部最优。其他越狱方法（如模板注入）缺乏梯度优化方法的泛化性与迁移性。</div>
+            <div class="en">GCG (Greedy Coordinate Gradient) is the dominant optimization-based jailbreak, but it relies on a single, rigid target template (&#34;Sure&#34;), which severely limits its ability to steer model outputs. Its fixed single-token replacement strategy per step also leads to slow convergence and frequent stagnation. Other jailbreaks (e.g., prompt injection, template-based) lack the generalizability and transferability of gradient-based approaches.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">提出三项改进：①用包含有害自我暗示和引导语的多样化模板替代单一&#34;Sure&#34;目标；②自适应多坐标更新策略，每步动态决定替换token数量以加速收敛；③引入重启机制，在攻击停滞时跳出局部最优，提升搜索鲁棒性。</div>
+            <div class="en">The authors introduce three targeted improvements to GCG. First, they replace the single &#34;Sure&#34; target template with diverse templates incorporating harmful self-suggestion and guidance phrases, broadening the optimization landscape. Second, they propose an adaptive multi-coordinate update strategy that automatically decides how many tokens to replace at each step, accelerating convergence by escaping flat loss regions. Third, they add a restarting mechanism to escape local optima when the attack stagnates, further improving robustness of the search process.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">改进后的攻击在LLaMA-2、Vicuna等多个模型上相比原始GCG显著提升攻击成功率（ASR）并加快收敛；多样化模板单独使用即带来可观ASR提升，自适应更新策略大幅减少所需优化步数，三项技术组合达到优化式越狱的新最优性能。</div>
+            <div class="en">The improved attack (referred to as I-GCG or similar) achieves notably higher attack success rates (ASR) and faster convergence compared to vanilla GCG across multiple aligned LLMs including LLaMA-2 and Vicuna. The diverse target templates alone provide significant ASR gains, while the adaptive update strategy reduces the number of steps required to find successful adversarial suffixes. Combined, the three techniques set a new state-of-the-art for optimization-based jailbreaking efficiency.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>目标模板多样化是高杠杆干预：仅替换模板即带来大幅ASR提升，说明此前GCG评估可能严重低估了对齐LLM的真实攻击面。</li><li>自适应token替换策略揭示了对抗后缀搜索的优化地形问题，未来可探索二阶或动量方法进一步超越贪心坐标下降。</li><li>更高效的越狱工具具有双重用途风险，降低了滥用门槛，迫切需要针对优化式后缀攻击的鲁棒防御（如对抗训练、输入认证）。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Target template diversity is a surprisingly high-leverage intervention: the finding that simply replacing &#39;Sure&#39; with varied harmful-framing templates yields large ASR gains suggests that prior GCG evaluations may have significantly underestimated the true attack surface of aligned LLMs.</li><li>The adaptive token-replacement strategy raises a broader question about the optimization geometry of adversarial suffix search — future work could explore second-order or momentum-based methods to further accelerate convergence beyond greedy coordinate descent.</li><li>While the techniques improve attack efficiency, they also raise dual-use concerns: making jailbreaks faster and more accessible lowers the barrier for misuse, underscoring the urgency of developing defenses (e.g., adversarial training, input certification) that are robust to optimized suffix attacks.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2405.21018" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文对五个音频大型多模态模型进行首次系统性红队测试，揭示其平均69.14%的攻击成功率等严重安全漏洞。</div>
+        <div class="paper-title-en">Audio Is the Achilles&#39; Heel: Red Teaming Audio Large Multimodal Models</div>
+        <div class="paper-meta">
+          <span>Hao Yang, Lizhen Qu, Ehsan Shareghi et al.</span>
+          <span class="badge badge-date">2024-10-31</span>
+          <span class="badge badge-venue">NAACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文对五个音频大型多模态模型进行首次系统性红队测试，揭示其平均69.14%的攻击成功率等严重安全漏洞。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper conducts the first comprehensive red-teaming study of five audio Large Multimodal Models (LMMs), revealing critical safety vulnerabilities with an average 69.14% attack success rate against harmful audio inputs.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次对音频LMM进行系统性安全审计，填补了视觉模型研究忽视音频模态的空白。研究结果对现实部署中的音频AI助手安全防护具有直接指导意义，所提出的攻击分类与基准可作为未来研究的标准评估框架。</div>
+            <div class="en">This is the first systematic safety audit of audio LMMs, filling a critical gap left by prior work that focused almost exclusively on vision-language models. The findings directly inform practitioners deploying audio-capable AI assistants in real-world settings where adversarial audio inputs are a genuine threat. The benchmark and attack taxonomy introduced can serve as a standard evaluation framework for future audio LMM safety research.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文研究文本模态的安全对齐是否能迁移至音频输入，包括语音形式的有害问题和语音特有的越狱攻击。随着音频LMM在语音交互场景中的广泛应用，这一问题具有重要的现实意义。</div>
+            <div class="en">The paper investigates whether safety alignment applied to the text modality of LMMs generalizes to audio inputs, including spoken harmful questions and speech-specific jailbreaks. This matters because audio LMMs are increasingly deployed in real-world voice interfaces, yet their safety properties are almost entirely unstudied compared to their text and vision counterparts.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有多模态安全研究主要聚焦于视觉LMM，音频模态几乎未被探索。文本红队方法因忽视语音特有的韵律、口音和非语音声音等特性，难以直接迁移至音频场景。此前也无研究针对多种攻击向量对音频LMM进行系统性基准测试。</div>
+            <div class="en">Existing safety-alignment research for multimodal models has concentrated on vision LMMs, leaving audio modalities largely unexamined. Text-based red-teaming methods do not transfer directly to audio inputs due to speech-specific phenomena such as prosody, accent, and non-speech sounds. No prior work had benchmarked audio LMMs across diverse attack vectors spanning both harmful speech content and distracting audio contexts.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者在三类攻击设置下对五个音频LMM进行红队测试：（i）音频与文本形式的有害问题，（ii）有害文本问题配合干扰性非语音音频，（iii）利用语音特性（如韵律或口音）的越狱攻击。研究系统评估各设置下的攻击成功率，并以GPT-4o作为商业模型基线，全面覆盖当前主流音频LMM。</div>
+            <div class="en">The authors red-team five advanced audio LMMs (including both open-source and proprietary models) under three distinct attack settings: (i) harmful questions delivered in both audio and text formats, (ii) harmful text questions paired with distracting non-speech audio (e.g., background noise or music), and (iii) speech-specific jailbreaks that exploit audio-unique properties such as altered prosody or accent manipulation. They evaluate attack success rate (ASR) systematically across these settings and models. The study also includes GPT-4o as a proprietary baseline for comparison, providing a broad coverage of the current audio LMM landscape.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">面对音频形式有害问题时，开源音频LMM的平均攻击成功率高达69.14%，显著高于纯文本安全基线。非语音干扰音频亦导致模型安全性明显下降。语音特有越狱攻击揭示了文本安全评估无法捕捉的独特漏洞，GPT-4o等商业模型防御相对较强但仍不完善。</div>
+            <div class="en">Open-source audio LMMs suffer an average attack success rate of 69.14% when faced with harmful questions in audio format, substantially higher than their text-only safety baselines. Models also show notable safety degradation when distracted by irrelevant non-speech audio accompanying harmful text queries. Speech-specific jailbreaks further expose unique vulnerabilities not captured by standard text-based safety evaluations, with proprietary models like GPT-4o showing comparatively stronger but still imperfect defenses.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>模态对齐缺口：文本安全微调无法有效迁移至音频输入，表明当前对齐流程未能实现跨模态一致的安全保障，这是一个根本性的架构问题。</li><li>非语音干扰作为攻击向量：良性背景音频可削弱安全防护，说明模型将声学上下文与语义意图混淆，反映音频编码器对语言模型输出的条件化存在缺陷。</li><li>基准泛化性：研究仅涵盖五个模型和特定越狱类别，随着音频LMM快速迭代（如实时语音API），攻击面将持续演变，需要动态更新的红队评估方法。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Modality alignment gap: Safety fine-tuning on text does not robustly transfer to audio inputs, suggesting that current alignment pipelines treat modalities independently rather than enforcing cross-modal safety consistency — a fundamental architectural concern.</li><li>Non-speech distraction as an attack vector: The finding that benign background audio can degrade safety guardrails implies models conflate acoustic context with semantic intent, pointing to a weakness in how audio encoders condition language model outputs.</li><li>Benchmark generalizability: The study covers only five models and a specific set of jailbreak categories; as audio LMMs rapidly evolve (e.g., with real-time voice APIs), the attack surface may shift, requiring continuous and adaptive red-teaming methodologies.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2410.23861" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Blindfold通过使有害动作序列在语义上看似安全，在动作层面破解具身LLM，绕过语言级别的安全防护。</div>
+        <div class="paper-title-en">Jailbreaking Embodied LLMs via Action-level Manipulation</div>
+        <div class="paper-meta">
+          <span>Xinyu Huang, Qiang Yang, Leming Shen et al.</span>
+          <span class="badge badge-date">2026-03-02</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Blindfold通过使有害动作序列在语义上看似安全，在动作层面破解具身LLM，绕过语言级别的安全防护。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Blindfold is an automated attack framework that jailbreaks embodied LLMs at the action level by making physically harmful instruction sequences appear semantically safe, bypassing language-level defenses.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了当前LLM安全研究的重要盲区：语言层面的对齐无法保证具身AI的物理安全。该工作为具身AI的动作级安全评估提出了迫切需求，对部署LLM驱动机器人的从业者具有重要警示意义。</div>
+            <div class="en">This paper exposes a critical blind spot in current LLM safety research: language-level alignment does not guarantee physical safety when LLMs control real-world actuators. By demonstrating that semantically benign instructions can produce dangerous physical outcomes, the work highlights an urgent need for action-level safety evaluation frameworks in embodied AI. Practitioners deploying LLM-driven robots or autonomous agents should treat this as a foundational security concern.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">攻击者如何使具身LLM在执行语义看似安全的指令时产生危险的物理后果？现有安全研究几乎完全聚焦于文本输出，而具身AI的动作层面安全漏洞尚未得到充分研究。</div>
+            <div class="en">How can an attacker cause embodied LLMs to execute physically harmful action sequences while keeping individual instructions semantically safe and thus invisible to language-level safety filters? This matters because embodied LLMs are increasingly deployed in robotics and autonomous systems where unsafe actions can cause real-world physical harm, yet existing safety research focuses almost exclusively on textual outputs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有破解方法针对语言层输出，依赖低效的黑盒迭代试错，未能考虑物理动作的序列性与因果性。先前研究未区分语言无害性与物理安全性，在具身系统的决策与执行层面存在根本性漏洞。</div>
+            <div class="en">Existing jailbreak methods target language-level outputs and rely on iterative black-box trial-and-error prompt manipulation, which is inefficient and fails to account for the sequential, causal nature of physical actions. Prior work does not distinguish between linguistic harmlessness and physical safety, leaving a fundamental gap at the decision and actuation layer of embodied systems.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">Blindfold采用对抗性代理规划策略：攻破本地代理LLM以生成逐步语义安全但整体有害的动作计划，利用具身LLM因果推理能力有限的弱点。关键恶意动作被混入正常动作序列中加以隐藏，大幅提升了逃避安全检测的能力。白盒代理方式避免了对目标系统的高成本迭代查询。</div>
+            <div class="en">Blindfold introduces an Adversarial Proxy Planning strategy: rather than directly attacking a black-box embodied LLM, it compromises a local surrogate LLM to craft action-level plans that appear semantically benign at each step but collectively lead to harmful physical outcomes. The framework exploits the limited causal reasoning capabilities of embodied LLMs, which struggle to foresee the downstream physical consequences of individually innocuous actions. Malicious key actions are further concealed by injecting them among normal actions, making detection by safety monitors significantly harder. This white-box surrogate approach avoids expensive iterative querying of the target system.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Blindfold在多种评估场景中对具身LLM智能体实现了高攻击成功率，成功绕过语言级安全过滤器。对抗代理规划方法比迭代黑盒基线方法效率显著更高，且可跨不同具身LLM目标泛化。</div>
+            <div class="en">Blindfold demonstrates high attack success rates against embodied LLM agents across evaluated scenarios, successfully bypassing language-level safety filters by keeping individual actions semantically safe while producing harmful physical consequences. The adversarial proxy planning approach proves substantially more efficient than iterative black-box jailbreak baselines. Specific numerical results (e.g., attack success rate percentages) are not fully disclosed in the provided abstract but the framework is shown to generalize across different embodied LLM targets.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>动作级与语言级安全：通过语言安全检查不足以保证物理安全，具身AI需要专门的因果感知动作序列验证器。</li><li>代理攻击的迁移性：代理LLM生成的动作计划能否有效迁移至黑盒目标，在异构动作空间中仍需深入研究。</li><li>防御空白：论文识别了漏洞但未详述对策，开发能检测语义分散有害计划的动作级安全监测机制仍是紧迫的开放挑战。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Action-level vs. language-level safety: This work confirms that passing language safety checks is insufficient for physical security—future embodied AI systems need dedicated causal and consequence-aware action-sequence validators, not just text filters.</li><li>Transferability of surrogate attacks: The proxy planning strategy assumes the surrogate LLM&#39;s action plans transfer effectively to the black-box target; real-world embodied systems may have heterogeneous action spaces or grounding mechanisms that could limit transferability and deserve further investigation.</li><li>Defense gap: The paper identifies the vulnerability but the abstract does not detail robust countermeasures; developing action-level safety monitors that can detect semantically distributed harmful plans remains an open and urgent research challenge.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01414v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">SimPO用序列平均对数概率替代DPO的参考模型奖励，并引入目标奖励边际，在减少计算开销的同时提升对齐性能。</div>
+        <div class="paper-title-en">SimPO: Simple Preference Optimization with a Reference-Free Reward</div>
+        <div class="paper-meta">
+          <span>Yu Meng, Mengzhou Xia, Danqi Chen</span>
+          <span class="badge badge-date">2024-05-23</span>
+          <span class="badge badge-venue">NeurIPS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SimPO用序列平均对数概率替代DPO的参考模型奖励，并引入目标奖励边际，在减少计算开销的同时提升对齐性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SimPO replaces DPO&#39;s reference-model-based reward with average log probability and adds a target reward margin, achieving better alignment performance with less compute.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">SimPO完全消除参考模型，显著降低内存与计算成本，同时在多个基准上超越DPO及其最新变体。该方法在Mistral、Llama 3、Gemma 2等主流模型上验证，具有广泛实用价值。</div>
+            <div class="en">SimPO removes the reference model entirely, cutting memory and compute costs significantly while outperforming DPO and its latest variants across multiple competitive benchmarks. Its simplicity makes it immediately practical for researchers and practitioners working on LLM alignment at scale. The method is validated on widely-used models (Mistral, Llama 3, Gemma 2), ensuring broad applicability across the current LLM ecosystem.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何设计一种更简单、更高效的偏好优化算法，使其更符合语言模型的实际生成机制？DPO依赖参考模型，增加了内存开销，且奖励公式与生成行为存在偏差。</div>
+            <div class="en">How can we design a simpler, more compute-efficient preference optimization algorithm that better aligns with how language models actually generate text? DPO and its variants rely on a reference model during training, which increases memory overhead and introduces a reward formulation misaligned with generation-time behavior.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">DPO及其变体虽简化了RLHF，但仍需参考模型，内存需求翻倍。其原始对数概率奖励存在长度偏差，与自回归生成机制不一致，倾向于奖励较短响应。</div>
+            <div class="en">DPO and its variants (e.g., IPO, SLiC) reparameterize RLHF rewards but still require a reference model during training, doubling GPU memory requirements. These methods use raw log probability as reward, which is length-biased and misaligned with autoregressive generation, often favoring shorter responses regardless of quality.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">SimPO以每token平均对数概率为隐式奖励，消除长度偏差并与推理时评分一致；完全去除参考模型；在Bradley-Terry目标中引入目标奖励边际γ，强制拉大胜负响应的分数差距。</div>
+            <div class="en">SimPO uses the average log probability per token as the implicit reward, which naturally normalizes for sequence length and directly mirrors how models score generations at inference time. A reference model is entirely removed, reducing both memory footprint and training complexity. A target reward margin γ is added to the Bradley-Terry ranking objective, explicitly enforcing a minimum gap between winning and losing response scores. These two designs together form a clean, drop-in replacement for DPO that requires no architectural changes.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">SimPO在AlpacaEval 2、MT-Bench等基准上持续优于DPO及ORPO、R-DPO等变体，在长度控制胜率上有显著提升且不增加响应长度，训练内存较DPO降低约20%。</div>
+            <div class="en">SimPO consistently outperforms DPO and recent variants (such as ORPO and R-DPO) across chat benchmarks including AlpacaEval 2 and MT-Bench, tested on Mistral, Llama 3, and Gemma 2 in both base and instruction-tuned settings. On AlpacaEval 2, SimPO achieves notable length-controlled win-rate improvements over DPO without inflating response length. The reference-free design reduces training memory by roughly 20% compared to DPO while maintaining or exceeding benchmark scores.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>长度偏差风险：平均对数概率虽缓解了长度偏差，但固定的目标边际γ仍需针对不同数据集和模型规模仔细调参，可能误惩高质量的较长响应。</li><li>离线方法局限：SimPO仍是基于静态偏好数据集的离线方法，无法在训练中自适应利用模型生成样本，与在线RLHF相比存在差距。</li><li>奖励可解释性：去除参考模型简化了训练，但也失去了奖励校准的显式锚点，隐式奖励在分布外或对抗性输入上的泛化能力有待验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Length bias risk: Although average log probability mitigates length bias compared to raw log probability, the target margin γ is a fixed hyperparameter that may still require careful tuning across different datasets or model scales to avoid penalizing genuinely longer high-quality responses.</li><li>Offline limitation: SimPO remains an offline method trained on static preference datasets, so it cannot adaptively improve from model-generated outputs during training — iterative or online variants would be needed to close the gap with online RLHF methods.</li><li>Reward signal interpretability: Removing the reference model simplifies training but also removes an explicit anchor for reward calibration; it remains unclear how well SimPO&#39;s implicit reward generalizes to out-of-distribution prompts or adversarial inputs.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2405.14734" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">TPO在推理阶段通过将奖励信号转化为文本批评并迭代优化输出，实现无需更新参数的人类偏好对齐。</div>
+        <div class="paper-title-en">Test-Time Preference Optimization: On-the-Fly Alignment via Iterative Textual Feedback</div>
+        <div class="paper-meta">
+          <span>Yafu Li, Xuyang Hu, Xiaoye Qu et al.</span>
+          <span class="badge badge-date">2025-01-22</span>
+          <span class="badge badge-venue">ICML</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>TPO在推理阶段通过将奖励信号转化为文本批评并迭代优化输出，实现无需更新参数的人类偏好对齐。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TPO aligns LLM outputs with human preferences at inference time by iteratively refining responses using textual critiques derived from reward signals — no parameter updates required.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">TPO将对齐与训练解耦，使已部署的LLM可按需适应用户偏好，对个性化、安全性和快速迭代具有重要意义。仅需数步TPO即可使未对齐的70B模型超越经RLHF微调版本，表明推理时计算是对齐领域被低估的重要维度。</div>
+            <div class="en">TPO decouples alignment from training, enabling any deployed LLM to be steered toward user preferences on-the-fly — a capability with major implications for personalization, safety, and rapid adaptation. The finding that a few TPO steps can elevate an unaligned 70B model above its RLHF-tuned counterpart suggests test-time compute is a powerful and underexplored axis for alignment. This work opens a practical alternative to expensive retraining pipelines for alignment updates.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在不更新参数的情况下，在推理阶段实现LLM与人类偏好的对齐？现有RLHF和微调方法成本高昂且缺乏灵活性，部署后难以快速适应新偏好。</div>
+            <div class="en">How can LLMs be aligned with human preferences at inference time, without any parameter updates or retraining? This matters because current RLHF and fine-tuning approaches are expensive and inflexible — once a model is deployed, adapting it to new or user-specific preferences requires a full retraining cycle.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">RLHF和DPO等方法需要梯度更新和大量偏好数据，迭代成本高。现有推理时计算方法（如Best-of-N、MCTS）依赖标量奖励信号，无法为模型提供可操作的改进指引，均不支持部署后的轻量级偏好适应。</div>
+            <div class="en">Existing alignment methods such as RLHF and DPO require gradient updates and large preference datasets, making them costly and slow to iterate. Test-time compute approaches (e.g., best-of-N sampling, MCTS) improve reasoning but typically rely on scalar reward signals that offer no actionable refinement guidance to the model. Neither paradigm supports lightweight, on-the-fly preference adaptation after deployment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">TPO完全在推理阶段运行：奖励模型对当前回复打分，该数值分数被转化为描述问题与改进方向的自然语言批评，LLM据此生成改进回复并迭代多步。该设计利用LLM已有的指令跟随能力处理丰富的文本反馈，并支持沿搜索宽度（每步多个候选）和搜索深度（迭代步数）两个维度扩展。</div>
+            <div class="en">TPO operates entirely at inference time: given a response, a reward model scores it, and that numerical score is translated into a natural-language critique describing what is wrong and how to improve. The LLM then uses this textual critique as a conditioning signal to generate a refined response, and the process iterates for several steps. This design exploits the LLM&#39;s pre-existing instruction-following capability to act on rich, descriptive feedback rather than opaque scalar rewards. TPO also scales along two axes — search width (multiple candidate responses per step) and search depth (number of iterative refinement steps).</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在指令跟随、偏好对齐、安全性和数学等基准测试上，TPO随迭代步数持续提升。仅经数步TPO，未对齐的Llama-3.1-70B-SFT即可超越经RLHF对齐的Llama-3.1-70B-Instruct。性能随搜索宽度和深度的增加而提升。</div>
+            <div class="en">On benchmarks spanning instruction following, preference alignment, safety, and mathematics, TPO progressively improves across iterations. Notably, after only a few TPO steps, the unaligned Llama-3.1-70B-SFT surpasses the fully RLHF-tuned Llama-3.1-70B-Instruct. Performance scales with both search width and depth, consistent with broader test-time compute scaling trends.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>奖励模型依赖：TPO的效果受限于所用奖励模型的质量，存在偏差的奖励模型可能导致错误的优化方向，其在多样偏好分布下的鲁棒性有待验证。</li><li>推理成本：多步迭代与搜索宽度相乘会显著增加每次查询的计算量，实际部署需权衡延迟、成本与对齐收益，尤其在实时场景中。</li><li>文本批评的泛化性：将标量奖励转化为可操作的自然语言批评并非易事，其在不同领域（如创意写作与代码生成）的泛化能力及LLM对分布外批评的响应可靠性仍需深入研究。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Reward model dependency: TPO&#39;s quality is bounded by the reward model used to generate critiques — a misaligned or biased reward model could steer refinements in wrong directions, raising questions about robustness across diverse preference distributions.</li><li>Inference cost: Iterative refinement multiplied by search width significantly increases per-query compute. The paper shows favorable scaling, but practical deployment must weigh latency and cost against alignment gains, especially for real-time applications.</li><li>Generalization of textual critiques: Translating scalar rewards into actionable natural-language critiques is non-trivial. It remains unclear how well this translation generalizes across domains (e.g., creative writing vs. coding) and whether the LLM reliably acts on critiques outside its training distribution.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2501.12895" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">IPO将生成式LLM用作自身的偏好分类器，通过DPO实现自我改进，无需外部奖励模型或人工标注数据。</div>
+        <div class="paper-title-en">IPO: Your Language Model is Secretly a Preference Classifier</div>
+        <div class="paper-meta">
+          <span>Shivank Garg, Ayush Singh, Shweta Singh et al.</span>
+          <span class="badge badge-date">2025-02-22</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>IPO将生成式LLM用作自身的偏好分类器，通过DPO实现自我改进，无需外部奖励模型或人工标注数据。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">IPO repurposes a generative LLM as its own preference classifier to enable self-improvement via Direct Preference Optimization (DPO), eliminating the need for external reward models or human-labeled data.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">IPO通过消除昂贵的外部奖励模型训练步骤，为LLM对齐提供了实用且低成本的路径。该方法降低了对人工反馈数据的依赖，有助于让资源有限的研究团队也能开展高质量的模型对齐工作。</div>
+            <div class="en">IPO offers a practical and cost-effective path to LLM alignment by removing the expensive external reward model training step that bottlenecks standard RLHF pipelines. This has direct implications for researchers and practitioners who lack the compute budget for large-scale human feedback collection. If validated at scale, IPO could democratize alignment by making self-improvement accessible to smaller labs and open-source efforts.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在不依赖外部奖励模型或大规模人工标注数据的情况下实现LLM的人类偏好对齐？标准RLHF流程成本高昂，限制了中小规模研究团队的参与，这一问题亟待解决。</div>
+            <div class="en">How can LLMs be aligned with human preferences without relying on expensive external reward models or large-scale human-labeled preference datasets? This matters because standard RLHF pipelines require significant compute and financial resources, limiting access for smaller research groups and slowing iteration cycles.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">标准RLHF需要在人工标注偏好数据上训练独立的奖励模型，计算成本高且依赖标注质量。DPO虽省去了RL循环，但仍需预先收集人工偏好数据集。已有的自我对弈方法通常依赖监督微调数据，而非直接将模型用作偏好判断器。</div>
+            <div class="en">Standard RLHF requires training a separate reward model on human-labeled preference pairs, which is computationally expensive and dependent on the quality and scale of human annotations. Methods like DPO reduce some overhead by removing the RL loop, but still rely on pre-collected human preference datasets. Self-play and iterative approaches (e.g., SPIN) have explored self-improvement but typically assume access to supervised fine-tuning data rather than using the model as a direct preference judge.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">IPO将生成式LLM直接用作偏好分类器，对模型自身生成的多条响应进行排序，无需任何外部信号。排序后的响应对作为偏好数据，通过DPO训练同一模型，形成闭环自我改进机制。作者在RewardBench上系统评估了不同规模、架构和训练阶段的LLM的偏好分类能力，以验证其可靠性。</div>
+            <div class="en">IPO treats the generative LLM itself as a preference classifier, using it to rank multiple self-generated responses to a given instruction without any external signal. The ranked response pairs are then used as preference data to train the same model via DPO, creating a closed-loop self-improvement cycle. The authors systematically evaluate LLMs of varying sizes, architectures, and training levels on RewardBench to confirm their capacity to act as reliable preference classifiers. This removes both the reward model training step and the human annotation requirement from the alignment pipeline.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在RewardBench上的评估表明，不同规模和架构的生成式LLM均能胜任偏好分类任务。通过IPO自生成偏好数据结合DPO训练的模型展现出可量化的自我改进效果，模型规模越大、指令微调程度越高，偏好分类准确率通常越强。</div>
+            <div class="en">Evaluation on RewardBench demonstrates that generative LLMs across multiple sizes and architectures can serve as competent preference classifiers, supporting the core hypothesis of IPO. Models trained with IPO&#39;s self-generated preference data via DPO show measurable self-improvement, reducing reliance on externally labeled datasets. Specific benchmark scores vary by model size and architecture, with larger and more instruction-tuned models generally exhibiting stronger preference classification accuracy.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>自我评判的可靠性：若LLM的偏好判断存在系统性偏差，基于这些标签的DPO训练可能放大错误而非提升对齐效果，迭代稳定性有待深入验证。</li><li>对模型能力的依赖：该方法可能主要适用于已具备较强指令跟随能力的模型，较弱的基础模型可能生成质量低下的偏好标签和多样性不足的响应，限制其在低资源场景下的适用性。</li><li>与人工标注基线的对比：需要与基于金标准人工偏好数据（如Anthropic HH、UltraFeedback）训练的DPO进行更直接的性能对比，以量化以模型标签替代人工标注所引入的质量差距。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Reliability of self-judging: A core risk is the model reinforcing its own biases—if the LLM&#39;s preference judgments are systematically miscalibrated, DPO training on those labels could amplify errors rather than improve alignment. The paper&#39;s RewardBench evaluation partially addresses this, but long-term iterative stability remains an open question.</li><li>Scalability vs. model capability: The approach likely performs well only when the base model is already a capable instruction follower. Smaller or weaker models may produce poor preference labels and low-diversity self-generated responses, limiting IPO&#39;s applicability in truly low-resource settings.</li><li>Comparison to human-label baselines: While IPO reduces cost, the paper needs stronger direct comparison against DPO trained on gold human-preference datasets (e.g., Anthropic HH, UltraFeedback) to quantify the quality gap, if any, introduced by replacing human labels with model-generated ones.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.16182" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">RoboCasa365提出包含365个任务、2500个厨房环境及逾2200小时演示数据的大规模家庭操作基准，用于系...</div>
+        <div class="paper-title-en">RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots</div>
+        <div class="paper-meta">
+          <span>Soroush Nasiriany, Sepehr Nasiriany, Abhiram Maddukuri et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>RoboCasa365提出包含365个任务、2500个厨房环境及逾2200小时演示数据的大规模家庭操作基准，用于系统评估通用机器人策略。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">RoboCasa365 introduces a large-scale household manipulation benchmark with 365 tasks, 2,500 kitchen environments, and 2,200+ hours of demonstrations to systematically evaluate generalist robot policies.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">RoboCasa365是目前规模最大的家庭机器人操作开放仿真基准之一，支持多任务学习、基础模型训练和终身学习的可复现对比实验，有助于社区客观衡量通用机器人的实际进展。600余小时人工演示与1600余小时合成数据的结合，也大幅降低了数据密集型方法的训练门槛。</div>
+            <div class="en">RoboCasa365 is one of the most comprehensive open simulation benchmarks for household robot manipulation, enabling reproducible, large-scale comparisons across multi-task learning, foundation model training, and lifelong learning settings. Its scale and diversity make it a critical resource for the community to measure real progress toward generalist robots. The 600+ hours of human demonstrations paired with 1,600+ hours of synthetic data also lower the barrier to training data-hungry robot learning methods.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当前机器人学习领域缺乏可复现、大规模的基准来系统评估通用家庭操作能力，导致方法间难以公平比较。RoboCasa365通过提供多样化任务、环境与大规模数据填补了这一空白。</div>
+            <div class="en">The central problem is the lack of a reproducible, large-scale benchmark to systematically evaluate how close robot learning methods are to achieving generalist household manipulation. Without such a benchmark, it is hard to compare methods fairly or identify which capabilities remain unsolved. RoboCasa365 targets this gap by providing diverse tasks, environments, and data at a scale not previously available.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有机器人基准（如RLBench、MetaWorld）任务多样性有限、规模较小，且缺乏统一评测协议，难以可靠地跨方法比较。此前工作也鲜少在单一框架内同时提供人工演示与大规模合成数据。</div>
+            <div class="en">Existing robot benchmarks are typically small in scale, cover limited task diversity, or lack standardized evaluation protocols, making cross-method comparison unreliable. Platforms such as RLBench and MetaWorld offer structured tasks but do not approach the complexity or variety of real household environments. Prior work also rarely combines human demonstrations with large-scale synthetic data generation within a single unified framework.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">RoboCasa365基于RoboCasa平台，在2500个程序化生成的厨房环境中构建365个日常家庭任务，涵盖物体操作、导航与交互。基准提供600余小时人工遥操作演示及1600余小时合成演示，并设计了多任务学习、基础模型训练和终身学习三种评测协议，对当前主流模仿学习与强化学习方法进行系统实验与分析。</div>
+            <div class="en">RoboCasa365 is built on the RoboCasa platform and introduces 365 structured everyday household tasks spanning object manipulation, navigation, and interaction across 2,500 procedurally generated kitchen environments. The benchmark provides over 600 hours of human teleoperation demonstrations and over 1,600 hours of synthetically generated demonstrations to support diverse training regimes. It is explicitly designed with three evaluation protocols: multi-task learning, robot foundation model training, and lifelong learning, enabling controlled comparisons across problem settings. State-of-the-art imitation learning and reinforcement learning methods are evaluated and analyzed on this benchmark.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明，最先进策略在365个任务和多样厨房配置上的泛化性能仍存在明显差距，多任务泛化与单任务专项设置之间性能落差显著。合成演示数据对人工演示具有有效补充作用，但具体数值未见于摘要。</div>
+            <div class="en">Extensive experiments with state-of-the-art methods reveal that even top-performing policies struggle to generalize robustly across all 365 tasks and diverse kitchen configurations, highlighting significant remaining challenges. The benchmark exposes clear performance gaps between multi-task generalization and single-task specialization settings. Synthetic demonstration data is shown to complement human demonstrations and improve policy training outcomes, though exact numbers from the full paper are not available in the provided abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>仿真到现实的迁移：基准完全基于仿真，策略能否顺利迁移至真实厨房（不同光照、材质、物理动力学）仍是未解难题。</li><li>合成数据质量：1600余小时合成演示虽扩大了数据规模，但其逼真度与多样性与人工遥操作数据相比是否足够，可能制约以合成数据为主训练的策略的性能上限。</li><li>任务覆盖范围：当前365个任务聚焦于厨房操作，若要评估真正的通用机器人能力，需将框架扩展至卧室、客厅等其他家庭场景。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Sim-to-real gap: RoboCasa365 is entirely simulation-based, and it remains unclear how well policies trained in its 2,500 kitchen environments will transfer to real kitchens with different lighting, object textures, and physical dynamics.</li><li>Synthetic data quality: While 1,600+ hours of synthetic demonstrations scale data collection, the fidelity and diversity of these demonstrations compared to human teleoperation data may limit the ceiling performance of policies trained primarily on synthetic data.</li><li>Benchmark scope: The 365 tasks focus on kitchen manipulation; generalizing the framework to other household rooms (bedroom, bathroom, living room) or non-household settings will be needed to assess truly generalist robot capabilities.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04356v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">SAT将动作块重构为无序的关节轨迹序列，使单一Transformer策略能原生支持异构高自由度机器人手的灵巧操作。</div>
+        <div class="paper-title-en">Structural Action Transformer for 3D Dexterous Manipulation</div>
+        <div class="paper-meta">
+          <span>Xiaohan Lei, Min Wang, Bohong Weng et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SAT将动作块重构为无序的关节轨迹序列，使单一Transformer策略能原生支持异构高自由度机器人手的灵巧操作。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SAT reframes robot action chunks as unordered joint-wise trajectory sequences, enabling a single Transformer policy to natively handle heterogeneous, high-DoF robotic hands for 3D dexterous manipulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">SAT从根本上重新设计动作表示，为跨形态灵巧手技能迁移提供新路径，有望推动机器人领域的通用策略模型发展，促进数据共享与策略复用。</div>
+            <div class="en">SAT tackles one of the hardest open problems in robot learning—cross-embodiment skill transfer for dexterous hands—by rethinking the fundamental representation of actions. By making joint count a variable sequence length, the approach opens a path toward foundation-model-style policies that generalize across robotic platforms without retraining. This could accelerate data sharing and policy reuse across the robotics community.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何用单一模仿学习策略在关节数和运动学结构各异的机器人手之间迁移灵巧操作技能？现有策略难以利用异构机器人数据集，制约了高自由度手的控制能力。</div>
+            <div class="en">How can a single imitation learning policy transfer dexterous manipulation skills across robotic hands with different joint counts and kinematic structures? This matters because high-DoF dexterous hands are notoriously hard to control, and heterogeneous robot datasets cannot be exploited by existing embodiment-specific policies.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法多依赖2D观测和按时间步排列的动作序列，难以建模3D空间关节关系；且策略通常针对固定形态设计，无法跨自由度数或运动学结构不同的机器人泛化。</div>
+            <div class="en">Existing dexterous manipulation methods typically rely on 2D image observations and temporal-centric action representations (e.g., flat action sequences ordered by timestep), which struggle to encode 3D spatial joint relationships. Most policies are designed for a fixed embodiment, meaning they cannot generalize across robots with different DoF counts or kinematic configurations without full retraining.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">SAT将每个动作块视为各关节轨迹的无序可变长序列，以关节数作为Transformer序列长度；引入具身关节码本，为每个关节嵌入功能角色和运动学属性；结合3D观测以捕捉空间关系，支持跨异构机器人手的联合训练与迁移。</div>
+            <div class="en">SAT introduces a structural-centric action representation: each action chunk is treated as a variable-length, unordered set of per-joint trajectories rather than a flat temporal sequence, allowing the Transformer&#39;s sequence length to naturally encode the number of joints. An Embodied Joint Codebook assigns each joint a learned embedding encoding its functional role (e.g., finger type) and kinematic properties, resolving ambiguity when joints from different robots are mixed. 3D observations (e.g., point clouds or 3D keypoints) are used to better capture spatial relationships critical for dexterous tasks. Together, these components allow SAT to train on and transfer between heterogeneous robotic hand datasets.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">SAT在3D灵巧操作基准上优于基于时序的基线方法，在跨异构机器人手迁移场景中提升尤为显著；消融实验表明具身关节码本对解决跨形态歧义至关重要。</div>
+            <div class="en">SAT demonstrates improved performance on 3D dexterous manipulation benchmarks compared to temporal-centric baselines, with the structural action formulation showing particular gains when transferring skills across embodiments with different joint counts. Specific numerical results are not fully available from the abstract, but the method is validated on multiple heterogeneous robotic hand configurations. The Embodied Joint Codebook is shown via ablation to be critical for resolving cross-embodiment ambiguity.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>当关节数极多时（如20+），Transformer注意力的计算效率及泛化能力有待验证。</li><li>具身关节码本需为每个关节标注功能角色，对非常规机器人形态的扩展性存在挑战。</li><li>实验场景较为受控，真实环境下的传感器噪声、接触动力学及3D感知遮挡等问题尚待系统验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability to extreme DoF counts (e.g., 20+ joint hands or multi-fingered grippers) and whether the Transformer attention scales efficiently with very long joint sequences remains an open question.</li><li>The Embodied Joint Codebook requires defining functional role annotations per joint, which may demand significant domain expertise and limit scalability to novel or unconventional robot morphologies.</li><li>Evaluation appears limited to simulation or controlled lab settings; real-world robustness to sensor noise, contact dynamics, and partial observability in 3D perception has yet to be demonstrated at scale.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03960v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">EmbodiedSplat 是一个在线前馈3D高斯泼溅框架，可从流式图像中近实时地同步完成3D场景重建与开放词汇语义理解。</div>
+        <div class="paper-title-en">EmbodiedSplat: Online Feed-Forward Semantic 3DGS for Open-Vocabulary 3D Scene Understanding</div>
+        <div class="paper-meta">
+          <span>Seungjun Lee, Zihan Wang, Yunsong Wang et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>EmbodiedSplat 是一个在线前馈3D高斯泼溅框架，可从流式图像中近实时地同步完成3D场景重建与开放词汇语义理解。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">EmbodiedSplat is an online feed-forward 3D Gaussian Splatting framework that simultaneously reconstructs and semantically understands 3D scenes in near real-time from streaming images using open-vocabulary CLIP-based features.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">该工作解决了具身智能体的核心瓶颈——无需等待离线优化即可理解环境，可泛化至新场景而无需逐场景重训练，为在非结构化真实环境中部署智能机器人扫清了关键障碍。</div>
+            <div class="en">EmbodiedSplat directly addresses a core bottleneck in embodied AI: agents cannot wait for offline optimization to understand their environment. By enabling generalizable, near real-time semantic 3D reconstruction across novel scenes without per-scene retraining, this work lowers a critical barrier for deploying intelligent robots in unstructured real-world environments.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">具身智能体在探索未知场景时，如何以在线近实时的方式构建语义丰富的3D表示？这对导航、操作和问答等下游任务至关重要，因为它们都依赖及时且空间定位准确的语义理解。</div>
+            <div class="en">How can an embodied agent construct a semantically rich 3D representation of an unseen scene in an online and near real-time manner as it explores? This is critical because downstream tasks like navigation, manipulation, and question answering all depend on timely, spatially grounded semantic understanding.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有开放词汇3DGS方法（如LangSplat）依赖逐场景优化，本质上是离线的，不适用于实时具身部署。前馈3DGS方法虽存在但缺乏语义能力，将高维CLIP嵌入高效融入3D高斯中仍是开放难题。</div>
+            <div class="en">Existing open-vocabulary 3DGS methods (e.g., LangSplat, Feature3DGS) rely on per-scene optimization, making them inherently offline and unsuitable for real-time embodied deployment. Feed-forward 3DGS approaches exist but lack semantic understanding capabilities, and fusing high-dimensional CLIP embeddings into 3D Gaussians efficiently remains an open challenge.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">EmbodiedSplat提出在线稀疏系数场与CLIP全局码本，将2D CLIP嵌入高效绑定至每个3D高斯，以紧凑稀疏系数替代完整高维特征存储。系统以在线前馈方式处理超300帧流式图像，无需逐场景重训练，结合实时2D视觉语言模型实现近实时语义3D重建。</div>
+            <div class="en">EmbodiedSplat introduces an Online Sparse Coefficients Field paired with a CLIP Global Codebook to bind 2D CLIP embeddings to each 3D Gaussian efficiently, replacing full high-dimensional feature storage with compact sparse coefficients. The system processes over 300 streaming images in an online, feed-forward manner without scene-specific retraining. By integrating with real-time 2D vision-language models, the pipeline achieves near real-time semantic 3D reconstruction. The feed-forward design ensures immediate generalization to novel scenes without any per-scene optimization.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">EmbodiedSplat可在线处理超300帧流式图像，实现可泛化至新场景的近实时语义3DGS重建，在泛化设置下开放词汇3D场景理解性能优于离线优化基线方法。</div>
+            <div class="en">EmbodiedSplat processes over 300 streaming images online and achieves near real-time semantic 3D Gaussian Splatting reconstruction generalizable to novel scenes. The method demonstrates strong open-vocabulary 3D scene understanding performance while maintaining the feed-forward efficiency required for embodied deployment, outperforming offline optimization baselines in generalization settings.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>在线稀疏系数场在极长探索序列（数千帧）下的可扩展性尚不明确，场景复杂度增加可能带来内存或漂移累积问题。</li><li>CLIP全局码本基于固定数据分布训练，对分布外视觉概念（如工业或医疗场景）的泛化能力有待验证。</li><li>近实时性能依赖实时2D模型的配合，不同硬件和机器人平台下的延迟基准尚未充分表征。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability to very long exploration sequences (thousands of frames) remains unclear — the Online Sparse Coefficients Field may face memory or drift accumulation issues as scene complexity grows.</li><li>The CLIP Global Codebook is trained on fixed data distributions; performance on highly domain-specific scenes (e.g., industrial or medical environments) with out-of-distribution visual concepts is an open question.</li><li>Near real-time performance depends on coupling with real-time 2D models; latency benchmarks under varying hardware constraints and across different robot platforms are not fully characterized.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04254v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-06</footer>
+</body>
+</html>
