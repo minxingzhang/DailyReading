@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-07 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-07  |  共 12 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">JailNewsBench是首个跨34个地区、22种语言评估LLM抵御越狱诱导假新闻生成能力的基准测试。</div>
+        <div class="paper-title-en">JailNewsBench: Multi-Lingual and Regional Benchmark for Fake News Generation under Jailbreak Attacks</div>
+        <div class="paper-meta">
+          <span>Masahiro Kaneko, Ayana Niwa, Timothy Baldwin</span>
+          <span class="badge badge-date">2026-03-01</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>JailNewsBench是首个跨34个地区、22种语言评估LLM抵御越狱诱导假新闻生成能力的基准测试。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">JailNewsBench is the first benchmark to systematically evaluate LLM robustness against jailbreak-induced fake news generation across 34 regions and 22 languages.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">该基准填补了LLM安全评估的关键空白，为研究社区提供了跨语言、跨地区的严格评估框架。其发现有助于推动更强健的越狱防御机制，对负责任的AI部署具有重要意义。</div>
+            <div class="en">This benchmark fills a critical gap in LLM safety evaluation by introducing a multi-lingual, multi-regional perspective that existing English-centric benchmarks completely overlook. With fake news posing direct threats to public health, politics, and social stability, quantifying LLM vulnerability at scale is essential for responsible AI deployment. JailNewsBench provides the research community with a rigorous, reproducible framework to compare model safeguards and drive improvements in jailbreak defenses.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文研究LLM在越狱攻击下生成假新闻的脆弱性是否因语言和地区而异。假新闻具有地区特异性，任何语言的安全漏洞都可能被利用造成现实危害。</div>
+            <div class="en">The paper asks: how vulnerable are LLMs to generating fake news when subjected to jailbreak attacks, and does this vulnerability vary across languages and regions? This matters because fake news is region-specific in its political and cultural framing, and a safety gap in any language or region can be exploited to cause real-world harm.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有假新闻与越狱基准以英语为主，无法捕捉地区特有的政治、社会和文化背景。此前没有基准同时跨多语言和地区系统评估越狱攻击韧性，导致非英语场景下的LLM安全性存在重大盲区。</div>
+            <div class="en">Existing fake news and jailbreak benchmarks are predominantly English-centric and fail to capture region-specific political, social, and cultural contexts. No prior benchmark systematically evaluates jailbreak attack resilience for fake news generation across multiple languages and regions simultaneously. This leaves a blind spot in LLM safety research where non-English models and contexts remain largely unassessed.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">JailNewsBench涵盖34个地区和22种语言，结合5种越狱攻击策略构建约30万个测试实例。采用LLM-as-a-Judge框架，通过8个子指标（如事实准确性、可信度、地区特异性）对9个LLM进行系统评估，支持跨模型与跨语言的横向比较。</div>
+            <div class="en">JailNewsBench constructs a benchmark spanning 34 regions and 22 languages, combining real news topics with 5 distinct jailbreak attack strategies to prompt LLMs into generating fake news. Evaluation employs an LLM-as-a-Judge framework covering 8 sub-metrics (e.g., factual accuracy, plausibility, regional specificity) across approximately 300,000 instances. Nine LLMs are evaluated, enabling systematic cross-model and cross-lingual comparison. The benchmark is designed to be extensible for future languages, regions, and attack types.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">9个LLM的最高攻击成功率（ASR）达86%，表明现有防护机制远不充分。ASR在不同语言和地区间差异显著，说明安全对齐不均衡，部分语言或地区存在更大漏洞，即使先进LLM也高度易受攻击。</div>
+            <div class="en">The maximum attack success rate (ASR) across the 9 evaluated LLMs reached 86%, indicating that current safeguards are far from sufficient against jailbreak-induced fake news generation. ASR varied notably across languages and regions, suggesting that safety alignment is uneven and that certain linguistic or regional contexts expose greater vulnerabilities. These findings highlight that even state-of-the-art LLMs with safety mechanisms remain highly exploitable for harmful content generation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>ASR的语言与地区差异表明安全微调以英语为中心，低资源语言和非西方地区成为可被针对性利用的薄弱环节。</li><li>LLM-as-a-Judge方法存在潜在循环性问题：若裁判模型本身对越狱敏感或对特定语言存在偏差，跨地区评分的一致性可能受影响。</li><li>86%的最高ASR引发紧迫政策问题：在对抗条件下假新闻生成率如此之高的LLM，是否应在公开发布前强制进行安全审计或使用限制。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Language and regional disparity in ASR suggests that safety fine-tuning is predominantly English-centric, leaving lower-resource languages and non-Western regions as exploitable weak points that attackers could deliberately target.</li><li>The use of LLM-as-a-Judge for evaluation introduces a potential circularity concern: if the judge model itself is vulnerable to jailbreaks or biased toward certain languages, the quality of evaluation scores may be inconsistent across regions.</li><li>With ASR reaching 86%, the benchmark raises urgent policy questions about deployment thresholds — specifically, whether LLMs with such high fake news generation rates under adversarial conditions should be restricted or require mandatory safety audits before public release.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01291v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">CyberLLMInstruct构建了含54,928条伪恶意指令对的数据集，揭示了网络安全LLM微调中安全性与性能之间的严峻权衡。</div>
+        <div class="paper-title-en">CyberLLMInstruct: A Pseudo-Malicious Dataset Revealing Safety-Performance Trade-offs in Cyber Security LLM Fine-tuning</div>
+        <div class="paper-meta">
+          <span>Adel Elzemity, Budi Arief, Shujun Li</span>
+          <span class="badge badge-date">2025-03-12</span>
+          <span class="badge badge-venue">CCS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>CyberLLMInstruct构建了含54,928条伪恶意指令对的数据集，揭示了网络安全LLM微调中安全性与性能之间的严峻权衡。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CyberLLMInstruct introduces a 54,928-pair pseudo-malicious dataset that exposes a severe safety-performance trade-off when fine-tuning LLMs for cyber security tasks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次大规模量化了网络安全微调如何系统性地削弱LLM的安全防护，为研究社区提供了可复现的基准，促使从业者正视领域专业化与安全对齐之间的直接矛盾。</div>
+            <div class="en">This work is the first large-scale empirical study to quantify how cyber security fine-tuning systematically degrades LLM safety guardrails across multiple models and attack vectors. The released dataset provides a reproducible benchmark for the research community to develop safer fine-tuning strategies. Practitioners deploying LLMs in security operations must now confront evidence that domain specialization and safety alignment are in direct tension.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">对LLM进行网络安全微调是否会破坏其内置安全机制？随着安全领域LLM的广泛应用，理解对抗性微调对安全对齐的影响至关重要。</div>
+            <div class="en">Can LLMs be safely fine-tuned for cyber security tasks without compromising their built-in safety mechanisms? This matters because security-focused LLMs are increasingly deployed for malware analysis, vulnerability research, and threat intelligence, yet their alignment robustness under adversarial fine-tuning is poorly understood.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有网络安全数据集范围窄、缺乏对抗性指令对，无法有效检验安全对齐。此前研究未系统评估领域微调后多模型的安全退化情况，尤其在对抗性的网络安全场景中。</div>
+            <div class="en">Existing cyber security datasets are either too narrow in scope (covering single tasks like malware classification) or lack adversarial instruction pairs needed to stress-test safety alignment. Prior safety evaluations of LLMs rarely examined domain-specific fine-tuning scenarios, especially in inherently adversarial fields like cyber security. No prior work systematically measured safety degradation across multiple open-source LLMs using standardized attack vectors post fine-tuning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者构建了CyberLLMInstruct，涵盖恶意软件分析、网络钓鱼、零日漏洞等任务。对7个开源LLM进行微调，并通过CyberMetric和多种攻击向量双重评估，系统量化领域能力与安全性之间的权衡。</div>
+            <div class="en">The authors construct CyberLLMInstruct, a dataset of 54,928 pseudo-malicious instruction-response pairs covering malware analysis, phishing simulations, zero-day vulnerabilities, and CTF challenges, sourced from academic papers, CVE databases, and industry reports. Seven open-source LLMs (including Llama 3.1 8B, Mistral, and Phi variants) are fine-tuned on this dataset and evaluated on both task performance (CyberMetric benchmark) and safety resilience (prompt injection, jailbreaking, and other attack vectors). The dual evaluation framework isolates the trade-off between domain capability gain and safety degradation, providing a controlled and reproducible methodology for future alignment research.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">微调后CyberMetric准确率最高达92.50%，但安全性急剧下降：Llama 3.1 8B对提示注入攻击的安全得分从0.95跌至0.15，且该规律在所有7个模型和攻击向量中普遍存在。</div>
+            <div class="en">Fine-tuning on CyberLLMInstruct improves cyber security task accuracy by up to 92.50% on CyberMetric, confirming strong domain adaptation. However, safety scores collapse dramatically: Llama 3.1 8B&#39;s resilience against prompt injection drops from 0.95 to 0.15 after fine-tuning. This pattern holds consistently across all seven tested models and all evaluated attack vectors, indicating a systemic rather than model-specific vulnerability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>安</li><li>全</li><li>性</li><li>崩</li><li>溃</li><li>在</li><li>所</li><li>有</li><li>7</li><li>个</li><li>模</li><li>型</li><li>中</li><li>普</li><li>遍</li><li>存</li><li>在</li><li>，</li><li>表</li><li>明</li><li>这</li><li>是</li><li>对</li><li>抗</li><li>性</li><li>领</li><li>域</li><li>微</li><li>调</li><li>的</li><li>系</li><li>统</li><li>性</li><li>问</li><li>题</li><li>，</li><li>而</li><li>非</li><li>特</li><li>定</li><li>架</li><li>构</li><li>缺</li><li>陷</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>数</li><li>据</li><li>集</li><li>来</li><li>源</li><li>广</li><li>泛</li><li>，</li><li>但</li><li>&#34;</li><li>伪</li><li>恶</li><li>意</li><li>&#34;</li><li>指</li><li>令</li><li>对</li><li>未</li><li>必</li><li>完</li><li>全</li><li>还</li><li>原</li><li>真</li><li>实</li><li>攻</li><li>击</li><li>者</li><li>的</li><li>指</li><li>令</li><li>分</li><li>布</li><li>，</li><li>可</li><li>能</li><li>低</li><li>估</li><li>实</li><li>际</li><li>风</li><li>险</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>论</li><li>文</li><li>诊</li><li>断</li><li>了</li><li>问</li><li>题</li><li>但</li><li>未</li><li>提</li><li>出</li><li>具</li><li>体</li><li>缓</li><li>解</li><li>方</li><li>案</li><li>（</li><li>如</li><li>安</li><li>全</li><li>约</li><li>束</li><li>微</li><li>调</li><li>）</li><li>，</li><li>留</li><li>下</li><li>重</li><li>要</li><li>开</li><li>放</li><li>问</li><li>题</li><li>待</li><li>后</li><li>续</li><li>研</li><li>究</li><li>解</li><li>决</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Safety-performance trade-off may be fundamental: the consistent safety collapse across all seven models suggests this is not a model architecture issue but an inherent tension in fine-tuning alignment-trained LLMs on adversarial domain data.</li><li>Dataset quality and scope: sourcing from CTF challenges, CVE databases, and industry reports provides breadth, but &#39;pseudo-malicious&#39; pairs may not fully capture real-world attacker instruction distributions, potentially understating true risk.</li><li>Mitigation gap: the paper diagnoses the problem rigorously but does not propose or evaluate concrete defenses (e.g., RLHF re-alignment, safety-constrained fine-tuning), leaving a critical open question for follow-up work.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2503.09334" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Fun-tuning利用闭源LLM微调API返回的类损失信号，对Gemini系列模型实施基于优化的提示注入攻击，成...</div>
+        <div class="paper-title-en">Fun-tuning: Characterizing the Vulnerability of Proprietary LLMs to Optimization-Based Prompt Injection Attacks via the Fine-Tuning Interface</div>
+        <div class="paper-meta">
+          <span>Andrey Labunets, Nishit V. Pandya, Ashish Hooda et al.</span>
+          <span class="badge badge-date">2025-01-16</span>
+          <span class="badge badge-venue">IEEE Symposium on Security and Privacy</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Fun-tuning利用闭源LLM微调API返回的类损失信号，对Gemini系列模型实施基于优化的提示注入攻击，成功率达65%至82%。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Fun-tuning exploits the loss-like signals returned by proprietary LLM fine-tuning APIs (e.g., Gemini) to compute optimization-based adversarial prompt injections against closed-weight models, achieving 65–82% attack success rates.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了LLM微调服务中效用与安全性的根本矛盾，迫使厂商重新审视微调API所暴露的信息，并为商业部署中的提示注入风险评估树立了新标杆。</div>
+            <div class="en">This work exposes a fundamental utility-security tradeoff in LLM fine-tuning services: the very signals needed for useful fine-tuning also enable gradient-free adversarial attacks on black-box models. It forces LLM vendors to reconsider what information their fine-tuning APIs expose and sets a new benchmark for evaluating prompt injection risks in commercial deployments.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">攻击者能否仅凭商业微调API返回的信号，在无法访问模型权重的情况下，对闭源LLM计算优化对抗性提示？这一问题至关重要，因为此前普遍认为闭源模型对此类攻击免疫。</div>
+            <div class="en">Can an attacker compute optimized adversarial prompts against closed-weight LLMs without direct model access, using only the signals returned by commercial fine-tuning APIs? This matters because proprietary LLMs were widely assumed to be protected from optimization-based attacks due to their inaccessible weights and gradients.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有基于优化的提示注入攻击（如GCG）需要白盒访问模型权重与梯度，仅适用于开源模型。针对闭源LLM的黑盒攻击依赖迁移或启发式方法，成功率较低且不稳定。此前无研究系统分析微调API是否泄露足够信号以支持离散优化攻击。</div>
+            <div class="en">Existing optimization-based prompt injection attacks (e.g., GCG) require white-box access to model weights and gradients, limiting their applicability to open-source models. Black-box attacks on proprietary LLMs have relied on transfer-based or heuristic methods, which yield lower and less reliable success rates. No prior work had systematically characterized whether fine-tuning APIs leak sufficient signal to enable discrete optimization attacks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">Fun-tuning将微调API视为预言机：将候选对抗性提示作为微调数据提交，读取返回的类训练损失值作为标量信号，驱动贪心离散token搜索。作者分析了Gemini微调API的损失信号特性，证明其与模型行为有效相关，无需访问模型权重或梯度，通过迭代替换token最小化损失值来精炼攻击提示。</div>
+            <div class="en">Fun-tuning treats the fine-tuning API as an oracle: by submitting candidate adversarial prompts as fine-tuning data and reading back the returned training-loss-like values, attackers obtain a scalar signal to guide discrete token-level search. The authors characterize the Gemini fine-tuning API&#39;s loss signals and show they correlate sufficiently with model behavior to drive a greedy search algorithm. Attack prompts are iteratively refined by substituting tokens that minimize the loss-like value, requiring no model weights or gradients. Evaluation is conducted on the PurpleLlama prompt injection benchmark across the Gemini model family.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在PurpleLlama提示注入基准测试中，Fun-tuning对Google Gemini系列LLM的攻击成功率为65%至82%，仅凭微调API返回的类损失标量即可驱动贪心搜索收敛，显著优于典型的黑盒迁移攻击基线。</div>
+            <div class="en">On the PurpleLlama prompt injection benchmark, Fun-tuning achieves attack success rates of 65%–82% across Google&#39;s Gemini family of LLMs. The greedy search algorithm converges using only the loss-like scalar returned by the fine-tuning API, confirming that this signal is sufficient for practical discrete optimization. These results significantly outperform typical black-box transfer attack baselines on closed-weight models.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>API调用频率限制与查询成本制约了攻击规模；防御方可在不影响正常使用的前提下，对微调损失信号加噪或限流。</li><li>攻击依赖Gemini API，其可推广性存疑：其他厂商（如OpenAI、Anthropic）的微调API是否暴露类似可利用信号，尚待系统性研究。</li><li>差分隐私训练或粗化损失返回值等防御措施可能破坏优化信号，但其对模型效用的影响需严格实证评估。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>API rate limits and query costs constrain attack scalability; future defenses could throttle or add noise to fine-tuning loss signals without significantly degrading legitimate use.</li><li>The attack&#39;s dependence on the Gemini API raises the question of generalizability: whether other vendors&#39; fine-tuning APIs (e.g., OpenAI, Anthropic) expose analogous exploitable signals remains to be systematically studied.</li><li>Mitigations such as differential privacy during fine-tuning or returning coarsened loss values could break the optimization signal, but their impact on model utility needs careful empirical evaluation.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2501.09798" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出首个针对自动驾驶激光雷达感知系统中物体对抗攻击的实时防御机制。</div>
+        <div class="paper-title-en">Towards Real-Time Defense against Object-Based LiDAR Attacks in Autonomous Driving</div>
+        <div class="paper-meta">
+          <span>Yan Zhang, Zihao Liu, Yi Zhu et al.</span>
+          <span class="badge badge-date">2025-11-19</span>
+          <span class="badge badge-venue">CCS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出首个针对自动驾驶激光雷达感知系统中物体对抗攻击的实时防御机制。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes the first real-time defense mechanism against physical, object-based adversarial attacks on LiDAR perception systems in autonomous vehicles.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">激光雷达感知是自动驾驶的安全核心，缺乏实时防御机制是严重的部署风险。本文直接弥合了理论攻击认知与实际可部署防御之间的差距，对自动驾驶安全研究者和工业界均具重要意义。</div>
+            <div class="en">LiDAR-based perception is safety-critical in autonomous driving, and the lack of real-time defenses against physical adversarial attacks represents a serious deployment risk. This work directly bridges the gap between theoretical attack awareness and practical, deployable defense, making it highly relevant for both AV security researchers and industry practitioners.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文研究如何实时防御自动驾驶激光雷达感知系统中的物体级对抗攻击。此类攻击通过在环境中放置对抗性物体来干扰3D点云并欺骗检测模型，无需专用硬件，隐蔽性强、危害大。</div>
+            <div class="en">The paper tackles how to defend autonomous vehicle LiDAR perception systems against object-based adversarial attacks in real time. Such attacks involve physically placing adversarial objects in the environment to corrupt 3D point clouds and fool detection DNNs, and they are practical and stealthy without requiring specialized hardware.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有激光雷达对抗防御方法计算开销大，无法满足实时部署需求；同时对不同攻击类型和检测模型的泛化能力有限，在真实场景中的防御效果也不理想。</div>
+            <div class="en">Existing defense methods against LiDAR adversarial attacks suffer from high computational overhead, making them unsuitable for real-time deployment in vehicles. They also exhibit limited generalizability across different attack types and detection models, and their overall effectiveness in realistic scenarios remains constrained.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">本文提出专为物体级激光雷达攻击设计的实时防御框架，针对对抗性物体对3D点云的篡改进行推理时异常检测。方法通过轻量化检测流程和通用防御策略，无需了解具体攻击配置或模型内部信息，即可在低延迟下完成防御。</div>
+            <div class="en">The paper proposes a real-time defense framework specifically designed for object-based LiDAR attacks, targeting the manipulation of 3D point clouds by adversarial physical objects. The approach focuses on detecting anomalous point cloud patterns introduced by adversarial objects at inference time without incurring prohibitive latency. Key contributions include a lightweight detection pipeline and a generalized defense strategy that does not depend on knowledge of specific attack configurations or model internals.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">所提方法实现了现有防御所缺失的实时性能，同时在物体级激光雷达攻击下保持较强检测效果。该框架在多种攻击场景下展现出优于现有方法的泛化能力。具体数值指标（如延迟毫秒数、检测率）见完整论文。</div>
+            <div class="en">The proposed method achieves real-time performance, a key milestone absent in prior defenses, while maintaining strong detection effectiveness against object-based LiDAR attacks. The framework demonstrates improved generalizability compared to existing approaches across multiple attack scenarios. Specific numerical benchmarks (e.g., latency in milliseconds, detection rate percentages) are not fully disclosed in the available abstract but are reported in the full paper.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>实时性与精度权衡：低延迟可能需要简化模型架构，与非实时防御方法相比牺牲了多少检测精度尚不明确，高速驾驶场景下的性能稳定性有待验证。</li><li>泛化范围局限：该防御专针对物体级攻击，但激光雷达还面临欺骗、中继等更广泛威胁，方法对非物体级攻击的迁移能力尚未验证。</li><li>实验完整性存疑：摘要未详述所评估的攻击种类、车辆平台和数据集多样性，实验结论能否支撑强安全性主张仍有待进一步考察。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Real-time constraint trade-offs: Achieving low latency likely requires architectural simplifications; it remains unclear how much detection accuracy is sacrificed relative to heavier, non-real-time defenses, and whether the system degrades gracefully under high-speed driving conditions.</li><li>Generalization scope: The defense targets object-based attacks specifically, but LiDAR systems face a broader threat landscape including spoofing and relay attacks; the method&#39;s transferability to non-object-based attack vectors is not yet established.</li><li>Experimental completeness concerns: The abstract does not detail the diversity of attack methods, AV platforms, or datasets evaluated, raising questions about whether the results reflect sufficiently varied real-world conditions to support strong safety claims.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/c1ef189396fdda35927e6d45c6f0d0967d3e7c8d" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文系统评估了主流鸟瞰图（BEV）自动驾驶感知模型在摄像头与激光雷达模态下的对抗攻击脆弱性，并测试了黑盒场景下的攻击迁移性。</div>
+        <div class="paper-title-en">Probing Vulnerabilities of Vision-Lidar Based Autonomous Driving Systems</div>
+        <div class="paper-meta">
+          <span>Siwei Yang, Zeyu Wang, Diego Ortiz Barbosa et al.</span>
+          <span class="badge badge-date">2025-06-11</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文系统评估了主流鸟瞰图（BEV）自动驾驶感知模型在摄像头与激光雷达模态下的对抗攻击脆弱性，并测试了黑盒场景下的攻击迁移性。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper systematically evaluates adversarial attack vulnerabilities in state-of-the-art Bird&#39;s Eye View (BEV) autonomous driving perception models across camera and LiDAR modalities, including black-box transferability.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">BEV感知已成为自动驾驶主流范式，其安全性直接关乎生命安全。本文是首批同时针对多模型、多模态开展对抗脆弱性分析的工作之一，为社区提供了安全基准，有助于从业者优先部署针对性防御措施。</div>
+            <div class="en">BEV perception is rapidly becoming the dominant paradigm for autonomous driving (used in Tesla, Waymo, etc.), making its security analysis directly safety-critical. This work is one of the first to probe adversarial vulnerabilities across multiple BEV models and modalities simultaneously, providing a security baseline for the community. Practitioners deploying BEV-based systems can use these findings to prioritize defenses against camera- vs. LiDAR-based attacks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">主流BEV感知模型（BEVDet、BEVDet4D、DAL、BEVFormer）是否可通过对摄像头或激光雷达输入的对抗扰动被有效欺骗？由于BEV模型融合多模态数据进行3D目标检测，一旦攻击成功将导致驾驶环境的危险误判。</div>
+            <div class="en">Can state-of-the-art BEV perception models (BEVDet, BEVDet4D, DAL, BEVFormer) be effectively compromised by adversarial attacks on their camera or LiDAR inputs? The question matters because BEV models fuse multi-modal sensor data for 3D object detection, and a successful attack could cause dangerous misperception of the driving environment at inference time.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有对抗攻击研究多聚焦于单模态感知（纯摄像头或纯激光雷达），针对BEV模型的安全研究极为稀缺，且通常仅覆盖单一模型或攻击类型。对抗扰动在BEV架构间的黑盒迁移性几乎未获系统性研究。</div>
+            <div class="en">Prior adversarial attack research has largely focused on single-modality perception, targeting either 2D camera-based detectors or LiDAR-only models in isolation. Existing BEV security studies are sparse and typically evaluate only one model or one attack type, leaving the cross-modal and cross-model attack landscape poorly understood. Black-box transferability of adversarial perturbations across BEV architectures has received almost no systematic attention.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者在nuScenes基准上，对四个BEV模型分别施加白盒对抗攻击（类PGD扰动），分别针对摄像头图像和激光雷达点云输入，通过mAP和NDS衡量感知性能下降。同时测试黑盒迁移性：在源模型上生成扰动后迁移至目标模型，属系统性安全审计而非新攻击算法。</div>
+            <div class="en">The authors apply white-box adversarial attacks (e.g., PGD-style perturbations) separately to camera image inputs and LiDAR point-cloud inputs for four BEV models on the nuScenes benchmark. They measure attack effectiveness via standard 3D detection metrics (mAP, NDS) to quantify perception degradation. Additionally, they test black-box transferability by crafting perturbations on one source model and evaluating their effect on held-out target models. The study serves as a structured vulnerability audit rather than proposing a new attack algorithm.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">白盒摄像头攻击使所有四个BEV模型的mAP和NDS显著下降，激光雷达攻击同样有效但因架构不同而存在差异。黑盒迁移攻击取得了部分但不可忽视的成功，表明对抗扰动在BEV模型间具有一定泛化能力。</div>
+            <div class="en">White-box attacks on camera inputs cause substantial drops in mAP and NDS across all four BEV models, demonstrating consistent vulnerability in the visual modality. LiDAR-based attacks also degrade performance but show varying effectiveness across architectures, suggesting model-specific robustness differences. Black-box transfer attacks achieve partial but non-trivial success, indicating that adversarial perturbations generalize across BEV model families to a meaningful degree.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>摄像头模态脆弱性更为普遍，可能源于图像数据高维且纹理丰富的特性，这为摄像头主导型部署（如BEVFormer）的防御优先级提供了参考。</li><li>攻击方法创新性有限：论文直接套用PGD类攻击，未针对BEV特有结构（如视角变换模块、BEVDet4D时序融合）进行定制，BEV专属攻击的潜力尚未被挖掘。</li><li>黑盒迁移成功说明BEV架构间存在共享特征表示，但论文未分析哪些模型对之间迁移更有效，理解该规律对设计攻击和集成防御均有重要价值。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Modality asymmetry in vulnerability: Camera inputs appear more uniformly vulnerable than LiDAR inputs across models, which may reflect the higher-dimensional, texture-rich nature of image data — a useful signal for prioritizing defenses in camera-heavy deployments like BEVFormer.</li><li>Limited novelty in attack methodology: The paper applies existing PGD-style attacks without adapting them to BEV-specific geometry (e.g., exploiting view-transformation modules or temporal fusion in BEVDet4D), leaving open whether BEV-tailored attacks would be significantly more potent.</li><li>Black-box transferability implications: The partial success of transfer attacks suggests shared feature representations across BEV architectures, but the paper does not analyze *why* some model pairs transfer better — understanding this could guide both attack design and ensemble-based defenses.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/a8ee05631d8d10d5df5c3a5ebdaa1fed39cdbd9f" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出ROLiD数据集与PCS-GAN框架，利用水雾和烟雾模拟环境干扰，对自动驾驶LiDAR三维目标检测发起对抗攻击。</div>
+        <div class="paper-title-en">A New Adversarial Perspective for LiDAR-based 3D Object Detection</div>
+        <div class="paper-meta">
+          <span>Shijun Zheng, Weiquan Liu, Yu Guo et al.</span>
+          <span class="badge badge-date">2025-04-11</span>
+          <span class="badge badge-venue">AAAI</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出ROLiD数据集与PCS-GAN框架，利用水雾和烟雾模拟环境干扰，对自动驾驶LiDAR三维目标检测发起对抗攻击。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces ROLiD, a real-world LiDAR dataset of water mist and smoke, and proposes PCS-GAN to simulate environmental point cloud interference for adversarial attacks on 3D object detection in autonomous vehicles.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次针对水雾与烟雾构建LiDAR点云数据集，填补了自动驾驶感知鲁棒性评估的关键空白。研究揭示了一类基于自然现象的物理可行对抗攻击面，对安全关键系统设计具有重要警示意义。</div>
+            <div class="en">This work opens a novel and physically plausible adversarial attack surface for AV perception systems by exploiting naturally occurring environmental phenomena rather than crafted perturbations. It provides the first dedicated dataset of LiDAR scans for water mist and smoke, filling a critical gap for robustness benchmarking. Practitioners designing safety-critical AV systems must now account for this class of environmental interference at the sensor level.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">水雾和烟雾等自然环境现象能否作为对抗扰动，欺骗自动驾驶LiDAR三维目标检测器？此类攻击物理上可实现且难以防御，对真实驾驶场景的安全构成直接威胁。</div>
+            <div class="en">Can naturally occurring environmental phenomena like water mist and smoke be weaponized as adversarial perturbations to fool LiDAR-based 3D object detectors in autonomous vehicles? This matters because such attacks are physically realizable, stealthy, and bypass conventional digital adversarial defenses, posing a direct safety risk in real-world driving scenarios.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LiDAR对抗攻击多依赖数字化点云扰动或物理对抗物体，实际部署困难且易被察觉。此前缺乏针对水雾、烟雾等瞬态环境粒子对三维检测影响的系统性研究，也没有相应的LiDAR点云数据集。</div>
+            <div class="en">Existing adversarial attacks on LiDAR-based detectors mainly rely on digitally crafted point perturbations or physical objects (e.g., spoofing, placed adversarial patches), which are often impractical or conspicuous in real deployments. Prior work does not systematically study the adversarial effect of transient environmental particles such as mist or smoke on 3D detection pipelines. No dedicated dataset existed for LiDAR scans of such random environmental objects before this work.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者采集ROLiD真实LiDAR数据集，涵盖不同条件下的水雾与烟雾点云。提出PCS-GAN，通过运动与内容解耦生成逼真的随机对象点云序列。结合基于Range Image的LiDAR扫描仿真，在目标车辆不同位置插入干扰点云，系统评估其对多种检测器的影响。</div>
+            <div class="en">The authors collect ROLiD, a real-world dataset of LiDAR point clouds capturing water mist and smoke under various conditions. They propose PCS-GAN, a generative adversarial network that decomposes point cloud sequences into motion and content components to synthesize realistic temporal distributions of these random objects. Using Range Image-based simulation of LiDAR scanning characteristics, the framework inserts synthesized interference point clouds at varying positions relative to the target vehicle. This pipeline enables systematic evaluation of how environmental particle interference degrades detection performance across multiple detectors.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明，注入模拟水雾和烟雾点云可显著降低主流LiDAR三维目标检测器性能。扰动在不同插入位置均有效，靠近目标车辆时干扰效果更强，多个检测器基线均出现明显的mAP下降。</div>
+            <div class="en">Extensive experiments show that injecting simulated water mist and smoke point clouds significantly degrades the performance of mainstream LiDAR-based 3D object detectors. The adversarial perturbations are effective across different insertion positions relative to the target vehicle, with proximity to the vehicle yielding stronger interference effects. Specific quantitative detection performance drops (e.g., mAP reductions) are reported across multiple detector baselines, demonstrating the practical threat of this attack vector.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>方法增量性：PCS-GAN基于已有的运动-内容解耦GAN，创新点主要在应用场景而非算法本身，技术贡献的普适性有限。</li><li>实验严谨性不足：缺乏对数据集、GAN合成与Range Image仿真各模块贡献的独立消融分析，合成分布对不同天气强度和传感器型号的泛化能力尚不明确。</li><li>防御研究缺失：论文仅展示攻击效果，未提出或评估任何防御措施，对该类环境对抗威胁的完整安全影响评估仍不充分。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Methodological incrementalism: PCS-GAN builds on existing motion-content disentanglement GANs; the novelty lies more in the application domain (environmental LiDAR interference) than in fundamental algorithmic advances, which limits the broader generalizability of the technical contribution.</li><li>Experimental rigor concerns: The paper lacks ablation studies clearly isolating the contribution of each component (dataset vs. GAN synthesis vs. Range Image simulation), and it is unclear how well synthesized distributions match real-world deployment diversity across weather intensities and sensor models.</li><li>Defensive gap: The paper focuses exclusively on attack demonstration without proposing or evaluating any countermeasures, leaving an incomplete picture of the threat&#39;s practical impact and how AV perception stacks might be hardened against this class of environmental adversarial inputs.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/0784fd94434d99daafd896fabcea0bc79523c9e1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Magma通过SoM与ToM标注机制，将视觉语言模型扩展为兼具数字界面导航与机器人操控能力的多模态智能体基础模型。</div>
+        <div class="paper-title-en">Magma: A Foundation Model for Multimodal AI Agents</div>
+        <div class="paper-meta">
+          <span>Jianwei Yang, Reuben Tan, Qianhui Wu et al.</span>
+          <span class="badge badge-date">2025-02-18</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Magma通过SoM与ToM标注机制，将视觉语言模型扩展为兼具数字界面导航与机器人操控能力的多模态智能体基础模型。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Magma is a foundation model that extends vision-language models with spatial-temporal intelligence via Set-of-Mark (SoM) and Trace-of-Mark (ToM) labeling, enabling AI agents to act in both digital UIs and physical robotic environments.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">Magma是首批将语言理解与空间时序行动能力统一于单一框架的基础模型之一，为构建通用多模态智能体提供了具体路径，对数字与物理世界的实际部署均有重要参考价值。</div>
+            <div class="en">Magma is among the first foundation models to unify verbal understanding and spatial-temporal action grounding under a single framework, bridging the gap between passive VL models and active AI agents. Its heterogeneous training across GUI, video, and robotics data makes it highly versatile for real-world deployment. This work provides a concrete blueprint for building generalist multimodal agents that can operate across both digital and physical domains.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">现有视觉语言模型擅长理解与描述图像内容，但缺乏将感知转化为具体行动的空间时序推理能力，无法直接用于UI导航或机器人操控等智能体任务。Magma探索如何训练单一模型同时具备语言理解与跨域行动规划能力。</div>
+            <div class="en">Existing vision-language models excel at understanding and describing visual content but lack the ability to ground actions and plan movements in visual-spatial environments. This limits their usefulness as AI agents for tasks like UI navigation or robot manipulation, where perception must translate into concrete actions. Magma addresses how a single model can be trained to handle both verbal intelligence and spatial-temporal action planning across heterogeneous domains.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">LLaVA、GPT-4V等视觉语言模型专注于图文理解，不具备行动落地能力；RT-2等机器人模型仅针对物理操控，无法泛化至GUI等数字环境。此前尚无工作将三类任务统一于单一可扩展框架中。</div>
+            <div class="en">Prior VL models such as LLaVA and GPT-4V focus on image-text understanding but are not designed for action grounding or sequential decision-making. Robotics-specific models (e.g., RT-2) handle physical manipulation but lack generalization to digital environments like GUIs. No prior work effectively unified GUI agents, video-based action planning, and robotic manipulation under one scalable training framework.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">Magma提出SoM（标注图像中可操作对象）与ToM（标注视频中运动轨迹）两种标注策略，并在涵盖图像、视频与机器人数据的大规模异构数据集上联合训练，以统一的Transformer架构同时支持语言理解与空间时序行动规划。</div>
+            <div class="en">Magma introduces two novel annotation strategies: Set-of-Mark (SoM), which labels actionable visual objects (e.g., clickable GUI buttons) in images to support action grounding, and Trace-of-Mark (ToM), which labels object movement trajectories (e.g., hand or robotic arm traces) in videos to support action planning. The model is trained on large-scale heterogeneous data spanning static images, instructional videos, and robotics demonstrations. This dual-labeling approach explicitly bridges the gap between verbal understanding and spatial-temporal action execution within a unified transformer-based architecture.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Magma在UI导航基准测试中达到最优性能，在机器人操控任务上也取得有竞争力的结果；消融实验证明SoM与ToM均不可或缺，二者结合带来最大性能提升，同时保留了强大的视觉语言理解能力。</div>
+            <div class="en">Magma achieves state-of-the-art performance on UI navigation benchmarks and competitive results on robot manipulation tasks, demonstrating that SoM and ToM annotations significantly enhance spatial-temporal intelligence. The model outperforms prior task-specific models on several agentic benchmarks while retaining strong VL understanding capabilities. Ablations confirm that both SoM and ToM are individually critical, and their combination yields the largest gains in action grounding and planning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>跨域泛化：同时训练GUI、视频与机器人数据可能引发任务干扰，模型对训练集外的新物理环境或未见UI布局的泛化能力尚待验证。</li><li>标注成本：SoM与ToM需要结构化标注流程，论文未充分说明该过程的可扩展性与自动化程度，可能成为数据扩展的瓶颈。</li><li>规划与执行的脱节：Magma输出行动规划与标记，实际执行依赖下游模块，在噪声输入或动态场景下的真实部署鲁棒性尚未充分评估。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Generalization across domains: Training on GUI, video, and robotics data simultaneously risks task interference; it remains unclear how well Magma scales to entirely new physical environments or unseen UI layouts not covered during training.</li><li>Annotation cost: SoM and ToM labeling requires structured annotation pipelines for large datasets; the paper does not fully detail the scalability or automation of this process, which could bottleneck future data expansion.</li><li>Action prediction vs. execution: Magma predicts action plans and grounding marks but relies on downstream executors to carry out actions; real-world deployment robustness (e.g., handling noisy sensor inputs or dynamic scenes) is not thoroughly evaluated.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.13130" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文将基于计数的探索奖励融入直接偏好优化（DPO），提出一种理论上可证高效的在线RLHF对齐算法。</div>
+        <div class="paper-title-en">Online Preference Alignment for Language Models via Count-based Exploration</div>
+        <div class="paper-meta">
+          <span>Chenjia Bai, Yang Zhang, Shuang Qiu et al.</span>
+          <span class="badge badge-date">2025-01-22</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文将基于计数的探索奖励融入直接偏好优化（DPO），提出一种理论上可证高效的在线RLHF对齐算法。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes a count-based exploration bonus integrated into Direct Preference Optimization (DPO) to enable provably efficient online RLHF for LLM alignment.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次将可证高效的基于计数的探索机制引入LLM对齐，填补了理论保证与实际在线RLHF之间的鸿沟。该方法可帮助从业者突破初始数据分布的限制，持续提升模型对齐质量。</div>
+            <div class="en">This work bridges the gap between theoretical guarantees and practical online RLHF, offering the first count-based exploration framework with provable efficiency for LLM alignment. It directly addresses the critical data coverage problem that limits offline RLHF methods deployed in real-world LLM pipelines. Practitioners can adopt this approach to continuously improve alignment beyond the initial dataset distribution.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">核心问题是：在线RLHF中LLM应如何有效探索，以收集超出初始数据集分布的有效prompt-response对。这一问题至关重要，因为离线对齐方法受数据覆盖限制，导致奖励模型在分布外样本上泛化性差。</div>
+            <div class="en">The core problem is how an LLM should strategically explore during online RLHF to collect informative prompt-response pairs beyond the fixed initial dataset. This matters because offline preference alignment suffers from limited data coverage, causing reward models to fail on out-of-distribution responses and producing suboptimal alignment policies.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有离线RLHF方法（如DPO）在固定数据集上训练，响应多样性不足，分布外泛化能力差。已有在线RLHF方法虽迭代收集数据，但缺乏有理论保障的探索策略，多依赖启发式采样。</div>
+            <div class="en">Existing offline RLHF methods such as standard DPO train on fixed preference datasets, which restricts the diversity of responses seen during training and leads to poor generalization on out-of-distribution outputs. Prior online RLHF attempts iteratively collect new data but lack principled exploration strategies, often relying on heuristic sampling without theoretical efficiency guarantees.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者在线性奖励假设下建立理论依据，证明基于UCB的乐观奖励可实现可证高效的RLHF策略。随后将优化目标重构为带探索奖励的DPO形式，UCB项转化为基于访问计数的探索奖励，对少被探索的响应区域给予额外激励。所提算法无需独立奖励模型，与现有LLM微调框架兼容。</div>
+            <div class="en">The authors first establish a theoretical motivation under a linear reward assumption, showing that an optimistic reward using an Upper Confidence Bound (UCB) term yields a provably efficient RLHF policy. They then reformulate the optimization objective as DPO augmented with an exploration bonus, where the UCB term is converted into a count-based bonus that rewards visiting less-explored response regions. A practical algorithm is proposed that maintains response visitation counts to compute the exploration bonus, which is then added to the standard DPO training objective without requiring a separate reward model. This design keeps the approach simple and compatible with existing LLM fine-tuning pipelines.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在线性奖励假设下，所提算法具有可证的样本效率，理论上保证收敛至最优对齐策略。实验表明，相比离线DPO和启发式在线基线，该方法在分布外响应上对齐性能显著提升，标准对齐基准测试上亦有具体数值改进。</div>
+            <div class="en">The proposed algorithm achieves provable sample efficiency under the linear reward assumption, with theoretical bounds guaranteeing convergence to the optimal alignment policy. Empirical evaluations demonstrate that the count-based exploration bonus leads to improved preference alignment performance compared to offline DPO and heuristic online baselines, particularly on responses that fall outside the initial dataset distribution. Specific numerical gains are reported across standard alignment benchmarks, reflecting more diverse and higher-quality response generation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>基于计数的探索源自表格型RL，在LLM巨大的离散token空间中存在可扩展性挑战，响应访问计数的近似方式有待进一步验证。</li><li>理论保证依赖线性奖励假设，在复杂真实人类偏好场景下未必成立，未来需将分析扩展至更具表达力的奖励函数类。</li><li>在线迭代数据收集需反复进行人工或AI偏好标注，大规模部署成本较高，论文对标注成本的实际考量尚不充分。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Count-based exploration is borrowed from tabular RL and may face scalability challenges in the vast, continuous token-space of LLMs — the paper&#39;s approximation of visitation counts for high-dimensional responses deserves further scrutiny.</li><li>The theoretical guarantees rely on a linear reward assumption, which may not hold for complex real-world human preferences; future work should extend the analysis to more expressive reward function classes.</li><li>The iterative online data collection loop requires repeated human (or AI) preference labeling, which can be expensive at scale — the paper does not fully address the practical cost of annotation in the online setting.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2501.12735" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">首篇系统综述多模态大语言模型数学推理领域，覆盖200余项研究，从基准、方法与挑战三维度剖析AGI进展。</div>
+        <div class="paper-title-en">A Survey of Mathematical Reasoning in the Era of Multimodal Large Language Model: Benchmark, Method &amp; Challenges</div>
+        <div class="paper-meta">
+          <span>Yibo Yan, Jiamin Su, Jianxiang He et al.</span>
+          <span class="badge badge-date">2024-12-16</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>首篇系统综述多模态大语言模型数学推理领域，覆盖200余项研究，从基准、方法与挑战三维度剖析AGI进展。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">The first comprehensive survey of mathematical reasoning with multimodal LLMs, systematically reviewing 200+ studies across benchmarks, methods, and five key challenges toward AGI.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本综述首次构建多模态数学推理的系统性框架，为研究者评估和构建相关模型提供路线图。明确指出五大AGI瓶颈，为领域发展提供清晰的研究议程。</div>
+            <div class="en">This survey is the first to unify multimodal mathematical reasoning under a structured three-dimensional framework (benchmarks, methods, challenges), filling a critical gap as visual math problems grow in prominence. It serves as a roadmap for researchers building or evaluating MLLMs on tasks involving geometry, charts, and symbolic math. The identification of five concrete AGI bottlenecks provides a targeted agenda for the field.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">多模态大语言模型能否可靠处理包含图表、几何图形等视觉输入的数学推理任务？现实STEM场景中文本与视觉信息并存，而既往评估多局限于纯文本，亟需系统性梳理。</div>
+            <div class="en">Can multimodal large language models reliably perform mathematical reasoning when problems involve visual inputs such as diagrams, charts, and geometric figures? This matters because real-world STEM education and scientific tasks routinely require joint interpretation of text and visual mathematical content, yet LLM evaluation has historically focused on text-only settings.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">以往综述聚焦于纯文本数学基准（如GSM8K、MATH），忽视了视觉模态的作用。现有多模态基准缺乏统一分类框架，视觉编码器与推理策略之间的交互关系也未被系统梳理。</div>
+            <div class="en">Prior surveys on LLM reasoning focused narrowly on text-based math benchmarks (e.g., GSM8K, MATH), ignoring the visual modality increasingly present in real problems. Existing multimodal benchmarks were developed in isolation without a unified taxonomy linking dataset design, model methodology, and failure modes. No prior work systematically catalogued the interplay between visual encoders, LLM backbones, and reasoning strategies in a multimodal math context.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">研究从基准、方法和挑战三个维度组织综述：基准按模态与任务类型分类；方法涵盖监督微调、思维链提示、工具增强与多模态对齐；并梳理视觉编码器、LLM骨干与输出解码器的完整推理流程，最终提炼五大核心挑战。</div>
+            <div class="en">The authors survey 200+ papers published since 2021 and organize the landscape into three dimensions: (1) benchmarks categorized by modality and task type (arithmetic, geometry, theorem proving, etc.); (2) methodologies spanning supervised fine-tuning, chain-of-thought prompting, tool-augmented reasoning, and multimodal alignment techniques; and (3) a multimodal reasoning pipeline detailing how visual encoders, LLM backbones, and output decoders are combined. They further distill five major challenges blocking AGI-level mathematical reasoning, including robust visual grounding, multi-step symbolic manipulation, and out-of-distribution generalization.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">最先进的MLLM在视觉数学任务上仍显著落后于纯文本任务（如GPT-4在GSM8K达~95%，但在MathVista等多模态基准上明显下降）。工具增强方法在复杂多步推理中持续优于纯神经网络方法。五大挑战包括视觉感知、多步一致性、跨模态对齐、泛化能力与推理可解释性。</div>
+            <div class="en">The survey finds that state-of-the-art MLLMs still fall significantly short on visually grounded math tasks—e.g., models achieve strong performance on text-only GSM8K (~95% for GPT-4) but drop considerably on multimodal geometry benchmarks like GeoQA and MathVista. Tool-augmented methods (e.g., code execution, symbolic solvers) consistently outperform pure neural approaches on complex multi-step problems. Five persistent challenges are identified: visual perception accuracy, multi-step reasoning consistency, cross-modal alignment, generalization to novel problem types, and interpretability of reasoning chains.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>基准缺口：现有多模态数学基准多聚焦K-12几何与算术，大学级别证明与微积分的视觉评测仍严重不足，制约了对模型深层推理能力的评估。</li><li>方法矛盾：思维链提示提升可解释性，但早期视觉误判会在多步推理中累积放大；符号求解器与神经推理的混合方案有潜力但工程复杂度高。</li><li>AGI展望：视觉定位鲁棒性和分布外泛化等核心挑战表明，当前MLLM距人类水平数学推理仍有较大差距，需更紧密整合感知模块与形式推理系统。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Benchmark gaps: Most existing multimodal math benchmarks focus on K-12 geometry or arithmetic; rigorous coverage of university-level proofs, calculus, and statistics in visual formats remains sparse, limiting evaluation of true reasoning depth.</li><li>Methodology tension: Chain-of-thought prompting improves interpretability but can propagate early visual misinterpretation errors across multi-step solutions; hybrid approaches combining symbolic solvers with neural reasoning show promise but introduce engineering complexity.</li><li>AGI outlook: The five identified challenges—especially robust visual grounding and out-of-distribution generalization—suggest that current MLLMs are still far from human-level mathematical reasoning, and progress may require tighter integration between perception modules and formal reasoning systems.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2412.11936" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文系统比较三种基础模型集成范式（端到端VLA、VLM流水线、多模态LLM流水线）在机器人指令理解与操作任务中的性能权衡。</div>
+        <div class="paper-title-en">From Grounding to Manipulation: Case Studies of Foundation Model Integration in Embodied Robotic Systems</div>
+        <div class="paper-meta">
+          <span>Xiuchao Sui, Daiying Tian, Qi Sun et al.</span>
+          <span class="badge badge-date">2025-05-21</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文系统比较三种基础模型集成范式（端到端VLA、VLM流水线、多模态LLM流水线）在机器人指令理解与操作任务中的性能权衡。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper systematically benchmarks three foundation model integration paradigms — end-to-end VLA, VLM-pipeline, and multimodal LLM-pipeline — for robotic instruction grounding and object manipulation, revealing key trade-offs in generalization and data efficiency.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文为业界提供了不同基础模型集成策略的直接对比，帮助实践者做出有据可依的架构决策。其零样本与少样本评估直接对应现实中数据稀缺的部署场景，具有较强的实用价值。</div>
+            <div class="en">As robotics labs worldwide race to deploy foundation models, this paper provides a rare apples-to-apples comparison of competing integration strategies, giving practitioners a principled basis for architectural choices. Its focus on zero-shot and few-shot regimes directly addresses real-world deployment constraints where labeled data is scarce. The distilled design implications can accelerate future embodied AI system development.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">在动态环境中，基础模型应以端到端还是模块化流水线方式集成到机器人系统，以最优地支持复杂指令理解与操作？架构选择直接影响泛化能力与数据效率，是具身AI落地的核心挑战。</div>
+            <div class="en">How should foundation models be integrated into embodied robotic systems — as monolithic end-to-end models or as components in modular pipelines — to best handle complex instruction following and manipulation in dynamic environments? This question is critical because the wrong architectural choice leads to brittle generalization or prohibitive data requirements in real deployments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型（如RT-2、OpenVLA）统一感知与动作，但需大量机器人专属数据且难以处理细粒度语言歧义。基于VLM或LLM的模块化流水线灵活性更高，但存在模块间误差传播问题。此前缺乏在统一条件下对三类范式的受控对比研究。</div>
+            <div class="en">Existing VLA models (e.g., RT-2, OpenVLA) unify perception and action but require large amounts of robot-specific data and struggle with fine-grained language disambiguation. Modular pipelines using VLMs or LLMs offer greater flexibility and leverage internet-scale pretraining, but introduce latency and error propagation across modules. No prior work has conducted a controlled, task-focused comparison across all three paradigms under consistent zero-shot and few-shot conditions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者定义三类范式并设计两项案例研究：一是需跨模态消歧的复杂指令接地任务，二是通过VLA微调实现技能迁移的物体操作任务。实验覆盖零样本与少样本设置，系统评估各范式的泛化能力与数据效率。</div>
+            <div class="en">The authors define and evaluate three paradigms: (1) end-to-end VLA models that implicitly couple perception, planning, and action; (2) modular pipelines using VLMs for grounded visual reasoning; and (3) modular pipelines using multimodal LLMs as orchestrators. Two case studies are constructed — a complex instruction grounding task requiring cross-modal disambiguation, and an object manipulation task using VLA fine-tuning for skill transfer. Experiments span zero-shot and few-shot settings to stress-test generalization and sample efficiency across paradigms.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">模块化LLM流水线在零样本指令接地任务中泛化更强；端到端VLA在少量微调数据后操作表现更优；VLM流水线居中但易受视觉接地误差的级联影响。无单一范式在两项任务中均占优，架构权衡客观存在。</div>
+            <div class="en">Modular LLM-based pipelines demonstrate stronger zero-shot generalization on complex instruction grounding due to their compositional reasoning capabilities, while end-to-end VLA models achieve superior manipulation performance after fine-tuning with even limited task-specific data. VLM-based pipelines occupy a middle ground but are sensitive to visual grounding errors that cascade into action failures. The study reveals that no single paradigm dominates across both tasks, confirming inherent architectural trade-offs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>模块化流水线继承了预训练FM的广泛推理能力，对新指令鲁棒性更强，但模块边界是潜在失效点，视觉接地错误可无声传播至动作层。</li><li>VLA微调在少量演示下即可达到强操作性能，说明预训练动作先验效果显著，但此数据效率优势不能迁移至语言多样性主导的指令接地任务。</li><li>两项案例研究场景相对受控，真实部署中动态场景、指代歧义与多步规划的交织挑战可能超出孤立基准的覆盖范围，未来需更全面的评估协议。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Modularity vs. end-to-end: Modular pipelines inherit broad language and visual reasoning from pretrained FMs, making them robust to novel instructions without retraining, but each module boundary is a potential failure point — particularly when visual grounding errors silently propagate to the action layer.</li><li>Data efficiency asymmetry: VLA fine-tuning can achieve strong manipulation performance with surprisingly few demonstrations, suggesting that the pretrained action prior is powerful — but this efficiency gain is task-specific and does not transfer to instruction grounding where language diversity dominates.</li><li>Evaluation gap: Both case studies are relatively controlled; real-world deployment involves concurrent challenges (dynamic scenes, ambiguous references, multi-step plans) that may interact in ways not captured by isolated benchmarks, calling for more holistic evaluation protocols in future work.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.15685" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">DexTrack 通过数据飞轮驱动的神经追踪控制器，使灵巧机器人手无需任务专属奖励即可跟随多样化人手-物体交互参考。</div>
+        <div class="paper-title-en">DexTrack: Towards Generalizable Neural Tracking Control for Dexterous Manipulation from Human References</div>
+        <div class="paper-meta">
+          <span>Xueyi Liu, Jianibieke Adalibieke, Qianwei Han et al.</span>
+          <span class="badge badge-date">2025-02-13</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>DexTrack 通过数据飞轮驱动的神经追踪控制器，使灵巧机器人手无需任务专属奖励即可跟随多样化人手-物体交互参考。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">DexTrack introduces a data-flywheel-driven neural tracking controller that trains a dexterous robot hand to follow diverse human-object interaction references without task-specific reward engineering.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">DexTrack 攻克了具身智能的核心瓶颈：无需逐任务设计奖励，即可将丰富的人类灵巧操作技能大规模迁移至机器人手。其自改进数据飞轮为通用灵巧操作控制器提供了可扩展路径，对机器人研究与实际部署均具重要意义。</div>
+            <div class="en">DexTrack tackles a core bottleneck in embodied AI: transferring rich human dexterous manipulation skills to robot hands at scale, without hand-crafting rewards per task. By leveraging large-scale human motion references and a self-improving data flywheel, it offers a scalable path toward general-purpose dexterous manipulation controllers that could benefit robotics research and real-world deployment alike.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">单一神经控制器能否通过跟踪人手-物体运动学参考，泛化到抓取、重定向、工具使用等多样灵巧操作任务？由于高维接触动力学及对未见物体-任务组合的适应性要求，这一问题极具挑战性。</div>
+            <div class="en">How can a single neural controller generalize across diverse dexterous manipulation tasks—grasping, reorienting, tool use—by tracking kinematic human-object interaction references? This matters because dexterous hand control is notoriously difficult due to high-dimensional contact dynamics and the need for simultaneous adaptivity and robustness across unseen object-task combinations.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">强化学习方法通常需要精心设计的任务专属奖励，难以跨任务或物体类别迁移。轨迹优化方法依赖精确系统模型，接触不连续性使其在灵巧操作中脆弱易失效。两类方法均难以扩展至人类日常操作的多样性规模。</div>
+            <div class="en">Reinforcement learning approaches typically require carefully engineered, task-specific reward functions that do not transfer across tasks or object categories. Trajectory optimization methods depend on precise system models and suffer from contact discontinuities, making them brittle for real dexterous manipulation. Neither paradigm scales easily to the diversity of manipulation tasks humans perform effortlessly.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">DexTrack 构建大规模人类运动学参考与机器人成功追踪动作的配对数据集，通过模仿学习训练神经控制器。数据飞轮迭代自举：改进的控制器生成更多成功轨迹，再回流训练数据以进一步优化策略。通过对高质量追踪示例的精细筛选，完全以人手-物体交互轨迹为监督信号，避免任务专属奖励设计。</div>
+            <div class="en">DexTrack curates large-scale paired datasets of human kinematic references and corresponding successful robot tracking actions, then trains a neural controller via imitation on these demonstrations. A data flywheel iteratively bootstraps performance: the improving controller generates more successful rollouts, which are added back to training data to further refine the policy. The approach avoids task-specific reward design by grounding supervision entirely in demonstrated human-object interaction trajectories. Careful data curation filters and prioritizes high-quality tracking demonstrations to maximize training signal.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">DexTrack 在多类物体与操作类型上的泛化性优于任务专属 RL 基线及轨迹优化方法。数据飞轮持续提升成功追踪示例的数量与质量，带来迭代性能增益。方法在涵盖抓取与铰接物体操作的多样人手-物体交互参考集上得到验证。</div>
+            <div class="en">DexTrack demonstrates improved generalizability over task-specific RL baselines and trajectory optimization methods across diverse object categories and manipulation types. The data flywheel progressively increases both the quantity and quality of successful tracking demonstrations, leading to iterative performance gains. Specific quantitative benchmarks are not fully detailed in the abstract, but the method is validated on a broad set of kinematic human-object interaction references spanning grasping and articulated object manipulation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>仿真到真实的迁移差距：控制器在仿真中训练，但仿真接触动力学与真实硬件存在偏差，将 DexTrack 迁移至实体灵巧手（如 Allegro、Shadow）仍需额外域随机化或自适应方法。</li><li>数据质量瓶颈：飞轮效果依赖初始种子示例的多样性与成功率；若早期轨迹偏向简单物体，迭代改进可能停滞或固化失败模式。</li><li>人类参考数据的噪声问题：方法依赖高质量运动学参考（如动作捕捉或视频姿态估计），其噪声与不完整性会传播追踪误差，对噪声输入的鲁棒性是实际部署的关键挑战。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Sim-to-real gap: The controller is trained in simulation using kinematic human references, but contact dynamics in simulation rarely match real hardware precisely—transferring DexTrack to physical dexterous hands (e.g., Allegro, Shadow) without additional domain randomization or adaptation remains an open challenge.</li><li>Data quality bottleneck: The flywheel&#39;s effectiveness hinges on the initial seed demonstrations being sufficiently diverse and successful; if early rollouts are sparse or biased toward easy objects, the iterative improvement may plateau or reinforce failure modes.</li><li>Scope of human references: The method assumes access to high-quality kinematic human-object interaction data (e.g., from MoCap or video-based pose estimation), whose noise and incompleteness could propagate tracking errors—robustness to noisy reference inputs is critical for practical deployment.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.09614" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">LDexMM将语言引导的分割与强化学习结合，使单个灵巧手模型可完成最多10项操作任务，3任务成功率达72.7%。</div>
+        <div class="paper-title-en">LDexMM: Language-Guided Dexterous Multi-Task Manipulation with Reinforcement Learning</div>
+        <div class="paper-meta">
+          <span>Hengxu Yan, Junbo Wang, Haoshu Fang et al.</span>
+          <span class="badge badge-date">2025-10-19</span>
+          <span class="badge badge-venue">IROS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>LDexMM将语言引导的分割与强化学习结合，使单个灵巧手模型可完成最多10项操作任务，3任务成功率达72.7%。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">LDexMM combines language-guided segmentation with reinforcement learning to enable a single dexterous-hand model to perform up to 10 manipulation tasks, achieving 72.7% success on 3 tasks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">LDexMM是首批将自然语言指令与高自由度灵巧手强化学习控制相结合的框架之一，为通用机器人手研究提供了可复用的两阶段设计范式，对开放词汇指令下的非结构化环境操作具有重要意义。</div>
+            <div class="en">LDexMM is one of the first frameworks to bridge natural language instructions with high-DOF dexterous hand control via RL, pushing embodied AI beyond simple two-finger grippers. Its two-phase decomposition (language-guided grasp pose + RL refinement) offers a reusable blueprint for multi-task dexterous manipulation. This matters for practitioners building general-purpose robot hands that must interpret open-vocabulary commands in unstructured environments.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何利用自然语言指令引导多指灵巧手在单一统一模型中完成多样化操作任务？灵巧手的高自由度使语言条件策略学习的扩展与泛化远比双指夹爪困难。</div>
+            <div class="en">How can natural language instructions be used to guide dexterous multi-fingered hands in completing diverse manipulation tasks within a single unified model? This is critical because dexterous hands have far more degrees of freedom than two-finger grippers, making language-conditioned policy learning significantly harder to scale and generalize.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">此前语言条件操作研究主要针对双指夹爪，自由度低、接触动力学简单。灵巧手研究虽在抓取与手内操作上有进展，但缺乏语言引导与多任务泛化能力，尚无框架将语言引导功能部件分割与强化学习策略精化有效结合。</div>
+            <div class="en">Prior language-conditioned manipulation work predominantly targets two-finger grippers, which have far fewer degrees of freedom and simpler contact dynamics. Dexterous hand research has made progress on grasping and in-hand manipulation, but typically without language grounding or multi-task generalization. No prior framework effectively combines language-guided functional part segmentation with RL-based policy refinement for high-DOF hands across many tasks simultaneously.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">LDexMM将灵巧操作分为两阶段：首先，语言指令驱动分割模型定位物体功能部件并生成初始抓取姿态；其次，强化学习精化姿态并完成任务，同时语言约束持续将策略动作聚焦于目标区域。单一模型通过语言信号切换任务，无需独立的专项策略。</div>
+            <div class="en">LDexMM decomposes dexterous manipulation into two phases: first, a language instruction conditions a segmentation model to identify the functional part of an object and generate an initial dexterous grasp pose targeting that part. Second, reinforcement learning refines the grasp pose and executes the full task, while language constraints continuously focus the policy&#39;s actions on the specified object region. A single model handles all tasks simultaneously, with language serving as the task-switching signal rather than requiring separate specialist policies.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">单一模型在3、5、7、10项任务上的成功率分别为72.7%、49.2%、40%和31%，随任务数增加呈现平稳下降。结果表明，语言引导的功能部件分割有效缩小了抓取搜索空间，但10任务下31%的成功率也揭示了大规模任务泛化仍是待解难题。</div>
+            <div class="en">With a single unified model, LDexMM achieves success rates of 72.7%, 49.2%, 40%, and 31% on 3, 5, 7, and 10 tasks respectively, demonstrating graceful degradation as task count increases. The results confirm that language-guided functional part segmentation meaningfully bootstraps RL by narrowing the initial grasp search space. Performance on 10 tasks (31%) highlights that scalability to large task sets remains an open challenge.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>可</li><li>扩</li><li>展</li><li>性</li><li>瓶</li><li>颈</li><li>：</li><li>任</li><li>务</li><li>数</li><li>从</li><li>3</li><li>增</li><li>至</li><li>1</li><li>0</li><li>时</li><li>，</li><li>成</li><li>功</li><li>率</li><li>从</li><li>7</li><li>2</li><li>.</li><li>7</li><li>%</li><li>骤</li><li>降</li><li>至</li><li>3</li><li>1</li><li>%</li><li>，</li><li>未</li><li>来</li><li>需</li><li>探</li><li>索</li><li>层</li><li>级</li><li>任</li><li>务</li><li>编</li><li>码</li><li>或</li><li>任</li><li>务</li><li>专</li><li>属</li><li>适</li><li>配</li><li>器</li><li>模</li><li>块</li><li>以</li><li>减</li><li>轻</li><li>共</li><li>享</li><li>策</li><li>略</li><li>中</li><li>的</li><li>任</li><li>务</li><li>间</li><li>干</li><li>扰</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>语</li><li>言</li><li>粒</li><li>度</li><li>问</li><li>题</li><li>：</li><li>框</li><li>架</li><li>依</li><li>赖</li><li>语</li><li>言</li><li>定</li><li>位</li><li>功</li><li>能</li><li>部</li><li>件</li><li>，</li><li>但</li><li>对</li><li>模</li><li>糊</li><li>或</li><li>复</li><li>合</li><li>指</li><li>令</li><li>（</li><li>如</li><li>&#34;</li><li>慢</li><li>慢</li><li>拧</li><li>开</li><li>蓝</li><li>色</li><li>瓶</li><li>盖</li><li>&#34;</li><li>）</li><li>的</li><li>分</li><li>割</li><li>鲁</li><li>棒</li><li>性</li><li>尚</li><li>不</li><li>明</li><li>确</li><li>，</li><li>需</li><li>系</li><li>统</li><li>评</li><li>估</li><li>语</li><li>言</li><li>变</li><li>体</li><li>下</li><li>的</li><li>性</li><li>能</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>仿</li><li>真</li><li>到</li><li>现</li><li>实</li><li>的</li><li>迁</li><li>移</li><li>：</li><li>所</li><li>有</li><li>结</li><li>果</li><li>均</li><li>在</li><li>仿</li><li>真</li><li>中</li><li>获</li><li>得</li><li>，</li><li>高</li><li>自</li><li>由</li><li>度</li><li>灵</li><li>巧</li><li>手</li><li>的</li><li>接</li><li>触</li><li>密</li><li>集</li><li>型</li><li>操</li><li>作</li><li>在</li><li>真</li><li>实</li><li>环</li><li>境</li><li>中</li><li>极</li><li>易</li><li>失</li><li>效</li><li>，</li><li>仿</li><li>真</li><li>成</li><li>功</li><li>率</li><li>与</li><li>真</li><li>实</li><li>部</li><li>署</li><li>之</li><li>间</li><li>的</li><li>差</li><li>距</li><li>仍</li><li>未</li><li>被</li><li>解</li><li>决</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability bottleneck: Success drops from 72.7% to 31% as tasks scale from 3 to 10. Future work should explore hierarchical task encodings or task-specific adapter modules to mitigate inter-task interference in the shared policy.</li><li>Language granularity: The framework relies on language to identify functional object parts, but it is unclear how robust the segmentation is to ambiguous or compositional instructions (e.g., &#39;open the cap of the blue bottle slowly&#39;). Robustness to linguistic variation needs systematic evaluation.</li><li>Sim-to-real gap: All reported results appear to be in simulation. Contact-rich dexterous manipulation with high-DOF hands is notoriously brittle under real-world conditions; the gap between simulated success rates and real deployment remains unaddressed.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/5ecba07713a1729511fef34e0200ff492fa8bd60" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-07</footer>
+</body>
+</html>
