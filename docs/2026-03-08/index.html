@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-08 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-08  |  共 11 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">GAP用互联图结构替代树形越狱框架，实现跨攻击路径知识共享，攻击成功率超96%，同时降低62.7%查询成本。</div>
+        <div class="paper-title-en">Graph of Attacks with Pruning: Optimizing Stealthy Jailbreak Prompt Generation for Enhanced LLM Content Moderation</div>
+        <div class="paper-meta">
+          <span>Daniel Schwartz, Dmitriy Bespalov, Zhe Wang et al.</span>
+          <span class="badge badge-date">2025-01-28</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>GAP用互联图结构替代树形越狱框架，实现跨攻击路径知识共享，攻击成功率超96%，同时降低62.7%查询成本。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">GAP replaces tree-based jailbreak structures with an interconnected graph to share knowledge across attack paths, achieving &gt;96% attack success rates while cutting query costs by 62.7%.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">GAP大幅提升对抗性提示生成的效率与可扩展性，有助于系统性安全评估。其多模态变体GAP-VLM与自动化种子生成模块GAP-Auto将应用范围扩展至多模态模型。GAP生成的提示可直接增强内容审核系统，将攻防研究有效结合。</div>
+            <div class="en">GAP advances LLM red-teaming by making adversarial prompt generation significantly more efficient and scalable, lowering the barrier for systematic safety evaluation. Its multimodal variant (GAP-VLM) and automated seed generation (GAP-Auto) extend applicability beyond text-only models. Crucially, GAP-generated prompts are shown to directly improve content moderation systems, bridging offensive and defensive security research.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何使越狱提示生成更高效，以严格测试LLM安全防护？现有方法的攻击路径相互孤立，存在冗余计算且无法复用成功策略。需要更强大的红队工具提前发现漏洞。</div>
+            <div class="en">How can jailbreak prompt generation be made more effective and query-efficient to rigorously stress-test LLM safety guardrails? Existing methods leave attack paths isolated, wasting redundant computation and missing opportunities to reuse successful strategies. A more powerful red-teaming tool is needed to expose vulnerabilities before malicious actors do.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">TAP等树形方法沿独立分支生成攻击，无法跨分支共享知识且查询成本高。PAIR等单路径迭代方法易陷入局部最优。两类方法均难以扩展至多模态场景或自动化种子生成。</div>
+            <div class="en">Tree-based methods like TAP (Tree of Attacks with Pruning) generate attack candidates along independent branches, preventing cross-branch knowledge transfer and inflating query costs. Pair-based methods (e.g., PAIR) use single-path iterative refinement, which is computationally wasteful and prone to getting stuck in local optima. Neither approach scales well to multimodal settings or automated seed creation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">GAP构建有向攻击图，节点为候选越狱提示，边编码精化关系，使任意分支的成功策略均可影响其他路径。剪枝机制提前移除低分节点，将计算集中于最优攻击路径。GAP-Auto利用LLM自动生成多样化种子提示，免去人工初始化。GAP-VLM将框架扩展至视觉语言模型，将对抗文本嵌入图像中。</div>
+            <div class="en">GAP constructs a directed graph of attack prompts where nodes represent candidate jailbreaks and edges encode refinement relationships, allowing successful strategies from any branch to inform other paths. A pruning mechanism removes low-scoring nodes early, concentrating compute on the most promising attack trajectories. GAP-Auto extends this by using an LLM to automatically generate diverse seed prompts, removing the need for manual initialization. GAP-VLM adapts the framework for vision-language models by embedding adversarial text within images.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">GAP在开源与闭源LLM上的攻击成功率均超96%，较最优基线提升20.8%。与树形方法相比，查询成本降低62.7%。GAP生成的对抗提示作为数据增强，可显著提升内容审核分类器性能。</div>
+            <div class="en">GAP achieves attack success rates exceeding 96% on both open-source and closed LLMs, a 20.8% improvement over state-of-the-art baselines. Query costs are reduced by 62.7% compared to existing tree-based methods, making large-scale red-teaming practical. GAP-generated adversarial prompts also demonstrably improve downstream content moderation classifier performance when used as augmentation data.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>双重用途风险：GAP是强力攻击工具，尽管定位为红队辅助，但低成本系统性越狱生产LLM的潜力值得关注，论文的责任披露机制需审视。</li><li>评估局限：攻击成功率由LLM裁判而非人工标注判定，可能高估实际违规率；在Claude 3、Gemini Ultra等更多安全微调模型上的结果将增强结论可信度。</li><li>审核提升方法细节不足：GAP提示改善内容审核的主张缺乏分类器架构、训练数据量等关键细节，GAP贡献与标准数据增强的区别未被量化。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Ethical dual-use tension: GAP is a powerful offensive tool, and while the authors frame it as a red-teaming aid, the same framework could be misused to systematically jailbreak production LLMs at low cost — the paper&#39;s responsible disclosure and access controls deserve scrutiny.</li><li>Evaluation scope: Attack success rate is measured by a judge LLM rather than human raters, which may overestimate true policy violations; results on a broader set of safety-tuned models (e.g., Claude 3, Gemini Ultra) would strengthen generalizability claims.</li><li>Moderation improvement methodology: The claim that GAP prompts improve content moderation is promising but underspecified — the paper does not detail the classifier architecture, training data size, or how much of the gain is attributable to GAP versus standard data augmentation baselines.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2501.18638" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出针对RAG系统的对抗性威胁分类框架，证明多语言提示操控（尤其是阿拉伯语-英语混码）可绕过仅针对英语的安全防御。</div>
+        <div class="paper-title-en">Adversarial and Multilingual Threats in Retrieval-Augmented Generation: From Prompt Injection to Model Exploitation</div>
+        <div class="paper-meta">
+          <span>Basma ElSaify, Mohamed Baderelden</span>
+          <span class="badge badge-date">2025-08-18</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出针对RAG系统的对抗性威胁分类框架，证明多语言提示操控（尤其是阿拉伯语-英语混码）可绕过仅针对英语的安全防御。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper presents a comprehensive adversarial threat taxonomy for RAG systems, demonstrating that multilingual prompt manipulation—especially Arabic-English code-switching—exposes critical security gaps missed by English-only defenses.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次系统性地覆盖RAG检索与生成两层的安全威胁，并针对多语言攻击提出实用防御参考，对企业级RAG部署具有直接指导价值。</div>
+            <div class="en">As RAG systems become production infrastructure for enterprise AI, this work is among the first to systematically map threats across both retrieval and generation layers, including agentic RAG pipelines. The multilingual attack angle is particularly novel and practically urgent, as most deployed safety filters are English-centric. Practitioners building RAG applications gain a concrete threat checklist and researchers gain a structured taxonomy to benchmark future defenses.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">RAG系统将攻击面从生成层扩展至检索管道和语言接口，现有研究未能全面建模这些威胁。本文重点探讨多语言混码输入如何绕过现有安全机制，对高风险部署场景至关重要。</div>
+            <div class="en">RAG systems introduce a fundamentally expanded attack surface compared to standalone LLMs, as adversaries can compromise the retrieval pipeline, inject malicious content into knowledge bases, or exploit language interfaces. The paper asks: what is the full spectrum of adversarial threats specific to RAG, and how do multilingual inputs—particularly code-switching between Arabic and English—undermine existing defenses? This matters because RAG is now widely deployed in high-stakes domains where security failures carry real consequences.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有研究主要聚焦英语单语提示注入与越狱攻击，对RAG检索层及智能体配置的威胁建模不足，多语言混码攻击几乎未被系统研究。</div>
+            <div class="en">Prior adversarial work on LLMs focuses primarily on English-language prompt injection and jailbreaks, leaving retrieval-specific attack vectors underexplored. Existing RAG security analyses rarely address agentic configurations where the LLM autonomously executes multi-step tasks, multiplying the potential blast radius of a successful attack. Multilingual vulnerability research is sparse, and code-switching attacks—where adversaries blend languages mid-prompt—have received almost no systematic treatment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">本文构建涵盖提示注入、越狱利用、API模型提取和多语言操控四类的威胁分类体系，并扩展至智能体RAG场景，针对每类威胁提供具体攻击演示，框架可适用于主流RAG系统。</div>
+            <div class="en">The authors construct a structured threat taxonomy covering four major attack classes: prompt injection (both direct and indirect via poisoned documents), jailbreak exploits targeting RAG-specific system prompts, API-driven model extraction attacks, and multilingual prompt manipulation including Arabic-English code-switching. They extend the taxonomy to agentic RAG, where an LLM plans and executes multi-step tool calls, showing that each autonomous action step compounds attack surface. Practical attack demonstrations are provided for each category, grounding the taxonomy in concrete, reproducible scenarios. The framework is designed to be system-agnostic and applicable across commercial and open-source RAG deployments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明阿拉伯语-英语混码提示可有效绕过仅拦截英语攻击的安全过滤器；智能体RAG中单条注入指令可级联影响多步工具调用；API模型提取攻击在低查询预算下即可成功。</div>
+            <div class="en">The paper demonstrates empirically that Arabic-English code-switching prompts successfully bypass safety filters that correctly block equivalent English-only adversarial inputs, confirming a concrete and exploitable vulnerability gap. Agentic RAG systems are shown to be disproportionately vulnerable because a single injected instruction can cascade across multiple autonomous tool-use steps. API-based model extraction attacks are shown to be feasible against RAG-exposed endpoints with relatively low query budgets, raising practical IP and data-leakage concerns.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>多语言盲点的泛化性：论文聚焦阿拉伯语-英语混码，但同类漏洞可能存在于更多低资源语言对，需更广泛的跨语言基准测试。</li><li>智能体攻击放大效应：论文指出多步工具调用会放大攻击面，但未量化成功率与链长度的关系，缺乏形式化分析。</li><li>攻防不对称：论文侧重威胁建模，防御措施较为有限，建议为每类攻击配套经过评估的具体缓解方案（如多语言输入归一化、检索结果沙箱化）以提升实用性。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Multilingual blind spot scalability: The paper demonstrates Arabic-English code-switching attacks, but the same logic applies to any low-resource or morphologically complex language pair. Future work should benchmark defenses across a broader typological range of languages to assess how generalizable this vulnerability class truly is.</li><li>Agentic RAG threat amplification: In agentic settings, the authors note that attack surface grows with each autonomous step, but do not quantify this relationship. A formal model of how attack success probability scales with chain length and tool diversity would significantly strengthen the threat framework.</li><li>Defense-offense asymmetry: The paper is primarily offensive/taxonomic and offers limited concrete mitigation strategies beyond identifying the threats. Pairing each attack category with evaluated countermeasures—such as input normalization for multilingual inputs or retrieval-result sandboxing—would make this directly actionable for practitioners.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/8f899eda5a2d8df504d805dcf8d6e5dd9e15d68c" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">基于激活值引导的MCMC采样框架实现无梯度提示注入攻击，在五个主流LLM上达到49.6%的攻击成功率。</div>
+        <div class="paper-title-en">Transferable Direct Prompt Injection via Activation-Guided MCMC Sampling</div>
+        <div class="paper-meta">
+          <span>Minghui Li, Hao Zhang, Yechao Zhang et al.</span>
+          <span class="badge badge-date">2025-09-09</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>基于激活值引导的MCMC采样框架实现无梯度提示注入攻击，在五个主流LLM上达到49.6%的攻击成功率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A gradient-free, activation-guided MCMC framework for Direct Prompt Injection achieves 49.6% attack success rate with strong cross-model transferability across five mainstream LLMs.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了一种无需梯度访问的实用可迁移攻击路径，降低了现实世界对抗攻击的门槛，促使研究界重新审视LLM部署安全防护。激活值与攻击成功率的相关性发现也为攻防研究提供了新视角。</div>
+            <div class="en">This work exposes a practical, transferable attack vector against LLMs that requires no gradient access, lowering the bar for real-world adversarial exploitation. The 34.6% improvement over human-crafted prompts demonstrates that automated, black-box attacks can be highly effective, urging the community to rethink current LLM deployment safeguards. The interpretability findings linking internal activations to attack success also open new directions for both offense and defense research.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">直接提示注入攻击通过在用户输入中嵌入恶意指令操控LLM，威胁已部署AI系统的完整性。核心挑战是在无法访问模型权重或梯度的黑盒场景下，构造能跨模型有效迁移的对抗提示。</div>
+            <div class="en">Direct Prompt Injection (DPI) attacks manipulate LLMs by embedding malicious instructions into user inputs, threatening the integrity of deployed AI systems. The core challenge is crafting adversarial prompts that transfer effectively across different LLMs without requiring access to model weights or gradients. This matters because real-world attackers typically operate in a black-box setting, yet existing black-box methods suffer from poor cross-model transferability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">基于梯度的白盒/灰盒方法（如GCG）需访问模型内部，实际部署中不可行；现有黑盒方法依赖启发式搜索，跨模型迁移性差。两类方法均无法同时满足实用性与强迁移性的需求。</div>
+            <div class="en">White-box and gray-box DPI methods (e.g., GCG-based gradient optimization) require access to model internals, making them impractical in real deployments. Existing black-box methods rely on heuristic or random token search, yielding adversarial prompts with weak transferability across different model architectures and task settings. Neither category simultaneously satisfies the constraints of practicality and strong transferability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">首先利用白盒代理模型的激活值训练能量模型（EBM）对候选对抗提示打分，再以EBM能量值为引导，通过token级MCMC采样迭代替换token，实现无梯度优化。该框架将攻击与特定目标模型解耦，从而提升跨模型迁移性，并在五个主流LLM的已见与未见任务场景中进行了评估。</div>
+            <div class="en">The authors first train an Energy-based Model (EBM) using the internal activations of a white-box surrogate model to score the quality of candidate adversarial prompts. Guided by EBM energy scores, they apply token-level Markov Chain Monte Carlo (MCMC) sampling to iteratively propose and accept token substitutions, enabling gradient-free optimization. This decouples the attack from any specific target model, promoting transferability. The framework is evaluated on five mainstream LLMs (e.g., LLaMA, Vicuna, GPT variants) under both seen and unseen task scenarios.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">所提方法在五个主流LLM上平均攻击成功率为49.6%，比人工构造的对抗提示高出34.6%；在未见任务场景中仍保持36.6%的ASR，展现出良好的泛化性。可解释性分析证实代理模型激活值与目标模型攻击成功率存在可量化的相关性。</div>
+            <div class="en">The proposed method achieves a 49.6% average attack success rate (ASR) across five mainstream LLMs, outperforming human-crafted adversarial prompts by 34.6%. On unseen task scenarios, it maintains a 36.6% ASR, demonstrating robust generalization beyond the training distribution. Interpretability analysis further reveals a measurable correlation between surrogate model activations and the attack success rate on target models.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>代理模型依赖性：EBM基于特定代理模型的激活值训练，若代理模型与目标模型架构差异过大，性能可能下降，代理模型的选择是一个需系统研究的隐含超参数。</li><li>MCMC计算开销：token级MCMC对长提示的计算成本较高，论文未充分对比其与梯度方法的计算代价，影响实际采用的可行性评估。</li><li>防御启示：激活值与攻击成功率的相关性表明基于激活的异常检测是潜在防御方向，但论文未提出或评估具体的对抗防御措施。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Surrogate dependency: The EBM is trained on a specific surrogate model&#39;s activations, so performance may degrade if the surrogate is architecturally very distant from the target LLM — the choice of surrogate is a hidden hyperparameter that needs systematic study.</li><li>Scalability of MCMC: Token-level MCMC sampling can be computationally expensive for long prompts; the paper does not fully characterize the compute cost relative to gradient-based baselines, which matters for practical adoption.</li><li>Defense implications: The correlation between activations and ASR suggests that activation-based anomaly detectors could be a promising defense direction, but the paper stops short of proposing or evaluating concrete countermeasures.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2509.07617" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">2 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">VisionGuard通过挖掘运动状态的时空不一致性，检测并缓解自动驾驶车辆感知模块中的物理对抗样本攻击。</div>
+        <div class="paper-title-en">VisionGuard: Secure and Robust Visual Perception of Autonomous Vehicles in Practice</div>
+        <div class="paper-meta">
+          <span>Xingshuo Han, Haozhao Wang, Kangqiao Zhao et al.</span>
+          <span class="badge badge-date">2024-12-02</span>
+          <span class="badge badge-venue">CCS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>VisionGuard通过挖掘运动状态的时空不一致性，检测并缓解自动驾驶车辆感知模块中的物理对抗样本攻击。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">VisionGuard detects and mitigates physical adversarial attacks on autonomous vehicle perception by exploiting spatiotemporal inconsistency in motion states across camera and LiDAR inputs.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">物理对抗攻击对自动驾驶安全构成致命威胁，VisionGuard提供了一种无需重新设计底层DNN模型即可集成的通用防御方案，对学术界和工业界均具有重要价值。</div>
+            <div class="en">Physical adversarial attacks on AV perception are a life-critical threat, yet no prior defense handles diverse attack types across real-world scenarios. VisionGuard offers a practical, generalizable defense layer that can be integrated into existing AV pipelines without redesigning underlying DNN models.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">自动驾驶车辆如何在真实驾驶场景中可靠地检测并消除针对摄像头和LiDAR感知模型的多样化物理对抗样本？该问题直接关系到行人与乘客的生命安全。</div>
+            <div class="en">How can autonomous vehicles reliably detect and neutralize diverse physical adversarial examples (PAEs) — such as adversarial patches or 3D objects — that fool camera and LiDAR-based perception models in real driving conditions? This matters because PAEs can cause misdetection of obstacles or traffic signs, directly threatening passenger and public safety.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有防御方法（如对抗训练、输入预处理）通常针对特定攻击类型，难以泛化至不同PAE形式或传感器模态，且大多不适用于实时部署场景。</div>
+            <div class="en">Existing defenses such as adversarial training and input preprocessing are largely attack-specific and fail to generalize across different PAE types (e.g., patches vs. 3D-printed objects) or sensor modalities. Most methods also operate offline or assume white-box knowledge of the attacker, making them impractical for real-time AV deployment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">VisionGuard构建时空一致性校验框架，通过追踪目标历史运动状态并预测当前状态，将感知异常标记为对抗攻击。系统融合摄像头与LiDAR数据进行交叉验证，并在异常触发时对感知输出进行修正，整个过程与底层DNN模型无关。</div>
+            <div class="en">VisionGuard introduces a spatiotemporal consistency checking framework: it tracks historical motion states of surrounding objects and predicts expected current states, then flags discrepancies caused by adversarial manipulation as anomalies. The system fuses information from both camera and LiDAR to cross-validate perception outputs, reducing single-modality blind spots. Detected anomalies trigger mitigation strategies that suppress or correct the corrupted perception outputs before they influence driving decisions. This design is attack-agnostic and model-agnostic, requiring no modification to underlying DNN architectures.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">VisionGuard在摄像头与LiDAR两种模态下，对多种PAE攻击类型均展现出高检测率，同时保持低计算开销，并通过仿真与真实驾驶场景验证了其实际可用性。</div>
+            <div class="en">VisionGuard demonstrates high detection rates against multiple PAE attack types including adversarial patches and 3D adversarial objects across both camera and LiDAR modalities. The system maintains robust driving performance under attack while incurring minimal computational overhead suitable for real-time AV operation. Experiments span both simulated and physical driving scenarios, validating practical applicability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>时空建模假设的局限：该方法假设攻击者无法操控多帧历史数据；若攻击者逐帧缓慢引入扰动，一致性检测可能被绕过。</li><li>传感器融合依赖：交叉验证依赖摄像头与LiDAR同时可用且未受攻击，协同攻击两种模态的场景仍是潜在盲区。</li><li>防御层级局限：VisionGuard仅覆盖感知层，对规划层或LLM驱动决策层的攻击无能为力，难以作为全栈安全方案。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scope of spatiotemporal modeling: The approach assumes attackers cannot simultaneously manipulate multi-frame historical data; a sophisticated attacker who gradually introduces perturbations over time could potentially evade the consistency check.</li><li>Sensor fusion dependency: VisionGuard&#39;s cross-validation relies on both camera and LiDAR being available and uncorrupted simultaneously; attacks targeting both modalities in a coordinated fashion remain a potential gap.</li><li>Perception-layer vs. decision-layer defense: VisionGuard operates at the perception layer, but threats at the planning or LLM-driven decision layer of embodied AV systems are out of scope, limiting its completeness as a full-stack security solution.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/b2738838d92acb0ecc2cbccfc1e4904b54a09a95" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">提出基于梯度校准与去相关的物理对抗伪装框架，提升跨距离、多视角下对目标检测器的攻击效果。</div>
+        <div class="paper-title-en">Physical Adversarial Camouflage through Gradient Calibration and Regularization</div>
+        <div class="paper-meta">
+          <span>Jiawei Liang, Siyuan Liang, Jianjie Huang et al.</span>
+          <span class="badge badge-date">2025-08-07</span>
+          <span class="badge badge-venue">IJCAI</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>提出基于梯度校准与去相关的物理对抗伪装框架，提升跨距离、多视角下对目标检测器的攻击效果。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A new physical adversarial camouflage framework uses gradient calibration and decorrelation to improve texture-based attacks on object detectors across variable real-world conditions.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">该研究直接威胁自动驾驶等安全关键系统的感知层，系统性地解决了物理世界对抗攻击中的核心挑战，为后续防御研究提供了重要基准。</div>
+            <div class="en">This work directly threatens the perception layer of safety-critical systems like autonomous vehicles, where fooling object detectors with physical textures could have life-threatening consequences. The gradient calibration and decorrelation techniques offer a more systematic treatment of real-world physical constraints than prior art, setting a new benchmark for physical adversarial attacks. Security researchers and autonomous driving engineers need to be aware of these advances to build more robust defenses.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在真实环境中跨距离、多视角地可靠欺骗目标检测器？这对自动驾驶安全至关重要，因为物理纹理攻击无需数字入侵即可造成危险的漏检。</div>
+            <div class="en">How can physical adversarial camouflage reliably deceive deep object detectors across varying distances and viewing angles in real-world environments? This matters because autonomous driving systems rely heavily on visual object detectors, and a successful physical attack on texture appearance could cause dangerous misdetections without any digital intrusion.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法（如DAS、CAMOU、FCA）依赖可微渲染优化纹理，但存在远距离采样点稀疏导致梯度不一致，以及多视角梯度冲突导致优化不稳定的问题。</div>
+            <div class="en">Existing physical adversarial camouflage methods (e.g., DAS, CAMOU, FCA) optimize textures via differentiable rendering but suffer from inconsistent gradient signal quality across distances, as sampling point density drops sharply for far-away objects. Multi-angle texture updates also produce conflicting gradients, destabilizing optimization and weakening attack transferability to new viewpoints.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">提出梯度校准策略，将稀疏采样点的梯度传播至未采样邻域，保证跨距离一致性；并设计梯度去相关方法，对多视角梯度去冲突加权，形成统一的物理对抗伪装优化框架。</div>
+            <div class="en">The paper proposes two complementary modules. First, a gradient calibration strategy propagates gradients from sparsely sampled texture regions to unsampled neighbors, ensuring spatially consistent gradient updates regardless of object distance and expanding the effective attack range. Second, a gradient decorrelation method re-weights and de-conflicts gradient updates from multiple viewpoints, prioritizing angles that contribute most constructively to the overall attack objective. Together, these modules form a unified adversarial camouflage optimization framework targeting multi-view, multi-distance physical deployment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">与DAS、FCA等基线相比，所提框架在多种检测器上数字与物理实验中均取得更高攻击成功率，梯度校准改善远距攻击效果，去相关方法提升多视角迁移性。</div>
+            <div class="en">The proposed framework achieves superior attack success rates compared to prior physical camouflage methods across multiple object detectors (including YOLO-series and Faster R-CNN) in both digital simulations and physical-world experiments. Gradient calibration specifically improves attack effectiveness at longer ranges, while decorrelation yields more stable convergence and higher transferability across unseen viewpoints. Exact numeric improvements are not fully disclosed in the abstract but are benchmarked against state-of-the-art baselines.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>攻击泛化性存疑：方法在刚性车辆纹理上验证，但真实场景中动态光照、遮挡等因素对梯度校准效果的影响尚未充分评估。</li><li>缺乏防御视角：论文仅关注攻击有效性，未探讨对应防御手段，如对抗训练或输入预处理能否抵御此类攻击。</li><li>多模态系统局限：现代自动驾驶融合激光雷达与摄像头，仅针对RGB检测器的伪装攻击可能被传感器融合机制所中和，实际威胁有限。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scope of threat model: The attack targets texture-level camouflage on rigid 3D objects (e.g., vehicles), but real autonomous driving scenes involve dynamic lighting, occlusion, and deformable objects — it remains unclear how robust the method is under these uncontrolled conditions.</li><li>Defense gap: The paper focuses entirely on attack effectiveness; it does not propose or evaluate any countermeasures, leaving open the question of what detection or preprocessing defenses could mitigate gradient-calibrated physical camouflage.</li><li>Embodied AI relevance: While the attack targets perception, modern autonomous systems increasingly use multi-modal pipelines (LiDAR + camera, LLM-based planners); adversarial camouflage that fools only the RGB detector may be neutralized by sensor fusion, limiting real-world impact.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2508.05414" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文系统综述了基于大语言模型的多智能体（LLM-MA）系统，涵盖其应用领域、智能体建模、通信策略与技能获取方法。</div>
+        <div class="paper-title-en">Large Language Model based Multi-Agents: A Survey of Progress and Challenges</div>
+        <div class="paper-meta">
+          <span>Taicheng Guo, Xiuying Chen, Yaqi Wang et al.</span>
+          <span class="badge badge-date">2024-01-21</span>
+          <span class="badge badge-venue">IJCAI</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文系统综述了基于大语言模型的多智能体（LLM-MA）系统，涵盖其应用领域、智能体建模、通信策略与技能获取方法。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A comprehensive survey mapping the landscape of LLM-based multi-agent (LLM-MA) systems, covering their domains, agent profiling, communication strategies, and skill acquisition methods.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着AI系统从单智能体向协作式多智能体架构演进，本综述为研究者提供了及时且系统的参考框架，有助于降低入门门槛并指导实际部署中的系统设计。</div>
+            <div class="en">As AI systems move from single-agent pipelines to collaborative multi-agent architectures, this survey provides a timely and structured reference for researchers navigating a rapidly evolving field. It consolidates fragmented literature into a unified framework, lowering the entry barrier for new researchers and helping practitioners identify gaps and design principles for real-world deployment.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何将基于LLM的智能体有效组织为多智能体系统，以应对单智能体无法胜任的复杂任务？这对软件工程、科学发现和社会模拟等现实问题尤为重要。</div>
+            <div class="en">How can LLM-based agents be effectively organized into multi-agent systems to tackle complex tasks that exceed the capability of a single agent? This matters because real-world problems—such as software engineering, scientific discovery, and social simulation—require collaborative reasoning, role specialization, and dynamic communication that single-agent systems cannot adequately provide.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">早期工作主要聚焦于单智能体框架（如ReAct、思维链），难以处理需要并行推理或多角色协作的任务。现有多智能体系统（如AutoGen、MetaGPT）缺乏统一的分类框架，难以系统比较其架构与通信机制。</div>
+            <div class="en">Prior work on LLM agents focused predominantly on single-agent frameworks (e.g., ReAct, Chain-of-Thought), which struggle with tasks requiring parallelism, diverse expertise, or iterative peer feedback. Early multi-agent systems (e.g., AutoGen, MetaGPT) emerged but lacked unified taxonomies for comparing architectures, communication topologies, and agent skill development strategies.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">本文从四个维度构建LLM-MA系统的分类体系：应用领域与仿真环境、智能体建模方法（提示/微调/数据驱动）、智能体间通信拓扑结构（分层/去中心化/中心化），以及技能获取机制（记忆检索、自我优化、反馈学习）。同时整理了常用基准数据集以支持可复现研究。</div>
+            <div class="en">The survey proposes a structured taxonomy of LLM-MA systems along four axes: (1) application domains and simulation environments (e.g., software dev, science, gaming, society); (2) agent profiling methods (role assignment via prompts, fine-tuning, or dataset curation); (3) inter-agent communication patterns (layered, decentralized, or centralized topologies, using natural language or structured messages); and (4) skill acquisition mechanisms including memory retrieval, self-refinement, and learning from feedback. The authors also catalog commonly used benchmarks and datasets to support reproducibility and future research.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">综述发现，LLM-MA系统在代码生成（如ChatDev、MetaGPT）和科学推理等复杂任务上持续优于单智能体基线。角色专业化提升任务分解效果，智能体间辩论迭代提高答案质量，层级通信结构相比全连接方式显著降低token开销。</div>
+            <div class="en">The survey identifies that LLM-MA systems consistently outperform single-agent baselines on complex, multi-step tasks such as code generation (e.g., ChatDev, MetaGPT) and scientific reasoning. Key empirical patterns include: role specialization improves task decomposition, iterative inter-agent debate enhances answer quality, and hierarchical communication reduces token overhead compared to all-to-all messaging.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>随智能体数量增加，通信成本与错误传播呈非线性增长，但鲜有研究对此进行量化分析或提出可扩展的协调策略。</li><li>基于提示的角色分配灵活但脆弱，LLM在模糊指令下易偏离预设角色，且目前缺乏标准化的角色遵从度评估方法。</li><li>现有评估主要依赖合成基准（如编程竞赛、问答数据集），在科学实验室或企业工作流等开放环境中的真实部署仍严重缺乏研究与基准测试。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Coordination overhead is a critical bottleneck: as agent count grows, communication costs and error propagation increase non-linearly, yet few works formally quantify this trade-off or propose scalable orchestration strategies.</li><li>Agent profiling via prompt-based role assignment is flexible but fragile—LLMs can deviate from assigned roles under ambiguous instructions, and there is no standardized evaluation for role-adherence fidelity across benchmarks.</li><li>Most LLM-MA evaluations rely on narrow, synthetic benchmarks (e.g., coding contests, QA datasets); real-world deployment in open-ended environments like scientific labs or enterprise workflows remains largely unexplored and under-benchmarked.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2402.01680" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出首个面向零样本异常检测与推理的多模态大语言模型专家系统Anomaly-OV，并配套构建了125k指令微调数据集与评测基准。</div>
+        <div class="paper-title-en">Towards Zero-Shot Anomaly Detection and Reasoning with Multimodal Large Language Models</div>
+        <div class="paper-meta">
+          <span>Jiacong Xu, Shao-Yuan Lo, Bardia Safaei et al.</span>
+          <span class="badge badge-date">2025-02-11</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出首个面向零样本异常检测与推理的多模态大语言模型专家系统Anomaly-OV，并配套构建了125k指令微调数据集与评测基准。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Anomaly-OneVision (Anomaly-OV) is the first MLLM-based specialist for zero-shot anomaly detection and reasoning, supported by a new 125k instruction-tuning dataset and a dedicated evaluation benchmark.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文填补了多模态大模型在异常检测推理领域的数据与基准空白，对工业质检、医疗影像等数据受限场景具有重要实用价值。</div>
+            <div class="en">This paper fills a critical gap by providing the first instruction-tuning dataset and benchmark specifically designed for anomaly detection reasoning with MLLMs, enabling systematic evaluation of models like GPT-4o on fine-grained defect understanding. The proposed Anomaly-OV system could directly benefit quality inspection in manufacturing, medical imaging, and other data-restricted industrial settings where collecting large normal-sample datasets is impractical.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">零样本异常检测无需大量正常样本，更贴近实际应用需求。现有多模态大模型虽具备强大推理能力，但在细粒度异常识别与描述上的潜力尚未被系统探索，亟需专用数据与评测体系。</div>
+            <div class="en">Zero-Shot Anomaly Detection (ZSAD) is critical for real-world scenarios where large collections of normal training samples are unavailable. While MLLMs have shown strong vision-language reasoning, their ability to detect and describe fine-grained image anomalies remains largely uncharted. This paper asks: can MLLMs be adapted into reliable zero-shot anomaly detectors and reasoners, and how should they be evaluated?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">传统无监督异常检测依赖大量正常样本，难以适应数据受限场景。GPT-4o等通用多模态大模型缺乏对细微缺陷的敏感性，且此前既无专用指令微调数据集，也无针对异常推理的评测基准。</div>
+            <div class="en">Traditional unsupervised anomaly detection methods rely on large sets of normal samples to model normality, making them impractical in data-restricted settings. Existing MLLMs such as GPT-4o are general-purpose and lack the fine-grained sensitivity required to detect subtle visual defects. No dedicated instruction-tuning dataset or benchmark existed to train or evaluate MLLMs specifically for anomaly detection and reasoning tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">本文构建了含12.5万样本的Anomaly-Instruct-125k指令微调数据集和VisA-D&amp;R评测基准，并提出专家模型Anomaly-OV。该模型受人类视觉检查行为启发，能同时完成零样本异常定位与自然语言推理描述。</div>
+            <div class="en">The authors construct Anomaly-Instruct-125k, the first visual instruction-tuning dataset for anomaly detection containing 125,000 samples, and VisA-D&amp;R, a benchmark for evaluating both anomaly detection and reasoning. They propose Anomaly-OneVision (Anomaly-OV), a specialist MLLM fine-tuned for ZSAD, inspired by human visual inspection behavior. The model is designed to not only localize anomalies but also generate natural language descriptions of detected defects, enabling interpretable anomaly reasoning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明GPT-4o在细粒度异常检测与描述上表现不足，而经过Anomaly-Instruct-125k微调的Anomaly-OV在VisA-D&amp;R基准上显著优于现有多模态大模型，验证了领域专用指令微调的有效性。</div>
+            <div class="en">Benchmark experiments reveal that GPT-4o fails to accurately detect and describe fine-grained anomalous details, confirming that general MLLMs are insufficient for this task. Anomaly-OV, trained on Anomaly-Instruct-125k, achieves superior zero-shot anomaly detection and reasoning performance compared to existing MLLMs on the VisA-D&amp;R benchmark. Specific quantitative margins are not available from the provided abstract, but the gains are attributed to domain-specific instruction tuning and the human-inspection-inspired model design.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>数据质量风险：Anomaly-Instruct-125k的标注方式（自动化或人工）直接影响模型泛化能力，低质量标签可能引入噪声。</li><li>领域泛化局限：基准测试基于工业质检数据集VisA，模型在医疗影像或监控等异常域的迁移能力尚不明确。</li><li>推理幻觉问题：模型生成异常描述时存在产生听起来合理但不准确内容的风险，需针对性评估。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Dataset quality and diversity: Anomaly-Instruct-125k&#39;s construction methodology (e.g., automated annotation vs. human labeling) is critical — synthetic or low-quality labels could introduce noise that limits the model&#39;s real-world generalizability.</li><li>Generalization scope: The benchmark is built on VisA, a industrial inspection dataset; it is unclear how well Anomaly-OV transfers to other anomaly domains such as medical imaging or surveillance, which have very different defect characteristics.</li><li>Reasoning faithfulness: Generating natural language descriptions of anomalies raises the risk of hallucination — the model may produce plausible-sounding but inaccurate defect descriptions, an issue common to MLLMs that needs targeted evaluation.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.07601" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">CPath-Omni是首个统一切片级与全切片图像分析的150亿参数多模态模型，在42个基准中的39个上达到最优性能。</div>
+        <div class="paper-title-en">CPath-Omni: A Unified Multimodal Foundation Model for Patch and Whole Slide Image Analysis in Computational Pathology</div>
+        <div class="paper-meta">
+          <span>Yuxuan Sun, Yixuan Si, Chenglu Zhu et al.</span>
+          <span class="badge badge-date">2024-12-16</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>CPath-Omni是首个统一切片级与全切片图像分析的150亿参数多模态模型，在42个基准中的39个上达到最优性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">CPath-Omni is the first 15B-parameter multimodal model that unifies patch-level and whole-slide image analysis across seven pathology tasks, achieving state-of-the-art on 39 of 42 benchmarks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">CPath-Omni消除了分别训练切片级和全切片模型的冗余，实现跨层级知识共享。其在39/42数据集上的领先表现表明它可作为计算病理学的通用骨干模型。配套的CPath-CLIP视觉处理器首次融合多种视觉模型与大语言模型，为病理视觉编码树立新标准。</div>
+            <div class="en">CPath-Omni eliminates the need for separate patch-level and WSI-level models, reducing redundancy and enabling cross-level knowledge sharing in a single foundation model. Its strong performance across 39/42 datasets suggests it can serve as a general-purpose backbone for diverse computational pathology workflows. The accompanying CPath-CLIP visual processor also sets a new standard for vision encoding in pathology by combining multiple vision models with a large language model.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">计算病理学需要在切片级和全切片图像两个尺度上进行分析，传统方法分别训练独立模型，导致知识无法跨尺度迁移，训练流程冗余，限制了临床和研究中的实际部署。</div>
+            <div class="en">Computational pathology requires analysis at two distinct scales — small image patches and gigapixel whole-slide images (WSIs) — which have traditionally been handled by separate, task-specific models. This fragmentation prevents knowledge transfer between scales and leads to redundant training pipelines, limiting practical deployment in clinical or research settings.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">CONCH、PLIP等切片级模型与WSI级模型独立训练，形成信息孤岛，无法跨尺度互补。针对分类、VQA、描述生成和视觉指代等任务的专用模型进一步加剧冗余。此前无模型尝试将两种图像尺度与多种任务统一于单一架构。</div>
+            <div class="en">Prior pathology LMMs such as patch-level models (e.g., CONCH, PLIP) and WSI-level models are trained independently, creating siloed systems that cannot leverage complementary information across scales. Task-specific models further compound redundancy, requiring separate fine-tuning for classification, VQA, captioning, and visual referring. No previous model has attempted to consolidate all these tasks and both image scales into a single unified architecture.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">CPath-Omni是150亿参数的多模态模型，联合处理切片级和WSI级输入，覆盖分类、VQA、描述生成和视觉指代等任务。核心贡献CPath-CLIP首次融合多种异构视觉编码器与大语言模型，生成更丰富的视觉表征。统一训练策略使模型跨图像尺度共享表征与推理能力，无需任务专用变体。</div>
+            <div class="en">CPath-Omni is a 15B-parameter large multimodal model built to jointly handle patch and WSI inputs across tasks including classification, visual question answering, captioning, and visual referring prompting. A key contribution is CPath-CLIP, a specialized pathology CLIP-based visual processor that, for the first time, integrates multiple heterogeneous vision encoders and incorporates a large language model to produce richer visual representations. The unified training strategy allows the model to share representations and reasoning across both image scales without task-specific model variants. Together, these components form an end-to-end pipeline covering the full spectrum of computational pathology analysis tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">CPath-Omni在涵盖七类任务的42个数据集中，39个上达到最优，超越或匹配各任务专用模型。该结果在切片级和WSI级基准上均成立，体现出强跨尺度泛化能力。具体性能差距在摘要中未完全披露，但39/42的覆盖面证明了一致性提升。</div>
+            <div class="en">CPath-Omni achieves state-of-the-art performance on 39 out of 42 evaluated datasets spanning seven diverse tasks, outperforming or matching task-specific models despite being a single generalist model. This result holds across both patch-level and WSI-level benchmarks, demonstrating robust cross-scale generalization. Specific numerical margins over prior SOTA are not fully disclosed in the abstract but the breadth of coverage (39/42 datasets) underscores consistent gains.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>CPath-Omni处理全切片图像的具体机制（如分辨率与内存管理）在摘要中未披露，这是实际部署的关键工程挑战。</li><li>在3个未达最优的数据集上，任务专用微调可能仍有优势，值得深入分析泛化与专用化之间的权衡边界。</li><li>CPath-CLIP的多编码器融合策略新颖，但推理时的计算开销及其相对于单一强编码器（如CONCH）的性价比仍需评估。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability to gigapixel WSIs is non-trivial: the paper&#39;s abstract does not detail how the 15B model handles the extreme resolution and memory demands of WSI inputs, which is a critical engineering challenge for real-world deployment.</li><li>Generalization vs. specialization trade-off: while CPath-Omni matches task-specific models on 39/42 datasets, the 3 datasets where it falls short may reveal edge cases where task-specific fine-tuning remains necessary, warranting further analysis.</li><li>CPath-CLIP&#39;s multi-encoder fusion strategy is novel but raises questions about computational cost at inference time and whether the gains in visual representation quality justify the added complexity compared to a single strong encoder like CONCH.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2412.12077" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ReinboT将离线强化学习融入视觉-语言-动作模型，通过预测密集回报实现对混合质量数据的鲁棒机器人操控。</div>
+        <div class="paper-title-en">ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning</div>
+        <div class="paper-meta">
+          <span>Hongyin Zhang, Zifeng Zhuang, Han Zhao et al.</span>
+          <span class="badge badge-date">2025-05-12</span>
+          <span class="badge badge-venue">ICML</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ReinboT将离线强化学习融入视觉-语言-动作模型，通过预测密集回报实现对混合质量数据的鲁棒机器人操控。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ReinboT integrates offline reinforcement learning into a Vision-Language-Action model by predicting dense returns, enabling robust robotic manipulation even from mixed-quality demonstration data.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">ReinboT解决了机器人学习中的核心瓶颈——对高质量示范数据的依赖。其在混合质量数据上的有效学习能力降低了实际部署门槛，少样本与分布外泛化结果表明其具有广泛的实用价值。</div>
+            <div class="en">ReinboT addresses a critical bottleneck in robot learning: the dependence on high-quality demonstration data, which is expensive and difficult to collect at scale. By enabling effective learning from mixed-quality datasets, this work lowers the barrier to deploying capable robot manipulation policies in real-world settings. The strong few-shot and out-of-distribution results suggest broad practical utility beyond controlled benchmarks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何使机器人操控策略在训练数据质量参差不齐时仍保持鲁棒性？大规模收集高质量示范数据成本高昂，使标准模仿学习模型易受噪声或次优数据影响。</div>
+            <div class="en">How can robotic manipulation policies be made robust when training data varies widely in quality? This matters because collecting large-scale, consistently high-quality robot demonstrations is costly and often impractical, leaving standard imitation learning models vulnerable to noisy or suboptimal data.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型（如RT-2、OpenVLA）依赖模仿学习，对所有样本等权处理，易受次优示范影响。已有离线RL方法通常基于低维状态表示，缺乏多模态语言理解能力，无法支持通用的指令跟随操控任务。</div>
+            <div class="en">Existing VLA models such as RT-2 and OpenVLA rely on imitation learning, which treats all training samples equally regardless of quality, making them sensitive to suboptimal or noisy demonstrations. Prior offline RL methods for robotics often operate on low-level state representations and lack the multimodal language-grounding needed for generalizable, instruction-following manipulation. No prior work has tightly integrated dense return prediction with a GPT-style VLA backbone for end-to-end robot control.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ReinboT基于GPT架构的VLA主干，引入密集回报预测作为辅助训练目标，使模型显式学习训练轨迹的质量分布。动作生成以预测的累积奖励为条件，引导决策朝高价值结果优化，全程无需在线环境交互，实现端到端离线强化学习。</div>
+            <div class="en">ReinboT builds on a GPT-style VLA backbone and introduces dense return prediction as an auxiliary training objective, allowing the model to explicitly learn the quality distribution of training trajectories. Rather than treating all demonstrations equally, the model conditions action generation on predicted cumulative rewards, steering decisions toward higher-value outcomes. This offline RL principle is applied end-to-end without requiring an online environment, using the CALVIN benchmark&#39;s mixed-quality dataset for training. The result is a unified model that jointly performs language-conditioned visual understanding and reward-aware action generation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">ReinboT在CALVIN混合质量基准上达到最优性能，优于已有VLA和离线RL基线。在少样本学习和分布外泛化测试中同样表现出显著优势，多步任务完成率验证了方法的一致性提升。</div>
+            <div class="en">ReinboT achieves state-of-the-art performance on the CALVIN mixed-quality benchmark, outperforming prior VLA and offline RL baselines. The model also demonstrates superior few-shot learning, adapting to new tasks with minimal additional data, and strong out-of-distribution generalization to unseen environments and instructions. Specific task success rates and chain-of-task completion numbers on CALVIN confirm consistent improvements over competing methods.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>密集回报预测是核心创新：显式建模轨迹质量，避免了模仿学习被低质量示范拉低性能的常见问题。</li><li>离线RL设计无需在线交互，具备实际部署可行性，但奖励标注方案的设计难度可能成为扩展至新领域的瓶颈。</li><li>少样本与分布外泛化结果令人鼓舞，但评估主要在仿真环境CALVIN上进行，在真实机器人硬件上的验证是确认实际价值的关键下一步。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Dense return prediction is a key differentiator: by explicitly modeling trajectory quality rather than implicitly learning from all data equally, ReinboT avoids the common pitfall of imitation learning being dragged down by low-quality demonstrations.</li><li>The offline RL integration is practical for real-world deployment since it avoids costly online environment interactions, but it remains unclear how sensitive ReinboT is to the reward labeling scheme — manual or automated reward assignment could be a significant bottleneck when scaling to new domains.</li><li>While few-shot and OOD results are promising, the paper&#39;s evaluation is primarily on CALVIN, a simulated benchmark; validating ReinboT on physical robot hardware with naturally noisy data would be the critical next step to confirm real-world impact.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.07395" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">UpViTaL通过自监督学习从低成本非配对视觉与触觉数据中提取表征，使灵巧机器人操作无需在部署阶段使用触觉传感器。</div>
+        <div class="paper-title-en">UpViTaL: Unpaired Visual-Tactile Self-Supervised Representation Learning for Dexterous Robotic Manipulation</div>
+        <div class="paper-meta">
+          <span>Guwen Han, Qingtao Liu, Yu Cui et al.</span>
+          <span class="badge badge-date">2025-05-19</span>
+          <span class="badge badge-venue">ICRA</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>UpViTaL通过自监督学习从低成本非配对视觉与触觉数据中提取表征，使灵巧机器人操作无需在部署阶段使用触觉传感器。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">UpViTaL enables dexterous robot manipulation by learning from cheap, unpaired visual and tactile data via self-supervised methods, eliminating the need for tactile sensors during deployment.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">UpViTaL将视觉与触觉数据采集解耦，大幅降低了多模态灵巧操作的数据与硬件门槛。推理阶段无需触觉传感器，显著提升了真实部署的实用性与经济性，契合具身智能领域对可扩展、低传感器依赖操作策略的发展趋势。</div>
+            <div class="en">UpViTaL dramatically lowers the data collection and hardware barrier for multi-modal dexterous manipulation by decoupling visual and tactile data acquisition. By removing the need for tactile sensors at inference time, it makes sim-to-real and real-world deployment significantly more practical and cost-effective. This work aligns with the broader embodied AI push toward scalable, sensor-agnostic manipulation policies.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">灵巧机器人操作同时依赖视觉与触觉信息，但现有方法需同步采集配对数据，成本高且难以实施。本文探究：能否从非配对的视觉与触觉数据中学习有效的操作策略，并在部署时完全不依赖触觉传感器？</div>
+            <div class="en">Dexterous robotic manipulation benefits from both visual and tactile sensing, but current methods require synchronized paired collection of both modalities, which is costly and logistically difficult. This paper asks: can a robot learn effective manipulation policies from unpaired visual and tactile data, and operate without any tactile sensor at deployment?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有视触觉预训练方法（如跨模态对比学习）需要时间同步的配对数据，严重限制了数据集规模与多样性。此外，多数基于强化学习的灵巧手系统在物理部署中仍依赖触觉传感器作为实时输入，增加了硬件成本与系统脆弱性，难以规模化应用于真实操作任务。</div>
+            <div class="en">Existing visual-tactile pretraining methods (e.g., contrastive cross-modal learning) require temporally synchronized paired data from both modalities, severely limiting dataset scale and diversity. Additionally, most RL-based dexterous hand systems rely on tactile sensors as live input during physical deployment, increasing hardware cost and fragility. These constraints make scaling to real-world dexterous manipulation tasks challenging.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">UpViTaL包含两个并行自监督模块：时序触觉模块从触觉手套的时间序列数据中学习操作动态表征；视觉模块独立从相机观测中学习。两路在非配对数据集上分别训练，再通过跨模态表征对齐策略弥合视触觉表征差距，无需配对样本。部署时仅使用视觉编码器，彻底移除强化学习策略环中的触觉硬件依赖。</div>
+            <div class="en">UpViTaL introduces two parallel self-supervised modules: a temporal tactile module that learns representations from time-series tactile glove data capturing manipulation dynamics, and a visual module that independently learns from camera observations. These two streams are trained separately on unpaired datasets and then aligned via a cross-modal representation alignment strategy to bridge the visual-tactile gap without requiring paired samples. At deployment, only the visual encoder is used, completely removing the need for tactile hardware in the RL policy loop.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">UpViTaL在三项灵巧机器人操作任务上进行评估，相较依赖配对视触觉数据或单模态预训练的基线方法，表现出更优性能。该方法仅使用非配对数据且测试阶段无触觉传感器，仍取得具有竞争力的任务成功率（摘要中未提供具体数值）。</div>
+            <div class="en">UpViTaL is evaluated on three dexterous robot manipulation tasks using a robotic dexterous hand, demonstrating superior performance over baselines that rely on paired visual-tactile data or single-modality pretraining. The method achieves competitive task success rates while using only unpaired data and zero tactile sensors at test time, though exact numerical results from the full paper are not available in the abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>数据可扩展性：接受非配对数据使UpViTaL能利用大规模互联网或人类演示数据集（如触觉手套录像与独立机器人视频），无需昂贵的同步采集设备。</li><li>部署实用性与表征保真度的权衡：测试阶段移除触觉输入简化了硬件，但视觉编码器能否单独捕捉精细接触状态（如手内物体重定向所需的关键信息）仍存疑。</li><li>任务多样性的泛化能力：方法仅在三项操作任务上验证，需在更多形状各异的物体、柔性物体或富含接触的装配任务上评估，以证实非配对对齐策略的普适性。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Data scalability: By accepting unpaired data, UpViTaL opens the door to leveraging large-scale internet or human demonstration datasets (e.g., tactile glove recordings and separate robot video) without needing expensive synchronized collection rigs.</li><li>Deployment practicality vs. representation fidelity trade-off: Removing tactile input at test time simplifies hardware but raises the question of whether the visual encoder alone can capture fine-grained contact states critical for high-precision tasks like in-hand object reorientation.</li><li>Generalization across task diversity: The method is validated on only three manipulation tasks; broader evaluation across diverse object geometries, deformable objects, or contact-rich assembly tasks is needed to confirm the generality of the unpaired alignment strategy.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/a284e0a938335d1514a8e8837e5a2fa9bac21327" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">WoCoCo将含序列接触的人形机器人任务分解为接触阶段，以统一强化学习框架实现鲁棒的仿真到现实迁移，且仅需极少任务特定调参。</div>
+        <div class="paper-title-en">WoCoCo: Learning Whole-Body Humanoid Control with Sequential Contacts</div>
+        <div class="paper-meta">
+          <span>Chong Zhang, Wenli Xiao, Tairan He et al.</span>
+          <span class="badge badge-date">2024-06-10</span>
+          <span class="badge badge-venue">CoRL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>WoCoCo将含序列接触的人形机器人任务分解为接触阶段，以统一强化学习框架实现鲁棒的仿真到现实迁移，且仅需极少任务特定调参。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">WoCoCo decomposes sequential-contact humanoid tasks into contact stages, enabling a unified RL framework that achieves robust sim-to-real transfer with minimal task-specific tuning.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">WoCoCo为人形机器人全身序列接触控制提供了通用可扩展方案，无需昂贵的模型规划或大量任务特定工程设计，降低了复杂场景部署门槛，为接触密集型技能学习提供了可复用的框架模板。</div>
+            <div class="en">WoCoCo offers a general and scalable solution to one of humanoid robotics&#39; hardest open problems—coordinating whole-body motion through contact sequences—without expensive model-based planning or heavy per-task engineering. Its task-agnostic reward and sim-to-real design could lower the barrier for deploying humanoids in complex manipulation and locomotion scenarios. This work advances the embodied intelligence frontier and provides a reusable template for future contact-rich humanoid skill learning.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何让人形机器人在不依赖缓慢的模型规划或大量逐任务调参的情况下，学习需要全身协调序列接触的技能（如攀爬、穿越狭窄空间）？这对在非结构化真实环境中运作的人形机器人至关重要。</div>
+            <div class="en">How can a humanoid robot learn to perform tasks requiring coordinated sequences of whole-body contacts—such as climbing, crawling through gaps, or object manipulation—without relying on slow model-based planners or exhaustive per-task RL tuning? This problem matters because contact-rich activities are essential for humanoids operating in unstructured real-world environments, yet remain extremely challenging for both classical and learning-based controllers.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">模型规划计算耗时且依赖简化动力学模型；现有无模型RL需大量任务特定奖励设计和状态机，且在稀疏接触转换的长程探索中表现欠佳，两类方法均难以跨任务泛化。</div>
+            <div class="en">Model-based motion planning for contact sequences is computationally expensive and depends on simplified dynamics models that poorly reflect real-world contact physics. Existing model-free RL approaches require extensive task-specific reward shaping, hand-crafted state machines, and struggle with long-horizon exploration when contact transitions are sparse. Neither paradigm generalizes well across diverse contact-rich tasks without significant re-engineering.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">WoCoCo将序列接触任务分解为以接触事件为锚点的有序子阶段，提供任务无关的策略学习流程，每个任务只需指定一到两个任务相关奖励项。阶段结构作为自然课程引导跨接触转换的探索，并通过统一的域随机化实现仿真到现实迁移。</div>
+            <div class="en">WoCoCo introduces a contact-stage decomposition that breaks any sequential-contact task into ordered sub-phases, each anchored by a specific contact event. This decomposition enables a task-agnostic policy learning pipeline where only one or two task-specific reward terms need to be specified per task, while all other reward components and sim-to-real designs are shared. The framework leverages whole-body RL with the stage structure acting as a natural curriculum, guiding exploration across contact transitions. Sim-to-real transfer is achieved through domain randomization and robust reward designs applied uniformly across stages.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">WoCoCo在真实人形机器人上成功完成箱体攀爬、低间隙爬行、两阶段推物等多项挑战性全身接触任务，每任务仅需一至两个奖励项，相比非分解RL基线显著提升了探索效率和任务成功率。</div>
+            <div class="en">WoCoCo successfully learns and transfers multiple challenging whole-body contact tasks to a real humanoid robot, including box climbing, crawling through low gaps, and two-stage object pushing, demonstrating robust real-world performance. The framework requires specifying only one or two task-related reward terms per task, significantly reducing engineering effort compared to prior RL baselines. Experiments show improved exploration efficiency and success rates over non-decomposed RL approaches on long-horizon contact-sequence tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>接触阶段分解本质上是隐式课程，但阶段定义仍依赖人工任务知识，自动化阶段发现将进一步降低工程成本。</li><li>接触丰富任务的仿真到现实差距仍是核心挑战，域随机化难以完全覆盖真实接触动力学（如摩擦、形变），随机化范围外的场景性能有待验证。</li><li>实验仅在单一人形平台上进行，框架对不同形态、驱动特性或自由度的机器人的泛化能力尚不明确，这对社区广泛采用至关重要。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Contact-stage decomposition acts as an implicit curriculum, but the correctness of stage definitions still requires human knowledge about task structure—automating stage discovery from demonstrations or task descriptions would further reduce engineering overhead.</li><li>The sim-to-real gap for contact-rich tasks remains a core challenge; WoCoCo addresses it with domain randomization, but contact dynamics (e.g., friction, deformation) are notoriously hard to model, and performance on surfaces not covered by randomization ranges is unclear.</li><li>WoCoCo is evaluated on a fixed humanoid platform; it is unknown how well the framework generalizes to humanoids with different morphologies, actuator characteristics, or degrees of freedom, which is critical for broad adoption across the robotics community.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2406.06005" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-08</footer>
+</body>
+</html>
