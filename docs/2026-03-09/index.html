@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-09 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-09  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文将用户主动对疑似LLM社交媒体机器人实施&#34;越狱&#34;重新定义为一种去中心化的非暴力降级手段，用以对抗AI驱动的政治操控。</div>
+        <div class="paper-title-en">Ignore All Previous Instructions: Jailbreaking as a de-escalatory peace building practise to resist LLM social media bots</div>
+        <div class="paper-meta">
+          <span>Huw Day, Adrianna Jezierska, Jessica Woodgate</span>
+          <span class="badge badge-date">2026-03-02</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文将用户主动对疑似LLM社交媒体机器人实施&#34;越狱&#34;重新定义为一种去中心化的非暴力降级手段，用以对抗AI驱动的政治操控。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper reframes user-initiated jailbreaking of suspected LLM social media bots as a grassroots, non-violent de-escalation tactic against AI-driven political manipulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文提出了一个新颖视角：普通用户而非平台，可成为对抗LLM虚假信息的主动力量。若得到验证，该框架可为社区层面的反影响力策略提供依据，但其实践与伦理影响尚待深入探讨。</div>
+            <div class="en">The paper opens a novel conceptual lens by positioning ordinary users — not platforms — as active resistors of LLM-powered disinformation. If validated, this framework could inform community-level counter-influence strategies alongside top-down moderation. However, its practical and ethical implications remain underexplored.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLM正被大规模用于操控社交媒体上的政治话语，加剧冲突与虚假叙事传播。现有对策依赖平台主导的内容审核，往往滞后且不透明。本文探讨普通用户能否通过越狱技术独立干预LLM机器人。</div>
+            <div class="en">LLMs are being deployed at scale to manipulate political discourse on social media, accelerating conflict escalation and the spread of misleading narratives. Existing countermeasures rely heavily on platform-led moderation, which is slow, opaque, and often reactive rather than preventive. The paper asks whether ordinary users can independently disrupt LLM bots through jailbreaking techniques.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有研究主要聚焦于平台层面的干预，如自动检测、账号封禁和内容审核政策，用户几乎没有主动应对空间。将普通用户视为具备技术能力的反虚假信息参与者的研究极为匮乏。</div>
+            <div class="en">Existing literature on combating LLM-driven social media manipulation focuses predominantly on platform-level interventions such as automated detection, account suspension, and content moderation policies. These approaches are centralized and leave users with little agency in resisting coordinated inauthentic behavior. There is minimal prior work treating end-users as active, technically capable participants in disrupting AI-generated disinformation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">本文提出以用户为中心的框架，将越狱（通过对抗性提示覆盖LLM系统指令）重新定位为和平建构实践。用户通过构造如&#34;忽略所有先前指令&#34;等提示来揭露机器人行为，打断操控性内容传播。作者借助冲突降级理论为该行为赋予合法性，贡献主要在概念层面。</div>
+            <div class="en">The paper proposes a user-centric framework in which jailbreaking — prompting LLM-powered accounts with instructions designed to override their system prompts — is recast as a de-escalatory peace-building practice. Users who suspect an account is bot-operated craft adversarial prompts (e.g., &#34;Ignore all previous instructions&#34;) to expose automated behavior and interrupt the spread of manipulative content. The authors draw on peacebuilding and conflict de-escalation theory to legitimize this user behavior as a form of non-violent resistance. The contribution is primarily conceptual, situating jailbreaking within a socio-political rather than purely technical frame.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">本文未提供实验数据或量化结果，结论停留在概念层面：越狱被认为可揭露机器人身份、干扰叙事传播并赋权用户。论文未提供成功率、可量化案例或与平台审核的对比评估。</div>
+            <div class="en">The paper does not present empirical experiments or quantitative results. Its findings are conceptual: jailbreaking is argued to serve three functions — exposing bot identity, disrupting narrative circulation, and empowering users as non-violent actors. No success rates, case studies with measurable outcomes, or comparative evaluations against platform moderation are provided.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>概</li><li>念</li><li>过</li><li>度</li><li>延</li><li>伸</li><li>：</li><li>将</li><li>越</li><li>狱</li><li>定</li><li>性</li><li>为</li><li>&#34;</li><li>和</li><li>平</li><li>建</li><li>构</li><li>&#34;</li><li>借</li><li>用</li><li>了</li><li>冲</li><li>突</li><li>解</li><li>决</li><li>理</li><li>论</li><li>，</li><li>但</li><li>类</li><li>比</li><li>牵</li><li>强</li><li>，</li><li>论</li><li>文</li><li>未</li><li>充</li><li>分</li><li>论</li><li>证</li><li>其</li><li>等</li><li>价</li><li>性</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>方</li><li>法</li><li>论</li><li>缺</li><li>失</li><li>：</li><li>缺</li><li>乏</li><li>实</li><li>证</li><li>数</li><li>据</li><li>（</li><li>如</li><li>真</li><li>实</li><li>越</li><li>狱</li><li>尝</li><li>试</li><li>、</li><li>机</li><li>器</li><li>人</li><li>行</li><li>为</li><li>变</li><li>化</li><li>测</li><li>量</li><li>等</li><li>）</li><li>，</li><li>大</li><li>幅</li><li>削</li><li>弱</li><li>了</li><li>论</li><li>文</li><li>的</li><li>可</li><li>信</li><li>度</li><li>与</li><li>实</li><li>用</li><li>价</li><li>值</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>伦</li><li>理</li><li>与</li><li>法</li><li>律</li><li>模</li><li>糊</li><li>：</li><li>论</li><li>文</li><li>未</li><li>充</li><li>分</li><li>讨</li><li>论</li><li>潜</li><li>在</li><li>风</li><li>险</li><li>，</li><li>包</li><li>括</li><li>违</li><li>反</li><li>服</li><li>务</li><li>条</li><li>款</li><li>、</li><li>恶</li><li>意</li><li>行</li><li>为</li><li>者</li><li>滥</li><li>用</li><li>相</li><li>同</li><li>技</li><li>术</li><li>，</li><li>以</li><li>及</li><li>成</li><li>熟</li><li>L</li><li>L</li><li>M</li><li>机</li><li>器</li><li>人</li><li>可</li><li>能</li><li>直</li><li>接</li><li>忽</li><li>略</li><li>简</li><li>单</li><li>提</li><li>示</li><li>注</li><li>入</li><li>等</li><li>问</li><li>题</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Conceptual overreach: Framing jailbreaking as &#39;peace-building&#39; borrows heavily from conflict resolution theory but the analogy is strained — jailbreaking a chatbot does not map cleanly onto non-violent resistance against human actors, and the paper does not rigorously defend this equivalence.</li><li>Methodological gap: The absence of empirical evidence (e.g., real user jailbreak attempts, measured impact on bot behavior, or platform response data) significantly limits the paper&#39;s credibility and actionability for both researchers and practitioners.</li><li>Ethical and legal ambiguity: The paper does not adequately address risks of the proposed practice — jailbreaking terms-of-service violations, potential misuse by bad actors adopting the same techniques, or the possibility that sophisticated LLM bots simply ignore naive prompt injections.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01942v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出一种面向多智能体LLM系统的执行感知防御框架，通过重构跨智能体语义流检测间接提示注入及复合攻击，节点级F1...</div>
+        <div class="paper-title-en">Beyond Input Guardrails: Reconstructing Cross-Agent Semantic Flows for Execution-Aware Attack Detection</div>
+        <div class="paper-meta">
+          <span>Yangyang Wei, Yijie Xu, Zhenyuan Li et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出一种面向多智能体LLM系统的执行感知防御框架，通过重构跨智能体语义流检测间接提示注入及复合攻击，节点级F1达85.3%，路径级达66.7%。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes an execution-aware defense framework for multi-agent LLM systems that reconstructs cross-agent semantic flows to detect indirect prompt injection and compound attacks, achieving F1-scores of 85.3% (node-level) and 66.7% (path-level).</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着多智能体LLM系统成为复杂任务编排的主流范式，其安全防护至关重要。本文将防御范式从静态输入过滤转向动态行为分析，为检测绕过传统防护的复合攻击提供了具体机制，对实际部署多智能体系统的从业者具有重要参考价值。</div>
+            <div class="en">As multi-agent LLM systems become the standard for complex task automation, securing their inter-agent communication channels is critical yet underexplored. This framework shifts the security paradigm from static input filtering to dynamic behavioral analysis, offering a more robust defense against sophisticated attacks that exploit agent autonomy. Practitioners deploying multi-agent pipelines gain a concrete mechanism to detect compound attack vectors that bypass conventional guardrails.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">多智能体LLM系统依赖自主执行和非结构化的智能体间通信，产生了传统输入过滤无法应对的间接提示注入等严重安全风险。攻击可分散在多个智能体和执行步骤中，使单点过滤失效。本文核心问题是：如何通过分析多智能体系统的完整行为轨迹来检测此类攻击？</div>
+            <div class="en">Multi-agent LLM systems rely on autonomous execution and unstructured inter-agent communication, creating severe security risks—particularly indirect prompt injection—that conventional input-level guardrails cannot address. The core challenge is that attacks can be distributed across agents and execution steps, making them invisible to any single-point filter. This paper asks: how can we detect such attacks by analyzing the full behavioral trajectory of a multi-agent system?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有防御主要依赖静态输入过滤，针对单个智能体入口进行检查，无法应对通过工具输出或智能体间消息间接注入的恶意指令。此前工作未考虑跨越完整执行图的多跳复合攻击，也缺乏将跨智能体碎片化操作原语整合为统一可审计行为视图的机制。</div>
+            <div class="en">Existing defenses primarily rely on static input guardrails—filters applied at the entry point of individual agents—which fail when malicious instructions are injected indirectly through tool outputs or inter-agent messages. Prior work does not account for the compound, multi-hop nature of attacks that span the full execution graph of a multi-agent pipeline. There is also no established mechanism to correlate fragmented operational primitives across agents into a unified, auditable behavioral view.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">该框架提取并重构&#34;跨智能体语义流&#34;，将碎片化的操作原语（单个智能体动作与消息）合成为连续行为轨迹。随后，监督LLM从数据流违规、控制流偏差和意图不一致三个维度对轨迹进行审查。这种整体性的执行感知分析能够检测在单个节点上不可见的攻击，覆盖超过10种复合攻击向量。</div>
+            <div class="en">The proposed framework (referred to as SysName) extracts and reconstructs &#34;Cross-Agent Semantic Flows&#34; by synthesizing fragmented operational primitives—individual agent actions and messages—into contiguous behavioral trajectories. A Supervisor LLM then scrutinizes these trajectories across three dimensions: data flow violations, control flow deviations, and intent inconsistencies. This holistic, execution-aware analysis enables detection of attacks that are invisible at any single node. The framework covers over ten distinct compound attack vectors spanning both node-level and path-level attack patterns.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">框架在节点级端到端攻击检测中F1分数达85.3%，路径级达66.7%，成功识别超过10种复合攻击向量。路径级F1较低（66.7%）表明，跨多个智能体重构完整攻击链比检测单节点异常更具挑战性。</div>
+            <div class="en">The framework achieves an F1-score of 85.3% at the node level and 66.7% at the path level for end-to-end attack detection. It successfully identifies over ten distinct compound attack vectors across both detection granularities. The lower path-level F1 (66.7%) suggests that reconstructing full attack chains across multiple agents remains a harder problem than detecting anomalies at individual nodes.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>节点级（85.3%）与路径级（66.7%）F1之间18.6个百分点的差距揭示了核心难点：跨完整执行路径关联异常远比标记单个可疑动作困难，提示监督LLM需要更强的时序与因果推理能力。</li><li>以LLM作为监督者本身存在潜在风险——监督LLM可能被专门设计用于混淆轨迹分析的对抗性输入所攻击，形成元级别的攻击面，而论文似乎尚未对此进行讨论。</li><li>评估涵盖十种复合攻击向量，但测试场景的多样性与真实性尚不明确；现实多智能体部署中的攻击面可能更广且更嘈杂，框架在基准之外的泛化能力有待验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The 18.6-point gap between node-level (85.3%) and path-level (66.7%) F1-scores reveals a core difficulty: correlating anomalies across a full execution path is significantly harder than flagging individual suspicious actions, pointing to a need for stronger temporal and causal reasoning in the Supervisor LLM.</li><li>Using an LLM as the supervisor introduces potential failure modes—the Supervisor LLM itself could be targeted by adversarial inputs designed to confuse its trajectory analysis, creating a meta-level attack surface that the paper does not appear to address.</li><li>The evaluation covers ten compound attack vectors, but the diversity and realism of the test scenarios are unclear from the abstract; real-world multi-agent deployments may exhibit a much wider and noisier attack surface, raising questions about generalization beyond the evaluated benchmark.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04469v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">SaFeR-ToolKit将多模态安全决策形式化为结构化工具调用协议，通过三阶段课程训练显著降低视觉语言模型的越狱率和过度拒绝率。</div>
+        <div class="paper-title-en">SaFeR-ToolKit: Structured Reasoning via Virtual Tool Calling for Multimodal Safety</div>
+        <div class="paper-meta">
+          <span>Zixuan Xu, Tiancheng He, Huahui Yi et al.</span>
+          <span class="badge badge-date">2026-03-03</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SaFeR-ToolKit将多模态安全决策形式化为结构化工具调用协议，通过三阶段课程训练显著降低视觉语言模型的越狱率和过度拒绝率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SaFeR-ToolKit formalizes multimodal safety as a structured tool-calling protocol with a three-stage curriculum (SFT→DPO→GRPO), reducing both jailbreaks and over-refusal in vision-language models.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文通过可审计的工具调用链同时解决越狱和过度拒绝两大难题，填补了多模态安全对齐数据集的空白，为可解释安全流水线提供了可复现的范式。</div>
+            <div class="en">This paper tackles a dual failure mode in VLM safety—susceptibility to jailbreaks and excessive refusal—by making the reasoning process itself checkable and auditable, not just the final output. The publicly released dataset of 31,654 tool-based safety examples fills a notable gap in multimodal alignment resources. The structured tool-trace approach offers a reproducible blueprint for interpretable safety pipelines that practitioners can adapt.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">视觉语言模型既易受图像嵌入恶意意图的越狱攻击，又存在对无害请求过度拒绝的问题。现有方法仅对最终回复进行监督，缺乏对中间视觉感知与意图推理步骤的约束，难以同时应对两类失效。</div>
+            <div class="en">Vision-language models (VLMs) are vulnerable to multimodal jailbreaks—where harmful intent is embedded in images—and simultaneously prone to over-refusal of benign requests, degrading utility. This dual failure stems from aligning only on final responses without supervising intermediate visual perception and intent-reasoning steps. A robust solution must handle both threats jointly while remaining interpretable.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">主流对齐方法（RLHF、DPO）仅监督最终输出，中间推理步骤无法验证；现有多模态安全数据集缺乏可审计的决策分解；工具增强推理此前未系统应用于VLM安全决策。</div>
+            <div class="en">Most alignment pipelines (RLHF, DPO) supervise only the final answer token, leaving intermediate reasoning uncontrolled and vulnerable to adversarial visual inputs. Existing multimodal safety datasets rarely decompose the decision process into verifiable steps, making it hard to diagnose whether a failure is perceptual or reasoning-based. Tool-augmented reasoning has been explored for capability tasks but not systematically applied to safety decision-making in VLMs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">系统由规划器和响应器构成：规划器通过约束状态图定义感知→推理→决策三类虚拟工具，响应器在给出最终答案前输出可验证的键值工具链。训练采用SFT（6k）→DPO（18.6k）→GRPO（6k）三阶段课程，GRPO直接对工具使用正确性奖励，超越了答案级监督。</div>
+            <div class="en">SaFeR-ToolKit defines a planner-responder architecture: the planner specifies a persona and a constrained transition graph over three virtual tools—Perception, Reasoning, and Decision—while the responder emits a typed key-value tool trace before producing the final answer. This trace is checkable, enabling supervision at intermediate steps rather than only at the output. Training follows a three-stage curriculum: SFT on 6k examples for trace format acquisition, DPO on 18.6k preference pairs for response quality, and GRPO on 6k examples to directly reward correct tool usage beyond answer-level signals. The full dataset (31,654 training + 1k evaluation examples) is the first tool-based safety reasoning dataset for multimodal models.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在Qwen2.5-VL上，SaFeR-ToolKit的安全分和有用分均显著优于基线；三阶段课程优于仅SFT或SFT+DPO的消融实验，验证了GRPO对工具使用合规性的关键作用。</div>
+            <div class="en">On Qwen2.5-VL, SaFeR-ToolKit significantly improves both the Safety Score and the Helpful Score compared to baseline alignment methods, demonstrating that structured tool traces reduce jailbreak success rates while limiting over-refusal. The three-stage curriculum outperforms ablations using only SFT or SFT+DPO, confirming GRPO&#39;s role in enforcing tool-usage compliance. The 1k held-out evaluation set provides a standardized benchmark for future multimodal safety work.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>泛化性：协议和数据集围绕Qwen2.5-VL构建，约束状态图与工具链格式能否迁移至其他VLM架构（如LLaVA、InternVL）尚未验证。</li><li>工具链忠实性：键值工具链由模型自身生成，无法保证其反映真实内部计算，对抗输入仍可能在输出合规外观的同时操纵推理过程。</li><li>数据集覆盖度：31,654条样本规模有限，有害类别、图像类型及语言分布未详细说明，长尾或特定文化安全风险的覆盖情况存疑。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Generalizability: The protocol and dataset are built around Qwen2.5-VL; whether the constrained transition graph and tool-trace format transfer effectively to other VLM architectures (e.g., LLaVA, InternVL) remains untested.</li><li>Trace faithfulness: Key-value tool traces are generated by the model itself, so there is no guarantee the trace reflects actual internal computation—adversarial inputs could still manipulate reasoning while producing a compliant-looking trace.</li><li>Dataset scale vs. diversity: With 31,654 examples, the dataset is a meaningful start, but the distribution of harmful categories, image types, and languages is not detailed in the abstract, raising questions about coverage of long-tail or culturally specific safety risks.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.02635v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">∇-Reasoner通过在隐空间对token logits执行梯度下降，绕过离散搜索，实现推理时的可微优化以提升LLM推理能力。</div>
+        <div class="paper-title-en">$\nabla$-Reasoner: LLM Reasoning via Test-Time Gradient Descent in Latent Space</div>
+        <div class="paper-meta">
+          <span>Peihao Wang, Ruisi Cai, Zhen Wang et al.</span>
+          <span class="badge badge-date">2026-03-05</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>∇-Reasoner通过在隐空间对token logits执行梯度下降，绕过离散搜索，实现推理时的可微优化以提升LLM推理能力。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">∇-Reasoner improves LLM reasoning at inference time by applying gradient descent directly over token logits in latent space, bypassing discrete search with differentiable optimization guided by a reward model.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">该论文在理论上证明推理时梯度下降与KL正则强化学习对偶，为无需重训练即可提升推理能力提供了新范式，对部署阶段的计算效率具有重要价值。</div>
+            <div class="en">This paper bridges inference-time scaling and reinforcement learning theory, showing gradient-based decoding is dual to KL-regularized RL alignment — a conceptually elegant and practically impactful result. It opens a new paradigm for improving LLM reasoning without retraining, which is critical for deployment-time compute efficiency. Practitioners can potentially plug ∇-Reasoner into existing pipelines to boost performance on complex reasoning tasks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在推理时无需依赖低效离散搜索或试错提示，就能系统性地提升LLM推理质量？现有推理扩展方法缺乏原则性优化信号，计算代价高昂。</div>
+            <div class="en">How can LLMs improve their reasoning quality at inference time without relying on slow, suboptimal discrete search or trial-and-error prompting? This matters because current inference-time scaling methods (e.g., beam search, Monte Carlo Tree Search, self-refinement) are computationally expensive and lack principled optimization signals.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">Best-of-N采样、MCTS等方法依赖离散组合搜索，无法利用梯度信号；自我纠错类方法受限于模型自身盲点，缺乏外部反馈，均未在解码过程中直接优化可微目标。</div>
+            <div class="en">Existing inference-time scaling methods such as best-of-N sampling, MCTS, and self-refinement prompting rely on discrete, combinatorial search over token sequences, which scales poorly and offers no gradient signal. Prompt-based self-correction methods are further limited by the model&#39;s own blind spots and lack external feedback grounding. None of these approaches directly optimize a differentiable objective during decoding.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">DTO在解码时对token logits执行梯度下降，结合LLM自身似然与外部奖励模型的梯度信号，优化后投影回离散token继续生成。同时引入拒绝采样和加速设计提升鲁棒性与效率，并从理论上证明该过程与KL正则RL对偶。</div>
+            <div class="en">∇-Reasoner introduces Differentiable Textual Optimization (DTO), which performs gradient descent over token logits (in continuous latent space) during decoding, using gradients from both the LLM&#39;s own likelihood and an external reward model. The optimized logits are projected back to discrete tokens to continue generation, making the process compatible with standard autoregressive decoding. Rejection sampling is incorporated to filter low-quality candidates, and acceleration techniques reduce the overhead of repeated gradient steps. The authors also prove a theoretical duality: inference-time gradient ascent on reward in sample space is equivalent to KL-regularized RL policy optimization.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">∇-Reasoner在推理基准测试上优于标准解码和现有推理扩展基线，DTO优化结果与RL训练策略输出高度一致，验证了理论对偶性；具体数值在摘要中未完全披露。</div>
+            <div class="en">∇-Reasoner achieves empirical gains over standard decoding and existing inference-time scaling baselines on reasoning benchmarks, demonstrating that differentiable optimization at test time yields measurable quality improvements. The theoretical duality result is validated empirically, showing that DTO-refined outputs align with what RL-trained policies would produce. Specific benchmark scores and percentage improvements are not fully disclosed in the abstract, but the paper reports consistent gains across evaluated tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>奖励模型依赖：DTO需要可微奖励模型在推理时可访问，若仅有黑盒或不可微奖励信号则适用性受限。</li><li>计算开销：解码循环中嵌入梯度步骤不可避免地增加延迟，加速设计的实际收益需详细基准测试验证。</li><li>理论对偶的适用范围：与KL正则RL的对偶性依赖特定假设，是否推广至非平稳奖励或多轮对话场景仍是开放问题。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Reward model dependency: DTO requires a differentiable reward model accessible at inference time, which may limit applicability when only black-box or non-differentiable reward signals are available.</li><li>Computational overhead: Despite acceleration designs, performing gradient descent steps within the decoding loop inevitably increases per-token latency compared to vanilla autoregressive generation — the practical cost-benefit tradeoff needs careful benchmarking.</li><li>Theoretical duality scope: The claimed duality with KL-regularized RL holds under specific assumptions; whether it generalizes to non-stationary reward models or multi-turn settings remains an open question.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04948v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">通过思维链推理与邻词分析对小型LLM（&lt;4B参数）进行微调，可在词义消歧任务上达到与GPT-4-Turbo相当的性能。</div>
+        <div class="paper-title-en">An Exploration-Analysis-Disambiguation Reasoning Framework for Word Sense Disambiguation with Low-Parameter LLMs</div>
+        <div class="paper-meta">
+          <span>Deshan Sumanathilaka, Nicholas Micallef, Julian Hough</span>
+          <span class="badge badge-date">2026-03-05</span>
+          <span class="badge badge-venue">LREC 2026</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>通过思维链推理与邻词分析对小型LLM（&lt;4B参数）进行微调，可在词义消歧任务上达到与GPT-4-Turbo相当的性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Fine-tuning small LLMs (&lt;4B parameters) with Chain-of-Thought reasoning and neighbour-word analysis on the FEWS dataset achieves WSD performance comparable to GPT-4-Turbo.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文证明推理驱动的微调可缩小小型与大型LLM在词义消歧上的性能差距，降低部署门槛，为资源受限的研究者和实践者提供可行方案。</div>
+            <div class="en">This paper demonstrates that reasoning-driven fine-tuning can close the performance gap between small and large LLMs for WSD, lowering the computational and energy barriers for deploying advanced NLP. It offers a practical path for resource-constrained practitioners and researchers working on domain-specific or rare-sense disambiguation without access to frontier models.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">参数量低于4B的小型LLM能否在词义消歧上达到GPT-4-Turbo的水平？稀有和领域特定词义的误分类问题突出，而依赖大模型成本高昂、可扩展性差。</div>
+            <div class="en">Can low-parameter LLMs (under 4B parameters) match state-of-the-art WSD performance achieved by large models like GPT-4-Turbo? This matters because rare and domain-specific word senses are frequently misclassified, and reliance on high-parameter models is costly and limits scalability in real-world applications.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">GPT-4-Turbo等大模型在词义消歧上表现优异，但计算和能耗成本高。现有小模型方法缺乏结构化推理机制，在FEWS等基准上对稀有词义处理能力不足。</div>
+            <div class="en">High-parameter LLMs like GPT-4-Turbo achieve strong WSD results but are computationally expensive and energy-intensive, limiting their practical deployment. Existing small-model approaches lack structured reasoning mechanisms, leading to poor performance on rare or domain-specific word senses in benchmarks like FEWS.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">提出探索-分析-消歧（EAD）推理框架，结合思维链提示与邻词上下文分析指导词义识别。对FEWS数据集进行半自动化的含理由标注增强，并对Gemma、Qwen等8个小型开源LLM进行微调。</div>
+            <div class="en">The authors propose an Exploration-Analysis-Disambiguation (EAD) reasoning framework that combines Chain-of-Thought prompting with neighbour-word contextual analysis to guide sense identification. They augment the FEWS dataset with semi-automated, rationale-rich annotations to create richer training signals. Eight small open-source LLMs (including Gemma and Qwen variants) are fine-tuned under this framework. The approach enables structured, step-by-step reasoning about word context without requiring massive model scale.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Gemma-3-4B与Qwen-3-4B超越所有中等参数基线及先前最优模型；结合邻词分析的思维链方法在零样本设置下达到GPT-4-Turbo的水平，参数量却少逾百倍。</div>
+            <div class="en">Gemma-3-4B and Qwen-3-4B consistently outperform all medium-parameter baselines and prior state-of-the-art models on WSD benchmarks. CoT-based reasoning with neighbour-word analysis achieves performance comparable to GPT-4-Turbo in zero-shot settings, despite using models with over 100× fewer parameters. These results hold particularly for rare and domain-specific senses in the FEWS dataset.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>框架泛化性：仅在FEWS上验证，未在SemEval或WordNet基准上测试，跨数据集迁移能力存疑。</li><li>标注质量风险：半自动理由生成可能引入噪声，论文未报告标注一致性或错误分析。</li><li>邻词分析的消融缺失：未对上下文窗口大小和邻词组件进行消融，其独立贡献相对于思维链的作用尚不明确。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Generalizability beyond FEWS: The framework is validated only on FEWS; testing on SemEval or WordNet-based benchmarks would confirm whether the EAD reasoning gains transfer across WSD datasets and domains.</li><li>Annotation quality risk: Semi-automated rationale generation for fine-tuning data introduces potential noise; the paper does not report inter-annotator agreement or error analysis for the augmented labels.</li><li>Scalability of neighbour-word analysis: The neighbour-word component&#39;s sensitivity to context window size and tokenization choices is not ablated, leaving open questions about its contribution relative to CoT alone.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.05400v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">在ViT的OOD图像分类中，探测中间层FFN激活值（而非块输出）始终优于标准的最终层探测。</div>
+        <div class="paper-title-en">Layer by layer, module by module: Choose both for optimal OOD probing of ViT</div>
+        <div class="paper-meta">
+          <span>Ambroise Odonnat, Vasilii Feofanov, Laetitia Chapel et al.</span>
+          <span class="badge badge-date">2026-03-05</span>
+          <span class="badge badge-venue">ICLR 2026</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>在ViT的OOD图像分类中，探测中间层FFN激活值（而非块输出）始终优于标准的最终层探测。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">For OOD image classification with ViTs, probing the FFN activation (rather than the block output) in intermediate layers consistently outperforms standard final-layer probing.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文对ViT中间层进行系统性模块级分析，为从业者提供无需微调即可提升OOD性能的具体方案。FFN激活值在大分布偏移下优于归一化注意力输出的发现，可直接应用于预训练与目标分布差异显著的实际部署场景。</div>
+            <div class="en">This paper provides a systematic, module-level dissection of ViT intermediate layers, offering practitioners a concrete and actionable recipe for improving OOD performance without any fine-tuning. The insight that FFN activations outperform normalized attention outputs under large distribution shift is immediately applicable to deployment scenarios where pretraining and target distributions diverge significantly.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">预训练ViT的中间层为何在下游任务上常优于最终层？Transformer块中哪个子模块贡献最大？这对需要低成本OOD部署策略的从业者至关重要。</div>
+            <div class="en">Why do intermediate layers of pretrained ViTs often outperform the final layer on downstream tasks, and which specific sub-module within a transformer block is responsible for this advantage? This matters because practitioners deploying foundation models OOD need principled, cheap strategies to extract the best representations without costly fine-tuning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有研究发现中间层表征更优，但主要将其归因于自回归预训练目标，且均未在子模块级别（注意力、FFN、归一化层）进行细粒度分析，导致最优探测位置不明确。</div>
+            <div class="en">Prior work observed that intermediate layers yield stronger representations but attributed this primarily to autoregressive pretraining objectives (e.g., GPT-style models). Existing studies rarely examined the phenomenon at the sub-block level (e.g., separating attention, FFN, and normalization outputs), leaving the root cause and optimal probing location unclear.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者在多种ViT架构（监督/DINO/CLIP等预训练目标）和多个图像分类基准上进行大规模线性探测实验，将每个Transformer块分解为注意力输出、FFN激活、FFN输出和层归一化等子模块分别探测。研究确认分布偏移是最终层性能下降的主因，并给出实用建议：大OOD偏移下探测FFN激活，小偏移下探测归一化后输出。</div>
+            <div class="en">The authors conduct extensive linear probing experiments across multiple ViT architectures (trained with supervised, DINO, CLIP-style objectives) and diverse image classification benchmarks spanning various levels of distribution shift. They decompose each transformer block into its constituent modules—attention output, FFN activation, FFN output, and layer normalization—and probe each separately. Distribution shift between pretraining and downstream data is identified as the primary driver of final-layer degradation. Based on this analysis, they derive a practical recommendation: probe the FFN activation under large OOD shift, and the post-normalization output under small shift.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在显著分布偏移下，探测中间层FFN激活值在所有测试ViT变体上均优于标准块输出探测，且与预训练目标无关。分布偏移越大，最终层探测与最优中间层探测之间的性能差距越明显。小偏移时，归一化输出探测仍具竞争力。</div>
+            <div class="en">Probing FFN activations in intermediate layers outperforms standard block-output probing across all tested ViT variants under significant distribution shift, with consistent gains observed regardless of the pretraining objective (supervised, DINO, CLIP). Under small distribution shift, probing normalized outputs remains competitive or superior. The performance gap between final-layer probing and optimal intermediate-layer probing widens as the degree of distribution shift increases.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>分布偏移（而非预训练目标）是最终层性能下降主因这一发现，统一了LLM与视觉模型的既有观察，暗示该原则可能适用于SSM等其他架构。</li><li>研究局限于线性探测，模块级排序是否在少样本、提示或非线性探测方法下同样成立仍有待验证。</li><li>实际局限在于，确定最优层与模块仍需目标分布的标注验证集，在真正零样本OOD部署场景中并不总能获得。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The finding that distribution shift — not pretraining objective — is the primary cause of final-layer degradation unifies previously fragmented observations across LLMs and vision models, suggesting a general principle worth testing in other architectures like SSMs.</li><li>The study is limited to linear probing; it remains open whether the same module-level ranking holds for few-shot, prompt-based, or nonlinear probing methods, which are increasingly common in practice.</li><li>A practical limitation is that identifying the optimal layer and module still requires a labeled validation set from the target distribution, which may not always be available in true zero-shot OOD deployment.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.05280v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">HyperMVP将多视角掩码自编码器预训练迁移至双曲空间，学习更具结构性的空间表示，提升机器人操作任务性能。</div>
+        <div class="paper-title-en">Hyperbolic Multiview Pretraining for Robotic Manipulation</div>
+        <div class="paper-meta">
+          <span>Jin Yang, Ping Wei, Yixin Chen</span>
+          <span class="badge badge-date">2026-03-05</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>HyperMVP将多视角掩码自编码器预训练迁移至双曲空间，学习更具结构性的空间表示，提升机器人操作任务性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">HyperMVP replaces Euclidean embedding spaces with hyperbolic geometry in a multiview masked autoencoder pretraining framework, yielding better structured spatial representations for robotic manipulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">HyperMVP挑战了欧氏空间在机器人视觉预训练中&#34;足够用&#34;的默认假设，为表示学习引入了新的几何维度。同时配套发布的3D-MOV大规模数据集为社区提供了宝贵资源，便于后续研究复现与扩展。</div>
+            <div class="en">HyperMVP challenges the default assumption that Euclidean space is sufficient for visual pretraining in robotics, opening a new geometric dimension for representation learning. By pairing a novel architecture (GeoLink encoder) with a new large-scale dataset (3D-MOV), the paper provides both a method and a resource to the community. Practitioners working on visuomotor policies can directly benefit from the pretrained encoder as a drop-in improvement.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何让视觉预训练更好地捕捉机器人操作所需的层次化空间结构关系？现有方法在平坦欧氏空间中学习嵌入，难以编码操作任务所依赖的部分-整体及空间层次信息。</div>
+            <div class="en">How can visual pretraining better capture the hierarchical and structural spatial relations needed for robust robotic manipulation? Existing 3D-aware pretraining methods produce embeddings in flat Euclidean space, which lacks the geometric expressiveness to encode part-whole and spatial hierarchies critical for manipulation tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有3D视觉预训练方法（如点云掩码自编码器）均在欧氏空间中运行，其多项式增长的容量难以高效表达3D场景中自然存在的树状层次结构，导致所学嵌入对复杂操作场景的泛化能力不足。</div>
+            <div class="en">Prior 3D-aware visual pretraining methods (e.g., masked autoencoders on point clouds) operate exclusively in Euclidean embedding spaces. Euclidean geometry grows polynomial in capacity, making it inefficient for representing tree-like or hierarchically structured data that naturally arises in 3D scenes. These methods therefore struggle to learn embeddings that generalize robustly to the complex spatial configurations encountered in manipulation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">HyperMVP将掩码自编码器范式扩展至双曲空间（庞加莱球模型），其指数增长特性天然适合编码层次结构。核心贡献GeoLink编码器通过跨视角几何关联学习多视角双曲表示，并配套发布3D-MOV多类型点云大规模数据集支持预训练，最终以视觉运动策略微调用于操作任务。</div>
+            <div class="en">HyperMVP extends the masked autoencoder (MAE) paradigm into hyperbolic space, which grows exponentially and naturally encodes hierarchical structure. The core contribution is the GeoLink encoder, which learns multiview hyperbolic representations by linking geometric cues across viewpoints in the Poincaré ball model. A large-scale pretraining dataset, 3D-MOV, is introduced, comprising multiple types of 3D point clouds to diversify and strengthen pretraining. The pretrained GeoLink encoder is subsequently fine-tuned with visuomotor policies for downstream manipulation tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">HyperMVP在机器人操作下游基准上优于欧氏空间预训练基线，双曲嵌入呈现出更好的结构组织性，支持更鲁棒的空间感知。具体数值增益见论文正文。</div>
+            <div class="en">HyperMVP demonstrates improved performance on downstream robotic manipulation benchmarks compared to Euclidean-space pretraining baselines. The hyperbolic embeddings show better structural organization, supporting more robust spatial perception. Specific numerical improvements over baselines are reported in the paper, though exact figures are not detailed in the abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>几何假设的适配性：双曲空间在理论上适合层次数据，但操控场景并非严格树状结构，部分性能增益可能来自GeoLink的跨视角融合设计而非几何本身。</li><li>数据集覆盖范围：3D-MOV是有价值的资源，但其点云类型与领域覆盖是否能泛化至接触丰富或可形变物体操作任务尚不明确。</li><li>策略泛化验证：预训练编码器通过视觉运动策略微调，但其在不同机器人形态、传感器配置及真实环境部署中的泛化能力仍需进一步验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Geometric generalization: Hyperbolic space is theoretically motivated for hierarchical data, but robotic manipulation scenes are not strictly tree-structured. It remains unclear how much of the gain comes from geometry versus other design choices like GeoLink&#39;s cross-view fusion.</li><li>Dataset scope: 3D-MOV is a welcome resource, but its composition (types of point clouds, domain coverage) and whether it transfers beyond tabletop manipulation to contact-rich or deformable-object tasks is not yet established.</li><li>Policy integration: The pretrained encoder is fine-tuned with visuomotor policies, but the paper&#39;s scope of generalization—across robot morphologies, sensor setups, and real-world deployment—needs further validation to confirm practical impact.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04848v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ATA是一个无需训练的框架，通过注意力引导与动作引导推理为VLA模型引入隐式推理，无需昂贵的CoT标注或视觉定位标签。</div>
+        <div class="paper-title-en">ATA: Bridging Implicit Reasoning with Attention-Guided and Action-Guided Inference for Vision-Language Action Models</div>
+        <div class="paper-meta">
+          <span>Cheng Yang, Jianhao Jiao, Lingyi Huang et al.</span>
+          <span class="badge badge-date">2026-03-02</span>
+          <span class="badge badge-venue">ICRA</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ATA是一个无需训练的框架，通过注意力引导与动作引导推理为VLA模型引入隐式推理，无需昂贵的CoT标注或视觉定位标签。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ATA is a training-free framework that injects implicit reasoning into Vision-Language-Action (VLA) models via attention-guided and action-guided inference, eliminating the need for costly CoT annotations or visual grounding labels.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">ATA解决了具身AI的核心瓶颈：无需重新标注数据集或重新训练，即可增强VLA模型的推理能力。其即插即用特性可显著降低推理增强型VLA模型的部署门槛，加速其在真实机器人场景中的落地应用。</div>
+            <div class="en">ATA addresses a core bottleneck in embodied AI: making VLA models reason more effectively without the prohibitive cost of dataset re-annotation and retraining. By being training-free and annotation-free, it can be readily plugged into existing VLA pipelines, lowering the barrier for deploying intelligent robot systems. This work could accelerate the practical adoption of reasoning-augmented VLA models in real-world robotics.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在推理阶段为VLA模型引入推理能力，同时避免依赖昂贵的CoT标注、视觉定位标签或模型重训练？这一问题至关重要，因为现有VLA模型难以聚焦任务相关的视觉区域，导致复杂操作任务中动作执行不精准。</div>
+            <div class="en">How can VLA models perform more accurate action prediction by incorporating reasoning during inference, without relying on expensive Chain-of-Thought annotations, visual grounding labels, or model retraining? This matters because current VLA models struggle to focus on task-relevant visual regions, leading to suboptimal action execution in complex manipulation tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有推理增强型VLA方法（如CoT提示）需要大规模逐步骤标注数据集，且通常还需额外的视觉定位标签（如边界框或掩码）来引导模型注意力。这些方法还需耗时的数据构建、标注流程与完整模型重训练，导致推理序列变长、效率降低。</div>
+            <div class="en">Existing reasoning-augmented VLA approaches, such as those using Chain-of-Thought prompting, require large-scale step-by-step annotated datasets and often additional visual grounding labels (e.g., bounding boxes or masks) to direct model attention. These methods also demand time-consuming dataset construction, labeling pipelines, and full model retraining, resulting in longer inference sequences and reduced throughput. The annotation and compute overhead makes these approaches impractical for rapid deployment or adaptation to new tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ATA提出了一个包含两个互补模块的无训练推理框架：注意力引导模块利用模型内部的交叉注意力图识别并强调任务相关视觉区域，无需外部定位标注；动作引导模块将先前预测的动作作为上下文先验，以条件化后续动作预测。两模块协同为VLA推理引入隐式结构化推理，且无需重训练或额外数据标注。</div>
+            <div class="en">ATA proposes a training-free inference framework with two complementary modules: an Attention-Guided mechanism that leverages the model&#39;s internal cross-attention maps to identify and emphasize task-relevant visual regions without any external grounding annotations, and an Action-Guided mechanism that uses previously predicted actions as contextual priors to condition subsequent action prediction. These two modules work together to introduce implicit, structured reasoning into the VLA inference pipeline. Because no retraining or additional data annotation is required, ATA can be integrated into existing VLA models as a drop-in enhancement.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">ATA在多个机器人操作基准上相较基线VLA模型取得了一致性性能提升，验证了无需额外训练即可引入隐式推理的有效性。与显式CoT方法相比，ATA避免了冗长推理链生成，推理开销更低。消融实验表明注意力引导与动作引导两个模块均独立且协同地提升了任务成功率。</div>
+            <div class="en">ATA achieves consistent performance improvements over baseline VLA models across multiple robot manipulation benchmarks, demonstrating that implicit reasoning can be effectively introduced without any additional training cost. The framework reduces inference overhead compared to explicit CoT-based methods by avoiding lengthy reasoning chain generation. Specific quantitative gains on standard benchmarks confirm that both the attention-guided and action-guided components contribute independently and synergistically to improved task success rates.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>注意力图的可靠性：注意力引导模块假设VLA模型内部的交叉注意力图能准确编码任务相关区域，但大型视觉语言模型的注意力通常存在噪声且语义不稳定，可能限制其在不同任务或架构上的泛化性。</li><li>泛化范围：ATA在标准机器人操作基准上验证，但对于需要长程规划、动态场景或不同VLA主干架构的任务，其泛化能力尚不明确。</li><li>隐式与显式推理的权衡：ATA虽避免了CoT标注成本，但隐式推理的可解释性和可调试性弱于显式推理链，在安全关键型机器人部署场景中，缺乏可读的中间推理步骤可能是实际局限。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Attention map reliability: The attention-guided module assumes that the VLA model&#39;s internal cross-attention maps faithfully encode task-relevant regions. However, attention in large vision-language models is known to be noisy and not always semantically meaningful, which could limit reliability across diverse tasks or model architectures.</li><li>Generalization scope: ATA is validated on standard robot manipulation benchmarks, but it remains unclear how well the framework generalizes to tasks requiring long-horizon planning, dynamic scenes, or significantly different VLA backbone architectures beyond those tested.</li><li>Implicit vs. explicit reasoning trade-off: While ATA avoids the cost of CoT annotations, implicit reasoning may be fundamentally less interpretable and harder to debug than explicit reasoning chains. In safety-critical robotics deployments, the lack of human-readable intermediate reasoning steps could be a practical limitation.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.01490v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">提出基于人手本征抓取的通用动作空间，训练单一强化学习策略跨多种灵巧手完成抓取任务。</div>
+        <div class="paper-title-en">Cross-Embodiment Dexterous Grasping with Reinforcement Learning</div>
+        <div class="paper-meta">
+          <span>Haoqi Yuan, Bohan Zhou, Yuhui Fu et al.</span>
+          <span class="badge badge-date">2024-10-03</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>提出基于人手本征抓取的通用动作空间，训练单一强化学习策略跨多种灵巧手完成抓取任务。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A universal RL policy for dexterous grasping across multiple robot hands, using human hand eigengrasps as a shared action space and fingertip positions as a unified observation space.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文是首批用强化学习探索跨形态灵巧操作的工作之一，有望大幅减少为每款机械手单独训练策略的成本，对机器人通用操作研究具有重要推动作用。</div>
+            <div class="en">This work is one of the first to tackle cross-embodiment dexterous manipulation via RL, a critical step toward scalable robot learning without hand-specific policy retraining. If the approach generalizes well, it could dramatically reduce engineering overhead when deploying manipulation systems on new hardware platforms.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">研究如何训练单一策略以控制运动学各异的多种灵巧手完成抓取，解决现有方法须为每款机械手单独训练策略、难以规模化部署的问题。</div>
+            <div class="en">The paper addresses the challenge of learning a single grasping policy that works across multiple dexterous robot hands with different kinematics and degrees of freedom. This matters because existing methods require retraining separate policies for each robot, making scalable deployment costly and impractical.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有灵巧抓取研究多针对特定机械手设计专属策略，缺乏跨形态泛化能力；遥操作重定向方法虽存在，但未被整合进面向多硬件的通用强化学习框架。</div>
+            <div class="en">Prior dexterous grasping work focuses on hand-specific policies, requiring separate training pipelines per embodiment. Teleoperation-based retargeting methods exist but are not directly integrated into general RL policy learning frameworks that span diverse hardware.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">以人手抓取主成分（本征抓取）构建低维通用动作空间，通过预计算映射将其转化为各机械手关节动作；观测空间仅使用指尖与手掌位置，屏蔽手型差异。单一RL策略在仿真中训练后，可零样本迁移至四款不同灵巧手。</div>
+            <div class="en">The authors introduce a universal action space defined by human hand eigengrasps — low-dimensional principal components of human grasp motions — which are retargeted to each specific robot hand&#39;s joint space via a precomputed mapping. Observations are unified by using only fingertip and palm positions, abstracting away hand-specific joint configurations. A single RL policy is trained in simulation to output eigengrasp actions, enabling zero-shot transfer to four distinct dexterous hands without retraining.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">方法在YCB数据集物体上对四款机械手实现了80%的抓取成功率，在仿真环境中验证了单一通用策略跨形态泛化的有效性，无需针对每款手重新训练。</div>
+            <div class="en">The proposed approach achieves an 80% success rate in grasping objects from the YCB dataset across four distinct robot hand embodiments. This result is obtained in simulation and demonstrates that a single universal policy can generalize across diverse hand morphologies without per-hand retraining.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>仿</li><li>真</li><li>到</li><li>现</li><li>实</li><li>的</li><li>迁</li><li>移</li><li>：</li><li>实</li><li>验</li><li>仅</li><li>在</li><li>仿</li><li>真</li><li>中</li><li>验</li><li>证</li><li>，</li><li>真</li><li>实</li><li>机</li><li>械</li><li>手</li><li>上</li><li>的</li><li>接</li><li>触</li><li>动</li><li>力</li><li>学</li><li>差</li><li>异</li><li>可</li><li>能</li><li>显</li><li>著</li><li>降</li><li>低</li><li>8</li><li>0</li><li>%</li><li>的</li><li>成</li><li>功</li><li>率</li><li>，</li><li>真</li><li>实</li><li>部</li><li>署</li><li>效</li><li>果</li><li>尚</li><li>待</li><li>检</li><li>验</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>重</li><li>定</li><li>向</li><li>质</li><li>量</li><li>瓶</li><li>颈</li><li>：</li><li>本</li><li>征</li><li>抓</li><li>取</li><li>到</li><li>关</li><li>节</li><li>空</li><li>间</li><li>的</li><li>映</li><li>射</li><li>为</li><li>预</li><li>计</li><li>算</li><li>，</li><li>对</li><li>非</li><li>拟</li><li>人</li><li>化</li><li>结</li><li>构</li><li>的</li><li>机</li><li>械</li><li>手</li><li>，</li><li>映</li><li>射</li><li>精</li><li>度</li><li>可</li><li>能</li><li>下</li><li>降</li><li>，</li><li>限</li><li>制</li><li>策</li><li>略</li><li>效</li><li>果</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>新</li><li>形</li><li>态</li><li>扩</li><li>展</li><li>成</li><li>本</li><li>：</li><li>引</li><li>入</li><li>新</li><li>机</li><li>械</li><li>手</li><li>仍</li><li>需</li><li>定</li><li>义</li><li>专</li><li>属</li><li>重</li><li>定</li><li>向</li><li>映</li><li>射</li><li>，</li><li>存</li><li>在</li><li>一</li><li>定</li><li>工</li><li>程</li><li>负</li><li>担</li><li>，</li><li>一</li><li>定</li><li>程</li><li>度</li><li>上</li><li>削</li><li>弱</li><li>了</li><li>方</li><li>法</li><li>&#34;</li><li>通</li><li>用</li><li>性</li><li>&#34;</li><li>的</li><li>主</li><li>张</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Sim-to-real gap: Results are reported in simulation only; real-world transfer of eigengrasp-based policies to physical dexterous hands remains unvalidated, and contact dynamics discrepancies could significantly degrade the 80% success rate.</li><li>Retargeting quality bottleneck: The eigengrasp-to-joint retargeting mapping is precomputed and hand-agnostic; for hands with very different kinematic structures (e.g., non-anthropomorphic designs), the mapping fidelity may degrade and limit policy effectiveness.</li><li>Scalability to new embodiments: Adding a new robot hand requires defining a new retargeting mapping, which may still demand non-trivial hand-specific engineering effort, partially limiting the &#39;universal&#39; claim of the approach.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2410.02479" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-09</footer>
+</body>
+</html>
