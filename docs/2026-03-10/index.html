@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-10 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-10  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">TombRaider利用双智能体系统挖掘LLM的历史知识来生成对抗性提示，在无防御模型上实现近100%的攻击成功率。</div>
+        <div class="paper-title-en">TombRaider: Entering the Vault of History to Jailbreak Large Language Models</div>
+        <div class="paper-meta">
+          <span>Junchen Ding, Jiahao Zhang, Yi Liu et al.</span>
+          <span class="badge badge-date">2025-01-27</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>TombRaider利用双智能体系统挖掘LLM的历史知识来生成对抗性提示，在无防御模型上实现近100%的攻击成功率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TombRaider jailbreaks LLMs by using a two-agent system that exploits models&#39; historical knowledge to craft adversarial prompts, achieving nearly 100% attack success rates on undefended models.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">TombRaider揭示了LLM历史知识检索这一此前被忽视的攻击面，难以在不损害模型能力的情况下修补。该研究为红队社区提供了新的威胁模型，对未来防御基准测试具有重要参考价值。</div>
+            <div class="en">TombRaider reveals a previously underexplored attack surface — LLMs&#39; built-in historical knowledge retrieval — which is difficult to patch without degrading model utility. The near-100% ASR on bare models and 55.4%+ ASR against active defenses signals an urgent gap in current LLM safety alignment. This work provides the red-teaming community with a concrete new threat model to benchmark future defenses against.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLM存储和检索历史知识的能力能否被系统性地利用来绕过安全过滤器？当前的安全对齐主要针对有害输出过滤，而忽视了历史知识被重新包装为合法请求的风险。</div>
+            <div class="en">Can the historical knowledge stored and retrieved by LLMs be systematically exploited to bypass their safety filters? This matters because safety alignment in current LLMs focuses on filtering harmful outputs but may overlook how historical or contextual knowledge can be weaponized to reframe harmful requests as legitimate ones.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有越狱方法（如DAN角色扮演、GCG对抗后缀攻击）要么计算成本高，要么对更新后的安全过滤器脆弱。这些方法均未系统利用模型自身的历史知识作为攻击向量。</div>
+            <div class="en">Existing jailbreak methods — such as prompt injection, role-playing (e.g., DAN), and optimization-based adversarial suffix attacks (e.g., GCG) — either require heavy computational resources or are fragile against updated safety filters. Template-based approaches rely on static prompt patterns that are increasingly detectable by modern guardrails. None of these methods systematically leverage the model&#39;s own internal historical knowledge as an attack vector.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">TombRaider采用双智能体流程：检查员智能体从目标LLM中提取与有害主题相关的历史事实，攻击者智能体将这些历史背景融入对抗性提示，将有害请求伪装成历史探究。该方法无需梯度访问或微调目标模型，具有较强的模型通用性。</div>
+            <div class="en">TombRaider introduces a two-agent pipeline: an &#34;inspector agent&#34; that queries the target LLM to extract relevant historical facts, events, or figures related to a harmful topic, and an &#34;attacker agent&#34; that weaves this historical context into adversarial prompts to disguise harmful requests as historical inquiry. By grounding malicious requests in real historical knowledge, the attack reframes dangerous content as factual/educational discussion. This approach is model-agnostic and requires no gradient access or fine-tuning of the target model.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">TombRaider在六个无防御LLM上实现近100%的攻击成功率，超越所有基线方法。在主动防御机制下，ASR仍保持在55.4%以上，表明该方法对当前护栏技术具有较强的鲁棒性。</div>
+            <div class="en">TombRaider achieved nearly 100% Attack Success Rate (ASR) on six undefended popular LLMs, outperforming all evaluated state-of-the-art jailbreak baselines. Against active defense mechanisms, TombRaider maintained an ASR exceeding 55.4%, demonstrating resilience to current guardrail techniques. These results held consistently across all six tested models, suggesting broad applicability of the historical knowledge exploitation vector.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>伦理双刃剑：发布近100% ASR的完整攻击方法，在防御措施广泛部署前存在即时滥用风险。</li><li>防御缺口：55.4%的防御穿透率对生产系统仍极为危险，论文未提出具体防御对策，是重要的开放性问题。</li><li>泛化局限：论文测试了六个模型，但未明确说明是否包含GPT-4o、Claude 3.5等闭源前沿模型，实际影响范围存疑。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Ethical dual-use tension: While the paper is framed as red-teaming research, publishing a near-100% ASR attack technique with full methodology creates immediate misuse risk before defenses are widely deployed.</li><li>Defense gap: A 55.4% ASR against existing defenses is still alarmingly high for production systems — the paper does not propose concrete countermeasures, leaving a critical open problem for the community.</li><li>Generalizability limits: The evaluation covers six models, but the paper does not specify whether closed-source models (e.g., GPT-4o, Claude 3.5) with more opaque safety layers were tested, leaving open questions about real-world impact on frontier models.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2501.18628" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">攻击者可通过重映射字体字形表，向网页注入隐藏对抗性指令，从而绕过LLM安全机制。</div>
+        <div class="paper-title-en">Invisible Prompts, Visible Threats: Malicious Font Injection in External Resources for Large Language Models</div>
+        <div class="paper-meta">
+          <span>Junjie Xiong, Changjia Zhu, Shuhang Lin et al.</span>
+          <span class="badge badge-date">2025-05-22</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>攻击者可通过重映射字体字形表，向网页注入隐藏对抗性指令，从而绕过LLM安全机制。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper demonstrates that attackers can inject hidden adversarial instructions into webpages by remapping font code-to-glyph tables, bypassing LLM safety filters during web-augmented or MCP-integrated inference.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM广泛集成网络搜索与MCP工具协议，字体注入攻击面正快速扩大，威胁现实部署系统。本文是首批系统研究字体型间接提示注入的工作之一，为安全研究者提供了具体的威胁模型。</div>
+            <div class="en">As LLMs are increasingly deployed with real-time web search and tool-use protocols like MCP, this attack surface is growing rapidly and affects production systems today. The paper provides one of the first systematic studies of font-based indirect prompt injection, offering a concrete threat model for practitioners and security researchers. Its findings call for immediate attention to input sanitization and rendering-layer defenses in LLM pipelines.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">攻击者能否通过操控字体字形映射，将恶意指令隐藏于网页内容中，使LLM执行隐藏文本而用户毫不知情？这一问题对具备网络检索或MCP工具访问能力的LLM部署尤为关键。</div>
+            <div class="en">Can attackers hide malicious instructions inside external web content by manipulating font glyph mappings, such that LLMs read and execute the hidden text while human users see only benign content? This matters because LLMs with web retrieval or MCP tool access process raw HTML/font data that users never directly inspect, creating an asymmetric visibility gap ripe for exploitation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有提示注入研究多针对直接用户输入或可见对抗文本，防御手段集中于输出过滤与系统提示加固，对字体编码层的安全性研究几乎空白。</div>
+            <div class="en">Prior prompt injection research mostly targets direct user inputs or visible adversarial text embedded in retrieved documents. Existing defenses focus on output filtering and system-prompt hardening, leaving the rendering layer—where font encoding is interpreted—largely unexamined. No prior work systematically studied code-to-glyph manipulation as a steganographic vector for indirect prompt injection.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者通过重映射Unicode码位与字形的对应关系，构造恶意字体，使网页在浏览器中显示为无害内容，但LLM分词器解码后得到隐藏的攻击指令。实验针对&#34;恶意内容中继&#34;与&#34;敏感数据泄露&#34;两种场景，覆盖多款LLM与多种提示设计。</div>
+            <div class="en">The authors craft malicious fonts by remapping Unicode code points to different glyphs, so that a string visually reads as innocuous text to a human browser but is decoded by the LLM&#39;s tokenizer as a hidden adversarial instruction. They embed these fonts in external webpages and evaluate two attack scenarios: &#34;malicious content relay&#34; (LLM reproduces attacker-chosen harmful content) and &#34;sensitive data leakage&#34; (LLM exfiltrates private context via MCP-enabled tools). Experiments span multiple LLMs and prompt designs to measure attack success rates under varying data sensitivity levels.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">字体注入攻击在多款主流LLM上成功绕过安全机制，攻击成功率随数据敏感性与提示设计而变化。经由MCP工具的敏感数据泄露场景尤为有效，实验证明该攻击具有实际可行性。</div>
+            <div class="en">Malicious font injection successfully bypasses LLM safety mechanisms across tested models, with attack success rates varying based on the sensitivity of the targeted data and the specificity of the injected prompt design. The &#34;sensitive data leakage&#34; scenario via MCP tools proves particularly effective, as tool-use pipelines apply less scrutiny to retrieved external content. Exact aggregate success rates are not uniformly reported, but results confirm the attack is practically viable across multiple frontier LLMs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>攻击面边界不清：攻击依赖LLM处理原始字体字节而非渲染字形，不同检索管道的实际漏洞范围仍需进一步厘清。</li><li>防御方案缺失：论文识别威胁但未提出或评测具体缓解措施（如字形归一化预处理、HTML字体剥离），实践指导有限。</li><li>泛化潜力：编码层感知差异这一核心思路可能延伸至同形字替换、零宽字符等其他隐写通道，值得进一步研究。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scope of font attack surface: The attack relies on the LLM processing raw font-encoded bytes rather than rendered glyphs, which is an architectural assumption that may not hold uniformly across all retrieval pipelines—future work should map exactly which ingestion architectures are vulnerable.</li><li>Defenses are underspecified: The paper identifies the threat but does not propose or benchmark concrete mitigations (e.g., glyph-normalizing preprocessors, font-stripping in HTML parsers), leaving practitioners without actionable remediation guidance.</li><li>Generalization beyond fonts: The core idea—exploiting encoding-layer mismatches between human perception and LLM tokenization—likely generalizes to other steganographic channels (e.g., homoglyph Unicode substitution, invisible zero-width characters), suggesting a broader class of perception-gap attacks worth investigating.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.16957" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">G-Safeguard利用图神经网络检测多智能体对话图中的异常并进行拓扑干预，可恢复因提示注入攻击损失的40%以上性能。</div>
+        <div class="paper-title-en">G-Safeguard: A Topology-Guided Security Lens and Treatment on LLM-based Multi-agent Systems</div>
+        <div class="paper-meta">
+          <span>Shilong Wang, Gui-Min Zhang, Miao Yu et al.</span>
+          <span class="badge badge-date">2025-02-16</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>G-Safeguard利用图神经网络检测多智能体对话图中的异常并进行拓扑干预，可恢复因提示注入攻击损失的40%以上性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">G-Safeguard uses graph neural networks on multi-agent utterance graphs to detect and remediate adversarial attacks in LLM-based multi-agent systems, recovering over 40% of performance lost to prompt injection.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM多智能体系统被部署于高风险领域，G-Safeguard提供了一个可扩展、与骨干模型无关的图论安全框架，为多智能体安全研究树立了方法论基准。</div>
+            <div class="en">As LLM-based multi-agent systems are deployed in high-stakes domains, the lack of robust defenses against adversarial manipulation is a critical gap. G-Safeguard provides a principled, graph-theoretic security framework that is both backbone-agnostic and scalable, making it directly applicable to real-world MAS deployments. This work sets a concrete methodological baseline for the emerging field of multi-agent security.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLM多智能体系统在自主决策中应用广泛，但面对提示注入和虚假信息传播等对抗攻击时极为脆弱。现有防御方法主要针对单智能体设计，无法利用MAS中的智能体交互拓扑结构，本文探索如何借助拓扑信息检测并消除攻击。</div>
+            <div class="en">LLM-based multi-agent systems (MAS) are increasingly used for autonomous decision-making and collaborative problem-solving, yet they remain highly vulnerable to adversarial attacks such as prompt injection and misinformation propagation. Existing defenses are largely designed for single-agent settings and fail to account for the complex inter-agent communication topology inherent in MAS. This paper asks: how can the structural topology of agent interactions be leveraged to detect and neutralize attacks in MAS?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LLM对抗防御（输入过滤、提示加固等）仅针对单智能体流程，忽视了多智能体间消息传播的图结构特性。图异常检测虽有研究，但尚未被应用于MAS动态对话图，也无统一框架同时实现检测与拓扑干预。</div>
+            <div class="en">Prior defenses against LLM adversarial attacks—such as input filtering, output verification, and prompt hardening—are designed for single-agent pipelines and do not model inter-agent message propagation. Graph-based anomaly detection has been studied in network security but has not been applied to the dynamic utterance graphs formed in MAS communication. No existing work provides a unified framework that simultaneously handles detection and topological intervention across diverse MAS architectures.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">G-Safeguard将智能体通信建模为对话图，用GNN检测异常节点或边（如注入提示或被篡改消息），再通过拓扑干预模块隔离或重路由被攻击的通信路径。该框架模块化设计，可与主流MAS平台及任意LLM骨干无缝集成。</div>
+            <div class="en">G-Safeguard models the communication among agents as a multi-agent utterance graph, where nodes represent agents and edges encode message exchanges. A graph neural network (GNN) is trained to detect anomalous nodes or edges that signal adversarial activity, such as injected prompts or corrupted messages. Upon detection, a topological intervention module surgically isolates or re-routes compromised communication paths to remediate the attack. The framework is modular, enabling seamless integration with mainstream MAS platforms and arbitrary LLM backbones.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">G-Safeguard在提示注入攻击下可恢复超过40%的任务性能损失，并在多种LLM骨干和大规模MAS配置上均表现出良好的泛化能力与可扩展性，集成开销小。</div>
+            <div class="en">G-Safeguard recovers over 40% of task performance degraded by prompt injection attacks, demonstrating strong effectiveness. It generalizes across multiple LLM backbones (e.g., GPT series, open-source models) and scales to large MAS configurations. The framework also integrates with mainstream MAS architectures without significant overhead, confirming its practical adaptability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>拓扑作为安全信号：将智能体通信建模为图是核心创新——对抗扰动必然扭曲对话图结构，GNN异常检测因此具有天然优势。</li><li>可扩展性的代价：动态对话图上的实时GNN推理开销尚需深入分析，尤其在对延迟敏感的应用场景中。</li><li>泛化能力待验证：40%恢复率针对提示注入表现突出，但对虚假信息传播、后门智能体等其他攻击类型的量化结果仍需补充，以建立更全面的鲁棒性保证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Topology as a security signal: Modeling agent communications as a graph is a key insight — adversarial perturbations inevitably distort the utterance graph structure, making GNN-based anomaly detection a natural and powerful fit for this setting.</li><li>Scalability and integration trade-offs: While the paper claims scalability to large-scale MAS, the computational cost of running GNN inference on dynamically evolving utterance graphs at inference time deserves deeper analysis, especially for latency-sensitive applications.</li><li>Generalization beyond prompt injection: The 40% recovery metric is compelling for prompt injection, but the paper should more thoroughly quantify performance against other attack types (e.g., misinformation propagation, backdoor agents) to establish broader robustness guarantees.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.11127" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">MASFactory提出以图为核心的框架，通过&#34;Vibe Graphing&#34;将自然语言意图编译为可执行的多智能体工...</div>
+        <div class="paper-title-en">MASFactory: A Graph-centric Framework for Orchestrating LLM-Based Multi-Agent Systems with Vibe Graphing</div>
+        <div class="paper-meta">
+          <span>Yang Liu, Jinxuan Cai, Yishen Li et al.</span>
+          <span class="badge badge-date">2026-03-06</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>MASFactory提出以图为核心的框架，通过&#34;Vibe Graphing&#34;将自然语言意图编译为可执行的多智能体工作流图，大幅降低手动实现成本。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MASFactory introduces a graph-centric framework with &#34;Vibe Graphing&#34; that compiles natural-language descriptions into executable multi-agent workflow graphs, dramatically reducing manual implementation effort.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">MASFactory解决了多智能体系统部署中的关键瓶颈——复杂工作流的高昂手动配置成本。其自然语言驱动的图构建方式降低了研究者与从业者的使用门槛，可复用组件与可插拔上下文集成进一步提升了实用性。</div>
+            <div class="en">MASFactory tackles a critical bottleneck in deploying LLM-based multi-agent systems: the high manual overhead of wiring complex workflows. By enabling natural-language-driven graph construction with human-in-the-loop editing, it lowers the barrier for both researchers and practitioners to build and iterate on sophisticated MAS pipelines. The reusable components and pluggable context integration further make it practically deployable across heterogeneous settings.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何让开发者高效构建、复用和集成复杂的多智能体工作流，而无需大量手动编码？当前框架在实现、调试和扩展图结构工作流时工程代价高昂，亟需解决。</div>
+            <div class="en">How can developers efficiently construct, reuse, and integrate complex LLM-based multi-agent workflows without heavy manual coding? This matters because MAS workflows naturally map to directed computation graphs, yet current frameworks require significant engineering effort to implement, debug, and extend them.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有框架（如LangGraph、AutoGen）需开发者手动以代码定义智能体角色、边和消息传递逻辑，复用性差且易出错。异构外部上下文（如RAG、API、记忆模块）的集成支持有限，图工作流的可视化与运行时追踪能力也较为薄弱。</div>
+            <div class="en">Existing MAS frameworks (e.g., LangGraph, AutoGen) require developers to manually define agent roles, edges, and message-passing logic in code, which is error-prone and hard to reuse. They also offer limited support for integrating heterogeneous external context sources (e.g., RAG, APIs, memory stores) in a modular, plug-and-play manner. Visualization and runtime tracing capabilities for debugging graph-structured workflows are largely underdeveloped.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">MASFactory将多智能体工作流建模为有向计算图，节点为智能体或子工作流，边编码依赖与消息传递。核心创新&#34;Vibe Graphing&#34;以人在回路的方式将自然语言意图转化为可编辑的工作流规范，再编译为可执行图。框架还提供可复用组件库、可插拔上下文集成层及支持拓扑预览与运行时追踪的可视化工具。</div>
+            <div class="en">MASFactory models MAS workflows as directed computation graphs where nodes represent agents or sub-workflows and edges encode dependencies and message passing. Its core innovation, Vibe Graphing, is a human-in-the-loop pipeline that translates natural-language intent into an editable workflow specification (an intermediate representation), which is then compiled into an executable graph. The framework also provides a library of reusable agent/tool components and a pluggable context integration layer supporting diverse external sources. A built-in visualizer supports topology preview, runtime execution tracing, and mid-run human intervention.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">本文以系统框架为主，未提供大规模定量基准测试结果。通过工作流案例展示了Vibe Graphing可成功将自然语言规范编译为可执行图，并减少手动工作量，但未给出与LangGraph等框架的具体性能对比数据。</div>
+            <div class="en">The paper is primarily a system/framework paper and does not report large-scale quantitative benchmarks. It demonstrates MASFactory&#39;s capabilities through system design descriptions and workflow case studies, showing that Vibe Graphing can successfully compile natural-language specifications into executable graphs with reduced manual effort. Specific runtime performance figures or comparative benchmark numbers against LangGraph or AutoGen are not provided in the abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>Vibe Graphing依赖LLM解析自然语言意图，模糊输入可能生成错误图结构，论文未量化编译失败率或错误恢复机制，可靠性存疑。</li><li>人在回路设计有助于确保正确性，但在追求高度自动化的流水线场景中可能成为瓶颈，自动化与人工监督之间的权衡需进一步探讨。</li><li>缺乏与LangGraph、AutoGen在标准化任务（如GAIA、AgentBench）上的严格对比实验，难以评估框架抽象是否引入额外开销或切实提升开发效率。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Vibe Graphing&#39;s reliance on LLMs to parse natural-language intent into workflow specs raises reliability concerns — ambiguous or underspecified inputs may generate incorrect graph structures, and the paper does not quantify compilation failure rates or error recovery mechanisms.</li><li>The human-in-the-loop design is a strength for correctness but may become a bottleneck in automated pipelines where minimal human intervention is desired; the tradeoff between automation and oversight needs further exploration.</li><li>Without rigorous benchmarks comparing MASFactory against LangGraph or AutoGen on standardized tasks (e.g., GAIA, AgentBench), it is difficult to assess whether the framework&#39;s abstractions introduce overhead or genuinely improve developer productivity at scale.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.06007v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">COLD-Steer是一种免训练激活引导框架，通过近似上下文样本梯度下降的表示变化，解决了LLM行为控制中样本效率...</div>
+        <div class="paper-title-en">COLD-Steer: Steering Large Language Models via In-Context One-step Learning Dynamics</div>
+        <div class="paper-meta">
+          <span>Kartik Sharma, Rakshit S. Trivedi</span>
+          <span class="badge badge-date">2026-03-06</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>COLD-Steer是一种免训练激活引导框架，通过近似上下文样本梯度下降的表示变化，解决了LLM行为控制中样本效率与信号质量之间的权衡难题。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">COLD-Steer is a training-free activation steering framework that approximates the representational effect of gradient descent on in-context examples, resolving the sample-efficiency vs. signal-quality trade-off in LLM behavioral control.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">COLD-Steer无需参数更新或大量标注数据即可实现细粒度推理时控制，降低了受限资源场景下部署引导模型的门槛。其免训练特性使其可直接应用于任何预训练LLM，对无法承担反复微调的实践者具有重要价值。</div>
+            <div class="en">COLD-Steer offers a practical path to fine-grained inference-time control of LLMs without any parameter updates or large labeled datasets, lowering the barrier for deploying steered models in resource-constrained settings. Its training-free nature makes it immediately applicable to any pre-trained LLM, which is significant for practitioners who cannot afford repeated fine-tuning cycles.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何仅使用少量标注样本在推理时引导LLM行为，而无需重新训练或构建大规模对比数据集？这对于在部署中将LLM输出对齐到特定任务或安全约束至关重要。</div>
+            <div class="en">How can we steer LLM behavior at inference time using only a small number of labeled examples, without retraining or expensive contrastive dataset construction? This matters because reliable, lightweight behavioral control is essential for aligning LLM outputs to specific tasks or safety constraints in deployment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">ActAdd、CAA等样本高效方法从少量配对数据中提取引导向量，但信号捕获能力有限；而基于探针或表示微调的方法虽信号质量高，却需数百至数千标注样本，部署成本高昂。两类方法均无法有效兼顾数据效率与高保真行为控制。</div>
+            <div class="en">Sample-efficient methods like Activation Addition (ActAdd) and Contrastive Activation Addition (CAA) extract steering vectors from small paired datasets but fail to capture rich directional signals, limiting steering quality. Methods with stronger signal extraction, such as learned probes or representation fine-tuning, require hundreds to thousands of labeled examples, making them costly to deploy. Neither category effectively bridges the gap between data efficiency and high-fidelity behavioral control.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">COLD-Steer近似上下文样本经一步梯度下降后的激活空间变化，无需更新任何模型参数。单位核近似方法利用对激活值的归一化梯度直接更新激活；有限差分近似方法仅需两次前向传播即可估计激活空间的方向偏移，计算开销极低。两种方法协同工作，使COLD-Steer能从少量样本中提取更丰富的引导信号，同时保持免训练特性。</div>
+            <div class="en">COLD-Steer approximates the activation-space changes that would result from one step of gradient descent applied to in-context examples, without actually updating any model parameters. The first approach, unit kernel approximation, directly updates activations using normalized gradients with respect to those activations across the example set. The second approach, finite-difference approximation, estimates the directional shift in activation space using only two forward passes, making it computationally lightweight regardless of the number of examples. Together, these two methods allow COLD-Steer to extract richer steering signals from few examples while remaining entirely training-free.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">COLD-Steer在情感、毒性及主题引导基准测试中，以与CAA、ActAdd相当的少量样本超越了现有样本高效基线方法。有限差分变体仅需两次前向传播即可达到有竞争力的性能，且与使用大规模数据集训练的方法之间的差距显著缩小。</div>
+            <div class="en">COLD-Steer outperforms existing sample-efficient baselines (e.g., CAA, ActAdd) on behavioral steering benchmarks while using comparably few labeled examples. The finite-difference variant achieves competitive performance with only two forward passes, demonstrating that approximating fine-tuning dynamics is both effective and computationally tractable. Specific numerical gains are reported across sentiment, toxicity, and topic-steering tasks, with COLD-Steer closing the gap toward methods trained on much larger datasets.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>近似保真度：两种方法均为近似而非精确的梯度下降动态，当损失曲面高度非线性或上下文样本存在噪声时，引导信号质量可能下降。</li><li>多样本可扩展性：有限差分方法的前向传播次数固定为两次，但单位核方法的计算成本随样本数和目标层数线性增长，大批量场景下可能成为瓶颈。</li><li>跨任务与模型族泛化性：实验主要集中于特定引导任务，近似方法在MoE等不同架构或多轮安全拒绝等更难对齐任务上的有效性仍有待验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Approximation fidelity: Both methods approximate — rather than compute — true gradient-descent dynamics; the quality of the steering signal may degrade when the loss landscape is highly nonlinear or when in-context examples are noisy or contradictory.</li><li>Scalability to many examples: The finite-difference method uses only two forward passes regardless of example count, but the unit kernel method&#39;s cost scales with the number of examples and layers targeted, which could become a bottleneck for large batches.</li><li>Generalization across tasks and model families: Results are demonstrated on specific steering tasks; whether the approximation holds equally well across diverse model architectures (e.g., MoE models) or harder alignment tasks (e.g., multi-turn safety refusal) remains an open question.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.06495v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文通过溯因三段论逻辑重构LLM推理评估框架，将现有演绎数据集转化为溯因任务，检验LLM在从大前提和结论推导小前提...</div>
+        <div class="paper-title-en">Abductive Reasoning with Syllogistic Forms in Large Language Models</div>
+        <div class="paper-meta">
+          <span>Hirohiko Abe, Risako Ando, Takanobu Morishita Kentaro Ozeki et al.</span>
+          <span class="badge badge-date">2026-03-06</span>
+          <span class="badge badge-venue">Proceedings</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文通过溯因三段论逻辑重构LLM推理评估框架，将现有演绎数据集转化为溯因任务，检验LLM在从大前提和结论推导小前提时是否存在信念偏差。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper reframes LLM reasoning evaluation through abductive syllogistic logic, converting existing deductive datasets to test whether LLMs exhibit belief biases when drawing minor premises from major premises and conclusions.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文指出，用演绎偏差批评LLM可能并不公平，因为人类推理本身也大量依赖溯因而非纯形式逻辑。通过引入溯因三段论基准，为LLM推理评估开辟了新维度，更贴近现实世界的语境推理需求。</div>
+            <div class="en">This paper challenges the fairness of criticizing LLMs for deductive biases by highlighting that human reasoning itself relies heavily on abduction rather than pure formal logic. By introducing an abductive syllogistic benchmark, it opens a new evaluation axis for LLM reasoning that better reflects real-world, context-sensitive inference. Practitioners and researchers can use this framing to design more nuanced and cognitively grounded reasoning benchmarks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文探究当前最先进的LLM在溯因推理（即从大前提和结论推断小前提）中是否存在系统性偏差，这一问题很重要，因为此前研究主要聚焦于演绎任务，可能错误地将LLM的表现归咎于偏差。</div>
+            <div class="en">The paper asks whether state-of-the-art LLMs exhibit systematic biases specifically in abductive reasoning — the process of inferring a plausible minor premise given a major premise and a conclusion. This matters because prior work has largely focused on deductive tasks, potentially mischaracterizing LLM failures as biases when abductive inference may be the more natural and appropriate reasoning mode.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">此前研究表明，人类和LLM在演绎三段论推理中均存在&#34;信念偏差&#34;，即拒绝与常识冲突的逻辑有效结论。这些评估仅针对演绎任务，溯因推理在三段论语境下几乎未被探索，仅凭演绎表现批评LLM忽视了溯因推理的重要认知作用。</div>
+            <div class="en">Prior studies showed that both humans and LLMs exhibit a &#34;belief bias&#34; in deductive syllogistic reasoning — rejecting logically valid conclusions that conflict with real-world knowledge. These evaluations were conducted solely on deductive tasks, leaving abductive reasoning largely unexplored in the context of syllogisms. Criticizing LLMs based only on deductive performance overlooks the broader cognitive role of abduction in everyday inference.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者将溯因定义为三段论的逆过程：给定大前提（&#34;所有A是B&#34;）和结论（&#34;x是B&#34;），推断小前提（&#34;x是A&#34;）。他们将现有演绎三段论数据集转化为溯因格式，并在该新基准上评估最先进的LLM，检测其是否因内容合理性而忽视逻辑结构。核心贡献在于概念重构与数据集转化方法。</div>
+            <div class="en">The authors reframe abduction as the inverse of syllogism: given a major premise (&#34;All A are B&#34;) and a conclusion (&#34;x is B&#34;), the task is to abduce the minor premise (&#34;x is A&#34;). They convert an existing syllogistic deductive dataset into an abductive format, creating parallel test cases that allow direct comparison of LLM performance across reasoning modes. The study evaluates state-of-the-art LLMs on this new benchmark, probing for belief-driven errors where content plausibility overrides logical structure. The key contribution is both the conceptual reframing and the methodological conversion of the dataset.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">LLM在溯因任务中表现出与演绎任务类似的信念偏差，倾向于选择符合常识的答案而非逻辑一致的答案。结果表明，LLM的溯因错误并非随机，而是系统性地受到预训练中世界知识先验的影响。信念一致与不一致条目之间的性能差距是主要发现。</div>
+            <div class="en">LLMs demonstrated measurable belief biases in abductive reasoning tasks, similar in character to those observed in deductive settings — favoring plausible conclusions over logically consistent ones. The results suggest that LLM abductive errors are not random but systematically influenced by world-knowledge priors embedded in pretraining. Specific accuracy figures were not fully reported in the available abstract, but performance gaps between belief-congruent and belief-incongruent items were identified as a key finding.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>从演绎到溯因三段论的数据集转化方法具有可复用价值，但实验规模较有限，涵盖更多LLM系列和参数规模将有助于增强偏差发现的普适性。</li><li>一个关键开放问题是：溯因中观察到的信念偏差究竟是Transformer架构的根本局限，还是指令遵循和提示词敏感性的副产物——当前研究尚未充分区分这两者。</li><li>本文将溯因偏差视为&#39;合理&#39;或认知自然现象的立场存在风险，可能将推理错误正常化；未来研究应厘清人类式溯因偏差对于决策支持AI系统是否真正可取。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The dataset conversion methodology — from deductive to abductive syllogisms — is a reusable contribution, but the empirical scope appears modest; broader coverage of LLM families and sizes would strengthen the generalizability of the bias findings.</li><li>A key open question is whether the observed belief bias in abduction reflects a fundamental limitation of transformer-based LLMs or is an artifact of instruction-following and prompt sensitivity, which the current study does not fully disentangle.</li><li>The paper&#39;s framing that abductive bias may be &#39;fair&#39; or cognitively natural risks normalizing reasoning errors; future work should clarify whether human-like abductive biases are actually desirable properties in AI systems deployed for decision support.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.06428v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">AOR让LLM仅凭视觉失败观察，迭代重写底层机器人运动控制代码，无需梯度更新或演示即可实现策略改进。</div>
+        <div class="paper-title-en">Act-Observe-Rewrite: Multimodal Coding Agents as In-Context Policy Learners for Robot Manipulation</div>
+        <div class="paper-meta">
+          <span>Vaishak Kumar</span>
+          <span class="badge badge-date">2026-03-03</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>AOR让LLM仅凭视觉失败观察，迭代重写底层机器人运动控制代码，无需梯度更新或演示即可实现策略改进。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">AOR enables LLMs to iteratively rewrite full low-level robot motor control code from visual failure observations alone, achieving in-context policy improvement without gradient updates or demonstrations.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">AOR挑战了机器人学习必须依赖奖励工程或梯度训练的主流假设，提供了更具可解释性和数据效率的替代方案。将可执行Python代码作为策略表示，为物理操作任务的快速、可读策略调试与适应开辟了新路径。</div>
+            <div class="en">AOR challenges the prevailing assumption that robot learning requires reward engineering or gradient-based training, offering a more interpretable and data-efficient alternative. By treating executable Python code as the policy representation, it opens a path for rapid, human-readable policy debugging and adaptation in physical manipulation tasks. This is particularly impactful for practitioners who need to deploy robots in new environments without extensive retraining pipelines.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">多模态LLM能否仅通过对自身失败的推理来改进机器人操作策略，而无需梯度更新、专家演示或奖励工程？这一问题对于突破当前机器人学习数据依赖性强、可迁移性差的瓶颈至关重要。</div>
+            <div class="en">Can a multimodal LLM improve a robot manipulation policy purely through reasoning about its own failures, without any gradient updates, expert demonstrations, or reward engineering? This matters because current robot learning methods are data-hungry, opaque, and difficult to transfer, limiting scalable deployment of manipulation systems.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LLM机器人方法要么依赖预定义技能库（限制底层适应性），要么用代码生成做一次性规划（无法迭代修正）。基于奖励的强化学习则需要大量工程投入和环境交互。</div>
+            <div class="en">Existing LLM-for-robotics approaches either ground language models in pre-defined skill libraries (limiting low-level adaptability) or use code generation for one-shot plan synthesis (preventing iterative correction). Neither paradigm allows the agent to modify how the robot executes a motion, only what high-level steps it takes. Reward-based RL methods require costly engineering and many environment interactions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">AOR采用三阶段循环：执行Python运动控制器（Act）、通过视觉反馈和结构化摘要观察结果（Observe）、在上下文中重写完整控制器代码（Rewrite）。底层运动控制实现（而非高层规划）是LLM推理与重写的基本单元，使智能体能诊断系统性失败并修改执行细节，全程无需技能库、奖励函数或梯度信号。</div>
+            <div class="en">AOR introduces a three-stage loop: the agent Acts by executing a Python motor controller on the robot, Observes the outcome via visual feedback and structured episode summaries, and Rewrites the full controller code in-context for the next trial. Crucially, the entire low-level motor control implementation — not just a high-level plan — is the unit of LLM reasoning and rewriting. This allows the agent to diagnose systematic failure modes (e.g., incorrect grasp angle, insufficient reach) and alter the precise mechanics of execution. No skill library, reward function, or gradient signal is required at any stage.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">现有摘要未提供完整定量结果，但框架表明代码即策略的可解释表示相比不透明神经策略能实现更优的上下文学习。智能体可跨试验诊断并纠正系统性操作失败，完整实验验证尚待社区评审。</div>
+            <div class="en">Specific quantitative results are not fully detailed in the available abstract, but the framework demonstrates that interpretable code-as-policy enables qualitatively superior in-context learning compared to opaque neural policies. The agent is reported to successfully diagnose and correct systematic manipulation failures across trials. Full experimental validation and benchmark comparisons remain pending community review.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>完整代码重写的可扩展性：对长时域或高自由度任务，每轮重写整个底层控制器可能导致搜索空间爆炸或策略退化。</li><li>多模态感知的可靠性：失败诊断质量依赖视觉模块对物理状态（接触、滑动、遮挡）的准确解读，视觉误差可能引发错误重写。</li><li>泛化与过拟合：迭代上下文重写存在对特定试验条件过拟合的风险，难以学到鲁棒的通用策略。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability of full code rewriting: Rewriting the entire low-level controller each trial may become unstable or degenerate for long-horizon or high-DoF manipulation tasks where the search space of valid controllers is vast.</li><li>Multimodal grounding fidelity: The quality of failure diagnosis depends on how accurately the vision module interprets physical states (e.g., contact, slip, occlusion); errors in visual observation could propagate into misleading rewrites.</li><li>Generalization vs. overfitting to episodes: Iterative in-context rewriting risks overfitting the controller to idiosyncrasies of specific trial conditions rather than learning a robust generalizable policy.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04466v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">RoboMME是一个包含16项任务和14种记忆增强VLA变体的大规模标准化基准，用于系统评估机器人通用策略中的记忆机制。</div>
+        <div class="paper-title-en">RoboMME: Benchmarking and Understanding Memory for Robotic Generalist Policies</div>
+        <div class="paper-meta">
+          <span>Yinpei Dai, Hongze Fu, Jayjun Lee et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>RoboMME是一个包含16项任务和14种记忆增强VLA变体的大规模标准化基准，用于系统评估机器人通用策略中的记忆机制。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">RoboMME is a large-scale standardized benchmark with 16 tasks and 14 memory-augmented VLA variants to systematically evaluate and improve memory mechanisms in robotic generalist policies.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">RoboMME填补了具身AI中记忆评估的空白，提供了首个分类驱动的标准化基准，推动长时序机器人操作研究，14种基于π0.5的VLA变体也为后续研究提供了强基线。</div>
+            <div class="en">RoboMME fills a critical evaluation gap in embodied AI by providing the first standardized, taxonomy-driven benchmark for memory in VLA models, enabling fair cross-method comparison. It directly accelerates progress on long-horizon robotic manipulation—a key bottleneck for deploying robots in real-world, unstructured environments. The 14 VLA variants built on π0.5 also serve as strong baselines for future memory-augmented policy research.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何系统评估和提升VLA模型在长时序机器人操作中的记忆机制？涉及重复动作计数或处理遮挡物体的任务需要结构化记忆，但目前缺乏标准化基准。</div>
+            <div class="en">How can we systematically evaluate and improve memory mechanisms in vision-language-action (VLA) models for long-horizon robotic manipulation? Tasks requiring counting repeated actions or handling temporarily occluded objects demand structured memory, yet no standardized benchmark exists to measure this capability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型虽引入了记忆机制，但评估局限于非标准化的狭窄场景，无法系统比较。现有基准主要针对短时序任务，未按记忆类型分类，难以定位模型的具体短板。</div>
+            <div class="en">Recent VLA models (e.g., RT-2, OpenVLA, π0) have begun integrating memory mechanisms, but their evaluations are conducted in narrow, non-standardized settings that prevent systematic comparison. Existing benchmarks focus primarily on single-step or short-horizon tasks and do not decompose memory into distinct cognitive categories, making it impossible to pinpoint which memory type a model lacks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">RoboMME基于四类记忆（时序、空间、对象、程序）设计16项操作任务，并在π0.5骨干网络上构建14种记忆增强VLA变体，涵盖不同记忆表示与集成策略，支持多维度消融分析。</div>
+            <div class="en">RoboMME introduces a taxonomy-driven benchmark covering four memory types: temporal, spatial, object, and procedural, spanning 16 manipulation tasks with controlled difficulty levels. Built on the π0.5 backbone, the authors design 14 memory-augmented VLA variants that explore different memory representations (e.g., state histories, episodic buffers, structured memory tokens) and integration strategies. This systematic design allows ablation across memory type, representation, and architecture simultaneously.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明，没有单一记忆表示在所有类别中均占优，结构化情节记忆在时序和程序性任务上表现稳定；无显式记忆机制的基线VLA模型在历史依赖任务上显著失败，验证了基准的判别力。</div>
+            <div class="en">Experimental results reveal that no single memory representation dominates across all four memory categories, highlighting the need for task-specific memory design. Certain augmentation strategies, particularly those integrating structured episodic memory, show consistent gains on temporal and procedural memory tasks. Baseline VLA models without explicit memory mechanisms fail significantly on history-dependent tasks, confirming the benchmark&#39;s discriminative power.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>仿真到现实的迁移：16项任务均基于仿真构建，基准性能提升能否迁移至真实非结构化环境仍需验证。</li><li>记忆表示的选择问题：无单一记忆表示全局最优，提示需要自适应或混合记忆架构，但基准尚未提供自动选择策略。</li><li>评估可扩展性：随VLA模型规模增大，在16项任务上运行14种变体的计算成本较高，未来需探索高效代理指标或精简评估协议。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Task coverage vs. real-world transfer: RoboMME&#39;s 16 tasks are simulation-based and taxonomy-constrained, raising questions about whether benchmark gains translate to unstructured real-world deployments with diverse distractors.</li><li>Memory representation selection: The finding that no single memory type universally wins suggests that adaptive or hybrid memory architectures may be necessary, but the benchmark does not yet provide guidance on how to select or combine representations automatically.</li><li>Scalability of evaluation: As VLA models grow larger (e.g., towards foundation-model-scale policies), running 14 variants across 16 tasks becomes computationally expensive; future work should explore efficient proxy metrics or reduced evaluation protocols.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.04639v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">SkillVLA通过复用和重组单臂技能，使双臂机器人无需从头学习每种双臂任务组合，有效应对组合多样性挑战。</div>
+        <div class="paper-title-en">SkillVLA: Tackling Combinatorial Diversity in Dual-Arm Manipulation via Skill Reuse</div>
+        <div class="paper-meta">
+          <span>Xuanran Zhai, Zekai Huang, Longyan Wu et al.</span>
+          <span class="badge badge-date">2026-03-04</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SkillVLA通过复用和重组单臂技能，使双臂机器人无需从头学习每种双臂任务组合，有效应对组合多样性挑战。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SkillVLA enables dual-arm robots to reuse and recombine single-arm skills across novel left-right pairings, avoiding the combinatorial explosion of learning every bimanual task from scratch.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">SkillVLA解决了双臂机器人学习中的可扩展性瓶颈，为具身智能提供了组合式框架。通过跨臂技能复用，显著降低了泛化到新双臂任务所需的数据与训练成本。</div>
+            <div class="en">SkillVLA directly addresses a scalability bottleneck in bimanual robot learning that prior VLA models ignore, offering a principled compositional framework for embodied AI. By enabling skill reuse across arm pairings, it reduces the data and training cost needed to generalize to novel dual-arm tasks. This work is timely given the rapid deployment of VLA models in real-world robotics pipelines.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">双臂操作中，单臂技能的不同左右配对会产生组合爆炸式的任务行为。现有VLA模型将每种双臂任务独立建模，无法组合泛化到未见过的左右配对，训练成本极高。</div>
+            <div class="en">The paper tackles combinatorial diversity in dual-arm (bimanual) manipulation: the number of distinct task behaviors grows combinatorially with the number of single-arm skills, yet existing VLA models treat each bimanual task as an independent learning problem. This means that a robot must be trained on every specific left-right pairing, which is expensive and fails to generalize compositionally to unseen combinations.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">主流双臂VLA模型将两臂表示耦合在一起，无法独立复用或替换单臂行为，迫使模型对每种左右组合分别学习。这种耦合设计导致可扩展性差，泛化到多样双臂任务需要大量数据。</div>
+            <div class="en">Mainstream bimanual VLA models (e.g., those built on OpenVLA or π0 backbones) entangle the representations of both arms, making it impossible to independently reuse or swap learned single-arm behaviors. This entanglement prevents compositional generalization and forces models to learn every arm-pairing combination explicitly. As a result, scaling to diverse bimanual tasks requires disproportionately large datasets and retraining.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">SkillVLA采用解耦技能表示框架，将单臂技能模块独立编码，并通过技能复用机制将其自由重组为新的双臂任务。每条手臂的动作生成以各自的技能嵌入为条件，同时共享视觉-语言主干以保持协调信号。该设计将双臂操作的组合结构显式编码进模型架构中。</div>
+            <div class="en">SkillVLA introduces a disentangled skill representation framework that explicitly separates single-arm skill modules, allowing them to be independently encoded and recombined for novel left-right pairings. The architecture conditions each arm&#39;s action generation on its own skill embedding while sharing a common vision-language backbone, preserving cross-arm coordination signals. A skill reuse mechanism enables zero-shot or few-shot transfer to unseen bimanual task combinations by composing previously learned arm-specific policies. This design directly encodes the compositional structure of bimanual manipulation into the model architecture.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明，SkillVLA在训练中未见过的新左右技能组合任务上显著优于基线双臂VLA模型，展现出强组合泛化能力，在多个双臂操作基准上任务成功率大幅提升。</div>
+            <div class="en">Extensive experiments show that SkillVLA substantially outperforms baseline bimanual VLA models on tasks requiring novel left-right skill combinations not seen during training. The framework demonstrates strong compositional generalization, successfully executing unseen arm pairings with high task success rates. Specific numerical improvements over baselines are reported across multiple dual-arm manipulation benchmarks, validating the skill reuse hypothesis.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>技能可分性假设：SkillVLA假设单臂技能可有效解耦，但对于拧毛巾等紧密耦合的双臂任务，该假设可能不成立，方法适用范围或局限于松耦合场景。</li><li>数据效率问题：技能复用虽减少了组合训练需求，但基础单臂技能的演示数据获取成本仍是开放性问题，实际效率增益有待进一步量化。</li><li>真实环境迁移：解耦技能嵌入从仿真或实验室环境迁移到非结构化真实场景的能力，以及物理约束下的手臂协调问题，仍需更充分的验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Skill boundary assumption: SkillVLA assumes single-arm skills are meaningfully separable, but tightly coupled bimanual tasks (e.g., wringing a towel) may not decompose cleanly, potentially limiting the approach to loosely coordinated behaviors.</li><li>Data efficiency claim: While skill reuse reduces the need to train on every combination, the paper&#39;s conclusions depend on how many base single-arm skills must be demonstrated; the marginal cost of acquiring foundational skill data remains an open question.</li><li>Sim-to-real and safety considerations: The degree to which disentangled skill embeddings transfer from simulation or controlled lab settings to unstructured real-world environments—where arm interactions are physically constrained—requires further validation.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.03836v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-10</footer>
+</body>
+</html>
