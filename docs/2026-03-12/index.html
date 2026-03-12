@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-12 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-12  |  共 10 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">代码混用红队测试框架CSRT揭示了大语言模型的多语言安全漏洞，攻击成功率比纯英文攻击高46.7%。</div>
+        <div class="paper-title-en">Code-Switching Red-Teaming: LLM Evaluation for Safety and Multilingual Understanding</div>
+        <div class="paper-meta">
+          <span>Haneul Yoo, Yongjin Yang, Hwaran Lee</span>
+          <span class="badge badge-date">2024-06-17</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>代码混用红队测试框架CSRT揭示了大语言模型的多语言安全漏洞，攻击成功率比纯英文攻击高46.7%。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Code-switching in red-teaming queries exposes a critical multilingual safety vulnerability in LLMs, with the proposed CSRT framework achieving 46.7% more successful attacks than standard English-only attacks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了一个被忽视的攻击面：代码混用可系统性地绕过主要针对单语场景训练的安全机制。覆盖10个模型和10种语言组合的基准测试为安全研究社区提供了可复用的评估工具。</div>
+            <div class="en">This paper reveals a largely overlooked attack surface: natural code-switching behavior can systematically bypass LLM safety guardrails that are primarily trained and evaluated in monolingual settings. The comprehensive benchmark across 10 LLMs and up to 10 mixed languages provides a reusable evaluation framework for the safety community. Practitioners deploying LLMs in multilingual contexts should treat code-switching robustness as a first-class safety requirement.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">自然发生的代码混用（在单个话语中混合多种语言）能否被用于绕过主流大语言模型的安全机制？由于安全对齐主要在英文或单语环境下进行，混合语言输入在实际部署中可能是一个重大盲点。</div>
+            <div class="en">Can naturally occurring code-switching—the practice of mixing multiple languages in a single utterance—be exploited to bypass the safety mechanisms of state-of-the-art LLMs? This matters because safety alignment is predominantly conducted in English or isolated monolingual settings, leaving mixed-language inputs as a potential blind spot in real-world deployments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有多语言红队测试方法通常将攻击提示直接翻译为单一目标语言，模型已通过多语言安全微调逐步应对此类攻击。这些方法未能模拟真实世界中语言交织混用的场景，低估了多语言部署中的实际攻击面。</div>
+            <div class="en">Existing multilingual red-teaming approaches typically translate attack prompts directly into a single target language, which LLMs have increasingly learned to handle through multilingual safety tuning. These methods fail to capture the nuanced, interleaved nature of real-world multilingual communication and do not stress-test models against cross-lingual input mixing. As a result, prior work underestimates the actual attack surface in multilingual deployments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">CSRT框架通过在单条查询中交织多种语言的词汇或短语来合成攻击提示，模拟自然代码混用行为，语言组合数量最多可达10种。该框架覆盖仇恨言论、暴力、违法活动等常见安全域，无需微调模型，可扩展至大规模自动化攻击提示生成。</div>
+            <div class="en">The authors propose CSRT (Code-Switching Red-Teaming), a framework that synthesizes attack prompts by interleaving tokens or phrases from multiple languages within a single query, mimicking natural code-switching behavior. CSRT generates queries combining up to 10 languages, applying this mixing strategy across conventional safety domains such as hate speech, violence, and illegal activities. The framework is also shown to be extensible, supporting automated generation of code-switching attack prompts at scale. Crucially, it requires no model fine-tuning and can augment existing red-teaming datasets.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在十个主流大语言模型上，CSRT的攻击成功率比标准英文红队测试高46.7%，且在所有安全域均优于现有多语言基线。研究同时发现，大多数模型在生成和理解代码混用文本方面存在明显弱点，安全能力与多语言能力的缺口相互关联。</div>
+            <div class="en">CSRT achieves 46.7% more successful attacks compared to standard English-only red-teaming queries across ten state-of-the-art LLMs. It consistently outperforms existing multilingual red-teaming baselines, demonstrating effectiveness across all tested safety domains. The study also finds that most LLMs exhibit notable weaknesses in both generating and understanding code-switching text, suggesting safety and multilingual capability gaps are interrelated.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>代码混用造成安全分类器的理解盲区：当对齐训练以单语为主时，混合语言输入可能导致模型内部表示不一致，使有害意图得以通过，安全评估必须原生支持混合语言输入。</li><li>46.7%的提升幅度可能低估了真实风险，因为攻击者可主动选择最优语言组合；未来研究应深入分析哪些语言对或混合比例最能削弱安全机制。</li><li>模型在生成和理解代码混用文本上的双重弱点引发深层问题：多语言能力是否应成为多语言地区安全部署的前提条件，开发者如何平衡语言覆盖扩展与随之增大的攻击面？</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Language mixing creates an interpretability gap: when safety classifiers and alignment tuning are monolingual, code-switched inputs may be parsed inconsistently across the model&#39;s internal representations, allowing harmful intent to slip through — this suggests safety evaluation must natively include mixed-language inputs.</li><li>The 46.7% improvement over English baselines likely underestimates real-world risk, since adversarial users can choose optimal language combinations; future work should study which specific language pairs or mixing ratios maximize attack success and why certain languages weaken guardrails more than others.</li><li>The finding that LLMs struggle to both generate and understand code-switching text raises a deeper question: should multilingual capability be a prerequisite for safe deployment in multilingual regions, and how should developers balance expanding language coverage with the increased attack surface it introduces?</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2406.15481" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">TRIDENT提出三维框架（词汇多样性、恶意意图、越狱策略）及自动化流程，合成全面的红队数据集以提升LLM安全对齐效果。</div>
+        <div class="paper-title-en">TRIDENT: Enhancing Large Language Model Safety with Tri-Dimensional Diversified Red-Teaming Data Synthesis</div>
+        <div class="paper-meta">
+          <span>Xiaorui Wu, Xiaofeng Mao, Fei Li et al.</span>
+          <span class="badge badge-date">2025-05-30</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>TRIDENT提出三维框架（词汇多样性、恶意意图、越狱策略）及自动化流程，合成全面的红队数据集以提升LLM安全对齐效果。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TRIDENT introduces a tri-dimensional framework (Lexical Diversity, Malicious Intent, Jailbreak Tactics) and an automated pipeline to synthesize comprehensive red-teaming datasets for safer LLM alignment.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">TRIDENT填补了LLM安全对齐数据集仅关注词汇多样性的关键空白，为研究者和实践者提供了可直接使用的评估框架与数据集。自动化零样本生成流程大幅降低了构建大规模红队数据的成本。</div>
+            <div class="en">TRIDENT directly addresses a critical gap in LLM safety: existing alignment datasets are evaluated only on surface-level lexical diversity, leaving models exposed to novel jailbreak tactics and under-represented malicious intents. By providing a systematic three-dimensional measurement framework and two ready-to-use datasets, this work gives both researchers and practitioners concrete tools to audit and improve safety coverage. The automated, zero-shot pipeline also lowers the barrier to generating large-scale, diverse red-teaming data without expensive human annotation.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何系统衡量并提升LLM安全对齐数据集的风险覆盖度，而不仅停留于词汇变化？现有数据集在恶意意图类别和越狱策略上覆盖不足，导致微调模型仍易受对抗性提示攻击。</div>
+            <div class="en">How can we systematically measure and improve the risk coverage of LLM safety alignment datasets beyond simple lexical variation? Current datasets fail to ensure broad coverage of malicious intent categories and jailbreak strategies, leaving fine-tuned models vulnerable to real-world adversarial prompts. A principled framework for diagnosing and filling these coverage gaps is urgently needed.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有安全对齐数据集主要优化词汇多样性，忽视恶意意图分类体系的广度和越狱策略的多样性。这种单一视角导致对齐数据集存在盲点，易被攻击者利用。</div>
+            <div class="en">Existing safety alignment datasets (e.g., those used in RLHF and SFT pipelines) predominantly optimize for lexical diversity, treating dataset quality as a function of surface-level textual variation. They largely ignore the breadth of malicious intent taxonomies and the variety of jailbreak tactics attackers actually employ. This narrow focus results in alignment datasets with blind spots that adversaries can readily exploit.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">TRIDENT构建三维分析框架，衡量对齐数据集在词汇多样性、恶意意图和越狱策略上的覆盖度。通过基于人格角色的零样本LLM生成，自动合成覆盖三维的有害指令，并配以安全对齐回复，生成TRIDENT-Core（26,311条）等数据集，全程无需人工标注。</div>
+            <div class="en">TRIDENT proposes a three-dimensional analysis framework to measure alignment dataset coverage across Lexical Diversity, Malicious Intent, and Jailbreak Tactics. It introduces an automated pipeline using persona-based, zero-shot LLM generation to synthesize harmful instructions that span all three dimensions. Each generated harmful instruction is paired with an ethically aligned response, producing two datasets: TRIDENT-Core (26,311 examples) and a supplementary extended set. The pipeline requires no human annotation and is fully automated, enabling scalable and reproducible red-teaming data creation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">TRIDENT-Core包含26,311条指令-回复对，覆盖多样风险类别。在TRIDENT数据上微调的模型相较仅优化词汇多样性的基线数据集表现出更强的安全对齐，三维框架亦定量揭示了现有数据集此前未被发现的覆盖盲点。</div>
+            <div class="en">The resulting TRIDENT-Core dataset comprises 26,311 instruction-response pairs covering diverse risk categories. Models fine-tuned on TRIDENT data demonstrate improved safety alignment compared to baselines trained on datasets optimized for lexical diversity alone. The tri-dimensional framework also reveals quantifiable coverage gaps in prior datasets that were previously undetected by lexical metrics alone.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>三维框架未覆盖多模态攻击和多轮越狱对话等新兴威胁向量，框架完整性有待拓展。</li><li>零样本生成虽可扩展规模，但可能引入意图标注偏差或不真实的对抗样本，影响安全提升的实际迁移效果。</li><li>评估主要聚焦SFT安全对齐，针对已知分类体系的自适应攻击者的鲁棒性尚未充分验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Dimension completeness: The three chosen dimensions (Lexical, Intent, Tactics) are well-motivated, but the framework does not address multimodal attacks or multi-turn jailbreak conversations, which are increasingly common threat vectors.</li><li>Data quality vs. scale trade-off: Zero-shot LLM generation enables scale but may introduce subtle inaccuracies in intent labeling or produce adversarial examples that are unrealistic, potentially limiting real-world transferability of safety gains.</li><li>Evaluation scope: The paper reports improvements in SFT-based safety alignment, but it is unclear how TRIDENT-trained models perform under adaptive adversaries who specifically target the known taxonomy, raising questions about long-term robustness.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.24672" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">MUSE提出攻防双向框架，利用蒙特卡洛树搜索语义轨迹（MUSE-A）与早期干预微调（MUSE-D），系统性地识别并...</div>
+        <div class="paper-title-en">MUSE: MCTS-Driven Red Teaming Framework for Enhanced Multi-Turn Dialogue Safety in Large Language Models</div>
+        <div class="paper-meta">
+          <span>Siyu Yan, Longyu Zeng, Xuecheng Wu et al.</span>
+          <span class="badge badge-date">2025-09-18</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>MUSE提出攻防双向框架，利用蒙特卡洛树搜索语义轨迹（MUSE-A）与早期干预微调（MUSE-D），系统性地识别并缓解多轮对话中的越狱攻击。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MUSE introduces a dual attack-defense framework using MCTS-guided semantic tree search (MUSE-A) and early-intervention fine-tuning (MUSE-D) to expose and mitigate multi-turn jailbreaks in LLMs.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">多轮越狱攻击在现实部署中更为常见，但研究严重不足。MUSE首次将攻击发现与对齐防御统一在多轮对话框架下，为红队测试和对话AI系统加固提供了可落地的工具。</div>
+            <div class="en">Multi-turn jailbreaks are significantly underexplored compared to single-turn attacks, yet they reflect how users actually interact with LLMs in deployment. MUSE is one of the first frameworks to jointly address both attack discovery and alignment-based defense in the multi-turn setting, offering practitioners a concrete toolkit for red-teaming and hardening conversational AI systems.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何系统地发现并防御跨多轮对话的越狱攻击？现实部署中LLM几乎都以多轮形式使用，但现有安全研究主要针对单轮提示，存在明显盲区。</div>
+            <div class="en">How can we systematically discover and defend against jailbreaks that unfold across multiple conversational turns, where attackers exploit accumulated context to gradually bypass LLM safety guardrails? This matters because real-world LLM deployments are almost exclusively multi-turn, yet existing safety benchmarks and defenses overwhelmingly focus on single isolated prompts.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">GCG、AutoDAN、PAIR等主流红队方法仅针对单轮对抗提示，忽视多轮上下文的累积效应。现有多轮攻击多依赖固定对话模板，语义多样性不足。RLHF、DPO等对齐方法缺乏针对多轮对话的细粒度、逐轮干预机制。</div>
+            <div class="en">Existing red-teaming methods such as GCG, AutoDAN, and PAIR primarily craft single-turn adversarial prompts, ignoring the cumulative context that multi-turn conversations provide to attackers. Multi-turn attack attempts have been limited in diversity and rely on fixed dialogue templates, failing to explore the broad semantic space of possible conversational trajectories. Defense strategies like RLHF and DPO improve general alignment but lack fine-grained, turn-level intervention mechanisms for multi-turn vulnerabilities.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">MUSE-A将多轮越狱建模为树搜索问题，以帧语义为引导，通过MCTS探索多样化对话轨迹，逐步诱导模型产生有害输出。MUSE-D利用攻击生成的对抗对话数据，对模型进行早期轮次干预的微调，在有害内容被诱出前识别并阻断操控意图，形成&#34;攻击发现→防御强化&#34;的闭环流程。</div>
+            <div class="en">MUSE-A frames multi-turn jailbreaking as a tree search problem, applying Monte Carlo Tree Search (MCTS) guided by frame semantics to explore diverse conversational trajectories that progressively steer the model toward harmful outputs. Each tree node represents a dialogue state, and heuristic scoring selects the most promising semantic directions for expansion. MUSE-D then uses the attack-generated adversarial dialogues to fine-tune a defense model with early-turn intervention, training the LLM to detect and neutralize manipulation attempts before unsafe content is elicited. Together, the two components form a closed-loop red-team-then-defend pipeline.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">MUSE-A在多个LLM上的攻击成功率（ASR）显著高于现有多轮攻击基线，揭示了单轮方法无法发现的漏洞。MUSE-D经攻击数据微调后大幅降低ASR，同时保持模型通用能力，优于标准对齐微调基线。实验覆盖多种模型，验证了框架的跨模型泛化性。</div>
+            <div class="en">MUSE-A demonstrates higher attack success rates (ASR) compared to existing multi-turn attack baselines across multiple LLMs, exposing vulnerabilities that single-turn methods miss entirely. MUSE-D, trained on MUSE-A-generated data, reduces ASR substantially while maintaining general model utility, outperforming standard alignment fine-tuning baselines. Experiments span diverse models, confirming the framework&#39;s generalizability across different LLM families.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>MCTS计算开销：对话状态树搜索代价较高，论文未充分量化MUSE-A相比简单基线所需的查询预算，这对大规模红队测试的实用性至关重要。</li><li>防御泛化性：MUSE-D在MUSE-A生成的攻击数据上微调，存在过拟合该特定攻击分布的风险，对树搜索未覆盖的新型多轮攻击策略的鲁棒性有待验证。</li><li>评估局限性：以自动分类器衡量ASR可能低估或高估真实有害性，引入人工评估将更有力地支撑攻击有效性与防御鲁棒性的结论。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability of MCTS: Tree search over dialogue states is computationally expensive; the paper does not fully quantify the query budget MUSE-A requires compared to simpler baselines, which is critical for practical red-teaming at scale.</li><li>Defense generalization: MUSE-D is fine-tuned on MUSE-A-generated attacks, raising the question of whether it overfits to this specific attack distribution and remains robust against unseen multi-turn attack strategies not covered by the tree search.</li><li>Evaluation scope: ASR measured by automated classifiers can misestimate true harmfulness; human evaluation of harmful output quality and diversity would strengthen confidence in both the attack effectiveness and defense robustness claims.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2509.14651" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文系统评估对三种基于VLM的自动驾驶系统的物理对抗补丁攻击，揭示了严重且各具特点的架构漏洞。</div>
+        <div class="paper-title-en">Comparative Analysis of Patch Attack on VLM-Based Autonomous Driving Architectures</div>
+        <div class="paper-meta">
+          <span>David Fernandez, Pedram MohajerAnsari, Amir Salarpour et al.</span>
+          <span class="badge badge-date">2026-03-09</span>
+          <span class="badge badge-venue">the 2025</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文系统评估对三种基于VLM的自动驾驶系统的物理对抗补丁攻击，揭示了严重且各具特点的架构漏洞。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper systematically benchmarks physical adversarial patch attacks against three VLM-based autonomous driving systems (Dolphins, OmniDrive, LeapVAD), revealing severe and architecture-specific vulnerabilities using black-box optimization in CARLA simulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次对多种VLM自动驾驶架构进行系统性对抗评估，为鲁棒性研究和防御设计提供了基准方法，对安全关键场景的实际部署具有重要指导意义。</div>
+            <div class="en">As VLMs are increasingly adopted in safety-critical autonomous driving pipelines, understanding their adversarial vulnerabilities is essential before real-world deployment. This paper provides the first systematic, cross-architecture adversarial evaluation framework for VLM-based driving systems, offering a reusable benchmark methodology. The findings directly motivate the design of more robust VLM architectures and adversarial defenses for embodied AI.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">VLM被引入自动驾驶以增强场景理解，但其面对物理对抗补丁的鲁棒性尚属未知。本文研究不同VLM架构在补丁攻击下的漏洞特征及失效模式差异。</div>
+            <div class="en">VLMs are increasingly integrated into autonomous driving stacks to handle complex scene understanding and decision-making, but their robustness against physically realizable adversarial attacks is entirely uncharacterized. This matters because a patch placed on a real-world object (e.g., a stop sign) could cause catastrophic failures in perception and planning. The paper asks: how vulnerable are current VLM driving architectures to patch attacks, and do different architectures exhibit distinct failure patterns?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有对抗攻击研究主要针对CNN感知模型，VLM鲁棒性研究集中于数字扰动和提示注入，缺乏针对VLM驾驶系统的物理补丁攻击跨架构比较评估。</div>
+            <div class="en">Prior adversarial attack research has focused primarily on traditional CNN-based perception models (e.g., object detectors like YOLO), with patch attacks well-studied in classification and detection tasks. Existing VLM robustness studies focus on digital perturbations and prompt injection, not physically realizable attacks in driving contexts. No prior work provides a fair, multi-architecture comparative evaluation of patch attacks specifically targeting VLM-based end-to-end driving systems.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">本文提出基于黑盒优化的对抗补丁生成框架，通过语义同质化统一三种VLM架构的输入，在CARLA仿真中评估物理可实现的补丁攻击对驾驶性能和目标检测的影响。</div>
+            <div class="en">The authors propose a black-box optimization framework that crafts adversarial patches without access to model internals, making the attack transferable and practically realistic. To ensure fair cross-architecture comparison, they apply semantic homogenization — standardizing input prompts and task definitions across Dolphins, OmniDrive (Omni-L), and LeapVAD. Attacks are evaluated in the CARLA simulator under physically realizable conditions, where patches are rendered on in-scene objects across multiple frames. The framework measures both driving performance degradation (e.g., collision rate, route completion) and object detection failures.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">三种架构均表现出严重漏洞，目标检测精度显著下降，并出现持续多帧规划失效。各架构呈现不同失效模式，现有VLM设计均不足以应对对抗补丁威胁。</div>
+            <div class="en">All three VLM architectures exhibit severe vulnerabilities under patch attacks, with significant degradation in object detection accuracy and sustained multi-frame planning failures. Each architecture shows distinct vulnerability patterns: some are more susceptible to perception-level disruption while others suffer greater decision-level collapse. Specific numerical results indicate critical drops in key driving metrics (e.g., route completion and collision avoidance), underscoring that no current VLM design adequately handles adversarial patch threats.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>仿真局限性：实验仅在CARLA中进行，真实场景下的光照、天气和相机噪声对攻击效果的影响仍需验证。</li><li>攻击范围受限：仅评估黑盒攻击，未探索白盒或自适应攻击，可能低估架构的深层脆弱性。</li><li>缺乏防御方案：论文诊断了漏洞但未提出对抗训练或补丁检测等缓解策略，对实际系统加固的指导有限。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Simulation-to-reality gap: All experiments are conducted in CARLA, leaving open whether the identified vulnerabilities and attack transferability hold under real-world lighting, weather, and camera noise conditions — a critical validation step before drawing deployment conclusions.</li><li>Black-box assumption scope: While black-box evaluation is realistic for external attackers, the paper does not explore white-box or adaptive attacks, which could reveal even deeper architectural weaknesses and better inform defense design.</li><li>Defense directions absent: The paper diagnoses vulnerabilities but does not propose or evaluate any mitigation strategies (e.g., adversarial training, patch detection modules), limiting its immediate actionability for practitioners building safer VLM driving systems.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.08897v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">DTE利用多智能体辩论轨迹在无需标注标签的情况下微调单个LLM，在GSM-PLUS上平均准确率提升8.92%，跨领...</div>
+        <div class="paper-title-en">DEBATE, TRAIN, EVOLVE: Self Evolution of Language Model Reasoning</div>
+        <div class="paper-meta">
+          <span>Gaurav Srivastava, Zhenyu Bi, Meng Lu et al.</span>
+          <span class="badge badge-date">2025-05-21</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>DTE利用多智能体辩论轨迹在无需标注标签的情况下微调单个LLM，在GSM-PLUS上平均准确率提升8.92%，跨领域泛化提升5.8%。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">DTE uses multi-agent debate traces to fine-tune a single LLM without ground-truth labels, achieving 8.92% average accuracy gain on GSM-PLUS and 5.8% cross-domain generalization across six reasoning benchmarks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">DTE通过内部生成的辩论轨迹实现模型自我进化，为突破数据瓶颈提供了实用路径。跨领域泛化结果表明，该框架能够培养可迁移的推理能力，而非过拟合于单一任务。</div>
+            <div class="en">DTE directly tackles the data-scarcity bottleneck for LLM reasoning improvement by enabling models to self-evolve using internally generated debate traces. The ground-truth-free training paradigm opens a practical path toward continual self-improvement in production settings where labeled data is costly or unavailable. The cross-domain generalization results suggest the framework instills transferable reasoning skills rather than overfitting to a single task distribution.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当LLM逼近可用高质量训练数据的上限时，如何在无需外部标注或人工监督的情况下自主提升推理能力？大规模构建新标注推理数据集成本高昂，这一问题愈发迫切。</div>
+            <div class="en">As LLMs approach the limits of available high-quality training data, how can a model autonomously improve its reasoning without relying on external labels or human supervision? This is critical because curating new labeled reasoning datasets is expensive and increasingly impractical at scale.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法如思维链、RLHF及自博弈通常需要标注标签或人工反馈。多智能体辩论已被用于推理时提升，但尚未作为训练信号用于自我进化。STaR等自我提升方法依赖正确性过滤，仍需真实答案。</div>
+            <div class="en">Existing approaches to improving LLM reasoning—such as chain-of-thought prompting, RLHF, and self-play—typically require either ground-truth labels, human feedback, or large curated datasets. Multi-agent debate frameworks (e.g., Du et al., 2023) have shown inference-time benefits but have not been used to generate training signal for self-improvement. Self-improvement methods like STaR rely on filtering by correctness, which presupposes access to ground-truth answers.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">DTE分三阶段运作：多个LLM智能体使用Reflect-Critique-Refine（RCR）提示策略进行辩论，各智能体被要求反思自身推理、批判他人回答并精炼自身答案；生成的高质量辩论轨迹无需真实标签即可用于微调目标模型；该循环可迭代重复，实现持续自我进化。</div>
+            <div class="en">DTE operates in three stages: multiple LLM agents debate a problem using the proposed Reflect-Critique-Refine (RCR) prompting strategy, which explicitly instructs each agent to reflect on its reasoning, critique others&#39; responses, and refine its own answer. The resulting high-quality debate traces are used as training data to fine-tune a single target model, with no ground-truth labels required. RCR improves debate quality over standard prompting by enforcing structured argumentation. The entire cycle can be repeated, allowing iterative self-evolution of the model.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在七个推理基准和六个开源模型上，DTE在GSM-PLUS上平均提升8.92%，在其余基准上平均提升5.8%，展现出强跨域泛化能力。上述提升均在无真实标签监督下取得，且在六个模型上表现一致，表明框架具有模型无关性。</div>
+            <div class="en">Across seven reasoning benchmarks and six open-weight models, DTE achieves an average accuracy gain of 8.92% on the challenging GSM-PLUS dataset and 5.8% average gain across all other benchmarks, demonstrating strong cross-domain generalization. These gains are obtained without any ground-truth supervision, making the results notably competitive with supervised approaches. Consistent improvements across six diverse open-weight models suggest the framework is model-agnostic.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>辩论质量瓶颈：框架完全依赖多智能体辩论轨迹的质量。若参与智能体共享相同权重或存在相同偏差，辩论可能强化系统性错误，论文对此&#39;回音室&#39;风险未作充分分析。</li><li>计算成本问题：对每个训练样本运行多智能体辩论的推理成本远高于标准监督微调，论文未报告训练时长或成本对比，影响对实际可部署性的评估。</li><li>迭代进化稳定性：论文支持多轮自我进化，但未深入分析几轮迭代后性能趋于饱和或下降的规律，也未研究多轮后模型是否会漂移至自信但错误的推理模式。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Debate quality as a training signal bottleneck: The entire framework depends on the quality of multi-agent debate traces. If participating agents share the same model weights or failure modes, the debate may reinforce systematic errors rather than correct them—a form of &#39;echo chamber&#39; bias that the paper does not fully address.</li><li>Scalability and compute cost: Running multi-agent debate for every training example significantly increases inference cost compared to standard supervised fine-tuning. The paper does not report wall-clock training times or cost comparisons, which is important for assessing practical deployability.</li><li>Iterative evolution stability: While the framework supports repeated self-evolution cycles, the paper does not deeply analyze how many iterations are beneficial before performance saturates or degrades, nor whether the model drifts toward confident but incorrect reasoning over many cycles.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.15734" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">AutoSteer 是一种免微调的推理时干预系统，通过安全感知评分、自适应安全探针和轻量拒绝头，显著降低多模态大语...</div>
+        <div class="paper-title-en">Automating Steering for Safe Multimodal Large Language Models</div>
+        <div class="paper-meta">
+          <span>Lyucheng Wu, Mengru Wang, Ziwen Xu et al.</span>
+          <span class="badge badge-date">2025-07-17</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>AutoSteer 是一种免微调的推理时干预系统，通过安全感知评分、自适应安全探针和轻量拒绝头，显著降低多模态大语言模型的对抗攻击成功率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">AutoSteer is a training-free, modular inference-time intervention system that reduces adversarial attack success rates in Multimodal LLMs by combining a Safety Awareness Score, an adaptive safety prober, and a lightweight Refusal Head.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">AutoSteer 无需微调即可增强已部署模型的安全性，具有极强的实用价值。其模块化设计便于后续研究独立改进各组件。随着多模态对抗攻击日趋复杂，推理时防御方案提供了一种可扩展的安全保障路径。</div>
+            <div class="en">AutoSteer addresses a critical gap by enabling safety improvements to deployed MLLMs without any fine-tuning, making it immediately applicable to production systems. Its modular design means each component (SAS, prober, Refusal Head) can be studied or replaced independently, lowering the barrier for follow-up research. As adversarial multimodal attacks grow more sophisticated, inference-time defenses like AutoSteer offer a practical and scalable safety layer.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLaVA、Chameleon 等多模态大模型在面对对抗性图文输入时容易绕过安全机制并生成有害内容。核心问题是如何在不重新训练或微调的前提下，在推理阶段提升模型安全性。</div>
+            <div class="en">MLLMs like LLaVA and Chameleon are vulnerable to adversarial multimodal inputs—such as toxic image-text combinations—that can bypass safety mechanisms and elicit harmful outputs. The core challenge is how to make these models safer at inference time without expensive retraining or fine-tuning, which is often impractical for large deployed systems.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法多依赖安全数据集微调（如 RLHF），成本高且难以应对新型攻击。单模态的激活引导方法未考虑跨模态交互，且干预强度固定，缺乏自适应性。此前无工作能自动识别多模态模型中最关键的安全相关层。</div>
+            <div class="en">Existing MLLM safety approaches predominantly rely on fine-tuning with curated safety datasets (e.g., RLHF, supervised safety tuning), which is costly and difficult to update as new attack vectors emerge. Inference-time steering methods for unimodal LLMs (e.g., activation steering, representation engineering) do not account for cross-modal interactions and apply fixed interventions regardless of actual risk level. No prior work automatically identifies which internal layers are most safety-relevant for multimodal models or adapts intervention strength dynamically.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">AutoSteer 包含三个核心模块：①安全感知评分（SAS）自动筛选对区分安全/有害表示贡献最大的 Transformer 层；②自适应安全探针利用高 SAS 层的中间表示预测有毒输出概率；③轻量拒绝头仅在探针报警时触发，引导模型拒绝有害输出而不干扰正常请求。整个系统无需对基础模型进行梯度更新。</div>
+            <div class="en">AutoSteer introduces three tightly integrated components. First, the Safety Awareness Score (SAS) automatically ranks each transformer layer by its contribution to distinguishing safe from unsafe representations, removing the need for manual layer selection. Second, an adaptive safety prober uses intermediate representations from the top-SAS layers to predict the probability of toxic output before generation completes. Third, a lightweight Refusal Head is conditionally activated—only when the prober signals elevated risk—to modulate the model&#39;s generation toward refusal, minimizing interference on benign inputs. The entire system is model-agnostic and requires no gradient updates to the base MLLM.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在 LLaVA-OV 和 Chameleon 上，AutoSteer 在多个安全基准（如 MM-SafetyBench、FigStep）上显著降低了攻击成功率，同时在良性任务上保持了较高的通用性能，证明安全性提升不以牺牲能力为代价。</div>
+            <div class="en">On LLaVA-OV and Chameleon, AutoSteer significantly reduces the Attack Success Rate (ASR) across diverse safety-critical benchmarks covering both textual and visual adversarial inputs. The system maintains competitive performance on benign tasks, demonstrating that safety gains do not come at the cost of general utility. Specific ASR reductions and benchmark names (e.g., MM-SafetyBench, FigStep) are referenced in the paper, with AutoSteer outperforming prior inference-time baselines.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>泛化性局限：AutoSteer 仅在 LLaVA-OV 和 Chameleon 上验证，对 GPT-4V 等闭源大模型的适用性未知，SAS 层选择策略在不同架构下的稳定性有待验证。</li><li>自适应攻击风险：拒绝头为固定模块，白盒攻击者若了解 AutoSteer 架构，可能针对性地绕过探针的风险阈值，系统在自适应攻击下的鲁棒性存疑。</li><li>推理开销未量化：论文未提供详细的推理延迟和显存开销数据，安全探针与拒绝头在大规模部署场景下的实际代价尚不明确。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Generalization scope: AutoSteer is evaluated on LLaVA-OV and Chameleon, but its effectiveness on larger, proprietary MLLMs (e.g., GPT-4V, Gemini) with different architectures remains untested—SAS layer selection may behave differently across model families.</li><li>Adaptive attacker threat: The Refusal Head is a fixed module; a white-box adversary with knowledge of AutoSteer&#39;s architecture could potentially craft inputs that evade the prober&#39;s risk threshold, raising questions about robustness under adaptive attacks.</li><li>Overhead and latency: While described as lightweight, the paper does not provide detailed wall-clock latency or memory overhead measurements, which are critical for evaluating real-world deployment feasibility of the prober and Refusal Head at scale.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2507.13255" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">LLaMP是一个RAG+ReAct多智能体框架，无需微调即可将LLM与Materials Project数据库及原...</div>
+        <div class="paper-title-en">LLaMP: Large Language Model Made Powerful for High-fidelity Materials Knowledge Retrieval and Distillation</div>
+        <div class="paper-meta">
+          <span>Chiang Yuan, Chia-Hong Chou, Janosh Riebesell</span>
+          <span class="badge badge-date">2024-01-30</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>LLaMP是一个RAG+ReAct多智能体框架，无需微调即可将LLM与Materials Project数据库及原子模拟工作流直接连接，消除材料科学领域的幻觉问题。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">LLaMP is a RAG+ReAct multi-agent framework that connects LLMs directly to the Materials Project database and atomistic simulation workflows to eliminate hallucination in materials science queries — without any fine-tuning.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">LLaMP提供了一条无需微调即可在材料科学中可靠部署LLM的实用路径，降低了实验与计算研究人员的使用门槛。通过将LLM输出锚定于Materials Project的权威实时数据，直接解决了科学研究中的可重复性问题。</div>
+            <div class="en">LLaMP offers a practical, fine-tuning-free path to deploying LLMs reliably in materials science, lowering the barrier for experimentalists and computational researchers alike. By grounding LLM outputs in live, authoritative data from the Materials Project, it directly addresses reproducibility — a cornerstone of scientific practice. The multimodal ReAct architecture sets a reusable template for extending trustworthy LLM agents to other scientific databases.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLM在科学场景中频繁产生幻觉，对材料属性、晶体结构或模拟参数给出不可靠答案，可能误导昂贵的实验或模拟。本文探讨：LLM智能体能否在无需领域微调的情况下，可靠地检索、推理并操作异构材料数据？</div>
+            <div class="en">LLMs frequently hallucinate facts in scientific contexts, producing unreliable answers about material properties, crystal structures, or simulation parameters. This is especially dangerous in materials science, where incorrect data can misdirect expensive experiments or simulations. The paper asks: can an LLM agent reliably retrieve, reason over, and act on heterogeneous materials data without domain-specific fine-tuning?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">对领域文献进行微调会引入静态且可能过时的偏差知识；普通RAG系统仅处理文本，难以应对晶体结构或张量等高阶模态数据，也不支持与实时模拟工作流的闭环交互。</div>
+            <div class="en">Fine-tuning LLMs on domain-specific literature injects static, potentially biased knowledge that becomes outdated as databases grow. Vanilla retrieval-augmented generation (RAG) systems typically handle only text, struggling with higher-order modalities like crystal structures or tensor data. Neither approach supports closed-loop interaction with live simulation workflows, limiting their utility for active computational research.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">LLaMP构建分层ReAct智能体：顶层协调器将子任务分配给专用子智能体，各子智能体可查询Materials Project REST API、解析晶体结构（CIF文件）、读取弹性张量并触发高通量原子模拟工作流。检索按需动态执行而非预索引，保证数据时效性。同时提出结合模型置信度与数据来源信号的不确定性指标，用于标记低可靠性响应。</div>
+            <div class="en">LLaMP implements a hierarchical ReAct agent architecture in which a top-level orchestrator delegates subtasks to specialized sub-agents, each equipped with tools to query the Materials Project REST API, parse crystal structures (CIF files), read elastic tensors, and trigger high-throughput atomistic simulation workflows. Retrieval is dynamic — data is fetched on demand rather than pre-indexed — ensuring freshness and reducing bias. The framework is multimodal, encoding structural and tensor data alongside text to support complex, multi-step reasoning. The authors also propose a combined uncertainty metric that merges model confidence with data provenance signals to flag low-reliability responses.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">无需微调，LLaMP在带隙、形成能、弹性张量及晶体对称性等多模态数据检索上显著优于直接使用基础LLM。ReAct智能体成功分解多步任务（如识别稳定多形体、估算力学性能），所提不确定性指标与事实准确性正相关。</div>
+            <div class="en">Without any fine-tuning, LLaMP correctly retrieves and integrates multimodal materials data — including bandgaps, formation energies, elastic tensors, and crystal symmetries — substantially outperforming baseline LLMs that hallucinate specific numeric values. The ReAct agent successfully decomposes multi-step tasks such as identifying stable polymorphs and estimating mechanical properties by chaining database queries with simulation calls. The proposed uncertainty metric correlates with factual correctness, providing a practical confidence signal for end users.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>数据库扩展性：ReAct+RAG设计模块化，但接入新数据源（如ICSD、AFLOW）需编写新工具接口并处理schema差异，论文未评估此泛化成本。</li><li>不确定性指标验证：所提不确定性评分在有限查询集上验证，需在更大规模的保留材料属性集上进行基准测试以评估实际可靠性。</li><li>LLM骨干依赖性：性能可能因LLM后端（GPT-4与开源模型）差异显著，结果能否迁移至工业敏感场景偏好的小型本地模型尚不明确。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability to other databases: The ReAct+RAG design is modular, but onboarding new data sources (e.g., ICSD, AFLOW) requires writing new tool wrappers and carefully handling schema differences — the paper does not benchmark this generalization cost.</li><li>Uncertainty metric validation: The proposed combined uncertainty score is conceptually appealing, but its calibration is evaluated on a limited set of queries; broader benchmarking against held-out materials properties is needed to assess real-world reliability.</li><li>LLM backbone dependence: Performance likely varies significantly across LLM backends (GPT-4 vs. open-source models); the paper&#39;s results may not transfer to smaller or locally deployable models, which are preferred in sensitive industrial settings.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2401.17244" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">SPR提出一种闭环视觉-语言-动作框架，将操作任务分解为空间子目标，并通过进度监控实现无需额外训练数据的故障检测与恢复。</div>
+        <div class="paper-title-en">See, Plan, Rewind: Progress-Aware Vision-Language-Action Models for Robust Robotic Manipulation</div>
+        <div class="paper-meta">
+          <span>Tingjun Dai, Mingfei Han, Tingwen Du et al.</span>
+          <span class="badge badge-date">2026-03-10</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SPR提出一种闭环视觉-语言-动作框架，将操作任务分解为空间子目标，并通过进度监控实现无需额外训练数据的故障检测与恢复。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SPR introduces a closed-loop vision-language-action framework that decomposes manipulation tasks into spatial subgoals and uses progress monitoring to detect and recover from failures without extra training data.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">SPR填补了机器人操作中自主故障恢复的关键空白，无需重新训练或辅助模型，具有较强的实际部署价值。通过将进度表示为显式空间里程碑，它以可验证的方式连接高层语言指令与底层运动控制，提升了具身AI系统的可靠性。</div>
+            <div class="en">SPR addresses a critical gap in robotic manipulation: autonomous failure recovery without retraining or auxiliary models, making it practically deployable in dynamic real-world settings. By framing progress as explicit spatial milestones, it bridges high-level language instructions and low-level motor control in a verifiable way, advancing the reliability of embodied AI systems.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">机器人操作模型如何在任务执行中途自主检测失败并恢复到有效状态，而无需人工干预或额外训练？这一问题至关重要，因为真实环境中的操作易受干扰，静态开环策略无法应对，严重限制了部署可靠性。</div>
+            <div class="en">How can a robotic manipulation model autonomously detect when it has failed mid-task and recover to a valid state without human intervention or additional training? This matters because real-world manipulation is prone to perturbations and errors that static, open-loop policies cannot handle, limiting deployment reliability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型（如MolmoAct）主要采用开环方式执行指令，不监控中间状态是否达成。已有闭环方法通常需要额外的故障检测模型或标注恢复数据，增加了系统复杂度并降低泛化性。这些方法均未将任务进度与可空间验证的显式里程碑相结合以触发针对性恢复。</div>
+            <div class="en">Existing vision-language-action (VLA) models such as MolmoAct operate largely open-loop, executing instructions without monitoring whether intermediate states are achieved. Prior closed-loop approaches typically require auxiliary failure-detection models or additional labeled recovery data, increasing system complexity and reducing generalizability. Neither approach grounds task progress into explicit, spatially verifiable milestones that can trigger targeted recovery.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">SPR将任务执行结构化为连续的&#34;看-计划-回溯&#34;循环。在&#34;看&#34;阶段，模型识别当前场景状态及下一个期望里程碑（以2D空间子目标表示）；在&#34;计划&#34;阶段，生成朝向该路径点的轨迹；在&#34;回溯&#34;阶段，将实际进度与期望子目标序列对比，检测到停滞或偏差时回退至最近可恢复状态。该设计无需基础VLA之外的额外训练数据或辅助模型。</div>
+            <div class="en">SPR structures task execution as a continuous See-Plan-Rewind cycle. In the &#34;See&#34; phase, the model identifies the current scene state and the next expected milestone as a 2D spatial subgoal. In &#34;Plan,&#34; it generates a trajectory toward that waypoint. In &#34;Rewind,&#34; it compares actual progress against the expected subgoal sequence and, upon detecting a stall or deviation, rolls back execution to the last recoverable state. This design requires no additional training data or auxiliary models beyond the base VLA.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">SPR在多个操作基准测试中大幅超越MolmoAct基线，在任务成功率和对扰动的鲁棒性方面均有显著提升。该框架无需针对特定任务重新训练即可泛化至多样操作任务。摘要中具体数值被截断，但论文通过大量实验报告了相对基线的持续优越性。</div>
+            <div class="en">SPR outperforms the MolmoAct baseline by a substantial margin across manipulation benchmarks, demonstrating improvements in both task success rate and robustness to perturbations. The framework generalizes across diverse manipulation tasks without task-specific retraining. Specific numerical gains were partially omitted from the provided abstract snippet, but the paper reports consistent superiority over the baseline in extensive experiments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>空间子目标表示：将进度表示为2D路径点计算高效且可解释，但在需要精确3D推理、接触密集型操作或高度可变形物体的任务中，2D投影可能存在歧义，限制适用性。</li><li>回溯策略的可扩展性：回滚机制假设可恢复的先前状态存在且可识别；在含不可逆动作（如倒液体）的长时序任务中，回溯可能不可行，限制了框架的适用范围。</li><li>对基础VLA质量的依赖：由于SPR不引入辅助模型，其故障检测和里程碑预测质量受限于底层VLA的视觉定位能力——若基础模型错误识别里程碑，回溯逻辑可能误触发或完全失效。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Spatial subgoal representation: Grounding progress as 2D waypoints is computationally lightweight and interpretable, but may struggle with tasks requiring precise 3D reasoning, contact-rich manipulation, or highly deformable objects where 2D projections are ambiguous.</li><li>Rewind strategy scalability: The rollback mechanism assumes that recoverable prior states exist and are identifiable; in long-horizon tasks with irreversible actions (e.g., pouring liquid), rewinding may not be feasible, limiting the framework&#39;s applicability.</li><li>Dependency on base VLA quality: Since SPR adds no auxiliary models, its failure detection and milestone prediction quality are bounded by the underlying VLA&#39;s visual grounding capability — if the base model misidentifies milestones, the Rewind logic may trigger incorrectly or fail to trigger at all.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.09292v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">GST-VLA用128个各向异性3D高斯基元替代VLA模型中的2D图像块token，并通过结构化空间思维链监督，实...</div>
+        <div class="paper-title-en">GST-VLA: Structured Gaussian Spatial Tokens for 3D Depth-Aware Vision-Language-Action Models</div>
+        <div class="paper-meta">
+          <span>Md Selim Sarowar, Omer Tariq, Sungho Kim</span>
+          <span class="badge badge-date">2026-03-10</span>
+          <span class="badge badge-venue">this</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>GST-VLA用128个各向异性3D高斯基元替代VLA模型中的2D图像块token，并通过结构化空间思维链监督，实现具有几何感知能力的机器人操作。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">GST-VLA replaces flat 2D patch tokens in vision-language-action models with 128 anisotropic 3D Gaussian primitives and supervises structured spatial chain-of-thought reasoning to enable geometry-aware robot manipulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">GST-VLA为VLA模型引入3D几何结构提供了无需重训练视觉主干的有效途径，DA-CoT监督框架也为具身AI中的空间推理提供了可复用的范式。</div>
+            <div class="en">VLA models are increasingly central to general-purpose robot manipulation, yet their reliance on unstructured 2D tokens is a fundamental architectural bottleneck for tasks requiring metric spatial reasoning. GST-VLA provides a principled, frozen-encoder-compatible pathway to inject 3D geometry without retraining large vision backbones. The DA-CoT supervision framework also offers a reusable template for spatially grounded reasoning in embodied AI.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型以平面2D图像块token表示场景，缺乏几何结构，无法支持精确抓取所需的度量空间推理。本文探讨如何在不重训练冻结backbone的前提下，为VLA赋予紧凑的3D场景表示。</div>
+            <div class="en">Current VLA models represent visual scenes as flat 2D patch tokens with no geometric structure, making metric spatial reasoning — essential for precise grasping and manipulation — fundamentally inaccessible. The paper asks: how can a VLA model be given explicit, compact 3D scene representations without retraining frozen vision or language backbones?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">RT-2、OpenVLA等模型将视觉输入视为均匀网格块，丢失了表面朝向和深度置信度。现有深度条件化方法缺乏将token预算集中于几何显著区域的紧凑表示。VLA中的思维链提示也未涉及结构化3D空间中间步骤。</div>
+            <div class="en">Existing VLA models such as RT-2 and OpenVLA treat visual input as uniform grid patches, discarding surface orientation, depth scale, and spatial confidence. Depth-conditioned approaches that append scalar depth channels or use point clouds still lack compact, attention-friendly representations that budget tokens toward geometrically salient regions. Chain-of-thought prompting in VLAs has been explored for semantic reasoning but not for structured 3D spatial intermediate steps.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">GST从冻结的深度图和语义特征中拟合128个各向异性3D高斯基元，每个基元含度量残差均值μ、对数协方差log σ和可学习不透明度α。协方差特征值结构编码局部表面朝向，不透明度提供几何置信度。空间注意力池化将固定token预算集中于几何显著区域。DA-CoT模块监督4类结构化空间中间推理步骤：3D目标定位、抓取接触几何、配对度量距离和粗SE(3)路径点。</div>
+            <div class="en">The Gaussian Spatial Tokenizer (GST) takes frozen dense depth and frozen semantic patch features, then fits N_g=128 anisotropic 3D Gaussians, each with a metric residual mean μ∈ℝ³, log-scale covariance log σ∈ℝ³, and learned opacity α∈(0,1). Covariance eigenstructure encodes local surface orientation, and opacity acts as per-primitive geometric confidence — both richer than scalar depth. Spatial attention pooling with learned queries concentrates the fixed 128-token budget on geometrically salient regions rather than uniform coverage. The 3D Depth-Aware Chain-of-Thought (DA-CoT) module supervises four structured intermediate reasoning steps: 3D object grounding, grasp affordance contact geometry, pairwise metric distances, and coarse SE(3) waypoints.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">GST-VLA在需要度量空间推理的操作任务上优于2D token基线，128个高斯基元的token预算与更密集表示相当甚至更优。DA-CoT在距离估计和SE(3)路径点预测任务上带来可测量的提升，消融实验确认GST与DA-CoT均独立贡献性能增益。</div>
+            <div class="en">The paper reports that GST-VLA outperforms standard 2D-token VLA baselines on manipulation tasks requiring metric spatial reasoning, with the 128-Gaussian token budget matching or exceeding denser representations. DA-CoT supervision provides measurable gains on tasks involving pairwise distance estimation and SE(3) waypoint prediction compared to VLAs without structured spatial reasoning. Specific numerical benchmarks are not fully disclosed in the abstract, but ablations confirm both GST and DA-CoT contribute independently to performance.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>128个高斯基元的token预算在几何显著性分布均匀时可能丢失细粒度细节，对密集排列小物体的操作任务影响尚不明确。</li><li>GST依赖冻结深度模型，单目深度误差会直接传播至高斯参数，在无纹理或反光表面上可能降低抓取接触几何的精度。</li><li>DA-CoT的4类结构化空间标签（SE(3)路径点、配对距离等）依赖仿真真值或昂贵人工标注，向多样化真实场景扩展的成本较高。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Token budget efficiency: compressing a full scene into exactly 128 Gaussians may lose fine-grained details for tasks involving small or closely spaced objects — it remains unclear how the model performs when geometric salience is ambiguous or uniformly distributed.</li><li>Dependency on frozen depth estimation quality: GST relies on a frozen depth model, so errors or scale ambiguities in monocular depth directly propagate into Gaussian parameters μ and log σ, potentially degrading grasp contact geometry on textureless or reflective surfaces.</li><li>DA-CoT supervision cost: generating structured 3D intermediate labels (SE(3) waypoints, pairwise distances, contact geometry) for training data requires either simulation ground truth or expensive annotation, which may limit scalability to diverse real-world manipulation datasets.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.09079v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">DexHiL是首个将手臂与灵巧手协同控制融入人在环学习的VLA模型后训练框架，专为复杂操作任务设计。</div>
+        <div class="paper-title-en">DexHiL: A Human-in-the-Loop Framework for Vision-Language-Action Model Post-Training in Dexterous Manipulation</div>
+        <div class="paper-meta">
+          <span>Yifan Han, Zhongxi Chen, Yuxuan Zhao et al.</span>
+          <span class="badge badge-date">2026-03-10</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>DexHiL是首个将手臂与灵巧手协同控制融入人在环学习的VLA模型后训练框架，专为复杂操作任务设计。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">DexHiL is the first human-in-the-loop framework that integrates arm and dexterous hand control for post-training Vision-Language-Action models on complex manipulation tasks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">DexHiL解决了将通用VLA模型适配到高维接触密集型灵巧任务的关键瓶颈，无需昂贵的全量数据重采集。该框架为机器人基础模型在现实灵巧操作场景中的落地提供了实用路径。</div>
+            <div class="en">DexHiL tackles a critical bottleneck in embodied AI: adapting general-purpose VLA models to high-dimensional, contact-rich dexterous tasks without expensive full dataset recollection. By enabling efficient human correction loops over both arm and finger control, it offers a practical path toward deploying robot foundation models in real-world dexterous scenarios. This work bridges the gap between large-scale VLA pretraining and the reliability requirements of downstream deployment.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何高效地对VLA模型进行后训练以适配多指、接触密集型灵巧操作任务？现有人在环方法在此场景下效果有限，因为灵巧手的执行分布与标准手臂动作存在显著差异。</div>
+            <div class="en">How can VLA models be efficiently post-trained for dexterous manipulation tasks involving multi-finger, contact-intensive control, where standard human-in-the-loop methods fall short? This matters because dexterous hand control has a markedly different execution distribution from standard arm motions, making naive intervention and data collection strategies unreliable and poorly targeted.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有灵巧VLA系统主要依赖大规模离线数据集，缺乏高效整合人类纠正反馈的机制。标准人在环框架针对简单手臂操作设计，无法处理多指控制的高维性与接触敏感性，导致在特定灵巧任务上可靠性和适应性不足。</div>
+            <div class="en">Existing dexterous VLA systems largely rely on large-scale offline datasets and lack mechanisms to efficiently incorporate human corrective feedback during deployment. Standard Human-in-the-Loop frameworks were designed for simpler arm manipulation and do not account for the high dimensionality and contact sensitivity of multi-finger control. As a result, prior approaches struggle with reliability and adaptability on specific downstream dexterous tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">DexHiL构建了统一的手臂-灵巧手干预系统，支持操作员通过单一遥操作界面同步纠正手臂轨迹与手指姿态。核心贡献是干预感知数据采样策略，优先筛选人类纠正片段用于后训练，并配备轻量级遥操作界面以降低操作负担。</div>
+            <div class="en">DexHiL introduces a unified arm-hand intervention system that allows human operators to simultaneously correct both arm trajectory and dexterous finger postures within a single teleoperation interface. A key contribution is an intervention-aware data sampling strategy that identifies and prioritizes corrective segments from human interventions for post-training, rather than treating all collected data equally. This targeted sampling ensures the model learns most from moments where its policy was inadequate. The lightweight teleoperation interface is designed to keep operator burden low while maximizing data quality for fine-tuning the VLA model.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">与无人在环后训练的基线VLA系统相比，DexHiL在灵巧操作任务上显著提升了策略可靠性与任务成功率。干预感知采样策略相较于均匀采样基线，更高效地利用了人类反馈数据，具体数值结果在摘要中未完整披露。</div>
+            <div class="en">DexHiL demonstrates improved policy reliability and task success rates on dexterous manipulation benchmarks compared to baseline VLA systems without human-in-the-loop post-training. The intervention-aware sampling strategy leads to more efficient use of collected human feedback data relative to uniform sampling baselines. Specific quantitative improvements (e.g., exact success rate percentages) are not fully detailed in the abstract, but the framework is validated on contact-intensive multi-finger tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>可扩展性隐患：框架依赖人工遥操作干预，任务复杂度提升或干预频率增加时，操作员疲劳与成本将成为规模化部署的瓶颈。</li><li>泛化性存疑：后训练后VLA对人在环微调阶段未覆盖的新物体或新环境的泛化能力尚不明确。</li><li>界面设计权衡：轻量级遥操作界面降低了操作负担，但可能限制手指级纠正的精度，引入噪声并影响后训练质量。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability concern: The framework relies on human teleoperation interventions, which may bottleneck scaling — as tasks grow more complex or frequent corrections are needed, operator fatigue and cost could limit practical deployment.</li><li>Generalization gap: While DexHiL improves reliability on specific downstream tasks, it is unclear how well the post-trained VLA generalizes to unseen objects or environments not covered during the human-in-the-loop fine-tuning phase.</li><li>Interface design trade-off: The lightweight teleoperation interface reduces operator burden, but it may also limit the precision of finger-level corrections, potentially introducing noise into the corrective data that degrades post-training quality.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.09121v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-12</footer>
+</body>
+</html>
