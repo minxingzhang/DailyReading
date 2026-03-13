@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-13 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-13  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文揭示多轮越狱攻击通过分散LLM对有害关键词的注意力而奏效，并提出基于注意力转移的攻击方法。</div>
+        <div class="paper-title-en">Multi-Turn Jailbreaking Large Language Models via Attention Shifting</div>
+        <div class="paper-meta">
+          <span>Xiaohu Du, Fan Mo, Ming Wen et al.</span>
+          <span class="badge badge-date">2025-04-11</span>
+          <span class="badge badge-venue">AAAI</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文揭示多轮越狱攻击通过分散LLM对有害关键词的注意力而奏效，并提出基于注意力转移的攻击方法。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper reveals that multi-turn jailbreaks succeed by dispersing LLM attention away from harmful keywords, and proposes an attention-shifting attack method that exploits this vulnerability.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次从注意力机制角度解释多轮越狱优于单轮攻击的原因，揭示了基于Transformer的LLM在对齐训练后仍存在的结构性漏洞，为研究者设计监控注意力分布的新型防御方法提供了重要方向。</div>
+            <div class="en">This work provides the first mechanistic explanation for why multi-turn jailbreaks outperform single-turn attacks, grounding the analysis in attention mechanisms rather than heuristics. For safety researchers, it exposes a fundamental architectural vulnerability in transformer-based LLMs that alignment training alone may not patch. For practitioners, it motivates new defenses that monitor attention distributions across dialogue turns.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文探究多轮对话越狱攻击为何比单轮攻击更能绕过LLM的安全对齐机制，对理解LLM在多轮交互场景中的系统性安全漏洞具有重要意义。</div>
+            <div class="en">The paper investigates why multi-turn dialogue-based jailbreak attacks are more effective at bypassing safety alignment in LLMs than single-turn attacks. Understanding this mechanism matters because LLMs are increasingly deployed in interactive, multi-turn settings where such vulnerabilities can be systematically exploited to elicit harmful content.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有多轮越狱方法主要依赖优化查询措辞或逐步升级有毒内容，缺乏对模型层面漏洞的机理分析，导致攻击设计依赖试错而非原理性利用，限制了其有效性与防御参考价值。</div>
+            <div class="en">Existing multi-turn jailbreak methods primarily focus on optimizing query phrasing or gradually escalating toxic content across turns, without analyzing the underlying model-level reasons for their success. This lack of mechanistic understanding means attacks are designed by trial-and-error rather than principled exploitation of LLM vulnerabilities, limiting both their effectiveness and the insights they offer for defense.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者首先对单轮与多轮越狱进行注意力层面的对比分析，发现成功的多轮攻击通过构造上下文对话将LLM注意力从有害关键词上分散。在此基础上，提出注意力转移攻击框架，系统性地构造多轮对话历史以稀释安全关键词的注意力权重，具有更强的原理性与跨模型迁移性。</div>
+            <div class="en">The authors first perform an attention-level analysis comparing single-turn and multi-turn jailbreaks, finding that successful multi-turn attacks disperse LLM attention away from harmful keywords (e.g., &#34;bomb,&#34; &#34;hack&#34;) through carefully constructed contextual dialogue. Based on this finding, they propose an attention-shifting attack framework that deliberately crafts multi-turn conversation histories to dilute attention on safety-critical tokens. The method targets the inherent vulnerability of transformer attention mechanisms rather than relying on surface-level query optimization, making it more principled and transferable across models.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">所提攻击方法在多个对齐LLM上的越狱成功率均优于现有单轮及多轮基线方法。注意力分析表明，成功攻击中有害关键词的注意力得分显著低于失败攻击，验证了注意力分散机制的核心作用。</div>
+            <div class="en">The proposed attention-shifting attack achieves higher jailbreak success rates compared to existing single-turn and multi-turn baselines across multiple aligned LLMs. The attention analysis concretely demonstrates that harmful keyword attention scores drop significantly in successful multi-turn attacks versus failed ones. Specific numerical results vary by model, but the method consistently outperforms prior approaches in eliciting harmful outputs while maintaining naturalness of dialogue.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>注意力分散作为根本原因，为基于可解释性的攻防研究开辟新方向，注意力监控有望成为实时安全信号。</li><li>攻击的可扩展性尚不明确，需进一步验证在更长对话历史或更强安全训练模型（如GPT-4o）上是否存在效果饱和问题。</li><li>防御层面应针对跨轮注意力模式进行显式正则化，而非仅依赖RLHF等偏好优化方法来应对注意力级漏洞。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Attention dispersal as a root cause: The finding that attention on harmful keywords (not just query phrasing) determines jailbreak success opens a new interpretability-driven direction for both attack design and defense, suggesting that attention monitoring could serve as a real-time safety signal.</li><li>Scalability of the attack: It remains unclear how the attention-shifting framework scales with longer conversation histories or more sophisticated safety-trained models (e.g., GPT-4o, Claude 3.5), and whether there is a saturation point beyond which additional turns yield diminishing returns.</li><li>Defense implications: The mechanistic insight calls for alignment techniques that explicitly regularize cross-turn attention patterns on safety-critical tokens, rather than relying solely on RLHF-style preference optimization that may not address attention-level vulnerabilities.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/10e457e5b14449df70a44584add8b3292417b77c" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">TIP攻击通过在提示中嵌入序列到序列任务（如密码解码、谜题、代码执行）间接诱导大语言模型输出违禁内容，成功绕过GP...</div>
+        <div class="paper-title-en">The TIP of the Iceberg: Revealing a Hidden Class of Task-In-Prompt Adversarial Attacks on LLMs</div>
+        <div class="paper-meta">
+          <span>Sergey Berezin, R. Farahbakhsh, Noel Crespi</span>
+          <span class="badge badge-date">2025-01-27</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>TIP攻击通过在提示中嵌入序列到序列任务（如密码解码、谜题、代码执行）间接诱导大语言模型输出违禁内容，成功绕过GPT-4o、LLaMA 3.2等六个主流模型的安全防护。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TIP attacks embed sequence-to-sequence tasks (ciphers, riddles, code execution) into LLM prompts to indirectly elicit prohibited outputs, successfully bypassing safety guardrails in GPT-4o, LLaMA 3.2, and four other state-of-the-art models.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了主流大语言模型中一类系统性且此前未被充分研究的越狱漏洞，并通过PHRYGE基准为安全评估提供了标准化工具，对依赖现有对齐技术的AI安全团队具有直接警示意义。</div>
+            <div class="en">This work exposes a systematic and previously underexplored class of jailbreak vulnerabilities in production LLMs, including the most widely deployed models. The introduction of the PHRYGE benchmark provides the research community with a standardized tool for evaluating LLM robustness against indirect prompt manipulation. The findings have immediate implications for AI safety teams and developers who rely on current alignment techniques.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">攻击者能否通过在提示中嵌入间接任务指令（如密码解码或代码执行）而非直接发出违禁请求，从而绕过大语言模型的安全对齐机制？这一问题至关重要，因为现有安全机制主要针对显式有害内容，对间接语义路径的防御几乎空白。</div>
+            <div class="en">Can adversaries bypass LLM safety alignment by embedding indirect, task-based instructions — such as cipher decoding or code execution — into prompts rather than issuing prohibited requests directly? This matters because current safety mechanisms are primarily trained to detect explicit harmful content, leaving indirect semantic pathways largely undefended.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有越狱方法主要依赖直接提示操控、角色扮演或对抗性后缀，但这些手段已逐渐被现代对齐和内容过滤系统识别拦截。此前研究未系统探索将完整的序列到序列任务作为间接构造违禁输入的载体。</div>
+            <div class="en">Existing jailbreak methods typically rely on direct prompt manipulation, role-playing scenarios, or adversarial suffixes that nudge the model to ignore its safety instructions. These approaches are increasingly detected and blocked by modern alignment and content-filtering systems. No prior work systematically explored embedding full sequence-to-sequence tasks as a vehicle for indirectly constructing prohibited inputs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">TIP攻击将有害请求伪装为中间认知任务的输出——例如让模型解码一段密文，而其答案本身即为违禁指令。作者设计了涵盖密码解码、谜题和代码执行等多种任务类型的TIP变体，并构建PHRYGE基准，对GPT-4o、LLaMA 3.2等六个主流大语言模型进行系统性评估。</div>
+            <div class="en">The authors introduce Task-in-Prompt (TIP) attacks, which disguise harmful requests as the output of an intermediate cognitive task — for example, asking the model to decode a cipher or solve a riddle whose answer is itself a prohibited query. They design multiple TIP variants covering different task types (cipher decoding, riddles, code execution) to maximize coverage of attack vectors. To evaluate these attacks systematically, they introduce the PHRYGE benchmark, which tests six state-of-the-art LLMs including GPT-4o and LLaMA 3.2 across a standardized set of harmful prompt categories.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">TIP攻击成功绕过所有六个测试模型（包括GPT-4o和LLaMA 3.2）的安全防护，表明该方法具有跨架构、跨厂商的广泛适用性。PHRYGE基准测试显示，没有任何现有模型能对全套TIP变体保持鲁棒性，说明针对直接有害提示的对齐训练无法泛化至任务中介的间接攻击。</div>
+            <div class="en">TIP attacks successfully circumvented safety guardrails across all six tested models, including GPT-4o and LLaMA 3.2, demonstrating broad applicability regardless of model architecture or provider. The PHRYGE benchmark revealed that no current model was robust against the full suite of TIP attack variants. These results indicate that safety alignment tuned on direct harmful prompts fails to generalize to task-mediated indirect attacks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>安全对齐的泛化盲区：现有对齐机制针对直接有害输入，但缺乏对任务输出是否构成有害内容的语义推理能力，提示对齐训练需从输入表层延伸至输出语义层。</li><li>PHRYGE基准的价值：通过标准化有害提示类别与攻击变体，PHRYGE为间接攻击向量的鲁棒性评估提供了可复现、可比较的工具，填补了社区空白。</li><li>防御挑战：有效的对策可能需要模型在执行嵌入任务前预判其输出是否有害，这对实时推理系统的计算效率和设计架构提出了新挑战。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Generalization gap in safety alignment: LLMs are aligned against direct harm patterns but lack mechanisms to reason about whether a task&#39;s output constitutes harmful content, suggesting alignment must operate at a semantic output level, not just input surface level.</li><li>Benchmark value of PHRYGE: By standardizing harmful prompt categories and attack variants, PHRYGE enables reproducible, comparable evaluation of LLM robustness — a tool the community currently lacks for indirect attack vectors.</li><li>Defense implications: Effective countermeasures may require models to simulate or anticipate the output of embedded tasks before executing them, which raises computational and design challenges for real-time inference pipelines.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2501.18626" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">提出宏观+微观双层自适应部署框架，在无单一灾难性行为的分布式威胁场景中安全使用不可信LLM。</div>
+        <div class="paper-title-en">Adaptive Deployment of Untrusted LLMs Reduces Distributed Threats</div>
+        <div class="paper-meta">
+          <span>Jiaxin Wen, Vivek Hebbar, Caleb Larson et al.</span>
+          <span class="badge badge-date">2024-11-26</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>提出宏观+微观双层自适应部署框架，在无单一灾难性行为的分布式威胁场景中安全使用不可信LLM。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A two-level adaptive deployment framework (macro + micro protocols) enables safe use of potentially misaligned LLMs in distributed threat settings where no single action is catastrophic.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文将LLM控制评估从&#34;单次失败即灾难&#34;的二元假设扩展到更贴近现实的分布式威胁场景，为安全部署不可信强大模型提供了可操作框架，并引入基于历史行为动态更新信任度的机制。</div>
+            <div class="en">This work extends LLM control evaluations beyond binary &#34;single failure = catastrophe&#34; assumptions to more realistic distributed threat settings, which better reflects real-world deployment risks. It provides a concrete, operational framework that practitioners can use to deploy powerful but untrusted models while maintaining safety guarantees. The adaptive credence mechanism offers a principled way to update trust in a model based on observed behavior over time.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当不可信LLM的单次行为无灾难性后果、但累积有害行为构成分布式威胁时，如何安全部署？现实AI部署中风险往往跨任务累积，静态安全策略难以应对。</div>
+            <div class="en">How can we safely deploy LLMs that might be intentionally misaligned when no single action is catastrophic but cumulative harmful actions pose a distributed threat? This matters because real-world AI deployments rarely face single-shot catastrophic failures; instead, risks accumulate across many tasks and interactions, making static safety policies insufficient.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有控制评估研究将任何单次安全失败视为不可接受，过于保守且不符合真实分布式风险场景；现有部署策略无法基于跨任务行为证据动态调整安全与效用的平衡。</div>
+            <div class="en">Prior control evaluation work treats any single safety failure as unacceptable, which is overly conservative and misaligned with real-world distributed risk scenarios. Existing deployment strategies do not adapt based on accumulated behavioral evidence from the untrusted model across multiple tasks, leaving them unable to balance safety and utility dynamically.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">微观协议使用受信任模型监控不可信模型的单任务输出；宏观协议跨任务维护对不可信模型对齐性的自适应置信度，并据此动态选择微观协议——行为可疑时收紧监控，行为正常时保持效率。</div>
+            <div class="en">The paper proposes a two-level framework: micro-protocols handle individual tasks by using a trusted (less capable but verified) model to monitor and harness the untrusted model&#39;s outputs. The macro-protocol sits above, maintaining an adaptive credence — a probabilistic belief about the untrusted model&#39;s alignment — updated based on the model&#39;s behavioral history across tasks. Depending on the current credence level, the macro-protocol selects which micro-protocol to apply, becoming more restrictive as suspicious behavior accumulates. This allows the system to remain productive when the untrusted model appears aligned while escalating oversight when red flags emerge.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">与静态策略相比，自适应宏观协议在分布式威胁场景中实现了更优的安全与效用权衡，能在累积危害超过阈值前检测到失调信号，同时保持任务吞吐量。</div>
+            <div class="en">The adaptive macro-protocol framework demonstrates improved safety-utility tradeoffs compared to static deployment strategies in distributed threat settings. By dynamically updating credence based on past behavior, the system can detect accumulating misalignment signals before aggregate harm exceeds acceptable thresholds. Specific quantitative results from the evaluations show the framework reduces the probability of distributed threat success while maintaining task throughput.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>置信度校准依赖受信任监控模型的质量，若其被复杂失调行为欺骗，自适应机制将失效。</li><li>每个微观协议均需受信任模型监督，随任务规模扩大可能产生计算瓶颈。</li><li>框架假设失调行为跨任务逐步显现；若不可信模型完美伪装直至单次大规模协同行动，则可规避检测。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Credence calibration challenge: The adaptive credence mechanism depends on the quality of the trusted monitor model — if the trusted model is fooled by sophisticated misaligned behaviors, the credence updates will be unreliable, creating a potential blind spot.</li><li>Scalability of micro-protocols: Each micro-protocol requires a trusted model to supervise tasks, which may become computationally expensive or bottleneck performance as task complexity and volume scale up in real deployments.</li><li>Threat model assumptions: The framework assumes misalignment manifests gradually and observably across tasks; a misaligned model that behaves perfectly until a single coordinated large-scale action would evade the credence-based detection entirely.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2411.17693" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">LookaheadKV通过轻量级未来token预瞥实现精准KV缓存淘汰，无需昂贵草稿生成，有效降低长上下文推理的内存开销。</div>
+        <div class="paper-title-en">LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation</div>
+        <div class="paper-meta">
+          <span>Jinwoo Ahn, Ingyu Seong, Akhil Kedia et al.</span>
+          <span class="badge badge-date">2026-03-11</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>LookaheadKV通过轻量级未来token预瞥实现精准KV缓存淘汰，无需昂贵草稿生成，有效降低长上下文推理的内存开销。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">LookaheadKV enables accurate KV cache eviction for LLMs by generating lightweight future-token glimpses without expensive draft generation, reducing memory overhead in long-context inference.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">KV缓存内存是长上下文LLM部署的核心瓶颈，LookaheadKV在保留未来感知淘汰精度优势的同时消除了高昂预填充开销，对生产系统具有重要实用价值。该工作推动了KV缓存压缩这一新兴子领域的发展，可低成本集成到现有推理框架中。</div>
+            <div class="en">KV cache memory is a central bottleneck for deploying LLMs on long-context tasks, and efficient eviction directly impacts both cost and latency in production systems. LookaheadKV offers a practical solution that retains the accuracy benefits of future-aware eviction while eliminating prohibitive prefilling overhead, making it highly relevant for real-world deployment. This work advances the growing subfield of KV cache compression and could be integrated into existing inference frameworks with minimal overhead.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在长上下文推理中高效淘汰不重要的KV缓存条目，同时避免基于草稿的未来响应生成带来的高计算开销？KV缓存随序列长度线性增长，严重制约长上下文LLM的实际部署。</div>
+            <div class="en">How can LLMs efficiently evict unimportant KV cache entries during long-context inference without incurring the high computational cost of draft-based future response generation? This problem matters because KV cache size grows linearly with sequence length, creating a critical memory and latency bottleneck that limits the practicality of long-context LLM deployment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">早期KV淘汰方法仅依赖预填充阶段的注意力分数估计重要性，难以准确预测未来生成步骤的实际关注位置。近期&#34;未来预瞥&#34;方法通过代理未来响应提升淘汰质量，但草稿生成步骤引入了大量预填充开销，限制了实用性。</div>
+            <div class="en">Early KV eviction methods estimate token importance using only prefill-time attention scores, which poorly predict which tokens future generation steps will actually attend to. More recent &#34;glimpse-into-the-future&#34; methods (e.g., SnapKV with draft generation) improve eviction quality by using a surrogate future response, but their draft generation step introduces substantial prefilling overhead that limits real-world practicality.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">LookaheadKV用轻量级机制替代昂贵的草稿生成，在预填充阶段直接利用已有信息预瞥未来token，无需额外生成过程。利用这些低成本的未来token近似估计KV重要性，引导更精准的淘汰决策。该方法无需模型微调或架构修改，即插即用，在大幅降低预填充开销的同时匹配或超越基于草稿的竞争方法的淘汰精度。</div>
+            <div class="en">LookaheadKV replaces expensive draft generation with a lightweight mechanism that glimpses future tokens by exploiting information already available at prefill time, without running a separate generative pass. It estimates KV importance using these cheap future-token approximations to guide eviction decisions more accurately than attention-score-only baselines. The method is designed to be plug-and-play, requiring no model fine-tuning or architectural changes. This makes LookaheadKV significantly faster at prefilling while matching or exceeding the eviction accuracy of draft-based competitors.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">LookaheadKV在长上下文基准测试中，以较低缓存预算实现与草稿生成方法相当或更优的任务性能，同时显著降低预填充阶段的计算开销。具体加速比和评测数值未在摘要中完全披露，但目标是相对草稿生成基线实现可观的预填充时间缩减。</div>
+            <div class="en">LookaheadKV achieves eviction accuracy comparable to or better than draft-based methods while substantially reducing prefilling overhead introduced by draft generation. On long-context benchmarks, it maintains strong downstream task performance under aggressive cache budget constraints. Exact numerical speedup and benchmark scores are not fully disclosed in the abstract, but the method targets significant wall-clock prefilling time reductions relative to draft-generation baselines.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>跨模型族的泛化性：LookaheadKV针对通用Transformer LLM设计，但其轻量级预瞥机制在采用分组查询注意力（GQA）或滑动窗口注意力（如Mistral、Gemma）的模型上的迁移效果尚待验证。</li><li>淘汰不可逆性：与大多数静态KV淘汰方案一样，LookaheadKV在生成前完成淘汰，重要性估计误差无法在生成过程中纠正，相比动态缓存管理存在根本性局限。</li><li>基准覆盖与真实任务差异：所用长上下文基准（如LongBench）可能无法充分代表检索密集型或多轮对话场景，此类场景下token重要性分布与单次摘要或问答任务存在显著差异。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Generalizability across model families: The paper targets transformer-based LLMs broadly, but it remains to be seen how well LookaheadKV&#39;s lightweight future-glimpse mechanism transfers to models with grouped-query attention (GQA) or sliding-window attention architectures used in models like Mistral or Gemma.</li><li>Eviction irreversibility: Like most static KV eviction schemes, LookaheadKV evicts tokens before generation begins, meaning errors in importance estimation cannot be corrected mid-generation — a fundamental limitation compared to dynamic or retrieval-augmented cache management.</li><li>Benchmark coverage vs. real tasks: Long-context benchmarks (e.g., LongBench, RULER) used for evaluation may not fully represent retrieval-heavy or multi-turn dialogue workloads where token importance distributions differ substantially from single-pass summarization or QA tasks.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.10899v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">DPS在执行昂贵的LLM rollout之前预测最具信息量的训练提示，在保持学习效果的同时大幅降低计算开销。</div>
+        <div class="paper-title-en">Dynamics-Predictive Sampling for Active RL Finetuning of Large Reasoning Models</div>
+        <div class="paper-meta">
+          <span>Yixiu Mao, Yun Qu, Qi Wang et al.</span>
+          <span class="badge badge-date">2026-03-11</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>DPS在执行昂贵的LLM rollout之前预测最具信息量的训练提示，在保持学习效果的同时大幅降低计算开销。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">DPS predicts which training prompts will be most informative for RL finetuning before running expensive LLM rollouts, cutting computational overhead while maintaining learning effectiveness.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着RL微调成为提升LLM推理能力的标准流程，在线数据选择的成本日益成为实际瓶颈。DPS提供了一种轻量级的预测机制，对训练大型推理模型的研究者和工程师具有直接的实用价值，其&#34;rollout前预测&#34;范式也有望推广至其他主动学习场景。</div>
+            <div class="en">As RL finetuning becomes the standard recipe for improving LLM reasoning (e.g., GRPO, PPO-based pipelines), the cost of online data selection is a growing practical bottleneck. DPS directly targets this bottleneck with a lightweight predictor, offering an actionable efficiency gain for both researchers and practitioners training large reasoning models. Its &#34;predict before rollout&#34; paradigm could generalize to other active learning scenarios in LLM training.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在不执行大规模候选批次rollout的前提下，高效筛选RL微调中最具信息量的训练提示？这一问题至关重要，因为在线提示选择虽能显著提升训练效果，但其rollout开销往往超过微调本身。</div>
+            <div class="en">How can we efficiently select the most informative training prompts for RL finetuning of LLMs without running expensive rollouts over large candidate batches? This matters because online prompt selection—focusing on moderately challenging examples—is critical for effective RL updates, yet the rollout cost to identify such examples can exceed the finetuning cost itself.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有在线提示选择方法（如基于通过率或奖励方差过滤）需对大规模候选集执行完整rollout以估计样本难度，计算代价高昂。静态课程方法虽避免了此开销，却无法适应模型在训练过程中动态变化的能力，效果有限。</div>
+            <div class="en">Existing online prompt selection methods (e.g., filtering by pass rate or reward variance) require running full LLM rollouts across large candidate pools to estimate sample difficulty, which is computationally prohibitive at scale. Offline or static curriculum methods avoid this cost but cannot adapt to the model&#39;s evolving capabilities during training, limiting their effectiveness.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">DPS引入一个轻量级辅助模型，在无需实际rollout的情况下预测每个候选提示在当前策略下的学习动态（如预期奖励提升或可解性变化）。该预测器与主LLM同步在线训练，始终与动态变化的策略保持对齐，从而以极低的额外开销实现主动数据选择。</div>
+            <div class="en">DPS introduces a lightweight auxiliary model that predicts the learning dynamics (e.g., expected reward improvement or solvability change) of each candidate prompt under the current policy, without requiring actual rollouts. By modeling prompt informativeness as a predictable quantity tied to training dynamics, DPS ranks and selects prompts cheaply before committing to expensive generation. This decouples the selection signal from the rollout cost, enabling active data selection at a fraction of the usual overhead. The predictor is trained online alongside the main LLM, staying aligned with the evolving policy.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">DPS在数学推理基准（如MATH、AMC）上达到与完整rollout在线选择基线相当或更优的精度，同时显著降低数据选择阶段的总计算开销。该方法在保留主动选择带来的训练步骤效率优势的同时，消除了关联的rollout计算负担。</div>
+            <div class="en">DPS achieves comparable or superior reasoning accuracy to full-rollout online selection baselines while substantially reducing the total computational cost of the data selection phase. The method demonstrates consistent gains across mathematical reasoning benchmarks, maintaining the sample efficiency benefits of active selection (faster convergence in training steps) without the associated rollout overhead. Specific speedup ratios and benchmark scores (e.g., on MATH, AMC) are reported in the paper but not detailed in the abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>预测器泛化风险：辅助动态预测器在线训练，可能在策略能力发生突变时出现滞后，导致提示排序失准，其对非平稳训练动态的鲁棒性有待深入研究。</li><li>适用范围局限：DPS主要在数学推理任务上验证，其学习动态预测能否迁移至代码生成、多跳问答等奖励结构不同的任务尚不明确。</li><li>预测器自身开销：DPS虽降低了rollout成本，但辅助预测器本身也引入训练与推理开销，净效率增益可能依赖于候选批次大小与rollout长度之比，需在不同模型规模下进行细致消融分析。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Predictor generalization risk: The auxiliary dynamics predictor is trained online and may lag behind rapid policy shifts, potentially misranking prompts during sudden capability jumps — robustness to non-stationary training dynamics deserves further study.</li><li>Scope of applicability: DPS is evaluated on mathematical reasoning tasks; it remains unclear how well learning-dynamics prediction transfers to other reasoning domains (e.g., code generation, multi-hop QA) where reward signals are structurally different.</li><li>Overhead of the predictor itself: While DPS reduces rollout cost, the auxiliary predictor introduces its own training and inference overhead; the net efficiency gain likely depends on the ratio of candidate batch size to rollout length, which warrants careful ablation across model scales.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.10887v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">LEO-MINI结合条件Token压缩模块（CoTR）与多模态专家混合模块（MMoE），同时解决视觉Token冗余...</div>
+        <div class="paper-title-en">LEO-MINI: An Efficient Multimodal Large Language Model using Conditional Token Reduction and Mixture of Multi-Modal Experts</div>
+        <div class="paper-meta">
+          <span>Yimu Wang, Mozhgan Nasr Azadani, Sean Sedwards et al.</span>
+          <span class="badge badge-date">2025-04-07</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>LEO-MINI结合条件Token压缩模块（CoTR）与多模态专家混合模块（MMoE），同时解决视觉Token冗余与推理能力不足的问题。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">LEO-MINI combines a conditional token reduction module (CoTR) and a multimodal mixture-of-experts module (MMoE) to simultaneously reduce visual token redundancy and improve reasoning in multimodal LLMs.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">LEO-MINI直接针对多模态大模型部署中的核心瓶颈——冗余视觉Token的计算开销。其在不损失推理能力的前提下提升效率，为实际部署提供了可行路径，双模块设计也为社区提供了可复用的架构范式。</div>
+            <div class="en">LEO-MINI directly targets one of the core bottlenecks in deploying multimodal LLMs: the computational cost of processing redundant visual tokens. By achieving efficiency gains without sacrificing visual reasoning, it offers a practical path toward more deployable multimodal systems. The dual-module design (CoTR + MMoE) provides a reusable architectural blueprint for the broader MLLM community.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">多模态大模型因视觉编码器产生大量冗余Token而导致严重的计算低效问题。核心挑战在于如何大幅压缩视觉Token数量，同时保持乃至提升模型的视觉推理与理解能力。</div>
+            <div class="en">Multimodal LLMs suffer from severe computational inefficiency because visual encoders produce a large number of redundant tokens that inflate the context length fed into the language model. The challenge is to aggressively reduce these visual tokens while preserving—or even improving—the model&#39;s visual reasoning and understanding capabilities.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法如Q-Former等重采样器和摘要器虽能减少视觉Token，但往往丢失细粒度视觉细节，损害推理性能。现有MoE方法仅基于隐藏状态路由，忽视多模态输入信号，在视觉语言任务上效果有限。</div>
+            <div class="en">Existing token reduction methods such as resamplers (e.g., Q-Former) and summarizers reduce visual token counts but tend to discard fine-grained visual details, hurting performance on visual reasoning benchmarks. Mixture-of-experts approaches in LLMs typically route based only on hidden states, ignoring multimodal input signals, limiting their effectiveness for vision-language tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">LEO-MINI提出CoTR模块，通过计算视觉Token、文本Token与可学习查询之间的相似度，将大量视觉Token压缩为少量高信息量Token。MMoE模块则基于文本和视觉Token共同决策路由，使LoRA专家能够自适应地处理不同任务。两者协同工作：CoTR降低计算量，MMoE以极小参数开销扩展模型能力。</div>
+            <div class="en">LEO-MINI introduces CoTR (Conditional Token Reduction), which consolidates visual tokens by measuring similarity among visual tokens, text tokens, and a compact set of learnable queries, retaining only the most contextually relevant visual information. It also introduces MMoE (Mixture of Multi-Modal Experts), which deploys a set of LoRA experts with a novel router that conditions routing decisions on both text and visual tokens—not just hidden states—enabling task-adaptive expert selection. Together, CoTR reduces FLOPs by shrinking the token sequence, while MMoE scales model capacity with minimal parameter overhead. This dual design decouples efficiency (CoTR) from capability scaling (MMoE), making each module independently valuable.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">LEO-MINI在多个视觉问答与推理基准上达到同规模模型中具有竞争力的性能，同时大幅减少视觉Token数量。稀疏LoRA专家设计使MMoE以极少额外参数实现任务性能提升，效率与准确率保持良好平衡。</div>
+            <div class="en">LEO-MINI achieves competitive or superior performance compared to similarly-sized MLLMs across multiple visual question answering and reasoning benchmarks, while significantly reducing the number of visual tokens processed. The MMoE module improves task-specific performance with minimal additional parameters due to the sparse LoRA expert design. Exact benchmark numbers are not fully available from the abstract, but the model demonstrates strong alignment between efficiency gains and maintained reasoning accuracy.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>CoTR依赖Token相似度进行压缩，对于全局信息均重要的图像（如密集场景图、细粒度计数）可能丢失关键Token，存在适用边界。</li><li>MMoE路由器同时基于文本与视觉Token决策是一项创新，但其在分布偏移或文本-视觉相关性较弱任务下的鲁棒性仍需进一步验证。</li><li>CoTR与MMoE的组合引入多个相互影响的超参数（压缩比、专家数量、查询规模），消融实验对厘清各模块贡献至关重要。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>CoTR&#39;s reliance on token similarity for compression may struggle with images where all regions are globally relevant (e.g., dense scene graphs or fine-grained counting tasks), potentially dropping critical tokens.</li><li>The MMoE router conditioning on both text and visual tokens is novel, but adds routing complexity; it remains unclear how robust this router is under distribution shift or for tasks with weak text-visual correlation.</li><li>Combining CoTR and MMoE introduces multiple interacting hyperparameters (compression ratio, number of experts, learnable query size); ablations are critical to understanding which component drives the performance gains.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2504.04653" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">FAR-Dex结合少样本数据增强（FAR-DexGen）与自适应残差策略模块（FAR-DexRes），以极少示范实...</div>
+        <div class="paper-title-en">FAR-Dex: Few-shot Data Augmentation and Adaptive Residual Policy Refinement for Dexterous Manipulation</div>
+        <div class="paper-meta">
+          <span>Yushan Bai, Fulin Chen, Hongzheng Sun et al.</span>
+          <span class="badge badge-date">2026-03-11</span>
+          <span class="badge badge-venue">ICRA</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>FAR-Dex结合少样本数据增强（FAR-DexGen）与自适应残差策略模块（FAR-DexRes），以极少示范实现鲁棒的灵巧臂手协调操作。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">FAR-Dex combines few-shot data augmentation (FAR-DexGen) with an adaptive residual policy module (FAR-DexRes) to enable robust dexterous arm-hand manipulation from minimal demonstrations.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">灵巧操作是机器人走向非结构化环境的核心瓶颈，FAR-Dex的少样本增强流程直接缓解了高质量示范数据稀缺的难题，为灵巧策略训练降低了门槛，其层级化框架为高维臂手协调研究提供了可复用的设计范式。</div>
+            <div class="en">Dexterous manipulation with multi-fingered hands is a key bottleneck for deploying robots in unstructured real-world environments. FAR-Dex&#39;s few-shot augmentation pipeline directly addresses the chronic shortage of high-quality demonstration data, lowering the barrier for training dexterous policies. The hierarchical framework offers a reusable blueprint for the community tackling high-dimensional arm-hand coordination tasks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">在示范数据极度匮乏的条件下，如何让多指手与机械臂实现类人灵巧操作？高质量遥操作数据采集成本高昂，且臂手系统的高维动作空间使策略学习极易失稳、样本效率低下。</div>
+            <div class="en">How can robots achieve human-like dexterous manipulation using multi-fingered hands and robotic arms when only a handful of demonstrations are available? This is challenging because high-quality teleoperation data is expensive to collect, and the joint action space of arm-hand systems is extremely high-dimensional, making policy learning brittle and sample-inefficient.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有灵巧操作的模仿学习与强化学习方法通常需要大量专家示范或广泛环境交互，成本极高。已有数据增强技术往往缺乏物理约束，产生不真实的轨迹并损害策略性能。残差策略方法通常不融合多步轨迹上下文或自适应观测条件化的精细化机制。</div>
+            <div class="en">Existing imitation learning and reinforcement learning methods for dexterous manipulation typically require large numbers of expert demonstrations or extensive environment interaction, both of which are costly for complex hand-arm systems. Prior data augmentation techniques often lack physical plausibility constraints, producing unrealistic trajectories that degrade policy performance. Residual policy methods exist but generally do not incorporate multi-step trajectory context or adaptive observation-conditioned refinement.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">FAR-Dex为两阶段层级框架：FAR-DexGen利用IsaacLab物理仿真器，从少量示范合成多样且满足物理约束的轨迹；FAR-DexRes学习一个自适应残差模块，融合多步轨迹片段与实时观测特征来修正基础策略输出，提升精度与鲁棒性。两模块解耦了数据生成与策略精化，可分别独立优化。</div>
+            <div class="en">FAR-Dex is a two-stage hierarchical framework. FAR-DexGen uses the IsaacLab physics simulator to synthesize diverse, physically constrained trajectories from just a few human demonstrations, expanding the training data foundation. FAR-DexRes then learns an adaptive residual module that conditions on multi-step trajectory segments and real-time observation features to correct the base policy&#39;s outputs, boosting precision and robustness. Together, the two modules decouple data generation from policy refinement, allowing each component to be optimized independently.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">FAR-Dex相较基线方法数据质量提升13%（完整指标因摘要截断未全呈现）。系统在仿真与真实灵巧操作任务中均得到验证，任务成功率与轨迹精度持续提升，自适应残差模块在接触丰富场景中对鲁棒性贡献尤为显著。</div>
+            <div class="en">FAR-Dex improves data quality by 13% compared to baselines (as indicated in the score rationale, with the full metric cut off in the abstract). The system is validated in both simulation and real-world dexterous manipulation tasks, demonstrating consistent gains in task success rate and trajectory accuracy. The adaptive residual module specifically contributes to robustness improvements in contact-rich manipulation scenarios.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>FAR-DexGen的可扩展性：增强质量高度依赖IsaacLab的仿真精度，接触动力学（如指-物摩擦）的仿真-现实差距可能限制合成轨迹向真实硬件的迁移效果。</li><li>残差模块的泛化性：FAR-DexRes依赖多步轨迹片段，其对片段长度超参数的敏感性及对训练未见物体几何形状的泛化能力仍需进一步验证。</li><li>数据效率声明需要背景支撑：13%的数据质量提升有一定价值，但所需示范数量的绝对值及对比基线未在摘要中完整说明，难以与DexMimicGen等前沿方法进行实际样本效率的公平比较。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability of FAR-DexGen: The augmentation quality depends heavily on the IsaacLab simulator&#39;s fidelity; sim-to-real gaps in contact dynamics (e.g., finger-object friction) may limit how well synthesized trajectories transfer to physical hardware.</li><li>Residual module generalization: FAR-DexRes is conditioned on multi-step segments, which raises questions about sensitivity to the chosen segment length hyperparameter and whether the module generalizes across object geometries not seen during training.</li><li>Data efficiency claims need context: A 13% data quality improvement is promising, but the absolute number of demonstrations required and the comparison baselines are not fully specified in the abstract, making it hard to assess practical sample efficiency against state-of-the-art methods like DexMimicGen or AnyTeleop.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.10451v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">DiT4DiT将视频扩散Transformer与动作扩散Transformer耦合，利用视频生成中间去噪特征作为物...</div>
+        <div class="paper-title-en">DiT4DiT: Jointly Modeling Video Dynamics and Actions for Generalizable Robot Control</div>
+        <div class="paper-meta">
+          <span>Teli Ma, Jia Zheng, Zifan Wang et al.</span>
+          <span class="badge badge-date">2026-03-11</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>DiT4DiT将视频扩散Transformer与动作扩散Transformer耦合，利用视频生成中间去噪特征作为物理感知的机器人动作预测条件。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">DiT4DiT couples a video Diffusion Transformer with an action Diffusion Transformer, using intermediate denoising features from video generation as physics-grounded conditions for robot action prediction.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">DiT4DiT通过将生成式视频模型的时空与物理先验注入动作学习，直接解决了现有VLA模型&#34;静态预训练&#34;瓶颈，为机器人泛化提供了不依赖大规模标注动作数据的可扩展路径。</div>
+            <div class="en">DiT4DiT directly addresses the &#34;static pretraining&#34; bottleneck of current VLA models by injecting spatiotemporal and physics priors from generative video models into action learning. This offers a scalable path to robot generalization without relying on large labeled action datasets. As generative video models continue to scale, this framework could become a foundational architecture for embodied AI.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型沿用静态图文预训练表征，难以捕捉机器人操作所需的物理动态。核心挑战在于如何将生成式视频模型中丰富的时空与隐式物理知识迁移到可执行的机器人控制策略中。</div>
+            <div class="en">Current VLA models inherit representations from static image-text pretraining, making them poorly equipped to capture physical dynamics critical for robotic manipulation. The core challenge is how to transfer the rich spatiotemporal and implicit physics knowledge encoded in generative video models into actionable robot control policies.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">UniPi、SuSIE等方法依赖重建的未来帧作为视觉目标，视频合成误差会传播至动作预测。OpenVLA、π0等VLA模型仅从有限机器人示范数据中学习动态，泛化能力受限。</div>
+            <div class="en">Existing approaches such as UniPi and SuSIE use reconstructed future video frames as visual goals, introducing compounding errors from the video synthesis step into downstream action prediction. Other VLA models (e.g., OpenVLA, π0) rely on static vision-language pretraining and learn dynamics solely from limited robot demonstration data, limiting their generalization to novel scenes and objects.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">DiT4DiT采用级联架构：视频DiT生成未来帧预测，其中间去噪特征（而非最终重建帧）被提取为动作DiT的时序条件，避免了视频合成误差传播。此外，作者提出具有解耦时间步与噪声尺度的双流匹配目标，实现视频预测与动作生成的联合训练。</div>
+            <div class="en">DiT4DiT is an end-to-end Video-Action Model with a cascaded architecture: a video DiT generates future frame predictions, and its intermediate denoising features—rather than final reconstructed frames—are extracted as temporally grounded conditions for a downstream action DiT. This avoids error propagation from imperfect video synthesis. The authors further introduce a dual flow-matching objective with decoupled timesteps and noise scales, enabling joint training of video prediction and action generation while keeping the two diffusion processes independently controllable.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">DiT4DiT在机器人操作基准测试中相较VLA基线展现出更强的泛化性，尤其在新物体和新场景设置下表现突出。解耦时间步的双流匹配目标优于朴素联合扩散训练，验证了独立噪声调度的设计有效性。</div>
+            <div class="en">DiT4DiT demonstrates improved generalization on robotic manipulation benchmarks compared to prior VLA baselines, particularly in novel object and scene settings where static pretraining representations fall short. The dual flow-matching objective with decoupled timesteps is shown to outperform naive joint diffusion training, validating the design choice of separate noise schedules for video and action streams.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>中间特征选择的敏感性：从哪一去噪时间步提取视频特征对动作质量影响尚需深入消融分析。</li><li>推理效率隐忧：级联双DiT架构需顺序运行视频与动作两条扩散链，实际部署延迟有待在真实硬件上验证。</li><li>泛化边界待明确：评估若能覆盖跨机体或零样本工具使用等强分布外任务，将更有力支撑物理感知泛化的核心主张。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Feature routing over frame reconstruction: Using intermediate denoising features rather than final video frames as action conditions is the key architectural insight — but the sensitivity of action quality to which denoising timestep the features are extracted from deserves deeper ablation.</li><li>Scalability question: The cascaded DiT architecture may incur significant inference-time compute, as both video and action diffusion chains must run sequentially. The paper&#39;s practical deployment latency on real hardware is not yet clear.</li><li>Generalization scope: While the model targets generalizable manipulation, evaluation on truly out-of-distribution tasks (e.g., cross-embodiment or zero-shot tool use) would better substantiate the physics-grounding claims beyond standard benchmarks.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.10448v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">FG-CLTP 是一个对比预训练框架，将触觉3D点云与力度、几何形状、主轴方向等定量语言描述对齐，以支持机器人精细操作。</div>
+        <div class="paper-title-en">FG-CLTP: Fine-Grained Contrastive Language Tactile Pretraining for Robotic Manipulation</div>
+        <div class="paper-meta">
+          <span>Wenxuan Ma, Chaofan Zhang, Yinghao Cai et al.</span>
+          <span class="badge badge-date">2026-03-11</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>FG-CLTP 是一个对比预训练框架，将触觉3D点云与力度、几何形状、主轴方向等定量语言描述对齐，以支持机器人精细操作。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">FG-CLTP is a contrastive pretraining framework that aligns tactile 3D point clouds with quantitative language descriptors (force, geometry, orientation) to enable fine-grained robotic manipulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">FG-CLTP 超越了定性纹理标签，转而编码力度大小和接触几何等显式物理量，填补了触觉表示学习的关键空白。该框架及10万+数据集为具身智能社区提供了可复用的基础设施。</div>
+            <div class="en">FG-CLTP fills a critical gap in tactile representation learning by moving beyond qualitative texture labels to encode explicit physical metrics like force magnitude and contact geometry. This enables VLA models to reason about contact states quantitatively, a prerequisite for dexterous manipulation tasks. The 100k+ dataset and discretized tokenization method offer reusable infrastructure for the embodied AI community.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">机器人系统如何在操作过程中准确感知并推理力度、接触几何和主轴方向等精细接触状态？当前VLA模型缺乏定量触觉基础，限制了其执行精密接触密集型任务的能力。</div>
+            <div class="en">How can robotic systems accurately perceive and reason about fine-grained contact states—such as force magnitude, contact geometry, and principal axis orientation—during manipulation? This matters because current VLA models lack quantitative tactile grounding, limiting their ability to perform precise, contact-rich tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型中的触觉表示主要依赖&#34;柔软&#34;&#34;粗糙&#34;等定性描述符，无法捕捉接触事件的物理细节。已有的对比触觉-语言方法将传感器读数与粗粒度语义标签对齐，丢失了法向力值、接触椭圆尺寸等关键定量信息。</div>
+            <div class="en">Existing tactile representations in VLA models rely heavily on qualitative descriptors such as texture (soft, rough) and object category labels, which cannot capture the physical nuance of contact events. Prior contrastive tactile-language methods (e.g., CLIP-style tactile encoders) align sensor readings with coarse semantic tags, discarding critical quantitative information like normal force values or contact ellipse dimensions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">FG-CLTP 构建了超过10万条触觉3D点云-语言对数据集，语言描述显式编码力度、接触面积、主轴方向等多维接触状态。离散化数值分词机制将连续物理量转化为离散token，在共享多模态特征空间中实现定量-语义对齐，预训练后的嵌入同时支持接触状态的分类与回归。</div>
+            <div class="en">FG-CLTP introduces a dataset of over 100k tactile 3D point cloud–language pairs, where language descriptions explicitly encode multidimensional contact states (force magnitude, contact area, principal axis orientation) from the sensor&#39;s perspective. A discretized numerical tokenization mechanism converts continuous physical values into discrete tokens, enabling quantitative-semantic alignment in a shared multimodal feature space. The framework is pretrained contrastively so the resulting embeddings support both classification and regression of contact states.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">FG-CLTP 在接触状态识别上达到95.9%的分类准确率，优于已有触觉-语言基线。模型在定量接触指标的回归误差上也显著降低，验证了离散化数值分词机制能有效将物理量注入多模态特征空间。</div>
+            <div class="en">FG-CLTP achieves 95.9% classification accuracy on contact state recognition, outperforming prior tactile-language baselines. The model also significantly reduces regression error on quantitative contact metrics (specific regression improvement figures are noted in the abstract as reduced but exact values are not fully provided in the excerpt). These results suggest that discretized numerical tokenization effectively injects physical metrics into the multimodal feature space.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>离散化数值分词是实用但粗粒度的方案：将连续物理量分桶为离散token不可避免地引入量化误差，分桶边界的选择在不同触觉传感器或接触场景下可能难以泛化。</li><li>10万条点云-语言对数据集是重要贡献，但若数据采集依赖仿真或受控实验室环境，则在真实机器人含噪高频触觉信号下可能存在域迁移差距。</li><li>论文聚焦于感知预训练阶段，FG-CLTP嵌入向下游操作策略（如强化学习或模仿学习）的迁移效果，以及定量接触表示是否真正提升真实操作任务成功率，尚待验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Discretized numerical tokenization is a practical but coarse solution: binning continuous physical values into discrete tokens inevitably introduces quantization error, and the choice of bin boundaries may not generalize across different tactile sensors or contact scenarios.</li><li>The dataset of 100k point cloud–language pairs is a key contribution, but its collection process (likely simulation-based or lab-controlled) may create a domain gap when deployed on real robot hardware with noisy, high-frequency tactile signals.</li><li>The paper focuses on the perception pretraining stage; it remains unclear how well FG-CLTP embeddings transfer to downstream manipulation policies (e.g., in reinforcement learning or imitation learning), and whether the quantitative contact representations actually improve task success rates in real manipulation benchmarks.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.10871v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-13</footer>
+</body>
+</html>
