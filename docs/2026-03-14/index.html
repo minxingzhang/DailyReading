@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-14 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-14  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">GuidelineLLM是一种无需额外训练的防御框架，在推理阶段将风险感知指南前置于查询，无需修改模型权重即可抵御越狱攻击。</div>
+        <div class="paper-title-en">Look Before You Leap: Enhance Attention and Vigilance Regarding Harmful Content with GuidelineLLM</div>
+        <div class="paper-meta">
+          <span>Shaoqing Zhang, Zhuosheng Zhang, Kehai Chen et al.</span>
+          <span class="badge badge-date">2025-04-11</span>
+          <span class="badge badge-venue">AAAI</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>GuidelineLLM是一种无需额外训练的防御框架，在推理阶段将风险感知指南前置于查询，无需修改模型权重即可抵御越狱攻击。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">GuidelineLLM is a training-free defensive framework that prepends risk-aware guidelines to LLM queries at inference time to resist jailbreak attacks without modifying model weights.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">越狱攻击是已部署LLM面临的重大威胁，GuidelineLLM提供了一种轻量级即插即用的防御方案，可应用于任意LLM，降低了安全部署的门槛。</div>
+            <div class="en">Jailbreak attacks are a critical and growing threat to deployed LLMs, and most defenses require costly retraining or fine-tuning. GuidelineLLM offers a lightweight, plug-and-play alternative that can be applied to any black-box or white-box LLM, lowering the barrier to safer deployment in production systems.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文研究如何防御LLM抵抗越狱攻击——即绕过对齐机制并诱导有害输出的对抗性提示。即使是对齐良好的模型（如GPT-4、LLaMA）仍存在被利用的风险。</div>
+            <div class="en">The paper tackles how to defend LLMs against jailbreak attacks — adversarial prompts engineered to bypass alignment mechanisms and elicit harmful outputs. This matters because even well-aligned models (e.g., GPT-4, LLaMA) remain exploitable, posing direct risks in consumer and enterprise applications.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">基于RLHF的对齐方法成本高且对训练中未见的新型攻击泛化能力弱；红队测试方法需持续人工投入，无法跟上越狱策略的快速演变；两者均需重新训练或微调模型。</div>
+            <div class="en">RLHF-based alignment is expensive and struggles to generalize to novel attack patterns not seen during training. Red-teaming approaches require continuous human effort and cannot keep pace with the rapidly evolving landscape of jailbreak strategies. Both paradigms fundamentally require model retraining or fine-tuning, making rapid iteration difficult.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">GuidelineLLM采用两阶段推理流水线：专用模块先分析查询以识别潜在有害意图和风险类别，再合成简洁的安全指南；将指南作为系统提示前置后再由主模型生成回复。整个过程无需对主模型进行安全微调，具有模型无关性。</div>
+            <div class="en">GuidelineLLM introduces a two-stage inference-time pipeline: a dedicated &#34;GuidelineLLM&#34; module first analyzes an incoming query to identify potential harmful intents and risk categories, then synthesizes concise safety guidelines. These guidelines are prepended as a system-level prompt before the primary LLM generates its response, effectively priming the model&#39;s attention toward harmful content. Crucially, no additional safety fine-tuning of the responding LLM is required, making the approach model-agnostic and easy to integrate.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">GuidelineLLM在多个LLM基础模型上显著降低了越狱攻击成功率，并相较于RLHF和红队基线在未见越狱模板上展现出更强的泛化能力；具体数值（如精确ASR百分比）在摘要中未完整披露。</div>
+            <div class="en">The paper reports that GuidelineLLM substantially reduces the attack success rate of jailbreak attempts across multiple LLM backbones compared to undefended baselines. The approach also demonstrates improved generalization to unseen jailbreak templates relative to RLHF and red-teaming baselines. Specific numerical results (e.g., exact ASR percentages) are not fully disclosed in the available abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>模块化与延迟的权衡：在每次查询前插入额外的GuidelineLLM模块会增加一次推理开销，可能使响应延迟翻倍，需量化评估。</li><li>指南模块自身的对抗鲁棒性：若指南生成模块本身可被混淆提示（如编码攻击、多轮操控）绕过，防御将在第一阶段失效，其鲁棒性是关键开放问题。</li><li>泛化范围存疑：论文声称优于RLHF的泛化能力，但评估是否覆盖多样攻击家族（如提示注入、间接越狱、多语言攻击）尚不明确，影响实际应用价值判断。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Modularity vs. latency trade-off: Inserting a separate GuidelineLLM module before every query adds an extra inference pass, potentially doubling response latency — a practical concern for real-time applications that the paper should quantify.</li><li>Adversarial robustness of the guide module itself: If the GuidelineLLM module can be fooled by sufficiently obfuscated prompts (e.g., encoding attacks, multi-turn manipulation), the defense collapses at its first stage — the robustness of the guideline generator is a key open question.</li><li>Generalization scope: The paper claims improved generalization over RLHF, but it is unclear whether evaluation covers diverse attack families (e.g., prompt injection, indirect jailbreaks, multilingual attacks), which is critical for assessing real-world coverage.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/07aedd3821983f8111aada953007b59650cfe944" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">MTSA是一个两阶段多轮红队框架，通过思维引导攻击训练与对抗迭代优化，结合未来奖励强化学习，提升LLM在多轮对话中的安全对齐能力。</div>
+        <div class="paper-title-en">MTSA: Multi-turn Safety Alignment for LLMs through Multi-round Red-teaming</div>
+        <div class="paper-meta">
+          <span>Weiyang Guo, Jing Li, Wenya Wang et al.</span>
+          <span class="badge badge-date">2025-05-22</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>MTSA是一个两阶段多轮红队框架，通过思维引导攻击训练与对抗迭代优化，结合未来奖励强化学习，提升LLM在多轮对话中的安全对齐能力。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MTSA is a two-stage multi-turn red-teaming framework that trains a red-team model to generate thought-guided jailbreak attacks and iteratively co-evolves it with the target LLM using future-reward reinforcement learning to improve multi-turn safety alignment.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">多轮越狱攻击比单轮攻击危险性更高，却在安全对齐研究中较少被关注，MTSA的针对性框架填补了这一空白。其未来奖励RL机制与对抗协同进化策略为LLM安全研究提供了可复用的设计范式。</div>
+            <div class="en">Multi-turn jailbreak attacks are significantly more dangerous than single-turn attacks yet remain understudied in safety alignment research, making MTSA&#39;s targeted framework a meaningful contribution. The future-reward RL approach and adversarial co-evolution strategy offer reusable design patterns for the broader LLM safety community.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何使LLM对多轮越狱攻击具有鲁棒性？在此类攻击中，恶意意图被逐步隐藏在多个对话轮次中，而非集中于单一提示。这一问题至关重要，因为现有安全对齐方法主要针对单轮交互，无法捕捉多轮对话中累积性操控的动态特征。</div>
+            <div class="en">How can LLMs be made robust against multi-turn jailbreak attacks, where malicious intent is gradually concealed across several dialogue rounds rather than expressed in a single prompt? This is critical because existing safety alignment methods largely focus on single-turn interactions and fail to capture the cumulative manipulation dynamics of multi-round conversations.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有越狱防御和红队方法大多针对单轮提示设计，对多轮攻击场景关注不足。RLHF、DPO等安全对齐技术孤立地优化单条响应，无法建模恶意意图在对话上下文中的累积过程。</div>
+            <div class="en">Most existing jailbreak defenses and red-teaming methods are designed for single-turn prompts, leaving multi-turn attack scenarios largely unaddressed. Prior safety alignment techniques such as RLHF and DPO optimize responses in isolation without modeling how harmful intent can accumulate across dialogue context.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">MTSA包含两个阶段：一是思维引导攻击学习阶段，红队模型通过逐步推理攻击策略，学习生成多轮越狱提示；二是对抗迭代优化阶段，红队模型与目标模型在交互中持续提升各自的攻防能力。核心算法贡献是基于未来奖励的多轮强化学习算法，它不仅评估即时响应质量，还考量完整对话中的长期攻防效果。</div>
+            <div class="en">MTSA operates in two stages: first, a thought-guided attack learning stage where the red-team model is trained to craft multi-round jailbreak prompts by reasoning through attack strategies step by step; second, an adversarial iterative optimization stage where the red-team model and target model continuously sharpen their attack and defense capabilities through interaction. A key algorithmic contribution is a multi-turn reinforcement learning algorithm based on future rewards, which evaluates actions not just on immediate response quality but on long-horizon attack/defense outcomes across the full conversation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在MTSA框架下训练的红队模型相比基线能生成更有效的多轮对抗提示。经MTSA对齐的目标模型在抵御多轮越狱攻击方面表现出更强的鲁棒性，但摘要中未完整披露具体量化指标（如攻击成功率降幅）。</div>
+            <div class="en">The red-team model trained under MTSA demonstrates improved ability to generate effective multi-turn adversarial prompts compared to baselines. The target model aligned via MTSA shows enhanced robustness against multi-turn jailbreak attacks, though specific numerical benchmarks (e.g., attack success rate reductions) are not fully reported in the available abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>实验报告不完整：摘要被截断，未披露关键量化结果（如攻击成功率、安全基准分数），难以评估MTSA相对竞争基线的真实实验效果。</li><li>泛化风险：对抗协同进化机制可能导致红队模型与目标模型相互过拟合，使对齐后的模型对外部未知多轮攻击模式仍然脆弱。</li><li>扩展性问题：对抗迭代优化与未来奖励RL引入了较高的计算开销，论文未讨论训练成本及MTSA是否适用于大规模生产级LLM的对齐场景。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Incomplete reporting: The abstract is truncated and does not disclose key quantitative results (e.g., attack success rates, safety benchmark scores), making it difficult to assess the true empirical strength of MTSA against competitive baselines.</li><li>Generalization risk: The co-evolution setup risks overfitting the red-team and target models to each other&#39;s specific strategies, potentially leaving the aligned model vulnerable to unseen multi-turn attack patterns from external adversaries.</li><li>Scalability concern: The iterative adversarial optimization and future-reward RL introduce significant computational overhead; the paper does not discuss training cost or whether MTSA is practical for aligning large-scale production LLMs.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.17147" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">通过良性数据蒸馏在本地训练目标模型的镜像，从而在不向目标模型提交可识别恶意指令的情况下构造越狱提示。</div>
+        <div class="paper-title-en">Stealthy Jailbreak Attacks on Large Language Models via Benign Data Mirroring</div>
+        <div class="paper-meta">
+          <span>Honglin Mu, Han He, Yuxin Zhou et al.</span>
+          <span class="badge badge-date">2024-10-28</span>
+          <span class="badge badge-venue">NAACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>通过良性数据蒸馏在本地训练目标模型的镜像，从而在不向目标模型提交可识别恶意指令的情况下构造越狱提示。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A stealthy LLM jailbreak method trains a local mirror model using benign data distillation to craft malicious prompts without ever submitting detectable harmful queries to the target model.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了当前LLM安全防线的盲点：若攻击者可通过良性交互构建本地代理模型，仅依赖输入过滤的内容审核将失效，促使研究者重新审视防御策略。</div>
+            <div class="en">This work exposes a critical blind spot in current LLM safety pipelines: content moderation during the query phase is insufficient if attackers can build local surrogates via benign interactions. It motivates the design of defenses that go beyond input filtering, such as output behavioral auditing and surrogate-model detection.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">现有黑盒越狱攻击在搜索阶段需反复向目标模型提交恶意指令，易被内容审核系统拦截。核心问题在于：如何在全程不提交可识别恶意内容的前提下，仍能构造高效的越狱提示？</div>
+            <div class="en">Existing black-box jailbreak attacks require repeatedly sending malicious prompts to the target model during the search phase, making them detectable by content moderators. The core problem is: how can an attacker craft effective jailbreak prompts while remaining entirely stealthy throughout the attack process?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有黑盒越狱方法依赖目标模型对恶意查询的反馈进行迭代优化，易被审核拦截；而基于代理模型的迁移攻击通常需要有害数据训练代理，存在数据获取和检测风险。</div>
+            <div class="en">Existing black-box jailbreak methods (e.g., prompt rewriting, genetic algorithms, or LLM-assisted search) rely on iterative feedback from the target model using identifiable malicious queries, exposing them to moderation interception. Transfer attacks using surrogate models typically require harmful data to train the surrogate, which itself raises detection and access risks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">该方法仅通过良性数据交互对目标黑盒LLM进行蒸馏，构建本地&#34;镜像&#34;模型，捕获目标模型的行为分布。恶意提示的构造与优化完全在本地镜像上进行，仅将最终提示提交给目标模型，实现全程隐蔽。迁移攻击的有效性依赖于良性蒸馏所捕获的镜像与目标模型的行为相似性。</div>
+            <div class="en">The proposed method distills a local &#34;mirror&#34; model from the target black-box LLM using only benign data interactions, capturing the target&#39;s behavioral distribution without submitting any harmful content. Malicious prompts are then crafted and optimized entirely against this local mirror, and only the final polished prompt is sent to the target. This two-phase design (mirror construction + local adversarial search) decouples the harmful optimization from the target model interaction, achieving stealth. The transfer is enabled by the behavioral similarity between the mirror and the target learned through benign distillation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">该方法在评估的目标模型上最高攻击成功率达92%，平衡攻击成功率为80%，在搜索阶段不产生任何可检测恶意查询的前提下，性能与现有黑盒越狱基线相当甚至更优。</div>
+            <div class="en">The method achieved a maximum attack success rate (ASR) of 92% and a balanced ASR of 80% across evaluated target models. These results are competitive with or surpass existing black-box jailbreak baselines while producing zero detectable malicious queries during the search phase.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>隐蔽性与迁移性的权衡：镜像模型的保真度依赖良性数据的覆盖范围，若镜像对目标安全边界拟合不足，本地优化的提示迁移效果将下降。</li><li>评估局限：论文报告了攻击成功率，但未详细说明具体目标模型（如GPT-4、Claude），也未测试针对良性蒸馏查询行为模式监控的自适应防御。</li><li>防御启示：攻击表明安全对齐不仅需应对对抗输入，还需防范模型蒸馏——未来防御可引入输出扰动或金丝雀响应以降低镜像模型保真度。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Stealth vs. transferability trade-off: The mirror model&#39;s fidelity depends on benign data coverage; if the distilled mirror poorly approximates the target&#39;s safety boundaries, the locally optimized prompts may fail to transfer, creating a fundamental tension between stealth and attack effectiveness.</li><li>Evaluation scope: The paper reports ASR but does not detail which specific target models (e.g., GPT-4, Claude, Llama) were tested, nor does it evaluate against adaptive defenses that monitor behavioral patterns across benign queries used for distillation.</li><li>Defensive implications: The attack highlights that safety alignment must be robust not only to adversarial inputs but also to model distillation — future defenses could include output perturbation or canary responses that degrade mirror model fidelity.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2410.21083" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文发现&#34;协作规模定律&#34;：在有向无环图网络中增加LLM智能体数量可带来逻辑增长式的性能提升，且不规则拓扑结构优于规则拓扑。</div>
+        <div class="paper-title-en">Scaling Large-Language-Model-based Multi-Agent Collaboration</div>
+        <div class="paper-meta">
+          <span>Cheng Qian, Zihao Xie, Yifei Wang et al.</span>
+          <span class="badge badge-date">2024-06-11</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文发现&#34;协作规模定律&#34;：在有向无环图网络中增加LLM智能体数量可带来逻辑增长式的性能提升，且不规则拓扑结构优于规则拓扑。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper discovers a &#34;collaborative scaling law&#34; showing that adding more LLM agents in a directed acyclic graph network yields logistic-growth performance gains, with irregular topologies outperforming regular ones.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文建立了首个多智能体系统的规模定律，为大规模智能体流水线设计提供了理论框架。MacNet可将协作扩展至1000余个智能体，对复杂推理与自主任务系统具有重要实践意义。</div>
+            <div class="en">This work establishes the first empirical scaling law for multi-agent systems, analogous to neural scaling laws for model parameters, offering a principled framework for designing large-scale agent pipelines. Practitioners can use MacNet to scale collaboration to 1,000+ agents without per-task prompt engineering, with direct implications for complex reasoning and autonomous task-solving systems.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文探讨：持续增加协作LLM智能体数量能否带来类似神经网络参数缩放的单调性能提升？理解智能体数量与集体性能的关系对构建复杂任务系统至关重要。</div>
+            <div class="en">The paper asks: does continuously adding more collaborative LLM agents yield monotonic performance improvements, similar to how increasing neural network parameters improves model capability? This matters because multi-agent systems are increasingly used for complex tasks, yet the relationship between agent count and collective performance is poorly understood.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有多智能体框架（如AutoGen、ChatDev）固定少量智能体并手工设计交互结构，无法研究规模化行为。神经缩放定律仅适用于模型参数或数据量，尚无研究系统评估不同拓扑下数百至数千智能体的协作质量。</div>
+            <div class="en">Existing multi-agent frameworks (e.g., AutoGen, ChatDev) fix small agent counts and hand-craft interaction structures, making them unable to study scaling behavior. Prior work on neural scaling laws applies only to model parameters or data, not to the number of interacting agents. No prior study systematically evaluated collaboration quality across hundreds or thousands of agents with varying topologies.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">MacNet将智能体组织为有向无环图（DAG）节点，边定义信息流，拓扑排序决定推理顺序。每个智能体以前驱节点输出为上下文，支持多种拓扑结构（链式、树形、随机图、无标度图），无需任务特定提示工程。</div>
+            <div class="en">The authors propose MacNet (Multi-Agent Collaboration Network), which organizes agents as nodes in a directed acyclic graph (DAG), where edges define information flow and topological ordering determines the sequence of agent reasoning. Any agent receives outputs from its predecessors as context, enabling structured yet flexible collaboration at scale. The framework supports diverse topologies—from chains and trees to random and scale-free graphs—allowing systematic comparison. Critically, no task-specific prompt engineering is required; the DAG structure itself orchestrates autonomous reasoning.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">MacNet成功协调逾1000个智能体，性能随数量增加呈逻辑增长（S形曲线）。不规则拓扑（随机图、无标度图）在基准测试中持续优于规则拓扑。协作涌现出现的智能体数量阈值低于神经网络规模涌现的对应阈值。</div>
+            <div class="en">MacNet successfully coordinates over 1,000 agents, with performance following a logistic (S-curve) growth pattern as agent count increases—first accelerating, then saturating. Irregular topologies (random and scale-free graphs) consistently outperform regular ones (chains, rings, grids) across benchmarks. Notably, collaborative emergence—where qualitative capability jumps appear—occurs at smaller agent counts than the analogous emergence thresholds observed in neural scaling.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>拓扑结构比数量更关键：不规则图优于规则图，说明多样化信息路径而非单纯增加智能体数量才是性能驱动力，最优图设计原则有待深入研究。</li><li>逻辑增长的饱和上限是开放问题：性能在一定数量后趋于平稳，如何通过智能体专化或动态图重连突破上限仍需探索。</li><li>成本效率权衡有待充分评估：扩展至1000+智能体会大幅增加推理成本，论文未充分刻画性能与token消耗的比值曲线，这对实际部署决策至关重要。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Topology matters more than count alone: the finding that irregular (random/scale-free) graphs beat regular structures suggests that diverse, heterogeneous information pathways—not just more agents—drive performance, raising questions about optimal graph design principles for specific task types.</li><li>The logistic saturation ceiling is an open problem: since performance plateaus beyond a certain agent count, future work must address whether this ceiling can be raised via better agent specialization, dynamic graph rewiring, or mixture of stronger base models.</li><li>Cost-efficiency trade-offs are underexplored: scaling to 1,000+ agents multiplies inference costs dramatically; the paper does not fully characterize the performance-per-token or performance-per-dollar curve, which is critical for practitioners deciding how many agents to deploy.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2406.07155" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">HydraRAG是一个免训练的混合RAG框架，通过融合知识图谱拓扑、文档语义与三因子跨源验证，提升LLM的多跳、多实体推理能力。</div>
+        <div class="paper-title-en">Hydra: Structured Cross-Source Enhanced Large Language Model Reasoning</div>
+        <div class="paper-meta">
+          <span>Xingyu Tan, Xiaoyang Wang, Qing Liu et al.</span>
+          <span class="badge badge-date">2025-05-23</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>HydraRAG是一个免训练的混合RAG框架，通过融合知识图谱拓扑、文档语义与三因子跨源验证，提升LLM的多跳、多实体推理能力。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">HydraRAG is a training-free hybrid RAG framework that unifies knowledge graph topology, document semantics, and tri-factor cross-source verification to improve multi-hop, multi-entity LLM reasoning.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">HydraRAG系统性地解决了混合RAG在生产环境中的四类核心缺陷，免训练设计降低了落地门槛。其跨源验证机制为需要可信生成的高风险应用场景提供了原则性解决方案。</div>
+            <div class="en">HydraRAG tackles four concrete failure modes of hybrid RAG systems—multi-hop reasoning, multi-entity queries, multi-source verification, and graph underutilization—that are widely encountered in production LLM pipelines. Its training-free design lowers the barrier for adoption, making it immediately applicable to existing LLM deployments without fine-tuning costs. The cross-source verification mechanism offers a principled approach to source trustworthiness, which is critical for high-stakes applications requiring faithful and grounded generation.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当问题需要多跳推理或涉及多个实体时，如何从知识图谱与文本文档中可靠地检索并验证证据？现实查询往往跨越多源，冲突信息易导致LLM幻觉，这使该问题极具实用价值。</div>
+            <div class="en">How can an LLM reasoning system reliably retrieve and verify evidence from both structured knowledge graphs and unstructured text documents, especially when questions require multi-hop inference or involve multiple entities? This matters because real-world queries rarely map to a single, clean source, and conflicting or unreliable evidence can cause LLMs to hallucinate or produce unfaithful answers.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有混合RAG系统独立检索KG与文本，无法有效利用图拓扑结构，也缺乏跨模态矛盾调和机制。纯图方法（如GraphRAG）虽利用拓扑但忽视文本语义，两类方法均未提供系统性的来源可信度评估手段。</div>
+            <div class="en">Existing hybrid RAG systems retrieve from both KGs and text documents but treat them largely independently, missing relational structure in graphs and failing on chains of reasoning that span multiple hops or entities. Graph-only approaches (e.g., GraphRAG) exploit topology but lack the nuanced semantics of free-form text. Neither paradigm provides a systematic mechanism to assess source trustworthiness or reconcile contradictions across modalities.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">HydraRAG通过Agent驱动的探索模块交替进行图遍历与文档检索，动态扩展多跳、多实体的证据路径。核心创新为三因子跨源验证：来源可信度评估、跨源互证、实体路径对齐，兼顾主题相关性与跨模态一致性。整个框架无需训练，可直接集成现有LLM与检索组件。</div>
+            <div class="en">HydraRAG introduces an agent-driven exploration module that interleaves structured graph traversal with unstructured document retrieval, dynamically expanding evidence paths for multi-hop and multi-entity queries. Its core novelty is a tri-factor cross-source verification mechanism comprising: (1) source trustworthiness assessment, (2) cross-source corroboration, and (3) entity-path alignment, which collectively balance topic relevance with cross-modal agreement. The framework is entirely training-free, requiring no fine-tuning of the underlying LLM or retrieval components. By unifying graph topology, document semantics, and reliability scoring into a single pipeline, HydraRAG produces evidence sets that are both diverse and internally consistent.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">摘要未披露具体数值，但框架在多跳QA场景中相较混合RAG基线在证据多样性与精确性上有所提升，三因子验证模块有效降低了跨源矛盾并提高了答案忠实度。</div>
+            <div class="en">The paper does not report specific benchmark numbers in the provided abstract; however, the framework is validated on multi-hop QA scenarios demonstrating improvements in evidence diversity and precision over standard hybrid RAG baselines. The tri-factor verification is shown to reduce cross-source contradictions and improve faithfulness of generated answers. Quantitative results on named datasets (if any) are not disclosed in the abstract excerpt provided.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>三因子验证设计直观有效，但来源可信度分数的计算方式（静态预赋值还是动态推断）尚不明确，这直接影响开放域场景下的鲁棒性。</li><li>Agent驱动的图探索涉及多轮LLM调用，可能带来显著延迟，但论文未讨论计算开销或与简单RAG基线的推理时间对比。</li><li>免训练设计降低了门槛，但性能上限受制于底层LLM能力与检索索引质量，在稀疏或噪声较多的知识图谱上效果可能下降。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The tri-factor verification design is intuitively appealing, but the paper does not clarify how source trustworthiness scores are computed—whether they are static (pre-assigned) or dynamically inferred during retrieval, which significantly affects robustness in open-domain settings.</li><li>Agent-driven graph exploration may incur substantial latency due to iterative LLM calls for path expansion; the paper does not discuss computational overhead or compare inference time against simpler RAG baselines.</li><li>HydraRAG&#39;s training-free nature is a practical strength, but it also means performance is bounded by the capabilities of the underlying LLM and retrieval index quality—the framework may degrade on low-resource KGs with sparse or noisy edges.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2505.17464" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Insight-V提出可扩展的两步流程生成高质量长链视觉推理数据，并通过双智能体训练框架显著提升多模态大模型的推理能力。</div>
+        <div class="paper-title-en">Insight-V: Exploring Long-Chain Visual Reasoning with Multimodal Large Language Models</div>
+        <div class="paper-meta">
+          <span>Yuhao Dong, Zuyan Liu, Hai-Long Sun et al.</span>
+          <span class="badge badge-date">2024-11-21</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Insight-V提出可扩展的两步流程生成高质量长链视觉推理数据，并通过双智能体训练框架显著提升多模态大模型的推理能力。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Insight-V introduces a scalable two-step pipeline to generate high-quality long-chain visual reasoning data and a dual-agent training framework that significantly boosts multimodal LLM reasoning performance.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文是将o1式长链推理系统性扩展到视觉语言任务的早期重要尝试，填补了多模态推理研究的关键空白。可扩展的数据生成流程降低了对人工标注的依赖，具有较强的实用价值。</div>
+            <div class="en">This work is one of the earliest attempts to systematically extend o1-style long-chain reasoning to vision-language tasks, filling a critical gap in multimodal reasoning research. The scalable data generation pipeline reduces reliance on expensive human annotation, making it practically valuable for the broader community. It also reveals a key training insight — that naive supervision on long reasoning chains is insufficient, motivating a more structured dual-agent approach.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何可扩展地生成高质量长链视觉推理数据，并有效训练多模态大模型加以利用？现有文本推理方案难以直接迁移至复杂视觉语言任务，这一问题亟待解决。</div>
+            <div class="en">How can we scalably generate long-chain, high-quality visual reasoning data and effectively train multimodal LLMs to leverage it? This matters because strong reasoning ability in LLMs has relied on curated text data and pipelines that do not transfer well to complex vision-language tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有链式推理进展主要局限于纯文本任务，多模态场景探索不足。已有多模态推理数据集规模小、依赖人工标注，或缺乏结构化长链格式，训练流程也未能有效应对长推理轨迹的监督挑战。</div>
+            <div class="en">Existing Chain-of-Thought and o1-style reasoning advances are largely confined to text-only tasks, with limited exploration in multimodal settings. Prior multimodal reasoning datasets are either small-scale, human-labeled, or lack the structured long-chain format needed for robust reasoning. Training pipelines for MLLMs rarely account for the unique challenges of supervising on lengthy, complex reasoning trajectories.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">Insight-V设计了两步数据生成流程：渐进式策略生成多样长链推理路径，多粒度评估机制保障数据质量，全程无需人工标注。针对直接微调导致性能下降的问题，提出双智能体训练框架：推理智能体负责生成详细推理链，摘要智能体输出简洁最终答案，分工协作有效提升推理效果。</div>
+            <div class="en">Insight-V proposes a two-step data generation pipeline: first, a progressive strategy produces sufficiently long and diverse reasoning paths; second, a multi-granularity assessment filters and ensures data quality — all without human annotation. To address the finding that directly fine-tuning MLLMs on long reasoning data degrades performance, the authors introduce a dual-agent training framework where a dedicated reasoning agent generates detailed reasoning chains and a summarization agent produces concise final answers. This separation of roles allows the model to benefit from long-chain reasoning without being overwhelmed by its complexity during inference.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Insight-V在多个多模态基准上相比基线MLLM取得一致性提升，验证了数据流程与双智能体训练的协同必要性。多粒度评估有效过滤低质量推理路径，提升下游任务表现。具体数值细节在摘要中未完整披露。</div>
+            <div class="en">Insight-V achieves consistent improvements across multiple multimodal benchmarks compared to baseline MLLMs, demonstrating that the proposed data pipeline and dual-agent training are both necessary components. The multi-granularity assessment is shown to filter out low-quality reasoning paths, leading to better downstream task performance. Specific benchmark gains highlight improvements on complex visual reasoning tasks, though some methodological details on exact numbers remain incompletely reported in the abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>双智能体设计直观有效，但测试阶段同时部署两个智能体可能带来显著的延迟与内存开销，实际应用受限。</li><li>多粒度评估是质量关键环节，但论文未充分说明评估粒度的具体定义与阈值设定方式，可复现性存疑。</li><li>虽然数据生成无需人工标注，但渐进策略所依赖的初始种子数据或基础模型质量，很可能对最终推理质量构成较强的上界约束。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The dual-agent design is intuitive but raises questions about inference cost: deploying two separate agents at test time may double latency and memory requirements, which could limit real-world applicability.</li><li>The multi-granularity assessment method is a key quality gate, but the paper does not fully detail what granularities are assessed or how thresholds are set — reproducibility may be a concern.</li><li>This work focuses on generating reasoning data without human labor, yet the quality of the initial seed data or base model used in the progressive strategy likely has a strong upper-bound effect on the final reasoning quality.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2411.14432" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">SaPaVe 是一个端到端的视觉-语言-动作框架，将语义驱动的主动感知与机械臂操作解耦并联合学习，实现复杂场景下视...</div>
+        <div class="paper-title-en">SaPaVe: Towards Active Perception and Manipulation in Vision-Language-Action Models for Robotics</div>
+        <div class="paper-meta">
+          <span>Mengzhen Liu, Enshen Zhou, Cheng Chi et al.</span>
+          <span class="badge badge-date">2026-03-12</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SaPaVe 是一个端到端的视觉-语言-动作框架，将语义驱动的主动感知与机械臂操作解耦并联合学习，实现复杂场景下视角不变的主动感知与执行。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SaPaVe is an end-to-end Vision-Language-Action framework that decouples and jointly learns semantic camera control and robotic manipulation, enabling viewpoint-invariant active perception and execution in complex scenes.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">SaPaVe 推动了具身AI系统在执行任务前自主调整视角的能力研究，填补了现有机器人学习流程的关键空白。ActiveViewPose-200K 数据集与 ActiveManip-Bench 基准为该方向提供了重要的数据与评测基础设施。其解耦动作设计与3D几何感知模块对真实场景机器人具有较强的实用价值。</div>
+            <div class="en">SaPaVe represents a meaningful step toward embodied AI systems that can autonomously reposition their viewpoint before executing tasks — a capability absent in most current robot learning pipelines. The introduction of ActiveViewPose-200K and ActiveManip-Bench provides the community with much-needed data and evaluation infrastructure for this underexplored setting. Practitioners building real-world service or manipulation robots will find the 3D geometry-aware module and decoupled action design directly applicable.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">机器人如何在单一统一模型中，依据语义理解自主调整摄像头视角，并在动态视角下鲁棒地执行操作任务？现实任务中往往需要在抓取前主动调整视角，而现有方法普遍假设固定摄像头，限制了其在复杂或遮挡场景中的泛化能力。</div>
+            <div class="en">How can a robot autonomously adjust its camera viewpoint based on semantic understanding and then robustly execute manipulation — all within a single unified model? This matters because real-world tasks often require active repositioning before grasping, yet current robot learning methods assume a fixed camera viewpoint, limiting their generalization to cluttered or partially observable scenes.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">RT-2、OpenVLA 等现有 VLA 模型仅输出操作动作，假设摄像头固定，无法处理需要主动调整视角的场景。能够主动感知的方法通常依赖独立的手工模块，感知与执行之间集成度差。将摄像头动作与操作动作置于同一动作空间也因其异质性而导致性能下降。</div>
+            <div class="en">Existing Vision-Language-Action (VLA) models such as RT-2 and OpenVLA treat manipulation as the sole output and operate under fixed camera assumptions, failing to handle scenes requiring active viewpoint adjustment. Methods that do address active perception typically rely on separate, hand-crafted modules rather than end-to-end learning, leading to poor integration between perception and action. Placing camera and manipulation actions in a shared action space further degrades performance due to their heterogeneous nature.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">SaPaVe 将摄像头控制动作与操作动作解耦，分别作为独立输出头集成于单一端到端 VLA 框架中。采用自底向上训练策略：先在 ActiveViewPose-200K（20万图像-语言-摄像头运动三元组）上预训练语义摄像头控制模块，再用混合数据联合微调两个动作头。3D几何感知模块利用深度与点云信息，在视角变化时保持操作目标的空间一致性，提升执行鲁棒性。</div>
+            <div class="en">SaPaVe decouples camera control actions from manipulation actions, treating them as separate output heads within a single end-to-end VLA framework. It follows a bottom-up training strategy: first pre-training the semantic camera control module on the large-scale ActiveViewPose-200K dataset (200k image-language-camera movement triplets), then jointly fine-tuning both heads using hybrid data combining camera and manipulation demonstrations. A 3D geometry-aware module uses depth and point-cloud information to maintain spatial consistency of manipulation targets across changing viewpoints, improving execution robustness. Together, these contributions enable data-efficient learning of active perception and manipulation within one model.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">SaPaVe 在新提出的 ActiveManip-Bench 上显著优于固定视角基线及共享动作空间基线。解耦设计与自底向上训练在语义摄像头定位精度和动态视角下操作成功率上均取得可量化提升。真实机器人实验进一步验证了3D几何感知模块在摄像头运动时对操作鲁棒性的有效保障。</div>
+            <div class="en">SaPaVe demonstrates strong performance on the newly introduced ActiveManip-Bench, outperforming baselines that either use fixed viewpoints or place camera and manipulation actions in a shared space. The decoupled design and bottom-up training yield measurable gains in both semantic camera positioning accuracy and manipulation success rate under dynamic viewpoints. Real-robot experiments further validate that the 3D geometry-aware module maintains manipulation robustness when the camera moves during task execution.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>解耦摄像头与操作动作是核心架构洞见——共享动作空间迫使模型调和分布差异极大的两类动作（连续6自由度相机 vs. 夹爪动作），论文实验表明这会同时损害两类任务的性能。</li><li>自底向上训练策略有效缓解了主动操作数据稀缺问题：先在大规模被动数据上预训练摄像头控制，再联合微调，避免了大规模收集配对主动操作演示数据的高昂成本。</li><li>尚待解决的问题包括对未见类别及高度非结构化环境的泛化能力；ActiveManip-Bench 作为新提出的基准，其难度与覆盖范围的外部验证仍有待社区跟进研究。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Decoupling camera and manipulation actions is the key architectural insight — sharing a single action space forces the model to reconcile fundamentally different action distributions (continuous 6-DoF camera vs. discrete/continuous gripper), which the paper empirically shows hurts both tasks.</li><li>The bottom-up training strategy effectively solves the data scarcity problem for active manipulation: by bootstrapping camera control on large-scale passive data (ActiveViewPose-200K) before joint fine-tuning, the model avoids the need for expensive paired active-manipulation demonstrations at scale.</li><li>A remaining open question is generalization to unseen object categories and highly unstructured environments; the benchmark (ActiveManip-Bench) is new and community-created, so external validation of the benchmark&#39;s difficulty and coverage is still needed.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.12193v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">DexMimicGen 仅需少量人工示范，即可为双臂灵巧机器人自动合成大规模仿真训练数据。</div>
+        <div class="paper-title-en">DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning</div>
+        <div class="paper-meta">
+          <span>Zhenyu Jiang, Yuqi Xie, Kevin Lin et al.</span>
+          <span class="badge badge-date">2024-10-31</span>
+          <span class="badge badge-venue">ICRA</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>DexMimicGen 仅需少量人工示范，即可为双臂灵巧机器人自动合成大规模仿真训练数据。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">DexMimicGen automates large-scale training data generation for bimanual dexterous robots by synthesizing diverse simulation trajectories from just a few human demonstrations.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">可扩展数据生成是双臂灵巧机器人落地的核心瓶颈，DexMimicGen 大幅降低人工成本，对类人机器人研究具有重要推动价值。该系统同时提供数据生成框架与基准环境，有助于加速灵巧双臂操作领域的研究进展。</div>
+            <div class="en">Scalable data generation is the central bottleneck for deploying imitation learning on humanoid and bimanual dexterous robots; DexMimicGen directly addresses this by reducing the human effort required by orders of magnitude. The system&#39;s ability to span diverse manipulation behaviors and coordination requirements makes it broadly applicable to the humanoid robotics research community. This work provides both a data generation framework and benchmark environments, accelerating future research in dexterous bimanual manipulation.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在无需大量人工遥操作的前提下，高效生成双臂灵巧机器人所需的大规模高质量训练数据？这一问题至关重要，因为双臂多指系统的示范采集远比单臂机器人更困难、成本更高。</div>
+            <div class="en">How can we efficiently generate large-scale, high-quality training data for bimanual dexterous manipulation robots without requiring massive human teleoperation effort? This problem is critical because humanoid and bimanual robots are increasingly targeted for general-purpose manipulation, yet collecting demonstrations for systems with two arms and multi-fingered hands is significantly harder and costlier than for single-arm robots.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有模仿学习方法严重依赖人工遥操作或动捕数据，成本高且难以扩展。MimicGen 等自动化数据生成方法主要针对单臂简单夹爪，无法有效处理双臂多指手的复杂协调需求。已有仿真数据增强方案在任务多样性和双臂协调复杂度方面均存在明显局限。</div>
+            <div class="en">Existing imitation learning pipelines rely heavily on direct human teleoperation or motion capture, which is time-consuming, expensive, and difficult to scale—especially for bimanual dexterous systems. Prior automated data generation methods (e.g., MimicGen) primarily target single-arm robots with simple grippers and do not generalize well to the complex coordination demands of two arms with multi-fingered hands. Simulation-based data augmentation approaches have had limited scope in terms of task diversity and bimanual coordination complexity.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">DexMimicGen 将 MimicGen 框架扩展至双臂灵巧机器人，通过将示范分解为以物体为中心的运动片段，在仿真中跨多样化场景配置重新组合轨迹。系统识别并保留左右臂之间的关键同步约束，并配套构建了涵盖不同协调程度的新仿真环境，最终仅需约 10 条人工示范即可生成数千条有效训练轨迹。</div>
+            <div class="en">DexMimicGen extends the MimicGen framework to bimanual dexterous robots by decomposing demonstrations into object-centric motion segments and re-composing them across diverse scene configurations in simulation. The system handles the unique challenges of two-arm coordination by identifying and preserving critical synchronization constraints between the left and right arms during trajectory synthesis. A collection of new simulation environments is introduced, covering tasks with varying degrees of bimanual coordination, from independent arm motions to tightly coupled two-hand interactions. The result is a scalable pipeline that generates thousands of valid trajectories from only a small number (e.g., ~10) of source human demonstrations.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">DexMimicGen 在多种双臂灵巧操作任务上成功生成大规模数据集，仅用少量源示范即可达到较高的轨迹成功率。基于合成数据训练的策略在任务执行上表现优异，验证了生成数据的质量与多样性，且在需要紧密双臂协调的任务上明显优于基线方法。</div>
+            <div class="en">DexMimicGen successfully generates large-scale datasets across a diverse set of bimanual dexterous manipulation tasks, demonstrating high trajectory success rates in simulation from only a handful of source demonstrations. Policies trained on the synthesized data achieve strong task performance, validating the quality and diversity of the generated trajectories for downstream imitation learning. The system scales effectively across tasks requiring different levels of bimanual coordination, outperforming baselines that lack coordination-aware synthesis.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>仿真到真实的迁移仍是开放挑战：合成数据训练的策略需跨越仿真与真实双臂灵巧手之间的接触动力学差异。</li><li>以物体为中心的分割方式在涉及可变形物体或高度接触密集型操作任务时可能面临片段边界难以定义的问题。</li><li>源示范中的协调约束与片段边界仍需人工标注，这在一定程度上限制了系统向全新任务类别的完全自主扩展。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Sim-to-real transfer remains an open challenge: policies trained on DexMimicGen&#39;s simulated data must still bridge the gap to physical bimanual dexterous robots, where contact dynamics and hand compliance differ significantly from simulation.</li><li>The system&#39;s reliance on object-centric segmentation means it may struggle with tasks involving deformable objects, liquids, or highly contact-rich manipulation where clean segment boundaries are hard to define.</li><li>Task design currently requires human effort to specify coordination constraints and segment boundaries in source demonstrations, which may limit fully autonomous scaling to entirely new task categories without expert input.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2410.24185" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ManipTrans通过两阶段残差学习将人类双手操作技能迁移至灵巧机器人手，并构建了大规模双手操作数据集DexManipNet。</div>
+        <div class="paper-title-en">ManipTrans: Efficient Dexterous Bimanual Manipulation Transfer via Residual Learning</div>
+        <div class="paper-meta">
+          <span>Kailin Li, Puhao Li, Tengyu Liu et al.</span>
+          <span class="badge badge-date">2025-03-27</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ManipTrans通过两阶段残差学习将人类双手操作技能迁移至灵巧机器人手，并构建了大规模双手操作数据集DexManipNet。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ManipTrans transfers human bimanual hand skills to dexterous robotic hands via two-stage residual learning, and uses it to build DexManipNet, a large-scale dataset of complex bimanual manipulation sequences.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">ManipTrans为具身AI提供了可扩展的大规模双手操作数据生成方案，降低了对昂贵真实遥操作的依赖。DexManipNet涵盖笔帽装卸等新型任务，可作为灵巧操作策略训练与评测的基础资源。</div>
+            <div class="en">ManipTrans directly addresses the data bottleneck in embodied AI by providing a scalable pipeline for generating large-scale, high-fidelity bimanual manipulation data without costly real-world teleoperation. The resulting DexManipNet dataset, covering previously unexplored tasks like pen capping, could serve as a foundational resource for training and benchmarking dexterous manipulation policies. This work bridges the gap between human motion capture data and robot-ready training sequences in simulation.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何将人类双手灵巧操作技能高效、准确地大规模迁移至仿真中的机器人手？这对于需要大量精确类人操作序列的具身AI至关重要，而传统遥操作和强化学习均难以满足需求。</div>
+            <div class="en">How can human bimanual dexterous manipulation skills be efficiently and accurately transferred to robotic hands in simulation at scale? This matters because data-driven embodied AI requires large quantities of precise, human-like manipulation sequences, which are prohibitively expensive to collect via teleoperation or hard to generate with standard RL.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">传统强化学习因稀疏奖励和高维动作空间难以扩展至复杂双手任务；遥操作成本高且难以捕捉精细灵巧技能；现有运动重定向与模仿方法在处理物体交互约束时常丧失物理合理性。</div>
+            <div class="en">Conventional reinforcement learning struggles to scale to complex bimanual tasks due to sparse rewards and high-dimensional action spaces. Real-world teleoperation is expensive, slow, and difficult to deploy for fine-grained dexterous skills. Existing retargeting and imitation methods often fail to maintain physical plausibility or handle object interaction constraints during transfer.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ManipTrans分两阶段：首先预训练通用轨迹模仿器以学习广泛的手部运动先验；再在交互约束下微调轻量残差模块，实现对特定双手任务的精准适配。残差设计将通用运动模仿与任务特定修正解耦，同时提升效率与精度，最终生成DexManipNet数据集。</div>
+            <div class="en">ManipTrans adopts a two-stage approach: first, a generalist trajectory imitator is pre-trained to mimic diverse human hand motions without task-specific constraints, learning a broad motion prior. Second, a lightweight residual module is fine-tuned on top of the imitator under explicit interaction constraints (e.g., object contact and grasping), enabling precise adaptation to specific bimanual tasks. This residual design decouples general motion imitation from task-specific correction, improving both efficiency and accuracy. The pipeline is applied to multiple hand-object datasets to produce DexManipNet, featuring complex tasks such as pen capping.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">ManipTrans在成功率、运动保真度和训练效率上均超越现有最优方法，成功迁移多个大规模手物数据集，生成涵盖笔帽装卸等新型任务的DexManipNet数据集。</div>
+            <div class="en">ManipTrans surpasses state-of-the-art methods in success rate, motion fidelity, and training efficiency across bimanual manipulation benchmarks. The method enables transfer of multiple large-scale hand-object datasets to robotic hands, generating DexManipNet with previously unexplored tasks like pen capping. Specific quantitative improvements in success rate and efficiency are demonstrated over prior retargeting and RL baselines, though exact numbers are not detailed in the abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>残差学习设计将通用运动模仿与任务特定修正解耦，微调成本低，值得在其他技能迁移场景中借鉴。</li><li>DexManipNet引入笔帽装卸等新型任务，拓展了灵巧操作基准边界，但对全新物体类别或手型的泛化能力仍是开放问题。</li><li>ManipTrans完全在仿真中运行，如何跨越仿真到真实的鸿沟（接触建模误差、传感器噪声）是后续需解决的关键挑战。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Residual learning as a design choice: by separating general motion imitation from task-specific correction, the residual module can be fine-tuned efficiently per task without retraining the full model — a modular strategy worth adopting in other skill-transfer settings.</li><li>Dataset impact and task diversity: DexManipNet&#39;s inclusion of novel tasks like pen capping pushes the frontier of dexterous manipulation benchmarks, but generalization to entirely unseen object categories or morphologies remains an open question.</li><li>Sim-to-real gap: ManipTrans operates entirely in simulation; transferring the generated policies or datasets to real robotic hardware will require addressing contact modeling inaccuracies and sensor noise, which the paper does not yet tackle.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2503.21860" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-14</footer>
+</body>
+</html>
