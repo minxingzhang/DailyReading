@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-16 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-16  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文针对自主LLM智能体（OpenClaw）提出五层生命周期安全框架，系统分析提示注入、技能供应链污染、记忆中毒和...</div>
+        <div class="paper-title-en">Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent Threats</div>
+        <div class="paper-meta">
+          <span>Xinhao Deng, Yixiang Zhang, Jiaqing Wu et al.</span>
+          <span class="badge badge-date">2026-03-12</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文针对自主LLM智能体（OpenClaw）提出五层生命周期安全框架，系统分析提示注入、技能供应链污染、记忆中毒和意图漂移等复合威胁，并提出缓解策略。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces a five-layer lifecycle security framework for autonomous LLM agents (OpenClaw) and systematically analyzes compound threats including prompt injection, skill supply chain contamination, memory poisoning, and intent drift, along with mitigation strategies.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着自主LLM智能体在高权限真实环境中的广泛部署，本文提供了首批针对此类系统的结构化生命周期威胁分类框架，为安全智能体系统的研究者和实践者提供了实用路线图。</div>
+            <div class="en">As autonomous LLM agents are increasingly deployed in high-privilege, real-world environments, understanding their attack surface is critical for safe deployment. This paper provides one of the first structured, lifecycle-oriented threat taxonomies for such agents, offering a practical roadmap for both researchers and practitioners building secure agentic systems. The compound-threat perspective goes beyond single-vector analyses common in prior work.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">OpenClaw等自主LLM智能体具有高执行权限和即时消息集成，其攻击面远超传统LLM部署。本文研究其整个运行生命周期中的系统性复合安全威胁及有效缓解方法。</div>
+            <div class="en">Autonomous LLM agents like OpenClaw operate with high execution privileges and tight instant-messaging integration, dramatically expanding their attack surface compared to traditional LLM deployments. The paper asks: what are the systematic, compound security threats across the full operational lifecycle of such agents, and how can they be effectively mitigated?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LLM安全防御多为单点防御，仅针对单一威胁向量，未考虑跨阶段复合攻击。早期框架主要关注单轮交互，忽视了有状态、长周期、工具调用场景下的记忆持久化和技能供应链攻击。</div>
+            <div class="en">Existing defenses against LLM threats (e.g., prompt injection filters, sandboxing) are largely point-based, addressing individual threat vectors in isolation rather than compound, cross-stage attacks. Prior security analyses focus predominantly on single-turn LLM interactions and do not account for the long-horizon, stateful, tool-using nature of autonomous agents. Memory persistence and skill/plugin supply chains introduce attack vectors that earlier frameworks largely ignore.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者提出涵盖初始化、输入、推理、决策和执行五层的生命周期安全框架，将各威胁类型（如技能供应链污染、间接提示注入、记忆中毒、意图漂移）精确映射至对应层次，并通过OpenClaw案例研究验证威胁的实际可利用性，同时提出针对复合攻击的整体缓解策略。</div>
+            <div class="en">The authors propose a five-layer lifecycle-oriented security framework covering: initialization, input, inference, decision, and execution stages of agent operation. Each layer is mapped to specific threat classes — for example, skill supply chain contamination at initialization, indirect prompt injection at input, memory poisoning at inference, and intent drift at decision/execution. Detailed case studies on OpenClaw are used to demonstrate real exploitability of these threats. The paper also analyzes why existing point-based defenses fail against compound, multi-stage attack chains and proposes more holistic mitigation strategies.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">OpenClaw案例研究证实四类主要威胁均可在真实部署中被利用。跨生命周期阶段的复合攻击（如记忆中毒叠加提示注入）会突破现有单点防御，暴露出严重的安全缺口。</div>
+            <div class="en">Case studies on OpenClaw confirm that all four major threat classes (indirect prompt injection, skill supply chain contamination, memory poisoning, intent drift) are practically exploitable in real agent deployments. The analysis reveals that existing defenses leave critical gaps when threats compound across lifecycle stages — for instance, a poisoned memory state can amplify the impact of a subsequent prompt injection. Specific quantitative metrics are not prominently reported in the abstract, but the qualitative severity assessment underscores the prevalence of these vulnerabilities.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>复合威胁视角：真实攻击往往链式跨越多个阶段（如供应链污染→记忆持久化→意图漂移），单点防御不足，未来应优先研究跨层检测机制。</li><li>评估范围局限：分析主要基于OpenClaw，五层框架对ReAct、AutoGPT等不同记忆与工具调用架构的泛化能力有待验证。</li><li>缓解方案可行性：运行时意图监控、技能来源验证等整体缓解措施可能引入延迟与复杂性，其对自适应攻击者的实际效果尚需基准测试验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Compound vs. point threats: The paper&#39;s key insight is that real-world attacks chain multiple stages (e.g., supply chain poisoning → memory persistence → intent drift), making isolated defenses insufficient — future work should prioritize cross-layer detection mechanisms.</li><li>Scope of evaluation: The analysis is grounded in OpenClaw specifically; it remains an open question how well the five-layer framework generalizes to other agent architectures (e.g., ReAct, AutoGPT) with different memory and tool-use designs.</li><li>Mitigation feasibility: Proposed holistic mitigations (e.g., runtime intent monitoring, skill provenance verification) may introduce latency and complexity trade-offs in production systems, and their empirical effectiveness against adaptive adversaries has yet to be benchmarked.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.11619v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文利用自旋玻璃统计力学框架，推导出LLM越狱成功率从多项式到指数的缩放规律，揭示长注入提示导致攻击成功率指数级增长。</div>
+        <div class="paper-title-en">Jailbreak Scaling Laws for Large Language Models: Polynomial-Exponential Crossover</div>
+        <div class="paper-meta">
+          <span>Indranil Halder, Annesya Banerjee, Cengiz Pehlevan</span>
+          <span class="badge badge-date">2026-03-11</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文利用自旋玻璃统计力学框架，推导出LLM越狱成功率从多项式到指数的缩放规律，揭示长注入提示导致攻击成功率指数级增长。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper derives polynomial-to-exponential scaling laws for LLM jailbreak success rates using a spin-glass statistical mechanics framework, showing that longer injected prompts cause exponential growth in attack success.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次为越狱攻击随推理计算量的缩放提供严格理论基础，对推理时扩展日益普及的安全研究具有重要意义。自旋玻璃框架为分析LLM安全失效提供了超越纯实验观察的理论工具，有助于从业者评估和预测对抗性风险。</div>
+            <div class="en">This work provides the first rigorous theoretical foundation for understanding how jailbreak attacks scale with inference-time compute, a critical safety concern as test-time scaling becomes mainstream. The spin-glass framework offers a principled lens for analyzing LLM safety failures beyond empirical observation. Practitioners can use these scaling laws to anticipate and bound worst-case adversarial risk under prompt-injection attacks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">对齐安全的LLM越狱攻击成功率如何随推理时采样数量缩放，背后机制是什么？随着推理时重复采样成本极低，经验安全基准可能严重低估实际最坏情况下的脆弱性。</div>
+            <div class="en">How does the success rate of adversarial jailbreak attacks on safety-aligned LLMs scale with the number of inference-time samples, and what mechanism drives this scaling? Understanding this matters because best-of-N sampling and repeated querying are cheap at inference time, making empirical safety benchmarks potentially misleading about true worst-case vulnerability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有工作主要聚焦于离散提示优化（如GCG）或经验性最优N次评估，缺乏对攻击成功率随样本数缩放函数形式的理论解释。现有安全评估通常报告单次或固定预算成功率，忽略重复采样下的渐近行为，也无理论框架将LLM生成分布与对抗缩放联系起来。</div>
+            <div class="en">Prior work on adversarial attacks largely focuses on discrete prompt optimization (e.g., GCG) or empirical best-of-N evaluations, without explaining the functional form of how attack success scales with samples. Existing safety evaluations typically report single-query or fixed-budget success rates, missing the asymptotic behavior under repeated sampling. No prior theoretical framework connects LLM generation distributions to adversarial scaling through a principled probabilistic model.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者将LLM生成建模为自旋玻璃能量景观上的Gibbs测度采样（处于复制对称破缺RSB区域），输出空间聚类为多个亚稳态，部分低能簇被标记为&#34;不安全&#34;。提示注入被建模为将生成偏向不安全簇中心的外部磁场：短注入（弱磁场）产生多项式缩放，长注入（强磁场）产生指数缩放。上述行为经解析推导并在多个安全对齐LLM上实验验证。</div>
+            <div class="en">The authors model LLM token generation as samples from a Gibbs measure over a spin-glass energy landscape operating in a replica-symmetry-breaking (RSB) regime, where the output space is clustered into many metastable states. A subset of low-energy clusters is designated &#34;unsafe,&#34; and prompt injection is modeled as an external magnetic field biasing generation toward unsafe cluster centers. Short injections (weak field) produce polynomial scaling of attack success rate with sample count N, while long injections (strong field) produce exponential scaling. These behaviors are derived analytically and validated empirically across multiple safety-aligned LLMs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明，无提示注入时攻击成功率随采样数呈多项式增长（增速慢）；加入对抗性提示注入后，成功率转变为指数增长，即即使安全性较高的模型在足够多采样下也能被可靠越狱。理论预测与多个模型的实测缩放曲线吻合，验证了自旋玻璃框架的有效性。</div>
+            <div class="en">Empirically, without prompt injection, attack success rate grows polynomially with the number of inference-time samples (slow growth). With adversarial prompt injection, success rate transitions to exponential growth, meaning even modestly safe models can be reliably jailbroken with enough samples. The theoretical predictions match observed scaling curves across tested models, validating the spin-glass generative framework.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>攻</li><li>击</li><li>模</li><li>型</li><li>范</li><li>围</li><li>：</li><li>框</li><li>架</li><li>假</li><li>设</li><li>基</li><li>于</li><li>重</li><li>复</li><li>采</li><li>样</li><li>的</li><li>提</li><li>示</li><li>注</li><li>入</li><li>攻</li><li>击</li><li>，</li><li>可</li><li>能</li><li>不</li><li>适</li><li>用</li><li>于</li><li>梯</li><li>度</li><li>优</li><li>化</li><li>攻</li><li>击</li><li>（</li><li>如</li><li>G</li><li>C</li><li>G</li><li>）</li><li>或</li><li>单</li><li>轮</li><li>越</li><li>狱</li><li>，</li><li>R</li><li>S</li><li>B</li><li>区</li><li>域</li><li>与</li><li>不</li><li>同</li><li>架</li><li>构</li><li>/</li><li>微</li><li>调</li><li>模</li><li>型</li><li>的</li><li>对</li><li>应</li><li>关</li><li>系</li><li>尚</li><li>不</li><li>明</li><li>确</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>理</li><li>论</li><li>假</li><li>设</li><li>局</li><li>限</li><li>：</li><li>自</li><li>旋</li><li>玻</li><li>璃</li><li>模</li><li>型</li><li>是</li><li>抽</li><li>象</li><li>简</li><li>化</li><li>，</li><li>真</li><li>实</li><li>L</li><li>L</li><li>M</li><li>能</li><li>量</li><li>景</li><li>观</li><li>未</li><li>必</li><li>具</li><li>有</li><li>清</li><li>晰</li><li>的</li><li>R</li><li>S</li><li>B</li><li>结</li><li>构</li><li>，</li><li>&#34;</li><li>不</li><li>安</li><li>全</li><li>簇</li><li>&#34;</li><li>的</li><li>划</li><li>定</li><li>也</li><li>未</li><li>在</li><li>对</li><li>齐</li><li>训</li><li>练</li><li>动</li><li>态</li><li>中</li><li>形</li><li>式</li><li>化</li><li>，</li><li>理</li><li>论</li><li>与</li><li>实</li><li>践</li><li>之</li><li>间</li><li>存</li><li>在</li><li>差</li><li>距</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>防</li><li>御</li><li>启</li><li>示</li><li>：</li><li>论</li><li>文</li><li>刻</li><li>画</li><li>了</li><li>攻</li><li>击</li><li>成</li><li>功</li><li>率</li><li>的</li><li>缩</li><li>放</li><li>规</li><li>律</li><li>但</li><li>未</li><li>提</li><li>出</li><li>防</li><li>御</li><li>方</li><li>案</li><li>。</li><li>长</li><li>注</li><li>入</li><li>触</li><li>发</li><li>指</li><li>数</li><li>缩</li><li>放</li><li>的</li><li>发</li><li>现</li><li>提</li><li>示</li><li>，</li><li>注</li><li>入</li><li>长</li><li>度</li><li>过</li><li>滤</li><li>或</li><li>基</li><li>于</li><li>能</li><li>量</li><li>的</li><li>异</li><li>常</li><li>检</li><li>测</li><li>可</li><li>能</li><li>是</li><li>值</li><li>得</li><li>探</li><li>索</li><li>的</li><li>缓</li><li>解</li><li>策</li><li>略</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Threat model scope: The framework assumes prompt-injection attacks with repeated sampling (best-of-N), which may not cover gradient-based attacks (e.g., GCG) or single-turn jailbreaks; it is unclear how the RSB regime maps to models with very different architectures or fine-tuning regimes.</li><li>Theoretical assumptions: The spin-glass model is an abstraction — real LLM energy landscapes may not exhibit clean RSB structure, and the designation of &#39;unsafe clusters&#39; is not formally grounded in alignment training dynamics, leaving a gap between theory and practice.</li><li>Defensive implications: While the paper characterizes the scaling of attack success, it does not propose defenses. Knowing that exponential scaling is triggered by long injections suggests that injection-length filtering or energy-based anomaly detection could be promising mitigations worth exploring.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.11331v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文首次提出针对大语言模型越狱攻击的缩放定律框架，通过FLOPs衡量四类攻击范式的成功率与计算成本之间的关系。</div>
+        <div class="paper-title-en">Systematic Scaling Analysis of Jailbreak Attacks in Large Language Models</div>
+        <div class="paper-meta">
+          <span>Xiangwen Wang, Ananth Balashankar, Varun Chandrasekaran</span>
+          <span class="badge badge-date">2026-03-11</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文首次提出针对大语言模型越狱攻击的缩放定律框架，通过FLOPs衡量四类攻击范式的成功率与计算成本之间的关系。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces the first scaling-law framework for LLM jailbreak attacks, measuring attack success against attacker compute (FLOPs) across four attack paradigms to reveal efficiency trade-offs and predictable scaling behaviors.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文填补了越狱攻击效率统一基准的空白，为防御者预测攻击能力增长提供了理论依据，也为攻击研究者提供了系统性的评估方法论。</div>
+            <div class="en">This work provides the first unified, compute-normalized benchmark for comparing jailbreak attack efficiency, filling a critical gap in LLM safety research. By establishing scaling laws, it enables defenders to anticipate attack capability growth and allocate defense resources more strategically. The framework also offers attack researchers a principled methodology for evaluating and comparing new methods.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">越狱攻击的成功率如何随攻击者计算预算增长而变化？缺乏统一框架导致无法公平比较不同攻击方法，也无法预测攻击随资源增加的危险程度。</div>
+            <div class="en">How does jailbreak attack success scale with attacker compute budget across different attack methods, model families, and harm categories? This matters because without a principled scaling framework, it is impossible to fairly compare attack methods or predict how much more dangerous attacks become as adversaries invest more resources.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">此前研究孤立评估各类越狱攻击，缺乏统一的计算量基准，方法间的比较结论不可靠，也未有研究将缩放定律引入越狱攻击分析。</div>
+            <div class="en">Prior jailbreak studies evaluate attacks in isolation using inconsistent metrics and budgets, making cross-method comparisons unreliable. Existing work lacks a shared axis for attacker effort, so it is unclear whether one method outperforms another due to algorithmic superiority or simply more compute. No previous study has applied scaling-law analysis to the adversarial jailbreaking setting.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">将所有越狱攻击统一映射到FLOPs轴，评估四类范式（优化、自优化提示、采样选择、遗传优化），用饱和指数函数拟合成功率曲线，提取渐近成功率等效率指标，并支持攻击性能外推预测。</div>
+            <div class="en">The authors treat each jailbreak attack as a compute-bounded optimization and map all methods onto a shared FLOPs axis to enable fair comparison. They evaluate four paradigms: optimization-based attacks (e.g., GCG), self-refinement prompting, sampling-based selection, and genetic optimization, across multiple model families and scales. A saturating exponential function is fitted to FLOPs–success trajectories to extract interpretable efficiency summaries such as asymptotic success rate and compute-to-threshold metrics. This framework yields both empirical comparisons and a predictive tool for extrapolating attack performance under larger budgets.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">基于提示的范式（自优化与采样）在单位FLOPs成功率上优于GCG等优化类攻击；成功率曲线呈饱和指数趋势，存在方法特定的渐近上限；效率排名在不同模型族和危害类型上总体一致。</div>
+            <div class="en">Prompting-based paradigms (self-refinement and sampling) are consistently the most compute-efficient jailbreak methods, achieving higher attack success scores per FLOP compared to optimization-based approaches like GCG. Scaling laws fit well with a saturating exponential, indicating diminishing returns as attacker budget grows, with attack success plateauing at method-specific asymptotes. Efficiency rankings are broadly consistent across model families and harm types, though absolute success rates vary.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>饱和指数规律表明无限增加计算量不能无限提升攻击成功率，每种方法存在天花板，对威胁建模有重要意义。</li><li>提示类攻击计算效率最高，说明低成本对抗策略仍是更现实的威胁，防御优先级应向此类攻击倾斜。</li><li>以FLOPs为统一预算指标可能忽略API限速、token费用等现实约束，未来研究应纳入时钟时间和货币成本等维度。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The saturating exponential scaling behavior implies that indefinitely increasing attacker compute does not guarantee unbounded success — each method has a ceiling, which is an important insight for threat modeling.</li><li>The finding that prompting-based attacks dominate in compute efficiency suggests that simple, low-cost adversarial strategies remain a more practical threat than expensive gradient-based optimization, which has implications for which attack surfaces defenders should prioritize.</li><li>The framework&#39;s reliance on FLOPs as a universal budget metric may not fully capture real-world attacker constraints such as API rate limits, token costs, or human-in-the-loop effort, suggesting future work should extend the axis to include wall-clock time and monetary cost.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.11149v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">MACPO提出多智能体对比偏好优化框架，通过迭代增强正向行为、惩罚负向行为，实现弱教师与强学生LLM之间的相互对齐。</div>
+        <div class="paper-title-en">MACPO: Weak-to-Strong Alignment via Multi-Agent Contrastive Preference Optimization</div>
+        <div class="paper-meta">
+          <span>Yougang Lyu, Lingyong Yan, Zihan Wang et al.</span>
+          <span class="badge badge-date">2024-10-10</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>MACPO提出多智能体对比偏好优化框架，通过迭代增强正向行为、惩罚负向行为，实现弱教师与强学生LLM之间的相互对齐。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MACPO introduces a multi-agent contrastive preference optimization framework that enables weak teacher LLMs and strong student LLMs to mutually improve alignment through iterative positive behavior augmentation and negative behavior penalization.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM在特定任务上超越人类，弱到强对齐问题成为安全部署AI的关键瓶颈。MACPO为该领域提供了实用框架，对可扩展监督与AI安全研究具有直接意义。</div>
+            <div class="en">As LLMs increasingly surpass human capabilities on specific tasks, the weak-to-strong alignment problem becomes a critical bottleneck for safe AI deployment. MACPO offers a practical framework that addresses this underexplored setting, potentially guiding how future superhuman models can still be steered by weaker human supervisors. This work has direct implications for scalable oversight and AI safety research communities.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文研究如何仅凭弱教师LLM生成的监督信号有效对齐更强的学生LLM。当模型能力超越人类时，人工监督信号的质量上限不足，使此问题尤为关键。</div>
+            <div class="en">The paper tackles the weak-to-strong alignment problem: how to effectively align a strong student LLM using only weak supervision signals generated by a less capable teacher LLM. This matters because as models approach or exceed human-level performance, human-generated supervision becomes an unreliable quality ceiling for alignment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有RLHF、DPO等方法针对强到弱场景设计，自对齐方法依赖模型自身输出，均无法应对学生模型系统性超越教师的场景。</div>
+            <div class="en">Existing alignment methods such as RLHF and DPO are designed for strong-to-weak settings, where supervisors are at least as capable as the models being aligned. Self-alignment approaches rely on the model&#39;s own outputs for supervision, which fails to introduce new behavioral improvements beyond the model&#39;s current capability boundary. Neither paradigm is equipped to handle scenarios where the student model systematically outperforms its teacher.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">MACPO通过对比偏好优化构建多智能体协作框架，设计互向正向行为增强策略，使弱教师向强学生学习、强学生从教师已知正向行为中获益，同时惩罚双方的熟悉负向行为，迭代提升对齐质量上限。</div>
+            <div class="en">MACPO proposes a multi-agent framework where weak teachers and strong students collaboratively improve each other through contrastive preference optimization. A mutual positive behavior augmentation strategy is devised so each agent learns from the other&#39;s strengths — the teacher learns better behaviors from the student, while the student is guided toward behaviors unfamiliar to it but known to the teacher. Negative behavior penalization further ensures that familiar but undesirable behaviors are suppressed in both agents. This iterative loop progressively raises the alignment quality ceiling beyond what either agent could achieve alone.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">MACPO在多个基准测试中持续优于现有对齐基线，互向学习机制带来的对齐质量提升超过强到弱及自对齐方法，在标准对齐评估指标上优于DPO及自博弈变体。</div>
+            <div class="en">MACPO demonstrates consistent improvements over existing alignment baselines in the weak-to-strong setting across multiple benchmarks. The framework shows that mutual learning between agents yields higher alignment quality than either strong-to-weak or self-alignment approaches applied to the same setting. Specific numerical gains are reported across standard alignment evaluation metrics, with MACPO outperforming competitive baselines including standard DPO and self-play variants.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>计算开销：多智能体迭代框架相比单模型对齐方法引入了额外计算成本，大规模应用时需量化性价比。</li><li>弱教师下限：MACPO的效果可能依赖弱教师的最低能力阈值，极弱的教师模型可能无法提供足够的正向行为用于增强。</li><li>评估局限：标准基准上的对齐收益能否迁移至安全关键的真实场景，仍有待验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability concern: The multi-agent iterative framework introduces additional computational overhead compared to single-model alignment methods — future work should quantify the cost-performance trade-off at scale.</li><li>Weak teacher quality floor: MACPO&#39;s effectiveness likely depends on a minimum competency threshold of the weak teacher; extremely weak supervisors (e.g., small models on highly specialized tasks) may provide insufficient positive behaviors for augmentation.</li><li>Evaluation gap: Alignment quality is notoriously hard to measure — it remains unclear whether gains on standard benchmarks (e.g., MT-Bench, AlpacaEval) translate to robust real-world alignment, especially for safety-critical behaviors.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2410.07672" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">VideoAgent以LLM为核心规划智能体，迭代选取关键帧并查询视觉工具，以极少帧数实现具有竞争力的零样本视频问答准确率。</div>
+        <div class="paper-title-en">VideoAgent: Long-form Video Understanding with Large Language Model as Agent</div>
+        <div class="paper-meta">
+          <span>Xiaohan Wang, Yuhui Zhang, Orr Zohar et al.</span>
+          <span class="badge badge-date">2024-03-15</span>
+          <span class="badge badge-venue">ECCV</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>VideoAgent以LLM为核心规划智能体，迭代选取关键帧并查询视觉工具，以极少帧数实现具有竞争力的零样本视频问答准确率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">VideoAgent uses an LLM as a central planning agent that iteratively selects and queries only the most relevant video frames, achieving competitive zero-shot QA accuracy with dramatically fewer frames than prior methods.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">VideoAgent将长视频理解重新定义为智能体推理问题，为处理长时视频提供了可扩展的高效方案。其即插即用的工具设计使视觉语言基础模型的进步可直接惠及系统，无需重新训练，具有重要的实用价值。</div>
+            <div class="en">VideoAgent reframes long-form video understanding as an agentic reasoning problem rather than a brute-force sequence modeling problem, offering a scalable and efficient alternative to processing every frame. Its plug-and-play tool design means improvements in vision-language foundation models directly benefit the system without retraining. This work opens a practical path toward real-world deployment of video QA systems on hour-long videos.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">长视频理解需要对跨越数分钟乃至数小时的多模态序列进行推理，对标准模型而言计算代价极高。核心挑战在于如何在不穷举所有帧的情况下，准确定位与问题相关的关键片段。</div>
+            <div class="en">Long-form video understanding requires reasoning over extended multi-modal sequences spanning minutes or hours, which is computationally prohibitive for standard models. The core challenge is identifying which moments in a video are relevant to a given question without exhaustively processing all frames. This problem matters because real-world video content (e.g., egocentric activity recordings) is inherently long and dense.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法或在大规模数据集上微调视频语言模型（泛化能力有限），或将均匀采样帧直接输入LLM（浪费算力于无关内容）。两种范式均未根据问题主动规划所需视觉证据。</div>
+            <div class="en">Existing approaches either fine-tune video-language models on large datasets—limiting zero-shot generalization—or feed uniformly sampled frames into LLMs, wasting compute on irrelevant content. Methods that process long visual sequences end-to-end face context length constraints and high inference costs. Neither paradigm explicitly plans which visual evidence to gather based on the question being asked.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">VideoAgent以LLM（如GPT-4）为核心，构建闭环规划循环：智能体读取问题后决定所需视觉信息，调用CLIP检索、BLIP-2描述等视觉语言工具获取并解读特定帧，迭代查询直至证据充分后给出答案。整个系统无需任务特定训练，完全在零样本条件下运行。</div>
+            <div class="en">VideoAgent places an LLM (e.g., GPT-4) at the center of a closed-loop planning loop: the agent reads the question, decides what visual information is needed, and calls specialized vision-language tools (e.g., CLIP for retrieval, BLIP-2 for captioning) to fetch and interpret specific frames. The agent iteratively refines its understanding—querying more frames only when the current evidence is insufficient—before producing a final answer. This mirrors human selective attention: watching only the relevant portions of a long video rather than the entire clip. The system requires no task-specific training, operating entirely in a zero-shot regime.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">VideoAgent在EgoSchema上达到54.1%零样本准确率，在NExT-QA上达到71.3%，超越此前最优零样本方法。平均仅使用8.4帧（EgoSchema）和8.2帧（NExT-QA），远少于竞争方法，充分体现了问题驱动帧选择的高效性。</div>
+            <div class="en">VideoAgent achieves 54.1% zero-shot accuracy on EgoSchema and 71.3% on NExT-QA, surpassing prior state-of-the-art zero-shot methods on both benchmarks. Critically, it uses only 8.4 frames on average for EgoSchema and 8.2 for NExT-QA—a fraction of the frames used by competing approaches. This efficiency-accuracy trade-off demonstrates that selective, question-driven frame sampling outperforms dense uniform sampling.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>性能上限受制于LLM推理质量与CLIP检索精度；当视频更长或语义模糊时，若智能体初始查询构建不当，仍可能遗漏关键帧。</li><li>多轮LLM调用与视觉模型推理带来较高的API成本与延迟，在低资源或实时场景中的可部署性有待验证。</li><li>评估仅限于EgoSchema和NExT-QA两个多选问答基准，对开放式生成任务及超过5分钟的超长视频的泛化能力尚未得到验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability ceiling: The system&#39;s performance is tightly coupled to the reasoning quality of the backbone LLM (GPT-4) and the retrieval precision of CLIP. As videos grow longer or more ambiguous, iterative querying may still miss key frames if the agent&#39;s initial queries are poorly formulated.</li><li>Cost and latency: Multiple rounds of LLM inference plus vision-language model calls per question introduce non-trivial API costs and latency, which could limit deployment in low-resource or real-time settings compared to a single forward-pass model.</li><li>Benchmark scope: Evaluation is limited to two multiple-choice QA benchmarks (EgoSchema, NExT-QA). Performance on open-ended generation tasks, dense video captioning, or longer videos (&gt;5 minutes) remains untested, leaving generalizability an open question.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2403.10517" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出因果框架量化多模态大模型的单模态偏差，并构建含12,000条样本的VQA基准（MORE）和因果增强智能体（...</div>
+        <div class="paper-title-en">Quantifying and Mitigating Unimodal Biases in Multimodal Large Language Models: A Causal Perspective</div>
+        <div class="paper-meta">
+          <span>Meiqi Chen, Yixin Cao, Yan Zhang et al.</span>
+          <span class="badge badge-date">2024-03-27</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出因果框架量化多模态大模型的单模态偏差，并构建含12,000条样本的VQA基准（MORE）和因果增强智能体（CAVE）以缓解偏差。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces a causal framework to quantify unimodal biases in MLLMs, a 12,000-instance VQA benchmark (MORE), and a causality-enhanced agent (CAVE) to mitigate language and vision biases.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文为多模态大模型幻觉问题提供了诊断工具与缓解方案，MORE基准为社区提供了标准化的偏差评测集，因果视角具有推广至其他多模态偏差任务的潜力。</div>
+            <div class="en">This work directly addresses hallucinations in MLLMs—a major obstacle to real-world deployment—by providing both diagnostic tools and a practical mitigation strategy. The MORE dataset offers a standardized, challenging benchmark for the community to measure unimodal bias robustness. The causal perspective provides a theoretically principled lens that could generalize to other multimodal bias problems beyond VQA.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">MLLMs在多模态问答中常过度依赖单一模态（语言先验或视觉捷径），在多跳推理任务中尤为突出，系统性量化与缓解此类偏差仍是开放性难题。</div>
+            <div class="en">MLLMs frequently over-rely on a single modality—either language priors or visual shortcuts—when answering multimodal questions, producing hallucinated or incorrect responses. This unimodal bias is particularly harmful in complex, multi-hop reasoning tasks where integrating both vision and language is essential. Quantifying and mitigating these biases in a principled way remains an open challenge.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有VQA基准存在统计捷径，模型无需真正理解视觉内容即可答对；去偏方法缺乏统一理论框架，且通常只针对单一模态偏差，未能系统量化各偏差对预测的因果贡献。</div>
+            <div class="en">Prior VQA benchmarks often contain statistical shortcuts that allow models to answer correctly by exploiting language priors alone, without genuinely grounding answers in visual content. Existing debiasing methods (e.g., data augmentation, ensemble-based approaches) lack a unified theoretical framework and typically target a single modality bias in isolation. No prior work systematically quantifies the causal contribution of each unimodal bias to MLLM predictions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者构建VQA结构因果模型（SCM），显式建模语言偏差与视觉偏差对预测的因果路径，利用总直接效应与自然间接效应量化各偏差贡献；MORE数据集含12,000条抗单模态捷径的多跳推理样本；CAVE智能体通过因果干预提示引导模型融合双模态信息后再作答。</div>
+            <div class="en">The authors construct a Structural Causal Model (SCM) for VQA that explicitly models the causal paths through which language bias and vision bias independently influence model predictions. Using causal effect estimation (e.g., Total Direct Effect and Natural Indirect Effect), they quantify each bias&#39;s contribution to MLLM outputs. They then introduce the MORE dataset—12,000 instances requiring multi-hop reasoning designed to resist unimodal shortcuts—and the CAVE agent framework, which uses causal intervention prompts to guide models to integrate both modalities before answering.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">MLLMs在MORE基准上表现显著低于预期，证实强单模态偏差的存在；CAVE在多个模型上均带来性能提升；因果分析表明，在多数模型中语言偏差的因果效应大于视觉偏差。</div>
+            <div class="en">MLLMs perform significantly below expectation on the MORE benchmark, confirming strong unimodal biases and limited cross-modal semantic understanding. CAVE consistently improves performance across multiple MLLMs on MORE, demonstrating the effectiveness of causal intervention in reducing bias-driven errors. Causal analysis reveals that language bias exerts a larger causal effect on predictions than vision bias across most evaluated models.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>因果效应估计依赖预设的SCM结构，若因果图错误设定（如遗漏模态交互路径），偏差量化结果的可靠性存疑。</li><li>CAVE基于提示的因果干预对提示措辞敏感，对指令遵循能力较弱的小型模型效果可能有限。</li><li>MORE聚焦多跳VQA，该框架能否推广至视频问答、文档理解等偏差结构差异显著的任务仍不明确。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Causal effect estimation depends on the assumed SCM structure; if the causal graph misspecifies true data-generating mechanisms (e.g., omits modality interaction paths), the bias quantification may be unreliable.</li><li>CAVE relies on prompting-based causal intervention, which may be sensitive to prompt phrasing and less effective for smaller or instruction-unfollowing MLLMs that lack strong instruction-following ability.</li><li>While MORE targets multi-hop VQA, it is unclear how well the dataset and framework generalize to other multimodal tasks (e.g., video QA, document understanding) where bias sources and structures differ substantially.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2403.18346" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">RC-NF通过对机器人状态与物体轨迹建模，利用机器人条件归一化流实现操作任务中的实时异常检测。</div>
+        <div class="paper-title-en">RC-NF: Robot-Conditioned Normalizing Flow for Real-Time Anomaly Detection in Robotic Manipulation</div>
+        <div class="paper-meta">
+          <span>Shijie Zhou, Bin Zhu, Jiarui Yang et al.</span>
+          <span class="badge badge-date">2026-03-11</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>RC-NF通过对机器人状态与物体轨迹建模，利用机器人条件归一化流实现操作任务中的实时异常检测。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">RC-NF uses a robot-conditioned normalizing flow to detect anomalies in real-time during robotic manipulation by modeling the joint probability of robot state and object trajectory.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">RC-NF为VLA机器人提供了一种无需负样本的轻量级实时异常检测方案，具有较强的实用价值。LIBERO-Anomaly-10基准为操作任务中的异常检测研究提供了标准化评估平台。</div>
+            <div class="en">As VLA models are deployed in real-world robotic systems, the ability to detect and intervene on failures in real time is critical for safety and reliability. RC-NF offers a lightweight, unsupervised solution that requires no negative (failure) samples for training, making it practical for deployment. The new LIBERO-Anomaly-10 benchmark also provides a standardized evaluation suite for future anomaly detection research in manipulation tasks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">基于模仿学习训练的VLA模型在分布外（OOD）场景下易失效，缺乏对异常状态的检测与干预机制，在动态真实环境中存在安全隐患。</div>
+            <div class="en">VLA models trained via imitation learning are brittle under out-of-distribution (OOD) conditions — such as unexpected object positions, human interventions, or environmental disturbances — and lack mechanisms to detect or recover from these failures. This gap poses serious safety risks when deploying robots in dynamic real-world environments where deviations from training distributions are inevitable.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有机器人异常检测方法依赖重建模型或对比学习，需要负样本且难以输出校准的异常分数；通用视频异常检测方法未考虑机器人状态与任务的结构化关联，在操作任务中特异性不足。</div>
+            <div class="en">Existing anomaly detection methods for robotics largely rely on reconstruction-based models (e.g., autoencoders) or contrastive learning, which require carefully curated negative samples or struggle to produce calibrated anomaly scores. Methods borrowed from general video or image anomaly detection do not account for the structured, task-conditioned nature of robot states and object motion, leading to poor specificity in manipulation contexts.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">RC-NF在归一化流中解耦机器人本体状态与物体运动轨迹的处理，推理时通过概率密度函数计算精确对数似然作为异常分数。模型仅用正常执行样本进行无监督训练。同时构建了含三类异常的LIBERO-Anomaly-10仿真基准。</div>
+            <div class="en">RC-NF introduces a normalizing flow architecture conditioned on the robot&#39;s proprioceptive state, which is decoupled from the object&#39;s motion trajectory representation within the flow. During inference, it computes exact log-likelihood scores via the probability density function, enabling precise anomaly scoring without any negative training samples. The model is trained in a fully unsupervised manner on positive (normal execution) samples only. The authors also construct LIBERO-Anomaly-10, a benchmark with three anomaly categories (object displacement, human interference, environmental disturbance) derived from the LIBERO simulation suite.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">RC-NF在LIBERO-Anomaly-10全部三类异常检测任务上达到最优性能，超越重建类与对比学习基线，并满足实时推理的延迟要求。论文声称在所有异常类型上均有稳定提升，但摘要未列出具体AUROC数值。</div>
+            <div class="en">RC-NF achieves state-of-the-art anomaly detection performance across all three anomaly categories in LIBERO-Anomaly-10, outperforming prior reconstruction-based and contrastive baselines. The model operates in real time, satisfying the latency constraints required for online robot monitoring and intervention. Specific AUROC or F1 numbers are not detailed in the abstract but the paper claims consistent improvements across anomaly types.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>LIBERO-Anomaly-10仅涵盖仿真环境中三类预定义异常，模型对真实机器人多样化未知故障的泛化能力有待验证。</li><li>机器人状态与物体状态的解耦设计缺乏充分消融实验，尚不清楚该设计相较于联合输入的标准归一化流是否带来实质性提升。</li><li>论文声称实时性但未报告具体推理延迟数据，也未与基线方法比较计算开销，实际部署可行性有待量化支撑。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Benchmark scope is narrow: LIBERO-Anomaly-10 is simulation-only with three predefined anomaly categories, leaving open questions about generalization to real-world robots with diverse, unanticipated failure modes.</li><li>The decoupling of robot and object states is heuristic — the paper does not ablate whether this design choice meaningfully outperforms a standard joint-input normalizing flow, limiting understanding of what drives the performance gain.</li><li>Real-time claims need stronger evidence: the paper asserts real-time capability but does not report inference latency benchmarks or compare computational cost against baseline methods, making it hard to assess practical deployment feasibility.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.11106v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ViViDex通过强化学习精炼人类视频中的噪声轨迹，在无需特权物体状态信息的条件下，训练多指机器人手的统一视觉操控策略。</div>
+        <div class="paper-title-en">ViViDex: Learning Vision-Based Dexterous Manipulation from Human Videos</div>
+        <div class="paper-meta">
+          <span>Zerui Chen, Shizhe Chen, Cordelia Schmid et al.</span>
+          <span class="badge badge-date">2024-04-24</span>
+          <span class="badge badge-venue">ICRA</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ViViDex通过强化学习精炼人类视频中的噪声轨迹，在无需特权物体状态信息的条件下，训练多指机器人手的统一视觉操控策略。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ViViDex learns a unified vision-based dexterous manipulation policy for multi-fingered robot hands by refining noisy human video trajectories with RL-guided rewards and training without any privileged object state information.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">ViViDex消除了对特权物体信息的依赖，使灵巧操控更具可扩展性，推动了具身智能的泛化能力。其统一策略设计和RL轨迹精炼方法为利用任意视频源学习机器人策略提供了可复用的范式。</div>
+            <div class="en">ViViDex bridges the gap between abundant human video data and practical robot deployment by eliminating reliance on privileged object states, making dexterous manipulation more scalable. Its unified policy design handles diverse objects and poses, pushing toward generalizable embodied AI. The RL-guided trajectory refinement provides a reusable recipe for cleaning noisy demonstrations from any video source.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文研究如何仅利用人类示范视频，训练多指机器人手对多种物体和姿态进行操控的统一视觉策略。这一问题至关重要，因为大规模收集机器人专用示范数据代价高昂，而人类视频提供了更丰富的灵巧技能数据来源。</div>
+            <div class="en">The paper tackles learning a single vision-based policy that enables multi-fingered robot hands to manipulate diverse objects across varied poses, using only human demonstration videos as supervision. This is critical because collecting robot-specific demonstrations at scale is expensive, and human videos offer a vastly larger and more natural data source for dexterous skills.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法从人类视频中提取的手-物体轨迹噪声较大，显著影响策略质量。此外，许多灵巧操控系统在测试时依赖真实物体位姿等特权信息，严重限制了其在真实场景中的适用性。</div>
+            <div class="en">Prior methods using human videos for robot policy learning suffer from noisy hand-object trajectory estimates (e.g., from pose estimation models), which degrade policy quality. Additionally, many existing dexterous manipulation systems rely on privileged information such as ground-truth object poses or states at test time, severely limiting real-world applicability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ViViDex分两阶段运行：首先针对每个人类视频用轨迹引导奖励的强化学习训练独立的状态策略，将噪声估计转化为物理可信的机器人运动；随后汇总成功片段，训练无需特权信息的统一视觉策略。同时引入坐标变换技术增强点云表示，提升策略对不同物体姿态的空间理解能力。</div>
+            <div class="en">ViViDex operates in two stages: first, it trains a separate state-based policy for each human video using reinforcement learning with trajectory-guided rewards, converting noisy video estimates into physically plausible and visually natural robot motions. Second, successful episodes from these state-based policies are rolled out to generate clean demonstrations, which are used to train a single unified visual policy without any privileged object information. A coordinate transformation technique is introduced to enhance point cloud representations, improving the visual policy&#39;s spatial understanding of objects across diverse poses.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">ViViDex在多物体灵巧操控任务中，成功率优于基于视频和非视频的基线方法。坐标变换对点云表示的增强带来了稳定的性能提升，统一视觉策略在推理时无需任何特权物体信息即可跨物体类别泛化。</div>
+            <div class="en">ViViDex demonstrates improved success rates over prior video-based and non-video-based baselines on multi-object dexterous manipulation tasks with diverse object poses. The coordinate transformation for point clouds yields consistent gains in visual policy performance. The unified policy generalizes across object categories without requiring per-object privileged state information at inference time.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>两阶段流程的可扩展性：每个视频单独训练RL策略计算开销较大，扩展至数千个视频需要摊销训练或更高效的策略复用机制。</li><li>仿真到现实的迁移：整个框架在仿真中训练和评估，如何将视觉策略迁移至真实多指机器人手并应对真实点云噪声，仍是未解决的核心挑战。</li><li>泛化范围限制：统一策略覆盖训练时见过的物体姿态，但对全新物体类别或高度铰接物体（如剪刀、带盖容器）的零样本泛化能力尚未验证。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability of the two-stage pipeline: Training a separate RL policy per video is computationally expensive; scaling to thousands of videos would require significant engineering effort or amortized training strategies.</li><li>Sim-to-real gap: The entire framework is trained and evaluated in simulation — transferring the visual policy to real multi-fingered hands with real point clouds and sensor noise remains an open and non-trivial challenge.</li><li>Generalization scope: The unified policy handles diverse poses and objects seen during training, but zero-shot generalization to entirely unseen object categories or highly articulated objects (e.g., scissors, containers with lids) is not addressed.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2404.15709" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">提出分层目标条件强化学习框架，使多指机器人手能通过点云感知工具可供性，实现铰接工具（如镊子）的灵巧操控与抓取任务。</div>
+        <div class="paper-title-en">Hierarchical Reinforcement Learning for Articulated Tool Manipulation with Multifingered Hand</div>
+        <div class="paper-meta">
+          <span>Wei Xu, Yanchao Zhao, Weichao Guo et al.</span>
+          <span class="badge badge-date">2025-07-09</span>
+          <span class="badge badge-venue">IROS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>提出分层目标条件强化学习框架，使多指机器人手能通过点云感知工具可供性，实现铰接工具（如镊子）的灵巧操控与抓取任务。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A hierarchical goal-conditioned RL framework enables a multifingered robotic hand to manipulate articulated tools (e.g., tweezers) by jointly learning low-level tool configuration control and high-level arm planning via point cloud-based affordance estimation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">铰接工具操控是灵巧机器人领域尚未充分探索的方向，本文是首批将分层强化学习应用于此类工具的工作之一，对手术机器人与装配自动化具有实际参考价值。</div>
+            <div class="en">Articulated tool manipulation is an underexplored frontier in dexterous robotics, and this work is one of the first to apply hierarchical RL to this class of tools. By coupling perception (point cloud affordance encoding) with a two-level policy structure, the framework offers a scalable template for broader articulated-tool tasks. This has practical relevance for surgical robotics, assembly automation, and humanoid manipulation research.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">多指机器人手如何学习操控形状动态变化的铰接工具，以可靠抓取不同尺寸的物体？该问题需同时协调手指配置与机械臂位姿，是单一策略强化学习难以高效解决的复合问题。</div>
+            <div class="en">How can a multifingered robotic hand learn to manipulate articulated tools—whose shape changes dynamically—to reliably grasp objects of varying sizes? This matters because articulated tools require coordinated control of both the hand&#39;s finger configuration and the arm&#39;s positioning, a compound problem that standard single-policy RL struggles to solve efficiently.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有灵巧操控研究多针对刚性工具，工具几何形状固定；现有分层强化学习方法虽分解手臂与手指控制，但未对工具自身铰接状态下的可供性进行建模；基于点云的可供性估计也鲜少用于铰接工具的在手使用场景。</div>
+            <div class="en">Prior dexterous manipulation research largely focuses on rigid tools (e.g., hammers, pens), where tool geometry remains fixed and does not interact with task success in a configuration-dependent way. Existing hierarchical RL methods for manipulation typically decompose arm and hand control but do not model tool affordance states that change with the tool&#39;s own articulation. Point cloud-based affordance estimation has been explored for rigid objects but rarely applied to estimate the functional state of a deformable or articulated tool during in-hand use.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">框架分为两层策略：低层策略控制手指使工具达到目标配置（如镊子张角），高层策略设定工具目标状态并控制机械臂完成抓取；点云编码器将工具几何映射为可供性状态，为高层策略提供感知驱动的目标建议，有效降低整体学习复杂度。</div>
+            <div class="en">The framework uses two policy layers: a low-level policy trained to actuate the dexterous hand to reach target tool configurations (e.g., specific tweezer opening angles), and a high-level policy that sets the tool&#39;s goal configuration and controls the robotic arm to position it for picking. A point cloud encoder, trained on synthetic data, maps observed tool geometry to affordance states—specifically, which opening angle supports grasping a given object size—providing the high-level policy with perception-grounded goal proposals. This decomposition separates the finger-level dexterity problem from the arm-level task planning problem, reducing the overall learning complexity.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明分层框架可使机器人手通过调整镊子张角成功抓取不同尺寸物体；合成数据训练的点云编码器可泛化至真实操控场景；但摘要未提供具体成功率或与基线方法的量化对比数据。</div>
+            <div class="en">The paper demonstrates that the hierarchical framework successfully enables the robotic hand to grasp objects of varying sizes by adapting the tweezer configuration accordingly. The point cloud-based affordance encoder trained on synthetic data generalizes to estimating tool states during real manipulation scenarios. Specific quantitative benchmarks (success rates, comparison baselines) are not fully detailed in the available abstract, limiting direct performance comparison.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>仿真到现实的迁移：点云编码器仅在合成数据上训练，论文未说明域随机化细节，真实传感器噪声与遮挡下的鲁棒性存疑。</li><li>泛化范围：框架主要在镊子上验证，对剪刀、钳子等不同运动学结构的铰接工具是否适用尚未得到证实。</li><li>奖励与安全设计：高维灵巧手的强化学习样本效率低，论文未详述奖励塑形策略及关节限位与接触安全约束的处理方式，这对实机部署至关重要。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Sim-to-real gap: The affordance encoder is trained purely on synthetic point clouds; it remains unclear how robustly it transfers to real sensor noise, occlusion, or varied lighting without domain randomization details being specified.</li><li>Generalization scope: The framework is demonstrated primarily on tweezers; whether the same hierarchy and encoder design extend to other articulated tools (e.g., scissors, pliers) with different kinematic structures is not yet validated.</li><li>Reward and safety design: High-dimensional dexterous hand control with RL is notoriously sample-inefficient; the paper does not detail reward shaping strategies or how joint-limit and contact-safety constraints are enforced during training, which are critical for real-robot deployment.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2507.06822" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-16</footer>
+</body>
+</html>
