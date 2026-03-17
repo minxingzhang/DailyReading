@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-17 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-17  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">AGD提出基于对抗博弈的防御方法，通过动态调整LLM内部表示，在有用性与无害性之间实现平衡，以抵御越狱攻击。</div>
+        <div class="paper-title-en">AGD: Adversarial Game Defense Against Jailbreak Attacks in Large Language Models</div>
+        <div class="paper-meta">
+          <span>Shilong Pan, Zhiliang Tian, Zhen Huang et al.</span>
+          <span class="badge badge-date">2025-01-01</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>AGD提出基于对抗博弈的防御方法，通过动态调整LLM内部表示，在有用性与无害性之间实现平衡，以抵御越狱攻击。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">AGD proposes an adversarial game-based defense that dynamically adjusts LLMs&#39; internal representations to balance helpfulness and harmlessness against jailbreak attacks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">越狱攻击对已部署的LLM构成重大安全威胁，现有防御方法难以泛化至未知攻击。AGD的博弈论框架为在不重新训练的情况下处理有用性与安全性之间的内在矛盾提供了原则性思路，对未来实时部署阶段的安全机制设计具有重要参考价值。</div>
+            <div class="en">Jailbreak attacks pose a critical safety risk for deployed LLMs, and existing defenses struggle to generalize to unseen attack patterns. AGD&#39;s game-theoretic framing offers a principled way to handle the inherent tension between utility and safety without retraining. This could influence how future LLM safety mechanisms are designed, particularly in real-time, deployment-stage settings.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在不牺牲有用性的前提下，使LLM实时防御分布外越狱攻击？现有对齐与提示工程方法对新型攻击脆弱，而表示引导方法会破坏推理过程并降低模型效用。核心挑战在于在单一防御框架内调和有用性与无害性这两个相互竞争的目标。</div>
+            <div class="en">How can LLMs defend against out-of-distribution jailbreak attacks in real time without sacrificing helpfulness? Existing alignment and prompt-engineering defenses are brittle to novel attacks, while representation-steering methods degrade model utility by disrupting inference. The core challenge is reconciling the competing objectives of helpfulness and harmlessness within a single defense framework.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">后训练对齐方法（如RLHF、安全微调）依赖安全标注数据集，对分布外越狱提示泛化能力差。提示工程防御依赖固定模板，攻击者可通过创意输入绕过。表示引导方法虽具实时适应性，但会干扰推理前向传播，损害模型整体效用。</div>
+            <div class="en">Post-training alignment methods (e.g., RLHF, safety fine-tuning) depend on safety-annotated datasets and generalize poorly to OOD jailbreak prompts. Prompt engineering defenses rely on fixed safe templates that attackers can circumvent with sufficiently creative inputs. Representation-steering approaches offer real-time adaptability but disrupt the forward pass of inference, degrading overall model utility.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">AGD将有用性与无害性的冲突建模为两个竞争目标之间的对抗博弈，在推理时动态调整LLM内部表示以寻找均衡点。该方法实时引导表示，使模型在抵御有害越狱输入的同时保留对良性查询的有用响应。通过博弈建模而非静态优化，AGD无需在新安全数据上重新训练即可适应分布外攻击。核心贡献是基于内部表示的对抗博弈机制，同时实现自适应性与效用保留。</div>
+            <div class="en">AGD frames the helpfulness-harmlessness conflict as an adversarial game between two competing objectives and dynamically adjusts LLMs&#39; internal representations at inference time to find an equilibrium. The method steers representations in real time, allowing the model to resist harmful jailbreak inputs while preserving useful responses to benign queries. By modeling the problem as a game rather than a static optimization, AGD adapts to OOD attacks without requiring retraining on new safety data. The core contribution is a principled adversarial game mechanism that operates on internal representations, enabling both adaptability and utility preservation simultaneously.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">由于摘要不完整，具体量化结果暂不可知，但AGD据报道在越狱攻击场景下实现了有用性与无害性的平衡权衡。该方法在维持模型效用的同时降低有害响应率，预期优于先前的表示引导基线。完整实验细节与基准对比（如AdvBench或JailbreakBench）有待完整论文披露。</div>
+            <div class="en">Specific quantitative results are not available due to the incomplete abstract, but AGD is reported to achieve a balanced trade-off between helpfulness and harmlessness under jailbreak attack scenarios. The method is designed to outperform prior representation-steering baselines by better maintaining model utility while reducing harmful response rates. Full experimental details and benchmark comparisons (e.g., on datasets like AdvBench or JailbreakBench) are expected in the complete paper.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>推理时的表示引导方向有潜力，但对抗博弈均衡在多样化自适应攻击下的稳定性仍是开放问题——攻击者可能专门针对博弈动态发起攻击。</li><li>论文框架假设有用性与无害性是主要竞争目标，但实际部署还涉及事实性、延迟等约束，双人博弈模型可能无法完全覆盖。</li><li>由于摘要被截断，博弈求解方式（纳什均衡还是极小极大）、推理计算开销及评估基准等关键细节未知，完整评估存在困难。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Representation steering at inference time is a promising direction, but the stability of the adversarial game equilibrium under diverse and adaptive attacks remains an open question — attackers could specifically target the game dynamics.</li><li>The paper&#39;s framing assumes helpfulness and harmlessness are the primary competing objectives, but real deployments involve additional constraints (e.g., factuality, latency), which the two-player game model may not fully capture.</li><li>Since the abstract is truncated, key details — such as how the game is solved (Nash equilibrium vs. minimax), the computational overhead at inference, and evaluation benchmarks — are unknown, making full assessment difficult.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/ef2bca795a95966ebe26e08e361140351addfe9d" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文系统分析了OpenClaw自主LLM智能体框架的安全漏洞，提出三层风险分类法与架构级防御机制，以应对提示注入驱...</div>
+        <div class="paper-title-en">Uncovering Security Threats and Architecting Defenses in Autonomous Agents: A Case Study of OpenClaw</div>
+        <div class="paper-meta">
+          <span>Zonghao Ying, Xiao Yang, Siyang Wu et al.</span>
+          <span class="badge badge-date">2026-03-13</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文系统分析了OpenClaw自主LLM智能体框架的安全漏洞，提出三层风险分类法与架构级防御机制，以应对提示注入驱动的RCE及供应链污染等威胁。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper systematically analyzes security vulnerabilities in the OpenClaw autonomous LLM agent framework and proposes a tri-layered risk taxonomy plus architectural defense mechanisms to counter threats like prompt injection-driven RCE and supply chain contamination.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM智能体获得操作系统级权限与自主调用工具的能力，传统内容过滤防御已根本不足，本研究对部署智能体框架的从业者极具参考价值。所提三层分类法为研究界提供了系统性语言，用于分析跨认知、执行与信息系统维度的智能体专属威胁。</div>
+            <div class="en">As LLM agents gain OS-level permissions and autonomous tool-calling capabilities, traditional content-filtering defenses are fundamentally insufficient, making this security analysis highly relevant for practitioners deploying agent frameworks. The proposed tri-layered taxonomy provides a structured vocabulary for the research community to reason about agent-specific threats across cognitive, execution, and information system dimensions. The OpenClaw case study offers a concrete, reproducible blueprint for auditing other autonomous agent frameworks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">OpenClaw等框架赋予AI智能体操作系统级访问权限与多步骤工作流执行能力，催生了现有防御无法应对的新攻击面。核心问题是：自主工具调用智能体引入了哪些类别的漏洞，以及如何从架构层面进行系统性防御。</div>
+            <div class="en">As LLM frameworks like OpenClaw grant AI agents operating-system-level access and the ability to execute complex multi-step workflows, novel attack surfaces emerge that existing defenses cannot address. The core problem is understanding what classes of vulnerabilities are introduced specifically by autonomous, tool-calling agents and how to architect systemic defenses against them.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">传统LLM安全研究聚焦于内容过滤与提示层防御，假设无状态单轮交互模型，无法应对持久化上下文与链式工具调用。此前的智能体安全研究缺乏同时覆盖认知操纵、软件执行漏洞与信息系统入侵的统一分类框架。</div>
+            <div class="en">Traditional LLM security research focuses on content-filtering and prompt-level defenses, which assume a stateless, single-turn interaction model. These approaches fail to account for persistent context, chained tool invocations, and OS-level execution privileges inherent to autonomous agents. Prior agent security work lacks a unified taxonomy that spans cognitive manipulation, software execution exploits, and information system compromises simultaneously.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者对OpenClaw生态进行全面安全审计，识别出四类关键漏洞：提示注入驱动的RCE、顺序工具攻击链、上下文失忆及供应链污染。提出三层风险分类法，覆盖AI认知层（目标劫持）、软件执行层（RCE、权限提升）与信息系统层（数据泄露、供应链攻击），并给出架构级防御建议。</div>
+            <div class="en">The authors conduct a comprehensive security audit of the OpenClaw ecosystem, identifying four critical vulnerability classes: prompt injection-driven Remote Code Execution (RCE), sequential tool attack chains, context amnesia (loss of security state across conversation turns), and supply chain contamination via malicious tool/plugin integration. They propose a novel tri-layered risk taxonomy organizing threats across the AI Cognitive layer (e.g., goal hijacking), Software Execution layer (e.g., RCE, privilege escalation), and Information System layer (e.g., data exfiltration, supply chain attacks). Architectural defense mechanisms are proposed to address these systemic flaws, moving beyond reactive content filtering toward proactive structural hardening of agent pipelines.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">分析发现，由于工具调用管道沙箱隔离不足，提示注入可可靠触发OpenClaw中的RCE。顺序工具攻击链表明，多步工作流显著放大单一被污染输入的危害范围，实现跨工具边界的权限提升。上下文失忆被确认为结构性缺陷，早期建立的安全约束可在后续轮次中被遗忘或覆盖。</div>
+            <div class="en">The analysis uncovers that prompt injection can reliably trigger RCE within OpenClaw due to insufficient sandboxing of tool-calling pipelines. Sequential tool attack chains demonstrate that multi-step agent workflows amplify the blast radius of a single compromised input, enabling privilege escalation across tool boundaries. Context amnesia is identified as a structural flaw where security constraints established early in a session can be forgotten or overridden in later turns, leaving agents persistently vulnerable.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>上下文失忆是传统软件安全中不存在的独特挑战：与无状态API不同，智能体记忆系统需要显式的会话级安全状态管理，而当前框架原生不支持此机制。</li><li>供应链污染攻击向量表明，LLM智能体工具注册表亟需签名、来源验证与沙箱执行机制，类似npm或PyPI的包管理器安全实践。</li><li>本文研究基于单一框架OpenClaw，三层分类法与防御机制能否推广至LangChain、AutoGPT或Semantic Kernel等主流框架，仍是开放性问题。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Context amnesia poses a unique challenge absent in traditional software security: unlike stateless APIs, agent memory systems require explicit session-scoped security state management, which current frameworks do not natively enforce.</li><li>The supply chain contamination threat vector — where malicious third-party tools or plugins silently alter agent behavior — suggests that tool registries for LLM agents urgently need signing, provenance verification, and sandboxed execution analogous to package managers like npm or PyPI.</li><li>The paper&#39;s findings are based on a single framework (OpenClaw), and it remains an open question how well the tri-layered taxonomy and proposed defenses generalize to other major agent frameworks such as LangChain, AutoGPT, or Microsoft&#39;s Semantic Kernel.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.12644v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文基于Perplexity大规模部署经验，系统梳理前沿AI智能体的攻击面与分层防御体系，作为对NIST 2025...</div>
+        <div class="paper-title-en">Security Considerations for Artificial Intelligence Agents</div>
+        <div class="paper-meta">
+          <span>Ninghui Li, Kaiyuan Zhang, Kyle Polley et al.</span>
+          <span class="badge badge-date">2026-03-12</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文基于Perplexity大规模部署经验，系统梳理前沿AI智能体的攻击面与分层防御体系，作为对NIST 2025年RFI的正式回应提交。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A practitioner-grounded security framework for frontier AI agents, mapping attack surfaces and layered defenses based on Perplexity&#39;s real-world deployment experience, submitted as a formal response to NIST&#39;s 2025 RFI.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文来自大规模运营AI智能体的企业实践，直接影响NIST政策制定，对构建智能体系统的研究者和工程师具有高度参考价值。</div>
+            <div class="en">This paper provides rare practitioner-level insight into AI agent security from an organization operating agentic systems at scale (millions of users, thousands of enterprises). Its direct input to NIST/CAISI policy-making means its recommendations could shape industry standards and regulatory frameworks for AI agent deployment. Researchers and engineers building agentic pipelines will find the threat taxonomy and defense stack immediately actionable.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">AI智能体架构如何打破代码与数据分离、权限边界固定等传统安全假设，并由此引发机密性、完整性与可用性方面的新型威胁？</div>
+            <div class="en">How do agentic AI architectures introduce fundamentally new security risks beyond those of traditional software or static LLM deployments? The paper argues that agents break classical assumptions of code-data separation, fixed authority boundaries, and predictable execution, creating novel failure modes across confidentiality, integrity, and availability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有安全框架针对静态LLM或传统软件设计，未覆盖多步骤、跨边界的智能体动态行为；多智能体协作和长流程中的新型威胁尚无行业标准可循。</div>
+            <div class="en">Existing security frameworks (e.g., for static LLMs or conventional software) do not account for the dynamic, multi-step, tool-using nature of agents. Prior defenses focus on single-turn input filtering and model alignment, missing threats that emerge across multi-agent coordination, long-running workflows, and cross-boundary tool invocations. There is no established industry standard for agentic system security, leaving practitioners without authoritative guidance.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">提出四大攻击面（工具、连接器、托管边界、多智能体协调）的结构化威胁模型，重点分析间接提示注入、混淆代理攻击和级联失败三类威胁，并构建输入过滤→模型级缓解→沙箱执行→确定性策略执行的分层防御栈。</div>
+            <div class="en">The paper introduces a structured threat model mapping four principal attack surfaces: tools, connectors, hosting boundaries, and multi-agent coordination channels. It gives particular emphasis to three attack classes — indirect prompt injection (malicious instructions embedded in retrieved data), confused-deputy attacks (agents acting beyond their authorized scope by being manipulated into misusing delegated privileges), and cascading failures in long-horizon workflows. Defenses are organized as a layered stack: input/output filtering, model-level mitigations, sandboxed execution environments, and deterministic policy enforcement for high-stakes actions. The framework is grounded in operational lessons from Perplexity&#39;s production agentic systems.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">本文为立场文件，无定量实验结果。核心结论为：间接提示注入最难根除；混淆代理威胁被系统性低估；不可逆操作必须依赖确定性策略执行而非仅靠模型判断。</div>
+            <div class="en">As a position/RFI response paper, quantitative experimental results are not provided. The key findings are qualitative: indirect prompt injection is identified as the most pervasive and difficult-to-eliminate threat; confused-deputy behavior is flagged as systematically underestimated; and no single defense layer is sufficient, making the layered stack approach essential. The authors conclude that deterministic policy enforcement (not model judgment alone) is necessary for actions with irreversible consequences.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>间接提示注入仍是开放难题：智能体正常运行中需消费非结构化外部数据，如何在不损失功能的前提下净化所有注入向量，本文指出问题但未给出完整方案。</li><li>混淆代理威胁框架有价值但防御措施偏启发式：范围限制和确认提示等缓解手段对自适应对手的有效性尚未经实证验证。</li><li>本文为RFI回应而非同行评审研究，威胁分类法和防御建议缺乏实验支撑，后续需构建红队基准测试以量化各防御层的实际效果。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Indirect prompt injection remains an open research problem: because agents consume unstructured external data (web pages, emails, documents) as part of normal operation, sanitizing all possible injection vectors without breaking functionality is fundamentally hard — the paper highlights this gap but does not offer a complete solution.</li><li>The confused-deputy framing is valuable but underspecified: the paper correctly identifies that agents can be manipulated into misusing delegated privileges (e.g., an email-reading agent tricked into exfiltrating data), but the proposed mitigations (scope restriction, confirmation prompts) are heuristic and their effectiveness against adaptive adversaries is unvalidated.</li><li>The policy/research gap is significant: this paper is an RFI response, not a peer-reviewed study, so its threat taxonomy and defense recommendations lack empirical grounding. Future work should include red-team benchmarks and ablation studies on individual defense layers to quantify their effectiveness.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.12230v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ToolTree用蒙特卡洛树搜索替代贪心工具选择策略，通过双阶段LLM评估与双向剪枝实现更高效、准确的多步工具规划。</div>
+        <div class="paper-title-en">ToolTree: Efficient LLM Agent Tool Planning via Dual-Feedback Monte Carlo Tree Search and Bidirectional Pruning</div>
+        <div class="paper-meta">
+          <span>Shuo Yang, Soyeon Caren Han, Yihao Ding et al.</span>
+          <span class="badge badge-date">2026-03-13</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ToolTree用蒙特卡洛树搜索替代贪心工具选择策略，通过双阶段LLM评估与双向剪枝实现更高效、准确的多步工具规划。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ToolTree replaces greedy tool selection in LLM agents with a Monte Carlo Tree Search framework that uses dual-stage LLM evaluation and bidirectional pruning to plan multi-step tool-use sequences more efficiently and accurately.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">ToolTree解决了LLM智能体在复杂多步任务中工具规划失误导致级联失败的核心瓶颈，在4个基准上平均提升约10%性能，同时保持高效率，为工具增强型LLM提供了实用的规划升级方案。</div>
+            <div class="en">ToolTree addresses a critical bottleneck in deploying LLM agents on real-world, multi-step tasks where poor tool planning cascades into task failure. By achieving ~10% average performance gain over state-of-the-art baselines across 4 benchmarks while maintaining efficiency, it offers a practical, drop-in planning upgrade for LLM agent systems. This work establishes MCTS-based planning as a viable and scalable alternative to greedy decoding in tool-augmented LLMs.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何让LLM智能体在复杂多步任务中更可靠地规划工具调用序列，而非依赖短视的贪心选择？现实中工具间依赖关系复杂，早期错误会在整个流程中累积放大。</div>
+            <div class="en">How can LLM agents plan sequences of tool calls more reliably for complex, multi-step tasks without resorting to myopic, greedy selection? This matters because real-world agentic tasks—such as API chaining, code execution, and web interaction—require anticipating inter-tool dependencies, and failures in early steps compound throughout the pipeline.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有方法（如ReAct、Toolformer）采用逐步贪心选择，缺乏前瞻性且忽视工具间依赖。已有树搜索变体（如思维树）计算代价高，且未针对工具调用环境设计，无法有效剪除低质量工具轨迹。</div>
+            <div class="en">Existing LLM agent tool planning methods (e.g., ReAct, Toolformer) use greedy, step-by-step selection that lacks lookahead and ignores dependencies between tools in a sequence. Prior tree-search adaptations for LLMs (e.g., Tree of Thoughts) are not designed for tool-use environments and are computationally expensive due to exhaustive expansion. These approaches fail to efficiently prune low-quality tool trajectories before or after execution, wasting inference budget.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ToolTree将工具规划建模为MCTS问题，每个节点代表一次工具调用决策。双阶段LLM评估分别在执行前（基于前瞻评分的预剪枝）和执行后（基于输出结果的后剪枝）筛选分支，双向剪枝大幅压缩搜索空间，同时适用于开放集与封闭集工具规划任务。</div>
+            <div class="en">ToolTree frames tool planning as a Monte Carlo Tree Search problem, where each tree node represents a tool-call decision and branches represent alternative tool sequences. A dual-stage LLM evaluation mechanism scores candidate branches both before execution (pre-pruning via LLM-based foresight scoring) and after execution (post-pruning based on observed tool outputs), focusing compute on the most promising trajectories. Bidirectional pruning removes low-value branches at both stages, dramatically reducing the search space without sacrificing coverage. This design allows ToolTree to handle open-set (unseen tools) and closed-set (predefined tool libraries) planning tasks uniformly.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">ToolTree在4个基准测试中平均性能提升约10%，同时在所有对比方法中保持最高效率。在需要长链依赖工具调用的任务上，相较贪心方法的优势最为显著。</div>
+            <div class="en">ToolTree achieves an average performance gain of ~10% over state-of-the-art baselines across 4 benchmarks covering both open-set and closed-set tool planning tasks. It simultaneously maintains the highest efficiency among compared methods, meaning the performance gains do not come at the cost of significantly increased inference calls or latency. Specific benchmark results validate improvements on tasks requiring long, dependent tool-call chains where greedy methods degrade most.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>双反馈设计是核心创新：执行前前瞻剪枝与执行后结果剪枝的分离，有效平衡了避免无效工具调用与利用真实反馈纠错的需求，是此前MCTS变体未能解决的关键问题。</li><li>效率主张需审慎评估：MCTS本质上比贪心方法需要更多LLM调用，实际效率优势高度依赖双向剪枝的激进程度，各基准上的具体调用次数对比值得深入核查。</li><li>开放集工具泛化是难点：处理未见工具要求LLM评估器对陌生API进行推理，开放集与封闭集基准上的性能差距可揭示双阶段评估器对工具分布的依赖程度。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Dual-feedback design is key: separating pre-execution (foresight) and post-execution (outcome) pruning is the core innovation—it avoids wasting tool API calls on low-quality branches while still correcting mistakes after real feedback, a balance prior MCTS adaptations missed.</li><li>Efficiency claim needs scrutiny: while the paper claims &#39;highest efficiency,&#39; MCTS inherently involves more LLM calls than greedy methods; the efficiency advantage likely depends on how aggressively bidirectional pruning reduces tree width, and the exact call-count comparisons across benchmarks deserve close examination.</li><li>Generalization to open-set tools is non-trivial: handling unseen tools requires the LLM evaluator to reason about unfamiliar APIs, and ToolTree&#39;s performance on open-set benchmarks relative to closed-set ones would reveal how much the dual-stage evaluator depends on in-distribution tool knowledge.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.12740v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Audio-Reasoner构建了含120万条结构化思维链样本的CoTA数据集，训练出在多项音频基准上达到最优推理...</div>
+        <div class="paper-title-en">Audio-Reasoner: Improving Reasoning Capability in Large Audio Language Models</div>
+        <div class="paper-meta">
+          <span>Zhifei Xie, Mingbao Lin, Zihang Liu et al.</span>
+          <span class="badge badge-date">2025-03-04</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Audio-Reasoner构建了含120万条结构化思维链样本的CoTA数据集，训练出在多项音频基准上达到最优推理性能的大型音频语言模型。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Audio-Reasoner introduces a 1.2M-sample structured chain-of-thought audio dataset (CoTA) and a large audio language model that achieves state-of-the-art reasoning performance across major audio benchmarks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次将推理扩展与思维链方法系统引入音频模态，填补了多模态AI的重要空白。CoTA数据集和训练流程可作为后续音频推理研究的复用基础。在MMAU-mini上高达+25.42%的提升，标志着音频问答和情感识别等下游应用的显著进步。</div>
+            <div class="en">This work is the first to systematically bring inference-scaling and chain-of-thought reasoning into the audio modality, closing a notable gap in multimodal AI. The CoTA dataset and training pipeline can serve as a reusable foundation for future audio reasoning research. Benchmark gains of up to +25.42% on MMAU-mini signal a meaningful leap for downstream applications such as emotion recognition and audio question answering.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">多模态推理研究在视觉和语言领域发展迅速，但音频模态长期被忽视。本文探讨：结构化思维链训练能否激活大型音频语言模型的深层逻辑推理能力？这对需要多步推理的情感识别、声音事件理解等现实场景至关重要。</div>
+            <div class="en">Multimodal reasoning research has advanced rapidly for vision and language, but the audio modality has been largely neglected. Audio-Reasoner asks: can structured chain-of-thought training unlock deep logical reasoning in large audio language models? This matters because real-world audio understanding—spanning speech emotion, sound events, and music—demands multi-step inference beyond simple recognition.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有大型音频语言模型（如Qwen-Audio、SALMONN）侧重识别与转录任务，缺乏多步逻辑推理能力。已有音频数据集缺少结构化推理标注，仅提供简短答案而非逐步推理过程。在文本和视觉领域已验证有效的推理扩展技术此前从未应用于音频模型。</div>
+            <div class="en">Existing large audio language models (e.g., Qwen-Audio, SALMONN) focus on recognition and transcription tasks, with limited capacity for multi-step logical reasoning. Prior audio datasets lack structured reasoning annotations, offering only short, flat answers rather than step-by-step rationales. Inference-scaling techniques proven effective in text and vision domains had not been applied to audio models.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者首先整理大规模多任务音频数据集并进行简单标注，再借助闭源模型完成二次标注、QA生成及结构化思维链构建，最终形成含120万推理样本的CoTA数据集。Audio-Reasoner依据推理扩展原则在CoTA上训练，能够为音频输入生成结构化推理步骤。数据覆盖语音、声音事件、音乐和情感等多类任务，保证了模型的广泛泛化能力。</div>
+            <div class="en">The authors curate a large-scale multi-task audio dataset with simple annotations, then use closed-source models to perform secondary labeling, QA generation, and structured chain-of-thought (CoT) construction—producing CoTA with 1.2 million reasoning-rich samples. Audio-Reasoner is trained on CoTA following inference-scaling principles, enabling the model to generate explicit, structured reasoning steps for audio inputs. The pipeline covers diverse audio tasks including speech, sound events, music, and emotion, ensuring broad generalization.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Audio-Reasoner在MMAU-mini上提升+25.42%，AIR-Bench对话/基础测试分别提升+14.57%/+10.13%，MELD情感识别提升+8.01%，全面刷新各基准最优结果。性能提升在多类音频任务上保持一致，验证了思维链训练的广泛有效性。</div>
+            <div class="en">Audio-Reasoner achieves state-of-the-art results on MMAU-mini (+25.42% over prior best), AIR-Bench chat (+14.57%) and foundation (+10.13%) tracks, and MELD emotion recognition (+8.01%). These gains are consistent across diverse audio understanding tasks, demonstrating the broad effectiveness of CoT-based training. The results confirm that structured reasoning supervision transfers well to the audio domain.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>CoTA构建的可扩展性：流程依赖闭源模型进行二次标注和思维链生成，在120万规模下存在成本高、可复现性差及模型生成噪声传播等隐患。</li><li>推理能力与感知能力的权衡：大幅性能提升可能部分源于模型学会了思维链输出格式，而非真正提升了底层音频感知能力，需进一步解耦两者贡献。</li><li>分布外音频的泛化性：所测基准（MMAU、AIR-Bench、MELD）均较成熟，在更嘈杂的真实场景或低资源音频上的评估，才能更充分地验证结构化推理的泛化能力。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability of CoTA construction: The pipeline relies on closed-source models for secondary labeling and CoT generation, which raises concerns about cost, reproducibility, and potential noise propagation from model-generated annotations at 1.2M scale.</li><li>Reasoning vs. perception trade-off: Large benchmark gains may partly reflect the model learning to follow CoT output formats rather than genuinely improving low-level audio perception; disentangling these contributions would strengthen the paper&#39;s claims.</li><li>Generalization to out-of-distribution audio: The benchmarks tested (MMAU, AIR-Bench, MELD) are relatively well-studied; evaluating on noisier, real-world or low-resource audio scenarios would better demonstrate whether structured reasoning generalizes beyond clean academic datasets.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2503.02318" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出元变形测试框架，系统评估大语言模型推理智能体的语义不变性，发现即使是大型模型在语义等价输入变换下也会产生不一致输出。</div>
+        <div class="paper-title-en">Semantic Invariance in Agentic AI</div>
+        <div class="paper-meta">
+          <span>I. de Zarzà, J. de Curtò, Jordi Cabot et al.</span>
+          <span class="badge badge-date">2026-03-13</span>
+          <span class="badge badge-venue">Springer</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出元变形测试框架，系统评估大语言模型推理智能体的语义不变性，发现即使是大型模型在语义等价输入变换下也会产生不一致输出。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces a metamorphic testing framework to measure semantic invariance in LLM reasoning agents, revealing that even large models produce inconsistent outputs under meaning-preserving input reformulations.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM智能体在科学推理和决策支持等高风险领域的部署，语义不变性成为安全关键需求。本文首次提供针对语义不变性的系统性多模型基准，为从业者提供可复用的评估协议。</div>
+            <div class="en">As LLM agents are deployed in high-stakes domains like scientific reasoning and decision support, reliability under input variation is a safety-critical requirement. This paper provides the first systematic, multi-model benchmark specifically targeting semantic invariance, offering a reusable evaluation protocol for practitioners. The metamorphic testing methodology can be adopted by model developers to audit robustness before deployment.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文研究LLM推理智能体在语义等价但表述不同的输入下能否保持一致输出（即语义不变性）。在高风险应用中，推理不一致可能导致不可预测的决策后果。</div>
+            <div class="en">The paper asks whether LLM reasoning agents produce consistent outputs when the same problem is expressed in semantically equivalent but syntactically different ways — a property called semantic invariance. This matters because inconsistent reasoning in agentic pipelines can lead to unpredictable, unreliable decisions in consequential real-world applications.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有基准仅在固定标准表述上评估准确率，无法反映输出稳定性。已有鲁棒性研究多关注对抗扰动，而非语义保留变换，也未在多架构模型间进行系统比较。</div>
+            <div class="en">Standard benchmarks evaluate LLMs on fixed, canonical problem formulations and report only accuracy scores, offering no insight into output stability across rephrased inputs. Existing robustness studies have examined adversarial or noisy perturbations but rarely focus on meaning-preserving transformations in agentic, multi-model settings. No prior work has systematically compared semantic invariance across multiple architectural families at this scale.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">框架设计了8种语义保留变换（同一、改写、事实重排、扩展、压缩、学术语境、商业语境、对比表述），应用于7个模型（跨4个架构族），以跨变换输出一致性衡量语义不变性，无需为每种改写提供标准答案。</div>
+            <div class="en">The authors design a metamorphic testing framework applying eight semantic-preserving transformations: identity, paraphrase, fact reordering, expansion, contraction, academic context, business context, and contrastive formulation. These are applied to reasoning tasks across seven foundation models from four architectural families — Hermes (70B, 405B), Qwen3 (30B-A3B, 235B-A22B), DeepSeek-R1, and GPT-o series. Consistency of model outputs across transformations is measured as the primary indicator of semantic invariance. This metamorphic approach avoids the need for ground-truth labels for each reformulation, relying instead on cross-transformation output agreement.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">所有模型均未实现完全语义不变性，一致性得分因模型和变换类型差异显著。规模较大的模型表现更稳定，但架构族的影响与参数量同等重要。对比表述和语境切换变换导致的一致性下降最为明显。</div>
+            <div class="en">Results show that no model achieves full semantic invariance across all eight transformations, with consistency scores varying substantially both across models and transformation types. Larger models (e.g., Hermes 405B, Qwen3 235B-A22B) tend to show higher invariance than smaller counterparts, but architectural family matters as much as scale. Contrastive formulation and context-shift transformations (academic vs. business) induce the largest consistency drops across nearly all tested models.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>语义不变性并非仅由模型规模决定——部分小型MoE模型（如Qwen3-30B-A3B）在特定变换上优于更大的密集模型，说明架构设计对输入改写的响应方式有独立影响。</li><li>8种变换的破坏性差异显著：语境切换（学术/商业框架）和对比表述对一致性的破坏最大，表明LLM推理路径对语用表面线索高度敏感，即便命题内容不变。</li><li>本研究在单模型隔离环境下评估，而真实智能体系统涉及多智能体流水线，不变性失效可能级联放大，未来工作需将框架扩展至多轮、多智能体场景。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Semantic invariance is not guaranteed by scale alone — smaller MoE models like Qwen3-30B-A3B sometimes outperform larger dense models on specific transformations, suggesting architectural choices (e.g., mixture-of-experts routing) interact non-trivially with input rephrasing.</li><li>The eight transformations are not equally disruptive: context-shift transformations (academic vs. business framing) and contrastive formulations are disproportionately destabilizing, implying that surface-level pragmatic cues heavily influence LLM reasoning paths even when propositional content is unchanged.</li><li>The study evaluates models in isolation, but real agentic systems involve multi-agent pipelines where invariance failures can compound. Future work should extend this framework to multi-turn and multi-agent settings to assess cascading inconsistency effects.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.13173v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">XMoP是一种全身神经运动规划策略，可跨多种机械臂学习运动学约束，并零样本迁移至未见过的机器人本体。</div>
+        <div class="paper-title-en">XMoP: Whole-Body Control Policy for Zero-Shot Cross-Embodiment Neural Motion Planning</div>
+        <div class="paper-meta">
+          <span>P. Rath, N. Gopalan</span>
+          <span class="badge badge-date">2024-09-23</span>
+          <span class="badge badge-venue">ICRA</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>XMoP是一种全身神经运动规划策略，可跨多种机械臂学习运动学约束，并零样本迁移至未见过的机器人本体。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">XMoP is a whole-body neural motion planning policy that learns kinematic constraints across a distribution of robot manipulators and zero-shot transfers to unseen embodiments without retraining.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">XMoP解决了神经运动规划器针对单一机器人本体的瓶颈问题，有望大幅降低跨机器人部署成本，推动具身AI迈向本体无关的运动智能。</div>
+            <div class="en">XMoP tackles a critical bottleneck in robotics: most neural motion planners are robot-specific, requiring costly retraining for each new embodiment. By enabling zero-shot cross-embodiment transfer, XMoP could significantly reduce deployment overhead for neural planners across heterogeneous robot fleets. This work represents a meaningful step toward embodiment-agnostic motion intelligence in embodied AI.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">单一神经运动规划器如何在不重新训练的情况下泛化到不同机械臂本体？这一问题直接影响多机器人系统的可扩展性。</div>
+            <div class="en">How can a single neural motion planner generalize across different robot manipulator embodiments without retraining? This matters because the combinatorial cost of training separate planners for each robot body severely limits scalability in real-world multi-robot deployments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">经典运动规划器可跨本体使用，但依赖静态环境表示；现有神经运动规划器虽能处理动态环境，却均针对单一固定机器人本体训练，无法跨本体迁移。</div>
+            <div class="en">Classical motion planners (e.g., RRT, PRM) generalize across embodiments but rely on static, pre-specified environment representations and struggle in dynamic or partially observed settings. Existing Neural Motion Planners (NMPs) can adapt to diverse environments from raw sensor observations, but every current state-of-the-art NMP is trained and evaluated on a single fixed robot embodiment, making cross-robot transfer impossible without full retraining.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">XMoP在多种机械臂分布上训练全身控制策略，以本体参数为条件隐式编码运动学约束，推理时无需微调即可零样本迁移至分布内的未见机械臂，同时联合处理避障与运动学可行性。</div>
+            <div class="en">XMoP formulates a whole-body control policy trained over a distribution of robot manipulators, implicitly encoding kinematic constraints (joint limits, link geometry, workspace boundaries) for each embodiment. The policy conditions on embodiment-specific parameters so that it can represent diverse robot morphologies within a unified model. At inference time, XMoP zero-shot transfers planning behavior to unseen manipulators that fall within the trained distribution, without any fine-tuning. This design decouples environment-level obstacle avoidance from robot-level kinematic feasibility, allowing both to be handled jointly.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">XMoP在仿真中验证了对分布内未见机械臂的零样本运动规划迁移，能满足多样化运动学约束；具体成功率等定量指标在摘要中未完整披露，论文或处于早期阶段。</div>
+            <div class="en">The paper demonstrates zero-shot transfer of motion planning to unseen manipulator embodiments within the trained distribution, showing that XMoP successfully satisfies kinematic constraints across diverse robot configurations. Specific quantitative benchmarks (success rates, collision rates, planning times) are not fully detailed in the available abstract, suggesting the work may be early-stage or under review. The approach is validated in simulation across a distribution of manipulators with varying joint counts and link geometries.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>零样本泛化边界：迁移能力受训练分布限制，对分布外本体（如移动机械臂）的泛化范围尚不明确。</li><li>隐式运动学的可靠性：纯数据驱动地学习运动学约束在边界构型下可能静默失败，结合解析正运动学校验有望提升鲁棒性。</li><li>真实硬件验证缺失：当前工作似乎仅在仿真中验证，跨本体策略的仿真到现实迁移（各机器人摩擦、传感器噪声各异）是重要的开放挑战。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Embodiment distribution coverage: The zero-shot claim is bounded by the training distribution — it remains unclear how far outside that distribution (e.g., novel joint topologies, mobile manipulators) XMoP can generalize, which is critical for real-world applicability.</li><li>Implicit vs. explicit kinematics: Implicitly learning kinematic constraints from data may fail silently on edge-case configurations; a hybrid approach combining learned policies with analytical forward kinematics checks could improve reliability.</li><li>Scalability to real hardware: The work appears simulation-only; bridging the sim-to-real gap for cross-embodiment policies — where each robot has unique friction, backlash, and sensor noise profiles — is a significant open challenge that the paper does not yet address.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2409.15585" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">将混合线性倒立摆简化模型与接触隐式MPC相结合，实现了24自由度人形机器人Achilles在仿真中的鲁棒全身运动控制。</div>
+        <div class="paper-title-en">Reduced-Order Model Guided Contact-Implicit Model Predictive Control for Humanoid Locomotion</div>
+        <div class="paper-meta">
+          <span>Sergio A. Esteban, Vince Kurtz, Adrian B. Ghansah et al.</span>
+          <span class="badge badge-date">2025-02-21</span>
+          <span class="badge badge-venue">ICRA</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>将混合线性倒立摆简化模型与接触隐式MPC相结合，实现了24自由度人形机器人Achilles在仿真中的鲁棒全身运动控制。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A hybrid control framework combining a Hybrid Linear Inverted Pendulum reduced-order model with Contact-Implicit MPC enables robust whole-body humanoid locomotion on the 24-DOF Achilles robot in simulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文为高维人形机器人的接触隐式MPC提供了可落地的分层框架，有助于降低局部极小值风险和人工调参负担，对人形机器人运动控制栈的工程实践具有直接参考价值。</div>
+            <div class="en">This work offers a practical blueprint for scaling contact-implicit MPC to high-dimensional humanoid robots by anchoring optimization with a reduced-order reference, reducing the twin burdens of local minima and manual tuning. It bridges the gap between computationally tractable planning models and expressive whole-body controllers, a central challenge in humanoid deployment. Practitioners building locomotion stacks for full-size humanoids can directly apply this hierarchical structure.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在保留多接触模式推理与全身动力学建模能力的同时，对24自由度人形机器人实现实时控制？这一问题直接制约着人形机器人在真实人类环境中的部署。</div>
+            <div class="en">How can we control a high-dimensional humanoid robot (24 DOF) in real time while retaining the ability to reason over multiple contact modes and whole-body dynamics? This matters because humanoids must navigate environments built for humans, yet their nonlinear hybrid dynamics make reliable, fast control extremely difficult.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">HLIP等简化模型计算高效但缺乏全身表达能力；接触隐式MPC虽可规划任意接触序列，但易陷入局部极小值且需大量人工调参。</div>
+            <div class="en">Reduced-order models like HLIP are computationally efficient but discard whole-body expressiveness and cannot adapt contact schedules on the fly. Contact-Implicit MPC can plan through arbitrary contact sequences with full-body dynamics, but suffers from sensitivity to local minima and requires extensive cost and constraint tuning to converge reliably.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">框架分为两层：HLIP生成标称周期步态轨迹，作为热启动和参考信号；CI-MPC围绕该参考对24自由度全身轨迹和接触时序进行优化，借助简化模型的凸性锚点引导非线性求解器规避局部极小值。</div>
+            <div class="en">The framework operates in two layers: HLIP generates a nominal periodic gait trajectory that serves as a warm-start and reference for the upper layer. CI-MPC then optimizes full 24-DOF whole-body trajectories and contact schedules around this reference, using the reduced-order motion as a convex anchor that steers the nonlinear solver away from poor local minima. The key contribution is using HLIP not just for footstep planning but as a persistent reference signal that shapes the CI-MPC cost landscape throughout the horizon.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在Achilles人形机器人仿真中验证了框架的鲁棒性，能够在线调整接触时序；与单独使用CI-MPC相比，HLIP引导初始化显著降低了局部极小值风险，但定量基准数据（如扰动大小、求解时间）尚未完整公开。</div>
+            <div class="en">The proposed framework is validated in simulation on the novel Achilles humanoid robot (24 DOF), demonstrating robust locomotion with the ability to modify contact schedules online. The HLIP-guided initialization measurably reduces susceptibility to local minima compared to CI-MPC alone, though quantitative benchmarks (e.g., disturbance rejection magnitudes or solver timing) are not fully detailed in the abstract.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>局部极小值问题：HLIP参考仅能减少而非消除CI-MPC的局部极小值，大幅地形扰动等极端情况仍可能导致求解失败。</li><li>仿真到实机的迁移：Achilles目前仅在仿真中验证，电机动力学、传感器噪声和接触柔性等未建模因素可能显著影响实机表现。</li><li>层级框架的适用边界：HLIP的线性假设在跑步、跳跃等高动态行为中可能失效，需引入表达能力更强的中间层模型。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Local minima mitigation vs. elimination: Using HLIP as a reference reduces but likely does not eliminate local minima in CI-MPC; edge cases such as large terrain perturbations or unexpected contacts may still cause solver failures not captured by simulation results.</li><li>Simulation-to-reality gap: Achilles is a novel 24-DOF platform validated only in simulation; unmodeled motor dynamics, sensor noise, and contact compliance could substantially degrade CI-MPC performance on hardware, making real-world transfer the critical next step.</li><li>Scalability of the two-layer hierarchy: The framework assumes HLIP can generate a meaningful reference across all desired locomotion modes; for dynamic behaviors like running, jumping, or stair climbing, the reduced-order model&#39;s linear assumptions may break down and require a more expressive middle layer.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2502.15630" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">TacVLA通过接触感知门控机制将触觉模态融入VLA模型，仅在检测到接触时激活触觉令牌，从而提升机器人精细操作能力。</div>
+        <div class="paper-title-en">TacVLA: Contact-Aware Tactile Fusion for Robust Vision-Language-Action Manipulation</div>
+        <div class="paper-meta">
+          <span>Kaidi Zhang, Heng Zhang, Zhengtong Xu et al.</span>
+          <span class="badge badge-date">2026-03-13</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>TacVLA通过接触感知门控机制将触觉模态融入VLA模型，仅在检测到接触时激活触觉令牌，从而提升机器人精细操作能力。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">TacVLA augments Vision-Language-Action models with a contact-aware tactile fusion module that selectively activates tactile tokens only during physical contact, improving robotic manipulation under occlusion and fine-grained contact tasks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">TacVLA填补了VLA模型在接触丰富场景下的关键能力缺口，其门控设计为将触觉等接触模态融入Transformer策略提供了通用范式，对推动具身智能实用化具有重要意义。</div>
+            <div class="en">TacVLA addresses a critical gap in embodied AI by showing that tactile sensing can be efficiently integrated into large VLA transformers without always-on sensory noise. This work is timely as the robotics community increasingly demands robust manipulation beyond what vision alone can provide. The contact-aware gating design offers a generalizable blueprint for injecting any contact-based modality into existing transformer-based policies.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型仅依赖视觉与语言，在视觉遮挡、精细操作及接触丰富场景中表现欠佳，缺乏对物理接触信息的有效利用。</div>
+            <div class="en">Current VLA models rely solely on vision and language, making them brittle under visual occlusion, fine-grained contact tasks, and situations requiring physical interaction awareness. The core problem is that these models lack a mechanism to exploit tactile feedback during manipulation, limiting their reliability in contact-rich real-world scenarios.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型不含触觉通道；已有触觉机器人学习方法多为任务专用策略，无法利用预训练VLA的泛化能力；直接拼接触觉令牌会在非接触阶段引入噪声干扰。</div>
+            <div class="en">Existing VLA models such as OpenVLA and π0 process only visual and language tokens, offering no mechanism to incorporate tactile or force feedback. Prior tactile-augmented robot learning methods typically train task-specific policies from scratch and do not leverage the broad generalization of pretrained VLA transformers. Simply concatenating tactile tokens with visual tokens introduces irrelevant noise during non-contact phases, degrading overall policy performance.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">TacVLA在预训练VLA基础上微调，引入触觉传感器令牌，并通过接触感知门控机制仅在确认接触时将触觉令牌注入Transformer注意力层，视觉、语言与触觉令牌联合处理以生成动作。</div>
+            <div class="en">TacVLA fine-tunes a pretrained transformer-based VLA by adding tactile tokens derived from a tactile sensor array. A contact-aware gating mechanism detects physical contact and conditionally routes tactile tokens into the transformer&#39;s attention layers only when contact is confirmed, suppressing them otherwise. The visual, language, and (conditionally active) tactile tokens are then jointly processed to produce cross-modal grounded action predictions. This design keeps the base VLA weights largely intact while injecting task-relevant tactile context at contact-critical moments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">TacVLA在约束解锁拆卸和箱内抓取任务中均优于纯视觉VLA基线，在视觉遮挡鲁棒性评估中表现尤为突出，具体数值未在摘要中完整披露。</div>
+            <div class="en">Experiments on constraint-locked disassembly and in-box picking tasks show TacVLA outperforms vision-only VLA baselines across both task success rate and robustness evaluations. The model also demonstrates improved resilience to visual occlusion scenarios where competing baselines fail. Specific numeric results were not fully reported in the available abstract, but gains are described as consistent across all evaluated conditions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>接触感知门控是核心设计亮点：非接触阶段屏蔽触觉令牌，有效避免注意力污染，该思路可推广至其他多模态融合架构。</li><li>评估任务（约束拆卸、箱内抓取）均为接触密集场景，TacVLA在接触时序不可预测的开放任务中的泛化能力尚待验证。</li><li>系统依赖物理触觉传感器，部署成本较高，未来可探索以GelSight等视触觉传感器替代以降低硬件门槛。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The contact-aware gating mechanism is a key design choice: by suppressing tactile tokens during non-contact phases, the model avoids polluting attention with irrelevant sensory noise — a practical insight applicable to other modality-fusion architectures.</li><li>The evaluation covers constraint-locked disassembly and in-box picking, which are deliberately contact-rich and occluded, but it remains unclear how TacVLA generalizes to open-ended manipulation tasks where contact timing is less predictable.</li><li>TacVLA relies on a physical tactile sensor, introducing hardware dependency that may limit deployment; future work should explore whether learned tactile proxies (e.g., from vision-based tactile sensors like GelSight) can substitute without performance loss.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.12665v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-17</footer>
+</body>
+</html>
