@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-18 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-18  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文将RESTA防御框架扩展至视觉语言模型，通过方向性嵌入噪声在JailBreakV-28K基准上有效降低越狱攻击成功率。</div>
+        <div class="paper-title-en">Directional Embedding Smoothing for Robust Vision Language Models</div>
+        <div class="paper-meta">
+          <span>Ye Wang, Jing Liu, Toshiaki Koike-Akino</span>
+          <span class="badge badge-date">2026-03-16</span>
+          <span class="badge badge-venue">ICLR 2026</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文将RESTA防御框架扩展至视觉语言模型，通过方向性嵌入噪声在JailBreakV-28K基准上有效降低越狱攻击成功率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper extends the RESTA defense framework to vision-language models using directional embedding noise, demonstrating reduced jailbreak attack success rates on the JailBreakV-28K benchmark.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着VLM在智能体系统中广泛部署，轻量级推理时防御方案具有重要实用价值。本文无需重新训练模型即可部署，方向性噪声的发现为未来嵌入式防御设计提供了具体原则。</div>
+            <div class="en">As VLMs are increasingly deployed in agentic AI systems, robust inference-time defenses are critical for real-world safety. This work provides a lightweight, plug-in defense layer requiring no model retraining, making it practical for deployment. The directional noise finding offers a concrete design principle for future embedding-based defenses.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">视觉语言模型易受多模态越狱攻击，攻击者结合对抗图像与文本绕过安全对齐并诱导有害输出。VLM被集成进智能体系统，不安全输出会带来真实风险，因此这一问题至关重要。</div>
+            <div class="en">Vision-language models are vulnerable to multi-modal jailbreaking attacks that combine adversarial images and text to bypass safety alignment and elicit harmful outputs. This is a critical problem because VLMs are being integrated into agentic systems where unsafe outputs can have real-world consequences. The paper asks whether RESTA, an existing text-domain defense, can be effectively adapted to the multi-modal setting.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LLM越狱防御多针对纯文本输入，无法有效泛化至多模态场景。RESTA原为文本嵌入设计，未在VLM多样攻击类型下得到验证，也缺乏在JailBreakV-28K大规模基准上的系统评估。</div>
+            <div class="en">Existing jailbreak defenses for LLMs often rely on text-only smoothing or adversarial training, which do not generalize well to multi-modal inputs. Methods like RESTA were originally designed for text-domain token embeddings and had not been validated against the diverse attack types in VLM settings. No lightweight inference-time defense had been systematically evaluated across the large-scale JailBreakV-28K multi-modal benchmark.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者将RESTA适配至VLM，在推理时向token嵌入注入噪声并聚合多次带噪预测以平滑对抗扰动。核心创新在于引入方向性嵌入噪声——噪声向量与原始嵌入方向对齐，而非各向同性随机噪声，从而在保留语义的同时破坏对抗结构。</div>
+            <div class="en">The authors adapt RESTA to VLMs by injecting noise into token embeddings at inference time and aggregating predictions across multiple noisy samples to smooth out adversarial perturbations. The key contribution is introducing directional embedding noise, where the noise vector is aligned with the original token embedding direction rather than being isotropic random noise. This directional alignment preserves semantic content while disrupting adversarial structure. The method is evaluated on JailBreakV-28K, a benchmark covering 28,000 multi-modal jailbreak prompts across diverse attack strategies.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">方向性嵌入噪声的RESTA在JailBreakV-28K基准上显著降低了攻击成功率，且在各攻击类别中均优于各向同性随机噪声，证明噪声与嵌入几何对齐是关键因素。该防御无需微调模型即可在推理时部署。</div>
+            <div class="en">RESTA with directional embedding noise achieves a notable reduction in attack success rate (ASR) on the JailBreakV-28K benchmark compared to undefended VLMs. Directional noise consistently outperforms isotropic random noise across attack categories, suggesting that noise alignment with embedding geometry is a key factor. The defense operates at inference time with no model fine-tuning required, confirming its practicality as a lightweight security layer.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>方法新颖性有限：核心贡献是对RESTA的适配而非全新防御机制，方向性噪声是否为主要增益来源需进一步消融验证。</li><li>对抗性评估不足：JailBreakV-28K涵盖静态攻击，但未评估了解防御机制的白盒自适应攻击者，这是平滑类防御的标准压力测试。</li><li>推理开销未充分量化：多次带噪采样会增加延迟，对时延敏感的智能体系统而言，需更精确地报告计算开销以评估实际可部署性。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Incremental novelty: The core method is an adaptation of existing RESTA rather than a fundamentally new defense, raising questions about whether the gains are due to the VLM extension or the directional noise insight specifically.</li><li>Benchmark coverage vs. adaptive attacks: JailBreakV-28K covers diverse static attacks, but the paper does not evaluate against white-box adaptive adversaries who know the defense, which is the standard stress test for smoothing-based defenses.</li><li>Inference cost trade-off: Aggregating predictions over multiple noisy samples increases inference latency; the paper should quantify this overhead more precisely to assess deployment feasibility in latency-sensitive agentic systems.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.15259v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">SeqAR通过在单次查询中串联多个自动生成的角色来绕过LLM安全护栏，无需人工模板，对GPT-3.5和GPT-4的...</div>
+        <div class="paper-title-en">SeqAR: Jailbreak LLMs with Sequential Auto-Generated Characters</div>
+        <div class="paper-meta">
+          <span>Yan Yang, Zeguan Xiao, Xin Lu et al.</span>
+          <span class="badge badge-date">2024-07-02</span>
+          <span class="badge badge-venue">NAACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SeqAR通过在单次查询中串联多个自动生成的角色来绕过LLM安全护栏，无需人工模板，对GPT-3.5和GPT-4的攻击成功率分别达88%和60%。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SeqAR is an automated jailbreak framework that chains multiple AI-generated characters in a single query to bypass LLM safety guardrails, achieving 88% and 60% attack success rates on GPT-3.5 and GPT-4 without any human-crafted templates.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">SeqAR表明，仅凭开源工具即可自动化突破LLM安全对齐，无需专有模型或专家知识，大幅降低红队测试门槛，同时警示当前基于RLHF的对齐机制亟需加固。</div>
+            <div class="en">SeqAR demonstrates that LLM safety alignment is breakable with fully automated, open-source tooling — no proprietary models or expert prompt engineering required. This lowers the barrier for red-teaming, making it accessible to the broader safety research community. It also signals an urgent need for more robust guardrail mechanisms beyond current RLHF-based alignment.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">能否在无需专有LLM或人工设计模板的情况下自动生成并优化越狱提示？这对开源安全研究社区降低红队测试成本、提升可及性具有重要意义。</div>
+            <div class="en">Can jailbreak prompts be generated and optimized automatically without relying on proprietary LLMs or human-designed seed templates? This matters because existing red-teaming methods are costly, hard to scale, and often inaccessible to open-source safety researchers.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有越狱方法依赖昂贵的专有模型或人工设计的种子模板，可扩展性差；GCG等自动方法生成的对抗后缀不自然，易被困惑度检测防御识别。</div>
+            <div class="en">Prior jailbreak methods either depend on expensive proprietary models (e.g., GPT-4 as the attacker) or require manually curated seed templates crafted by human experts, both of which limit scalability and reproducibility. Automated approaches like GCG generate adversarial suffixes but produce unnatural text easily caught by perplexity-based defenses.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">SeqAR分三阶段运行：①用开源LLM生成多样化越狱角色；②根据攻击成功反馈迭代优化每个角色；③将多个优化角色串联为单次查询以叠加绕过效果。全流程仅依赖开源LLM，无需种子模板或专有API。</div>
+            <div class="en">SeqAR operates in three stages: (1) character generation, where an open-source LLM proposes diverse jailbreak persona descriptions; (2) character optimization, where each character is iteratively refined based on attack success feedback; and (3) sequential application, where multiple optimized characters are chained into a single query to compound their bypass effect. The entire pipeline runs in a cold-start setting — no seed templates, no proprietary APIs — using only open-source LLMs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">SeqAR对GPT-3.5-1106和GPT-4的攻击成功率分别为88%和60%，优于依赖人工模板或专有攻击模型的基线；串联多角色策略始终优于单角色，验证了核心设计的有效性。</div>
+            <div class="en">SeqAR achieves attack success rates of 88% on GPT-3.5-1106 and 60% on GPT-4, outperforming baselines that rely on human-crafted templates or proprietary attackers. The sequential character chaining strategy consistently outperforms using a single jailbreak character, validating the core design choice.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>评估范围有限：仅测试GPT-3.5和GPT-4，未涵盖LLaMA-3、Mistral等开源模型或Claude 3等护栏更强的系统，泛化性存疑。</li><li>攻击成功率的判定标准不明确——未说明采用人工评判、分类器还是关键词匹配，影响结果的可复现性与横向比较。</li><li>论文以红队安全工具为定位，却未提出或评估针对串联角色攻击的具体防御措施，攻击发现与实际缓解之间存在明显缺口。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Evaluation breadth is limited: results are reported only on GPT-3.5-1106 and GPT-4, leaving open how SeqAR performs against open-source targets (e.g., LLaMA-3, Mistral) or models with stronger guardrails like Claude 3.</li><li>The attack success rate metric is not clearly defined — it is unclear whether it uses human judgment, a classifier, or keyword matching, which affects reproducibility and comparability with prior work.</li><li>While SeqAR is framed as a red-teaming safety tool, the paper does not propose or evaluate concrete defenses against sequential character attacks, leaving a gap between attack discovery and practical mitigation.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2407.01902" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">VLFeedback构建了包含82K样本的AI标注多模态偏好数据集，通过DPO训练Silkie模型，无需人工标注即...</div>
+        <div class="paper-title-en">VLFeedback: A Large-Scale AI Feedback Dataset for Large Vision-Language Models Alignment</div>
+        <div class="paper-meta">
+          <span>Lei Li, Zhihui Xie, Mukai Li et al.</span>
+          <span class="badge badge-date">2024-10-12</span>
+          <span class="badge badge-venue">EMNLP</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>VLFeedback构建了包含82K样本的AI标注多模态偏好数据集，通过DPO训练Silkie模型，无需人工标注即可提升大视觉语言模型的对齐性能。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">VLFeedback introduces an 82K-sample AI-annotated multimodal preference dataset and trains Silkie via DPO, improving LVLM alignment in helpfulness, visual faithfulness, and safety without costly human labels.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">VLFeedback证明AI反馈可替代昂贵的人工标注，为多模态对齐研究降低门槛。数据集与Silkie模型的公开为社区提供了具体基准，其对幻觉和安全性的关注对实际部署具有重要意义。</div>
+            <div class="en">VLFeedback demonstrates that scalable AI feedback can replace expensive human annotation for aligning large vision-language models, lowering the barrier for alignment research. The release of this dataset and the Silkie model provides a concrete benchmark and baseline for the community. Its focus on hallucination reduction and safety resilience addresses critical deployment concerns for real-world multimodal AI systems.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在不依赖昂贵人工标注的前提下，为大型视觉语言模型高效生成高质量对齐数据？随着LVLM快速落地，帮助性、视觉准确性和安全性的同步保障至关重要。</div>
+            <div class="en">How can we efficiently generate high-quality alignment data for large vision-language models without relying on expensive and slow human annotation? This matters because LVLMs are rapidly being deployed in real-world settings where helpfulness, visual accuracy, and safety are all critical requirements.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LVLM对齐方法依赖人工标注偏好数据，成本高且难以扩展。面向纯文本的AI反馈方法因缺乏视觉基础而无法直接迁移至多模态场景。大规模自动化多模态反馈生成在此前尚未被系统研究。</div>
+            <div class="en">Existing LVLM alignment approaches rely heavily on human-annotated preference data, which is costly, slow to scale, and often limited in multimodal diversity. Prior AI feedback methods (e.g., RLHF variants for text-only LLMs) do not directly transfer to vision-language settings due to the added complexity of grounding language in visual inputs. Automated multimodal evaluation and feedback generation at scale had not been systematically explored before this work.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">VLFeedback收集82K多模态指令，用现成模型生成多个候选回复，再由GPT-4V等强模型自动评分并提供详细理由，全程无需人工介入。基于这些AI生成的偏好对，作者使用DPO对Silkie模型进行微调，指令类型覆盖帮助性、视觉忠实性与安全性三个维度。</div>
+            <div class="en">The authors construct VLFeedback by collecting 82K multi-modal instructions and using off-the-shelf vision-language models to generate multiple candidate responses, which are then scored and ranked by a capable AI annotator (e.g., GPT-4V) with comprehensive rationales—all without human involvement. They then fine-tune an LVLM called Silkie using Direct Preference Optimization (DPO) on these AI-generated preference pairs. The pipeline covers diverse instruction types to ensure broad coverage of helpfulness, visual faithfulness, and safety dimensions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">Silkie在感知任务上超越基础模型6.9%，在认知任务上提升9.5%；在MMHal-Bench上幻觉现象显著减少，同时对红队对抗攻击的抵御能力也有所增强，验证了AI反馈的可扩展性。</div>
+            <div class="en">Silkie outperforms its base model by 6.9% on perception tasks and 9.5% on cognition tasks. It also reduces hallucination as measured on MMHal-Bench and shows improved resilience against red-teaming adversarial prompts. These gains are achieved purely through AI-generated feedback, validating the scalability of the approach.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>标注质量瓶颈：整个流程依赖GPT-4V的标注质量，其系统性偏差将直接传导至偏好数据集并影响Silkie的行为。</li><li>泛化边界：评估局限于特定基准（如MMHal-Bench），Silkie在开放式真实场景或非英语任务上的泛化能力尚不明确。</li><li>安全与能力的权衡：论文未深入分析DPO对齐是否导致复杂推理或创造性任务性能下降，这是对齐研究中的已知矛盾。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Annotation quality bottleneck: The entire pipeline depends on the quality of the AI annotator (e.g., GPT-4V). Any systematic biases or errors in GPT-4V&#39;s scoring will propagate directly into the preference dataset and ultimately into Silkie&#39;s behavior.</li><li>Generalization scope: Results are reported on specific benchmarks (MMHal-Bench, perception/cognition tasks), but it is unclear how well Silkie generalizes to open-ended real-world multimodal tasks or languages beyond English.</li><li>Safety vs. capability trade-off: While Silkie shows improved safety resilience, the paper does not deeply analyze whether DPO-based alignment causes any regression in creative or complex reasoning capabilities—a known tension in alignment research.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2410.09421" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">AdaAnchor提出一种隐空间推理框架，通过迭代精化锚向量并自适应停止，无需手动调整推理步数。</div>
+        <div class="paper-title-en">Thinking in Latents: Adaptive Anchor Refinement for Implicit Reasoning in LLMs</div>
+        <div class="paper-meta">
+          <span>Disha Sheshanarayana, Rajat Subhra Pal, Manjira Sinha et al.</span>
+          <span class="badge badge-date">2026-03-16</span>
+          <span class="badge badge-venue">ICLR 2026</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>AdaAnchor提出一种隐空间推理框架，通过迭代精化锚向量并自适应停止，无需手动调整推理步数。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">AdaAnchor introduces a latent reasoning framework for LLMs that iteratively refines anchor vectors in hidden space and halts adaptively, eliminating the need to manually tune the number of reasoning steps.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">AdaAnchor解决了LLM部署中的实际瓶颈：冗长的思维链推理增加推理成本。通过将推理移入隐空间并自适应停止，该方法在不牺牲精度的前提下提升推理效率，对推理机制研究者和工程实践者均有参考价值。</div>
+            <div class="en">AdaAnchor tackles a practical bottleneck in LLM deployment: verbose chain-of-thought traces inflate inference cost and latency. By moving reasoning into latent space with adaptive halting, it offers a path to more efficient inference without sacrificing accuracy. This is relevant to both researchers studying reasoning mechanisms and practitioners optimizing LLM serving costs.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLM如何在不生成冗长中间token序列、且无需固定隐推理步数的情况下完成多步推理？冗长的CoT输出和固定步数超参数均会带来效率与泛化瓶颈。</div>
+            <div class="en">How can LLMs perform multi-step reasoning without generating lengthy intermediate token sequences, and without requiring a fixed, hand-tuned number of latent computation steps? This matters because both verbose CoT outputs and rigid latent-step hyperparameters create efficiency and generalization bottlenecks across diverse tasks and model sizes.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">标准CoT方法要求模型逐步输出推理过程，推理成本随之线性增加。已有隐推理方法（如Pause Tokens、Coconut）虽将计算移入隐状态，但依赖固定迭代步数，需针对不同数据集调参，迁移灵活性有限。</div>
+            <div class="en">Standard CoT prompting forces models to verbalize every reasoning step, increasing output length and inference cost proportionally. Prior latent reasoning methods (e.g., Pause Tokens, Coconut) shift computation to hidden states but rely on a fixed number of refinement iterations, requiring per-dataset hyperparameter tuning. This rigidity limits their practicality when transferring across tasks or model families.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">AdaAnchor在输入端附加一组可学习的隐锚向量，通过Transformer层迭代精化而不产生任何中间token。自适应停止机制监控锚向量跨迭代的稳定性，收敛后即停止，从而完全消除固定步数超参数。最终稳定的锚状态用于条件化答案生成，推理深度随输入自适应调整。</div>
+            <div class="en">AdaAnchor appends a set of learnable latent anchor vectors to the input, which are iteratively refined through the model&#39;s transformer layers without emitting any intermediate tokens. An adaptive halting mechanism tracks the stability of anchor representations across iterations—stopping early when anchors converge—removing the fixed-step hyperparameter entirely. The final stable anchor states are used to condition the model&#39;s answer generation. This design decouples reasoning depth from output length and makes the computation budget input-dependent.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">AdaAnchor在数学文字题基准上与固定步数隐推理基准相比具有竞争力，对简单问题自动分配更少迭代步数，对难题则分配更多。自适应停止相较固定预算方法降低了平均推理步数，节约推理成本，同时在精度上与CoT基准持平或更优。</div>
+            <div class="en">AdaAnchor demonstrates competitive accuracy on mathematical word problem benchmarks compared to fixed-step latent reasoning baselines, while dynamically allocating fewer iterations to simpler problems and more to harder ones. The adaptive halting reduces average inference steps versus always-on fixed-budget methods, yielding inference cost savings. Exact numbers are not fully visible from the abstract, but the method claims to match or exceed CoT baselines in accuracy with substantially shorter effective output length.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>锚向量的数量、初始化方式和附加位置等设计选择可能对性能影响显著，论文在不同模型规模下的指导尚不明确。</li><li>基于锚向量稳定性的自适应停止机制直觉合理，但若锚向量出现噪声或振荡，可能导致过早停止或无法收敛，在分布偏移下的鲁棒性尚未得到验证。</li><li>评测主要集中在数学推理基准上，AdaAnchor能否泛化至常识推理、代码生成、多跳问答等其他多步推理任务仍不明确，限制了结论的普适性。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Anchor vector design choices (number, initialization, and attachment position) are likely sensitive hyperparameters that could substantially affect performance, and the paper&#39;s guidance on these choices across different model scales is unclear.</li><li>The adaptive halting criterion based on anchor stability is intuitive but may be brittle: noisy or oscillating anchors could trigger premature stopping or prevent halting, and robustness under distribution shift has not been demonstrated.</li><li>Evaluation appears focused on mathematical reasoning benchmarks; it is unknown whether AdaAnchor generalizes to other multi-step reasoning domains (e.g., commonsense, coding, multi-hop QA), limiting conclusions about broad applicability.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.15051v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出一种物理信息微调框架，将PDE残差和边界条件嵌入训练目标，使预训练PDE基础模型能在数据稀缺场景下高效适配。</div>
+        <div class="paper-title-en">Physics-informed fine-tuning of foundation models for partial differential equations</div>
+        <div class="paper-meta">
+          <span>Vlad Medvedev, Leon Armbruster, Christopher Straub et al.</span>
+          <span class="badge badge-date">2026-03-16</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出一种物理信息微调框架，将PDE残差和边界条件嵌入训练目标，使预训练PDE基础模型能在数据稀缺场景下高效适配。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper introduces a physics-informed fine-tuning framework that incorporates PDE residuals and boundary conditions into the training objective to adapt pre-trained PDE foundation models under data-scarce conditions.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文为科学计算领域的PDE基础模型微调提供了系统性方法，有助于在标注数据昂贵的真实场景中降低部署门槛，对科学机器学习社区具有重要参考价值。</div>
+            <div class="en">As foundation models for PDEs gain traction in scientific computing, establishing principled fine-tuning practices is critical for real-world deployment where labeled simulation data is expensive. This work bridges the gap between physics-informed learning and the foundation model paradigm, offering a practical recipe for adapting general-purpose PDE surrogates to specific physical tasks. It opens a systematic path for the community to leverage pre-trained models without requiring large domain-specific datasets.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当任务数据稀缺且存在分布偏移时，PDE基础模型难以适配新物理系统。如何在微调中系统引入物理约束以提升精度和物理一致性，是核心研究问题。</div>
+            <div class="en">Pre-trained PDE foundation models struggle to adapt to new physical systems when task-specific data is limited and distribution shifts exist. How can physical constraints be systematically integrated into fine-tuning to improve accuracy and physical consistency without large labeled datasets? This is critical because collecting high-fidelity simulation data for every new downstream PDE task is often prohibitively expensive.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">标准微调方法在NLP中效果显著，但直接用于PDE模型时数据不足会导致物理违规。PINN将PDE残差嵌入损失函数，但主要用于从头训练，尚未系统应用于预训练基础模型的适配。</div>
+            <div class="en">Standard fine-tuning approaches transfer well in NLP but naively applying them to PDE models can violate physical laws when data is scarce. Physics-informed neural networks (PINNs) embed PDE residuals into training losses, but have primarily been used to train models from scratch rather than to adapt pre-trained foundation models. The combination of physics-informed objectives with large pre-trained PDE surrogates has not been systematically explored before this work.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">框架在标准监督损失基础上增加PDE残差项和边界条件惩罚项，物理约束部分无需额外标注数据。该方法与模型无关，可适用于任意预训练PDE基础模型，并通过超参数平衡数据驱动与物理约束两类损失。</div>
+            <div class="en">The authors propose a physics-informed fine-tuning framework that augments the standard supervised loss with PDE residual terms and boundary condition penalties evaluated at collocation points, requiring no additional labeled solution data for the physics terms. The framework is model-agnostic and can be applied on top of any pre-trained PDE foundation model. Fine-tuning is performed on a downstream task defined by a specific PDE family, allowing the model to specialize while preserving knowledge from pre-training. The balance between data-driven and physics-based loss components is controlled via weighting hyperparameters.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">与纯数据微调相比，物理信息微调在数据稀缺场景下显著提升了下游PDE任务精度，PDE残差与边界条件约束有效减少了物理违规，基准测试上取得明显误差降低。</div>
+            <div class="en">The physics-informed fine-tuning framework achieves improved accuracy on the downstream PDE task compared to standard data-only fine-tuning, particularly in data-scarce regimes where few labeled samples are available. The inclusion of PDE residuals and boundary condition constraints promotes physical consistency, reducing solution errors relative to purely supervised baselines. Specific numerical improvements are reported on the evaluated downstream benchmark, demonstrating the practical benefit of incorporating physics into the fine-tuning objective.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>数据损失与物理损失的权重平衡对结果敏感，跨不同PDE类型和噪声水平的消融研究仍需加强。</li><li>评估仅覆盖单一下游任务配置，在更多PDE类型（双曲、抛物、椭圆）和基础模型架构上的泛化性有待验证。</li><li>框架假设推理时可获得解析PDE残差，对未知方程的逆问题场景适用性有限，是重要的实际局限。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The weighting between data loss and physics loss (PDE residuals + BCs) is a sensitive hyperparameter; the paper&#39;s guidance on tuning this balance across different PDE families and noise levels would benefit from further ablation.</li><li>The evaluation is limited to a single downstream task configuration; broader benchmarking across diverse PDE types (e.g., hyperbolic, parabolic, elliptic) and foundation model architectures would strengthen generalizability claims.</li><li>The framework assumes that analytic PDE residuals are available at inference time, which may not hold for inverse problems or systems with unknown governing equations — an important limitation for real-world scientific applications.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.15431v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文构建了一个新型问答数据集，揭示大语言模型在处理粤语和巴伐利亚语本地维基百科独有知识时的失败，并表明检索增强上下...</div>
+        <div class="paper-title-en">Information Asymmetry across Language Varieties: A Case Study on Cantonese-Mandarin and Bavarian-German QA</div>
+        <div class="paper-meta">
+          <span>Renhao Pei, Siyao Peng, Verena Blaschke et al.</span>
+          <span class="badge badge-date">2026-03-16</span>
+          <span class="badge badge-venue">LREC 2026</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文构建了一个新型问答数据集，揭示大语言模型在处理粤语和巴伐利亚语本地维基百科独有知识时的失败，并表明检索增强上下文与翻译可显著缩小差距。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper constructs a novel QA dataset exposing LLMs&#39; failure to answer questions about knowledge exclusive to local-variety Wikipedia pages (Cantonese, Bavarian), and shows retrieval-augmented context and translation substantially close this gap.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文通过量化高资源标准语言与低资源地方变体之间的信息不对称，填补了大语言模型评估的关键盲区。手工标注的带主题和地理标注的数据集为社区提供了可复用基准，研究结论对多语言方言感知场景下的模型部署决策具有直接指导意义。</div>
+            <div class="en">This work fills a critical blind spot in LLM evaluation by quantifying how information asymmetry between high-resource standard languages and their low-resource local varieties degrades model reliability. The manually curated dataset with topical and geographic annotations provides a reusable benchmark for the community. Findings directly inform deployment decisions for LLMs in multilingual, dialect-aware settings.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">大语言模型在回答仅存在于地方变体维基百科（粤语、巴伐利亚语）而不存在于高资源标准变体（普通话、德语）的知识问题时表现如何？这一问题至关重要，因为大语言模型日益被用作知识来源，但其对少数及地区语言变体的覆盖情况仍不清楚。</div>
+            <div class="en">How well do LLMs answer questions about knowledge that exists only in local-variety Wikipedia editions (Cantonese, Bavarian) but is absent from their high-resource standard counterparts (Mandarin, German)? This matters because LLMs are increasingly used as knowledge sources, yet their coverage of minority and regional language varieties is poorly understood.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有多语言NLP基准主要评估标准语言变体，普遍忽视低资源方言和地区变体。已有方言NLP工作聚焦于语言学任务（如词性标注、机器翻译），而非信息不对称下的知识密集型问答。此前没有数据集系统地捕捉本地维基百科与标准语言版本之间的知识差距。</div>
+            <div class="en">Prior multilingual NLP benchmarks predominantly evaluate standard language variants, largely ignoring low-resource dialects and regional varieties. Existing work on dialect NLP focuses on linguistic tasks (e.g., POS tagging, machine translation) rather than knowledge-intensive QA under information asymmetry. No prior dataset systematically captures knowledge gaps between a local Wikipedia and its standard-language counterpart.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者从粤语和巴伐利亚语维基百科页面手工构建问答数据集，仅选取答案在对应普通话和德语维基百科中缺失的问题，并附主题类别和地理区域标注。他们在零样本和检索增强设置下评估多个大语言模型，并测试提供本地维基百科导言段落（或其翻译为标准变体）是否能恢复模型性能。</div>
+            <div class="en">The authors manually construct a QA dataset from Cantonese and Bavarian Wikipedia pages, selecting only questions whose answers are absent from the corresponding Mandarin and German Wikipedia articles. Each question is annotated with topic category and geographic region. They evaluate multiple LLMs in zero-shot and retrieval-augmented settings, and test whether providing the local Wikipedia lead section as context—or its translation into the standard variety—recovers performance.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">大语言模型在处理本地独有知识问题时表现持续较差，零样本设置下准确率接近随机水平。提供本地维基百科导言段落作为上下文可大幅提升性能，将其翻译为标准语言后可进一步提升效果。按主题和地理分层分析显示覆盖不均，文化和地区主题表现出最大的信息不对称。</div>
+            <div class="en">LLMs consistently fail on questions about locally exclusive knowledge, with near-random accuracy in zero-shot settings. Providing the local Wikipedia lead section as context substantially boosts performance, and translating that context into the standard language yields further gains. Stratified analysis by topic and geography reveals uneven coverage, with cultural and regional topics showing the largest asymmetries.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>以导言段落作为上下文是实用但有限的方案——导言可能遗漏本地维基百科深层的关键细节，提示全文档检索或摘要流水线值得进一步研究。</li><li>两个语言对（粤语—普通话、巴伐利亚语—德语）共享相似的结构动态（地区变体对国家标准语），但在文字重叠度和类型距离上存在差异，研究结论对更远亲属语对或无书写形式方言的推广能力有待验证。</li><li>人工构建保证了质量但限制了规模，未来研究可探索半自动方法，从更多维基百科语言版本中挖掘信息不对称问答对，以更广泛地覆盖全球地区变体。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The reliance on lead sections as context is a practical but limited solution—lead sections may omit key details present deeper in local Wikipedia articles, suggesting that full-document retrieval or summarization pipelines deserve further study.</li><li>The two language pairs (Cantonese–Mandarin, Bavarian–German) share a common structural dynamic (regional vs. national standard) but differ in script overlap and typological distance, raising the question of how well findings generalize to more distant variety pairs or fully unwritten dialects.</li><li>The manual construction process ensures quality but limits scale; future work could explore semi-automatic methods to mine information-asymmetric QA pairs across the many other Wikipedia language editions, enabling broader coverage of the world&#39;s regional varieties.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.14782v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ResDex将残差策略学习与混合专家框架结合，无需复杂课程设计即可实现跨多样物体的通用灵巧抓取。</div>
+        <div class="paper-title-en">Efficient Residual Learning with Mixture-of-Experts for Universal Dexterous Grasping</div>
+        <div class="paper-meta">
+          <span>Ziye Huang, Haoqi Yuan, Yuhui Fu et al.</span>
+          <span class="badge badge-date">2024-10-03</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ResDex将残差策略学习与混合专家框架结合，无需复杂课程设计即可实现跨多样物体的通用灵巧抓取。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ResDex combines residual policy learning with a mixture-of-experts (MoE) framework to achieve state-of-the-art universal dexterous grasping across diverse and unseen objects without complex curriculum design.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">ResDex解决了灵巧操作中的核心瓶颈——将抓取策略泛化至未见物体——对机器人在非结构化环境中的部署至关重要。其消除复杂课程设计的方式大幅降低了多任务强化学习的工程门槛，MoE残差学习范式有望推广至其他操作与运动任务。</div>
+            <div class="en">ResDex tackles a core bottleneck in robot dexterous manipulation — generalizing grasping policies to unseen objects — which is critical for deploying robots in unstructured real-world environments. By eliminating the need for complex curriculum design, it substantially lowers the engineering barrier for multi-task RL in robotics. The MoE-based residual learning paradigm could inspire broader adoption in other multi-task manipulation and locomotion domains.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何让机械手学习一个能泛化至大量未见物体的统一抓取策略，同时避免复杂的多任务训练调度？这是一个核心难题，因为物体几何形状差异巨大，兼顾训练效率与广泛泛化性至今仍具挑战。</div>
+            <div class="en">How can a robot hand learn a single grasping policy that generalizes to a wide variety of unseen objects without requiring complex multi-task training schedules? This is a fundamental challenge because object geometry varies enormously, and training policies that are both efficient and broadly generalizable has remained elusive.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有基于强化学习的方法在大规模物体数据集上训练，但需要精心设计的课程调度来应对多任务学习的复杂性，且对训练中未见物体的泛化能力有限。模仿学习方法则依赖昂贵的专家演示，同样难以处理分布外物体。</div>
+            <div class="en">Existing RL-based approaches train policies on large object datasets but require carefully engineered curriculum schedules to manage multi-task learning complexity. These methods also suffer from poor generalization to objects not seen during training. Imitation learning alternatives depend on costly expert demonstrations and similarly struggle with out-of-distribution objects.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ResDex引入不感知几何形状的基础策略，每个策略独立在单一物体上训练，简单高效且具有跨物体迁移性。MoE框架融合多个基础策略，并通过可学习权重为不同目标物体选择和混合合适的抓取风格。在此基础上，残差策略通过多任务强化学习输出修正动作，实现精细适应。该分解方式将多任务问题转化为对多样互补基础行为的小幅残差修正，从而规避了课程设计的需求。</div>
+            <div class="en">ResDex introduces geometry-unaware base policies, each trained independently on a single object, making them simple and fast to acquire while surprisingly transferable across object shapes. A mixture-of-experts framework combines multiple such base policies, with learned weights that select and blend different grasping styles appropriate for each target object. On top of this MoE base, a residual policy is trained via multi-task RL to output corrective actions, enabling fine-grained adaptation without relearning from scratch. This decomposition sidesteps the need for curriculum design by reducing the multi-task problem to learning small residual corrections over diverse but complementary base behaviors.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">ResDex在通用灵巧抓取基准测试中达到最先进水平，在多类物体的成功率上优于现有强化学习和模仿学习基线。该方法对训练中未见物体展现出强泛化能力，训练效率也显著提升，残差MoE阶段比端到端多任务方法收敛更快。</div>
+            <div class="en">ResDex achieves state-of-the-art performance on universal dexterous grasping benchmarks, outperforming prior RL and imitation learning baselines in success rate across diverse object categories. The method demonstrates strong generalization to unseen objects not present in training, a key advantage over curriculum-based multi-task RL approaches. Training efficiency is also notably improved, as base policies require only single-object training and the residual MoE stage converges faster than end-to-end multi-task alternatives.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>不感知几何的基础策略是反直觉但有效的设计——刻意忽略物体形状使单个策略足够简单从而广泛迁移，MoE权重在推理时补偿物体差异。</li><li>残差学习将&#39;选择何种抓取风格&#39;（MoE权重）与&#39;如何精细修正&#39;（残差策略）解耦，这一架构模式有望推广至其他多任务操作问题。</li><li>关键开放问题是可扩展性：随专家数量增加，MoE权重学习如何扩展，且当基础策略集合高度异质时残差策略是否仍然有效？</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Geometry-unaware base policies are a counterintuitive but powerful design choice — by deliberately ignoring object shape, individual policies remain simple enough to transfer broadly, with the MoE weights compensating for object-specific differences at inference time.</li><li>The residual learning formulation neatly decouples the &#39;what style of grasp&#39; decision (handled by MoE weights) from the &#39;how to refine the grasp&#39; decision (handled by the residual policy), which could be a reusable architectural pattern for other multi-task manipulation problems.</li><li>A key open question is scalability: as the number of base policies (experts) grows, how does the MoE weight-learning process scale, and does the residual policy remain effective when the base policy ensemble becomes highly heterogeneous?</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2410.02475" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">UnVALe利用LSTM时序先验与VAE空间先验，将无配对动作数据融入强化学习，以实现灵巧机器人操作。</div>
+        <div class="paper-title-en">Temporal-Spatial Representation Fusion for Dexterous Manipulation Learning with Unpaired Visual-Action Data</div>
+        <div class="paper-meta">
+          <span>Guwen Han, Zheng Sun, Qingtao Liu et al.</span>
+          <span class="badge badge-date">2025-10-19</span>
+          <span class="badge badge-venue">IROS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>UnVALe利用LSTM时序先验与VAE空间先验，将无配对动作数据融入强化学习，以实现灵巧机器人操作。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">UnVALe uses an LSTM-based temporal prior and a VAE-based spatial prior to incorporate unpaired action-only data into reinforcement learning for dexterous robotic manipulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">该研究解决了机器人学习中视觉与动作数据必须同步采集的瓶颈问题，拓宽了可用训练数据的来源，具有重要的实际价值。</div>
+            <div class="en">This work addresses a critical bottleneck in robot learning: the requirement for synchronized visual-action data, which is expensive and privacy-sensitive to collect. By enabling the use of unpaired action datasets and internet videos, UnVALe significantly broadens the pool of training data available for dexterous manipulation. This has practical implications for scaling robot learning without costly data collection pipelines.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何利用无配对的视觉-动作数据（如纯动作轨迹或网络视频）来提升灵巧操作学习，同时规避昂贵且涉及隐私的同步数据采集问题。</div>
+            <div class="en">The paper tackles how to leverage unpaired visual-action data — such as action-only recordings or internet videos without synchronized robot observations — to improve dexterous manipulation learning. Collecting paired visual-action robot data is expensive, privacy-invasive, and does not scale well, limiting the applicability of standard behavioral cloning methods.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">行为克隆方法需要同步的视觉-动作数据，难以扩展；现有基于RL的灵巧操作方法依赖精心设计的奖励函数，无法利用大量非结构化的纯动作数据。</div>
+            <div class="en">Supervised behavioral cloning methods require simultaneous visual and action data collection, making them inflexible and costly to scale. Prior RL-based approaches for dexterous manipulation typically rely on carefully engineered reward functions or privileged state information, rather than leveraging large reservoirs of unstructured action data. Methods that use video demonstrations still generally require visual-action correspondence, excluding action-only datasets.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">UnVALe构建双先验框架：LSTM网络通过重建动作轨迹学习时序先验，VAE网络通过重建单步动作学习空间先验；两者的重建误差作为辅助奖励引导RL策略输出符合人类灵巧操作规律的动作。</div>
+            <div class="en">UnVALe introduces a dual-prior framework: an LSTM-based network learns a temporal action prior by reconstructing input action trajectories, capturing sequential motion patterns; a VAE network learns a spatial action prior by reconstructing individual action samples, capturing the distribution of valid joint configurations. Novel reward signals are derived from the reconstruction errors of both networks, penalizing RL policy outputs that deviate from human-like dexterous motion patterns. These priors are trained offline on unpaired action data and then injected into the RL training loop as auxiliary rewards.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">UnVALe通过时序与空间重建损失设计新型奖励，在灵巧操作任务上优于不使用动作先验的基线方法，但摘要中未披露具体的成功率等量化指标。</div>
+            <div class="en">The paper proposes novel reward formulations based on LSTM and VAE reconstruction losses to guide RL policy learning toward human-like dexterous motion. Specific benchmark names and quantitative results (e.g., success rates or comparison numbers) are not fully disclosed in the provided abstract, though the framework is validated on dexterous manipulation tasks. The method reportedly outperforms baselines that do not leverage action priors, demonstrating the utility of temporal-spatial representation fusion.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>方法细节不完整：摘要被截断，未说明两种先验如何加权融合，影响可复现性。</li><li>泛化范围存疑：论文未明确验证是否覆盖多样化灵巧任务（如手内旋转），其广泛适用性有待证实。</li><li>纯动作数据的局限：对于动作高度依赖状态的任务，缺乏视觉上下文的先验可能导致策略迁移困难。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Incomplete methodology disclosure: The abstract is cut off before describing how the two priors are combined or weighted, leaving the integration mechanism unclear — a key detail for reproducibility.</li><li>Generalization scope: It is unclear whether UnVALe is validated on diverse dexterous tasks (e.g., pen spinning, in-hand reorientation) or limited to a narrow task set, which affects claims about broad applicability.</li><li>Action-only data assumption: The framework relies on action trajectories without visual context, which may struggle with tasks where valid actions are highly state-dependent, potentially limiting transfer to real-world scenarios with sensor noise.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/eb44b245550a0e77d9def1952f472ed30520c70b" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">该框架用每任务单次模型优化示范训练任务无关MDP，实现多接触移动操作中示范之外的恢复行为。</div>
+        <div class="paper-title-en">Guided Reinforcement Learning for Robust Multi-Contact Loco-Manipulation</div>
+        <div class="paper-meta">
+          <span>Jean-Pierre Sleiman, Mayank Mittal, Marco Hutter</span>
+          <span class="badge badge-date">2024-10-17</span>
+          <span class="badge badge-venue">CoRL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>该框架用每任务单次模型优化示范训练任务无关MDP，实现多接触移动操作中示范之外的恢复行为。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">A task-independent MDP framework uses a single model-based trajectory demonstration per task to train robust RL policies for multi-contact loco-manipulation, enabling recovery behaviors not seen in demonstrations.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">该方法融合模型规划与强化学习，降低逐任务MDP设计成本，单示范范式有助于腿式机器人实际部署，并涌现出重新抓取等安全关键恢复行为。</div>
+            <div class="en">This paper bridges model-based planning and RL for complex whole-body robot control, reducing the engineering burden of per-task MDP design. Its single-demonstration paradigm makes robust loco-manipulation more accessible for real-world deployment on legged robots. The emergent recovery behaviors (re-grasping, slip recovery) suggest the approach generalizes beyond the demonstration in safety-critical ways.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">复杂多接触任务（如弹簧门、重型洗碗机）需逐任务精细设计MDP，耗时且脆弱。本文探索能否用单次模型优化轨迹替代任务特定MDP设计，同时获得鲁棒泛化的RL策略。</div>
+            <div class="en">Deploying legged robots on complex multi-contact tasks (e.g., opening spring-loaded doors, manipulating heavy dishwashers) requires carefully engineered reward functions and MDP designs tailored per task, which is labor-intensive and brittle. This paper asks: can a single trajectory demonstration from a model-based optimizer replace task-specific MDP engineering while still yielding robust, generalizable RL policies?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有动作模仿RL方法需大量示范数据，对接触丰富场景中的动态扰动鲁棒性不足；模型基控制精度高但难以应对未建模不确定性；逐任务MDP设计难以跨任务扩展。</div>
+            <div class="en">Prior motion imitation RL works (e.g., AMP, adversarial or reference-state initialization methods) typically require large motion capture datasets or many demonstrations and still struggle with dynamic disturbances in contact-rich settings. Model-based controllers for loco-manipulation achieve accuracy but lack robustness to unmodeled dynamics and real-world uncertainty. Task-specific MDP designs scale poorly across diverse manipulation scenarios.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">提出任务无关MDP，以模型优化器生成的单条轨迹为条件训练策略；核心创新是自适应相位动力学，通过可变进度变量响应扰动而非刚性跟踪时间节点；结合域随机化在仿真训练后迁移至真实ANYmal四足机器人。</div>
+            <div class="en">The authors define a task-independent MDP that conditions policy learning on a single trajectory demonstration generated by a model-based trajectory optimizer. A key innovation is an adaptive phase dynamics formulation, which modulates the progress variable tracking the demonstration in response to dynamic uncertainties and contact disturbances, rather than rigidly following time-indexed waypoints. The policy is trained in simulation with domain randomization and transferred to a real ANYmal quadruped with an arm. This decouples task specification (handled by the optimizer) from robust execution (handled by RL), requiring minimal manual reward engineering.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">方法在所有多接触任务上成功率超越对比基线，涌现出重新抓取与滑动恢复等示范外行为，并成功完成真实ANYmal机器人的仿真到现实迁移。</div>
+            <div class="en">The proposed method achieves higher success rates than prior motion imitation RL baselines across all evaluated multi-contact tasks, including spring-loaded door navigation and heavy dishwasher manipulation. Learned policies exhibit emergent recovery behaviors absent from demonstrations, such as re-grasping objects mid-execution and recovering from slippages. Successful sim-to-real transfer is demonstrated on a physical ANYmal quadruped with a mounted manipulator arm.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>自适应相位动力学将示范进度与物理时间解耦，是鲁棒性提升的核心机制，比参考状态初始化更系统。</li><li>单示范假设高效但存在风险：若优化器生成的轨迹质量差，策略将继承其缺陷，论文未提供检测或纠正机制。</li><li>感知与任务决策被抽象掉，框架假设已知任务与物体状态，在真正非结构化环境中部署仍需集成视觉感知与高层规划。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Adaptive phase dynamics is the core enabler: by decoupling demonstration progress from wall-clock time, the policy can pause, retry, or accelerate contact transitions—this is more principled than reference-state initialization and likely the main source of robustness gains over baselines.</li><li>The single-demonstration assumption is powerful but also a limitation: if the optimizer produces a poor or dynamically infeasible trajectory, the RL policy inherits that suboptimality, and there is no mechanism described for detecting or correcting bad demonstrations.</li><li>Perception and decision-making are abstracted away: the framework assumes the robot already knows the task and object state, so integrating vision-based perception or task-level planning remains an open challenge before deployment in truly unstructured environments.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2410.13817" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-18</footer>
+</body>
+</html>
