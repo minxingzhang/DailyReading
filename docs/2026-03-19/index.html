@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-19 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-19  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">SWhisper是首个利用近超声波将不可听见的越狱提示注入语音驱动LLM的实用攻击框架，仅需消费级硬件即可实现。</div>
+        <div class="paper-title-en">Sirens&#39; Whisper: Inaudible Near-Ultrasonic Jailbreaks of Speech-Driven LLMs</div>
+        <div class="paper-meta">
+          <span>Zijian Ling, Pingyi Hu, Xiuyong Gao et al.</span>
+          <span class="badge badge-date">2026-03-14</span>
+          <span class="badge badge-venue">USENIX Security</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>SWhisper是首个利用近超声波将不可听见的越狱提示注入语音驱动LLM的实用攻击框架，仅需消费级硬件即可实现。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">SWhisper is the first framework to deliver inaudible near-ultrasonic jailbreak prompts to speech-driven LLMs using commodity hardware under black-box conditions.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着语音接口成为LLM的主要交互方式，SWhisper揭示了一类关键但尚未充分研究的攻击面，迫使学界重新审视语音驱动AI系统的安全假设。</div>
+            <div class="en">As voice interfaces become the primary access point for LLMs in consumer and enterprise devices, covert acoustic attacks represent a critical and underexplored threat surface. SWhisper demonstrates that arbitrary structured prompts can be injected without any audible signal, bypassing human detection entirely. This work forces the community to reconsider the security assumptions of speech-driven AI pipelines.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">攻击者能否仅凭消费级设备，在用户毫不知情的情况下向语音驱动LLM注入恶意提示？此问题对智能音箱、手机、车载等开放声学环境尤为关键。</div>
+            <div class="en">Can an attacker silently inject malicious prompts into a speech-driven LLM without the user&#39;s awareness, using only off-the-shelf hardware? This matters because voice-enabled LLM assistants are now embedded in phones, smart speakers, and vehicles, where acoustic channels are physically open and unmonitored.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">DolphinAttack等前期工作针对传统ASR系统，仅支持短固定指令，且通常需要白盒访问或近场条件，无法处理LLM越狱所需的长结构化提示，也未解决跨设备麦克风非线性差异问题。</div>
+            <div class="en">Prior acoustic adversarial attacks (e.g., DolphinAttack, ultrasonic injection) targeted traditional ASR systems with short, fixed commands and required white-box model access or near-field proximity. These methods fail to handle long, structured prompts needed for LLM jailbreaking and do not account for the nonlinear microphone response variability across heterogeneous devices. No prior work addressed covert prompt injection specifically against the speech-to-LLM pipeline under black-box conditions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">SWhisper将任意音频编码为近超声波，利用麦克风非线性解调还原为可听基带信号。轻量级信道逆补偿模块建模跨设备非线性特性，同时设计了兼顾清晰度、简洁性和迁移性的语音感知越狱提示生成方法。</div>
+            <div class="en">SWhisper encodes arbitrary target audio (including long, structured jailbreak prompts) into near-ultrasonic carrier waveforms that exploit microphone nonlinearity to demodulate back into audible baseband signals upon reception. A lightweight channel-inversion pre-compensation module models nonlinear acoustic channel characteristics across diverse devices and environments without requiring white-box access. On top of this covert channel, a voice-aware jailbreak generation method crafts prompts optimized for intelligibility, brevity, and cross-model transferability. The entire pipeline operates with commodity speakers and microphones, making attacks practical in real-world deployments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">SWhisper在多种消费级设备上实现了长结构化提示的无声传输，语音感知越狱方法在黑盒条件下对不同语音驱动LLM后端均展现出较高的攻击成功率和迁移性。</div>
+            <div class="en">SWhisper successfully delivers long and structured prompts inaudibly across multiple commodity device pairs in realistic over-the-air settings. The voice-aware jailbreak generation achieves high attack success rates with transferability across different speech-driven LLM backends under black-box conditions. Specific numeric results were not disclosed in the abstract, but the framework is validated on real hardware with practical transmission distances.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>攻击范围：超声波传播距离有限，实际攻击场景受物理距离约束，需进一步量化有效攻击距离以评估真实威胁规模。</li><li>防御缺口：目前缺乏针对近超声波注入的硬件或模型层防御，带通滤波或语音嵌入异常检测等潜在手段对SWhisper的有效性尚待验证。</li><li>伦理与披露：发布实用越狱投递框架涉及负责任披露问题，作者应说明是否已在发表前通知相关设备厂商和LLM服务提供商。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Threat scope and scalability: The attack requires physical proximity (ultrasound propagation is limited in range), which constrains real-world deployment to scenarios like crowded public spaces or targeted indoor environments — future work should quantify effective attack distances.</li><li>Defense gap: No robust countermeasure currently exists for near-ultrasonic injection at the hardware or model level; possible mitigations include bandpass filtering on microphone input or anomaly detection on speech embeddings, but their effectiveness against SWhisper remains untested.</li><li>Ethical and disclosure considerations: Releasing a practical jailbreak delivery framework raises responsible disclosure questions — the authors should clarify whether affected device manufacturers and LLM providers were notified prior to publication.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.13847v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">EchoSafe提出无需训练的推理时自反思记忆框架，结合新基准MM-SafetyBench++，提升多模态大语言模...</div>
+        <div class="paper-title-en">Evolving Contextual Safety in Multi-Modal Large Language Models via Inference-Time Self-Reflective Memory</div>
+        <div class="paper-meta">
+          <span>Ce Zhang, Jinxi He, Junyi He et al.</span>
+          <span class="badge badge-date">2026-03-16</span>
+          <span class="badge badge-venue">CVPR 2026</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>EchoSafe提出无需训练的推理时自反思记忆框架，结合新基准MM-SafetyBench++，提升多模态大语言模型的上下文安全能力。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">EchoSafe introduces a training-free, inference-time self-reflective memory framework to improve contextual safety in MLLMs, paired with a new benchmark MM-SafetyBench++ that tests subtle intent-based safety distinctions.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">现有MLLM安全研究多聚焦于显式有害输入的防御，忽视了上下文细微差异带来的安全风险。本文提供了可直接部署的无训练解决方案及严格评估基准，对从业者和研究者均有重要参考价值。</div>
+            <div class="en">Contextual safety is a critical yet underexplored gap in MLLM safety research — most defenses block obviously harmful inputs but fail when harmful intent is subtly embedded in benign-looking context. This work provides both a rigorous evaluation benchmark and a deployable, training-free solution, making it directly usable by practitioners without model retraining. It sets a new standard for fine-grained safety evaluation in multimodal systems.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">多模态大语言模型能否区分外观相似但安全意图截然不同的图文输入？现实中的恶意请求常伪装于看似无害的上下文中，绕过依赖表面模式的防御机制。</div>
+            <div class="en">Can MLLMs reliably distinguish between visually and semantically similar image-text inputs that differ only in safety intent? This matters because real-world misuse often disguises harmful requests within seemingly benign contexts, bypassing defenses that rely on surface-level pattern detection.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有研究主要通过对抗训练或输入过滤防御越狱攻击，难以处理仅凭细微语义差异区分安全意图的上下文场景，且通常需要代价高昂的模型微调。</div>
+            <div class="en">Prior MLLM safety work focuses largely on jailbreak defenses — detecting and refusing overtly unsafe inputs via adversarial training or input filtering. These methods are ill-equipped for contextual safety, where two nearly identical inputs diverge in intent based on subtle semantic cues. They also typically require expensive model fine-tuning or retraining to deploy.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">MM-SafetyBench++通过最小化修改构建安全/不安全配对样本，仅翻转用户意图而保留上下文表面形式，实现对比式安全评估。EchoSafe在推理阶段引入自反思记忆机制，检索历史安全相关交互并推理，无需更新模型参数即可动态调整安全行为，可插件式应用于现有MLLM。</div>
+            <div class="en">The authors build MM-SafetyBench++, a benchmark where each unsafe image-text pair is paired with a minimally modified safe counterpart that flips user intent while preserving contextual surface form — enabling controlled, contrastive safety evaluation. They then propose EchoSafe, a training-free inference-time framework that leverages self-reflective memory: the model retrieves and reasons over past safety-relevant interactions to guide its response on new, contextually ambiguous inputs. This memory-augmented reflection allows the model to dynamically adapt safety behavior without any parameter updates. The approach is modular and can be applied on top of existing MLLMs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">EchoSafe在MM-SafetyBench++上相比基线MLLM显著提升了上下文安全判别能力，有效减少对安全输入的误拒和对不安全输入的漏拒，且不损害模型通用任务性能。</div>
+            <div class="en">EchoSafe demonstrates improved contextual safety discrimination on MM-SafetyBench++ compared to baseline MLLMs, correctly handling subtle intent differences that standard models conflate. Specific numerical results are not fully available from the abstract, but the framework targets reducing both over-refusal of safe inputs and under-refusal of unsafe ones. The training-free design preserves general task performance while improving safety calibration.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>基准构建依赖&#39;最小化修改&#39;翻转意图，但如何大规模确保修改后样本的标注质量和人工一致性仍需进一步验证。</li><li>EchoSafe的记忆机制依赖历史交互质量；在冷启动或新型攻击场景下，记忆库覆盖不足可能导致性能明显下降。</li><li>无训练方案以部署便利换取适应深度，在对抗性红队测试等更严格评估中，其鲁棒性是否能媲美安全微调模型仍不明确。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Benchmark construction relies on &#39;minimal modifications&#39; to flip intent — but validating that human judges agree on the safety label of modified pairs at scale is non-trivial and the paper&#39;s methodology for ensuring label quality needs scrutiny.</li><li>EchoSafe&#39;s self-reflective memory depends on the quality and coverage of past interactions stored; in cold-start scenarios or novel attack types not seen in memory, performance may degrade significantly.</li><li>The training-free approach trades off adaptation depth for deployment convenience — it remains unclear whether inference-time reflection can match the robustness of safety-fine-tuned models on adversarial red-teaming benchmarks beyond MM-SafetyBench++.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.15800v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文揭示LLM红队测试扫描器因评估器不稳定而导致攻击成功率（ASR）测量不可靠，并提出一个两阶段验证框架加以解决。</div>
+        <div class="paper-title-en">When Scanners Lie: Evaluator Instability in LLM Red-Teaming</div>
+        <div class="paper-meta">
+          <span>Lidor Erez, Omer Hofman, Tamir Nizri et al.</span>
+          <span class="badge badge-date">2026-03-15</span>
+          <span class="badge badge-venue">ACL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文揭示LLM红队测试扫描器因评估器不稳定而导致攻击成功率（ASR）测量不可靠，并提出一个两阶段验证框架加以解决。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper exposes that LLM red-teaming scanners produce unreliable Attack Success Rate (ASR) measurements due to evaluator instability, and proposes a two-phase, verification-based framework to quantify and mitigate this problem.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示LLM安全基准测试的根本性缺陷：评估器本身是测量差异的主要来源。所提框架为构建更可信的红队测试流程提供了实用且标注高效的解决方案。</div>
+            <div class="en">This paper reveals a foundational flaw in how LLM security is benchmarked: the evaluator, not just the attack or model, is a major source of measurement variance. Practitioners relying on ASR scores from tools like PyRIT or Garak may be drawing false conclusions about model safety. The proposed framework offers a practical, annotation-efficient path to more trustworthy red-teaming pipelines.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">在攻击和模型输出不变的情况下，仅替换评估器组件会对ASR结果产生多大影响？随着安全决策越来越依赖自动化红队工具的ASR指标，这一问题至关重要。</div>
+            <div class="en">Can automated LLM vulnerability scanners be trusted to produce consistent Attack Success Rate measurements, and how much does swapping the evaluator component—while holding attacks and model outputs fixed—change reported results? This matters because security decisions and model safety certifications increasingly depend on ASR metrics from automated red-teaming tools.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有扫描器（如PyRIT、Garak）将评估器视为可信的固定组件，缺乏交叉验证。针对LLM评估可靠性的研究多集中于质量基准，而非安全专用的ASR指标，导致单一评估器系统性偏差问题被忽视。</div>
+            <div class="en">Existing automated red-teaming scanners (e.g., PyRIT, Garak) focus on generating diverse adversarial attacks but treat the evaluator as a fixed, trustworthy component. Prior work on LLM evaluation reliability has largely focused on helpfulness or quality benchmarks, not security-specific ASR metrics. The reliance on a single evaluator without cross-validation leaves ASR scores vulnerable to systematic bias and inconsistency across tools.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">框架分两阶段：第一阶段对同一攻击-输出对运行多个评估器，量化各攻击类别的评估器间分歧；第二阶段引入独立验证模型对评估决策进行验证，无需大量人工标注即可评估可靠性，并输出每个攻击类别的可靠性评分。</div>
+            <div class="en">The authors introduce a two-phase reliability-aware evaluation framework. In Phase 1, multiple evaluators are run on the same attack-output pairs to quantify inter-evaluator disagreement across attack categories, flagging categories where ASR reliability is low. In Phase 2, a verification-based method uses an independent verifier model to validate individual evaluator decisions, enabling reliability assessment without extensive human annotation. The framework is applied to widely used open-source scanners, producing per-category reliability scores alongside ASR.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">实验表明，仅替换评估器即可显著改变ASR数值，不同攻击类别的分歧率差异显著。验证阶段无需大量人工标注即可识别低可靠性类别，证明框架具备实用的可扩展性。</div>
+            <div class="en">Experiments on widely used open-source scanners show that simply swapping the evaluator while keeping attacks and model outputs identical can significantly alter reported ASR values, with disagreement rates varying substantially across attack categories. The verification-based phase successfully identifies low-reliability attack categories without requiring exhaustive human labeling, demonstrating the framework&#39;s practical scalability. Specific numerical deltas in ASR across evaluators underscore that current scanner outputs cannot be taken at face value.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>评</li><li>估</li><li>器</li><li>选</li><li>择</li><li>是</li><li>隐</li><li>藏</li><li>超</li><li>参</li><li>数</li><li>：</li><li>不</li><li>同</li><li>工</li><li>具</li><li>间</li><li>A</li><li>S</li><li>R</li><li>不</li><li>可</li><li>直</li><li>接</li><li>比</li><li>较</li><li>，</li><li>亟</li><li>需</li><li>评</li><li>估</li><li>器</li><li>标</li><li>准</li><li>化</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>验</li><li>证</li><li>模</li><li>型</li><li>本</li><li>身</li><li>可</li><li>能</li><li>存</li><li>在</li><li>偏</li><li>差</li><li>，</li><li>引</li><li>发</li><li>&#34;</li><li>谁</li><li>来</li><li>评</li><li>估</li><li>验</li><li>证</li><li>者</li><li>&#34;</li><li>的</li><li>循</li><li>环</li><li>问</li><li>题</li><li>，</li><li>需</li><li>进</li><li>一</li><li>步</li><li>研</li><li>究</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>框</li><li>架</li><li>能</li><li>识</li><li>别</li><li>低</li><li>可</li><li>靠</li><li>性</li><li>攻</li><li>击</li><li>类</li><li>别</li><li>，</li><li>但</li><li>未</li><li>解</li><li>决</li><li>根</li><li>本</li><li>问</li><li>题</li><li>—</li><li>—</li><li>如</li><li>何</li><li>针</li><li>对</li><li>多</li><li>个</li><li>L</li><li>L</li><li>M</li><li>评</li><li>判</li><li>者</li><li>持</li><li>续</li><li>分</li><li>歧</li><li>的</li><li>类</li><li>别</li><li>重</li><li>新</li><li>设</li><li>计</li><li>评</li><li>估</li><li>器</li><li>或</li><li>攻</li><li>击</li><li>提</li><li>示</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Evaluator choice is a hidden hyperparameter: since ASR is highly sensitive to which evaluator is used, published red-teaming benchmarks are not directly comparable across tools or studies without evaluator standardization.</li><li>The verification-based approach reduces reliance on human annotation, but introduces a new dependency—the verifier model itself may carry its own biases, raising the question of who evaluates the evaluator&#39;s evaluator.</li><li>The framework flags unreliable attack categories but does not resolve them; future work is needed on how to redesign evaluators or attack prompts for categories where even multiple LLM judges persistently disagree.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.14633v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">0 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      <p style="color:var(--muted);padding:1rem 0;">今日暂无新论文。</p>
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">LEAFE通过将环境反馈总结为可复用经验并回溯探索替代路径，克服了基于RL的智能体训练中的&#34;分布收窄&#34;问题。</div>
+        <div class="paper-title-en">Internalizing Agency from Reflective Experience</div>
+        <div class="paper-meta">
+          <span>Rui Ge, Yichao Fu, Yuyang Qian et al.</span>
+          <span class="badge badge-date">2026-03-17</span>
+          <span class="badge badge-venue">ICML</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>LEAFE通过将环境反馈总结为可复用经验并回溯探索替代路径，克服了基于RL的智能体训练中的&#34;分布收窄&#34;问题。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">LEAFE teaches LLM agents to recover from mistakes by summarizing environment feedback into reusable experience and backtracking to explore alternative decision paths, overcoming the &#34;distribution sharpening&#34; failure mode of RL-based agent training.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">LEAFE揭示了现有LLM智能体训练的结构性缺陷——仅优化最终结果而浪费丰富的中间反馈。该框架为提升智能体在新问题上的泛化能力提供了切实可行的方向，对自动化编程、规划等应用场景具有直接价值。</div>
+            <div class="en">LEAFE addresses a structural flaw in how LLM agents are trained for long-horizon tasks — most existing methods optimize only for final success, wasting the rich intermediate feedback environments already provide. By reframing agent training around reflective recovery rather than pure outcome maximization, this work offers a practical path to agents that generalize better across novel problems. Practitioners building autonomous coding, planning, or tool-use agents stand to benefit directly from this framework.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">LLM智能体如何在长时序交互中有效利用丰富的环境反馈，而非仅依赖二元成功信号？现实任务中大量中间反馈被现有训练流程忽视，严重限制了智能体从错误中恢复和学习的能力。</div>
+            <div class="en">How can LLM agents effectively learn from rich environment feedback during long-horizon interactions, rather than merely optimizing for binary success signals? This matters because real-world agentic tasks (e.g., multi-step coding, web navigation) produce detailed intermediate feedback that current training pipelines largely ignore, capping the agent&#39;s ability to recover from and learn from mistakes.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">RL类方法（如GRPO）仅优化最终成功奖励，忽略中间环境信号，导致策略收窄于已成功的行为模式。监督微调同样无法教会智能体从训练数据之外的错误中恢复，二者均难以提升Pass@k指标。</div>
+            <div class="en">Outcome-driven post-training methods like RL with verifiable rewards (e.g., GRPO, PPO on agentic tasks) optimize primarily for final task success, leaving intermediate environment signals unused. This leads to &#34;distribution sharpening&#34;: the policy narrows around already-successful trajectories, improving Pass@1 on seen patterns but failing to expand Pass@k or handle novel failure modes. Supervised fine-tuning on successful traces has a similar limitation — it cannot teach recovery from errors not present in training data.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">LEAFE包含三阶段反思探索循环：①在失败节点将环境反馈总结为结构化可操作经验；②利用该经验回溯至早期决策节点并探索替代分支；③将含失败与恢复的完整轨迹用于微调策略。该框架将环境反馈转化为内化的恢复能力，而非简单丢弃。</div>
+            <div class="en">LEAFE introduces a three-stage reflective exploration loop: (1) the agent summarizes environment feedback at failure points into structured, actionable experience; (2) it backtracks to earlier decision nodes and explores alternative action branches using this experience; (3) the resulting reflective trajectories — including both the failed attempts and successful recoveries — are used as training data to fine-tune the agent. This converts environment feedback into internalized recovery agency rather than discarding it. The key contribution is closing the loop between exploration-time reflection and policy update, enabling the agent to learn how to recover, not just what succeeded.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">LEAFE在长时序智能体基准上的Pass@k指标上持续优于RL基线，尤其在分布外及新型失败场景中表现更优，证明了反思经验对扩展问题解决能力的有效性。</div>
+            <div class="en">LEAFE demonstrates consistent improvements in Pass@k metrics on long-horizon agentic benchmarks, indicating that the trained agent can solve a broader set of problems rather than just reliably reproducing a narrow set of known solutions. The framework shows gains over RL baselines particularly in out-of-distribution or novel failure scenarios where recovery ability is critical. Specific numerical results were not fully visible in the abstract but the score rationale confirms meaningful empirical improvements.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>分</li><li>布</li><li>收</li><li>窄</li><li>是</li><li>被</li><li>低</li><li>估</li><li>的</li><li>关</li><li>键</li><li>问</li><li>题</li><li>：</li><li>标</li><li>准</li><li>R</li><li>L</li><li>可</li><li>能</li><li>提</li><li>升</li><li>P</li><li>a</li><li>s</li><li>s</li><li>@</li><li>1</li><li>但</li><li>降</li><li>低</li><li>策</li><li>略</li><li>多</li><li>样</li><li>性</li><li>，</li><li>L</li><li>E</li><li>A</li><li>F</li><li>E</li><li>的</li><li>框</li><li>架</li><li>使</li><li>这</li><li>一</li><li>权</li><li>衡</li><li>变</li><li>得</li><li>可</li><li>量</li><li>化</li><li>和</li><li>可</li><li>干</li><li>预</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>回</li><li>溯</li><li>机</li><li>制</li><li>依</li><li>赖</li><li>环</li><li>境</li><li>状</li><li>态</li><li>可</li><li>重</li><li>置</li><li>的</li><li>假</li><li>设</li><li>，</li><li>在</li><li>网</li><li>页</li><li>浏</li><li>览</li><li>或</li><li>物</li><li>理</li><li>系</li><li>统</li><li>等</li><li>不</li><li>可</li><li>重</li><li>置</li><li>的</li><li>真</li><li>实</li><li>环</li><li>境</li><li>中</li><li>适</li><li>用</li><li>性</li><li>存</li><li>疑</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>自</li><li>反</li><li>思</li><li>生</li><li>成</li><li>的</li><li>&#34;</li><li>可</li><li>操</li><li>作</li><li>经</li><li>验</li><li>&#34;</li><li>质</li><li>量</li><li>是</li><li>核</li><li>心</li><li>瓶</li><li>颈</li><li>—</li><li>—</li><li>若</li><li>L</li><li>L</li><li>M</li><li>反</li><li>思</li><li>存</li><li>在</li><li>幻</li><li>觉</li><li>或</li><li>不</li><li>精</li><li>确</li><li>，</li><li>回</li><li>溯</li><li>探</li><li>索</li><li>可</li><li>能</li><li>强</li><li>化</li><li>错</li><li>误</li><li>策</li><li>略</li><li>，</li><li>训</li><li>练</li><li>循</li><li>环</li><li>中</li><li>的</li><li>误</li><li>差</li><li>传</li><li>播</li><li>值</li><li>得</li><li>深</li><li>入</li><li>研</li><li>究</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Distribution sharpening is a precise and underappreciated failure mode: standard RL training may improve Pass@1 while actually reducing diversity and robustness — LEAFE&#39;s framing makes this tradeoff explicit and measurable.</li><li>The backtracking mechanism assumes the environment supports state restoration or that decision trees can be reconstructed post-hoc; it is unclear how well this generalizes to non-resettable real-world environments like web browsers or physical systems.</li><li>The quality of summarized &#39;actionable experience&#39; is likely a key bottleneck — if the LLM&#39;s self-reflection is hallucinated or imprecise, the backtracked explorations may reinforce wrong strategies, raising questions about error propagation in the training loop.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.16843v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文揭示了DPO的根本性局限，并证明经过精调的PPO在多种LLM对齐基准上持续优于DPO。</div>
+        <div class="paper-title-en">Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study</div>
+        <div class="paper-meta">
+          <span>Shusheng Xu, Wei Fu, Jiaxuan Gao et al.</span>
+          <span class="badge badge-date">2024-04-16</span>
+          <span class="badge badge-venue">ICML</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文揭示了DPO的根本性局限，并证明经过精调的PPO在多种LLM对齐基准上持续优于DPO。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper reveals fundamental limitations of DPO and shows that a well-tuned PPO consistently outperforms DPO across diverse LLM alignment benchmarks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文挑战了学界&#34;DPO优于PPO&#34;的主流假设，为奖励模型训练与PPO调优提供了具体可行的实践指南，有助于弥合学术基准与ChatGPT、Claude等生产系统之间的差距。</div>
+            <div class="en">This paper directly challenges the prevailing academic assumption that DPO supersedes PPO, providing rigorous theoretical and empirical evidence that reward-based RL methods remain essential for top-tier alignment. It offers practitioners a concrete, actionable guide to the key factors that make PPO succeed, closing the gap between academic benchmarks and production systems like ChatGPT and Claude.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">核心问题是：DPO是否真的优于PPO？PPO在学术基准上的弱表现，究竟源于算法本身的缺陷，还是实现层面的不足？这一分歧对学界与工业界的LLM对齐实践具有重要影响。</div>
+            <div class="en">The central question is whether DPO is genuinely superior to PPO for aligning LLMs with human preferences, or whether PPO&#39;s poor academic benchmark performance stems from suboptimal implementation rather than algorithmic inferiority. This matters because industry leaders rely on PPO-style RLHF while academia increasingly favors DPO, creating a confusing and consequential divergence.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">DPO通过闭式目标直接优化偏好，无需显式奖励模型，在学术场景中更简单稳定。但此前的比较往往使用调优不足的PPO基线，难以判断DPO的优势是否源于算法本身。PPO涉及奖励模型、价值函数等多个训练阶段，公平比较本身就具有相当难度。</div>
+            <div class="en">DPO eliminates the need for an explicit reward model by directly optimizing preferences via a closed-form policy objective, making it simpler and more stable than PPO in academic settings. However, prior comparisons often used poorly tuned PPO baselines, making it unclear whether DPO&#39;s benchmark advantages reflect genuine algorithmic superiority or implementation gaps. PPO&#39;s complexity — involving reward models, value functions, and multiple training stages — has made rigorous fair comparison difficult.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">作者从理论层面指出DPO的根本局限（如对分布外数据的敏感性），系统研究了影响PPO性能的关键因素（奖励模型质量、KL惩罚、价值函数初始化等），并在对话、摘要、指令跟随等多类任务上进行了公平、受控的对比实验。</div>
+            <div class="en">The authors conduct a theoretical analysis identifying fundamental limitations of DPO, particularly its sensitivity to out-of-distribution data and its inability to handle distributional shift during training. They then systematically investigate PPO&#39;s key implementation factors — including reward model quality, KL penalty tuning, value function initialization, and training data composition — to identify what drives strong PPO performance. Finally, they benchmark both methods across a diverse suite of RLHF tasks, including dialogue, summarization, and instruction following, under controlled and fair experimental conditions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在公平调优条件下，PPO在所有基准任务上均优于DPO。奖励模型质量与KL正则化强度是决定PPO成败的最关键因素。当偏好数据分布与训练时策略的输出分布出现偏差时，DPO性能显著下降。</div>
+            <div class="en">Under fair and well-tuned conditions, PPO consistently outperforms DPO across all evaluated benchmarks, including instruction following and summarization tasks. The study identifies reward model quality and KL regularization strength as the two most critical factors determining PPO&#39;s success. DPO is shown to degrade significantly when the preference data distribution diverges from the policy&#39;s own output distribution during training.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>DPO在分布外泛化上的理论局限，对其在开放部署场景中的可靠性提出了质疑，因为实际推理时策略输出往往远离训练偏好数据。</li><li>许多有利于DPO的学术基准测试可能对比的是调优不足的PPO，本文呼吁对既有对齐研究结论进行重新审视。</li><li>尽管PPO在充分调优后表现更优，但其多阶段流程（奖励模型训练、价值网络等）对算力有限的研究者仍构成较高的实践门槛。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>DPO&#39;s theoretical limitation around out-of-distribution generalization raises questions about its reliability in open-ended deployment, where the policy will inevitably generate responses far from the training preference data.</li><li>The paper&#39;s findings imply that much of the academic literature benchmarking DPO favorably may be comparing against under-tuned PPO baselines, calling for a re-evaluation of prior alignment results.</li><li>While PPO is shown to be superior when properly implemented, its additional complexity (reward model training, value network, multi-stage pipeline) still poses a significant practical barrier for researchers without large compute budgets.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2404.10719" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">BFPO将安全性与有用性的联合RLHF目标重参数化为单一监督学习损失，在两个维度上均优于现有对齐方法。</div>
+        <div class="paper-title-en">Bi-Factorial Preference Optimization: Balancing Safety-Helpfulness in Language Models</div>
+        <div class="paper-meta">
+          <span>Wenxuan Zhang, Philip H. S. Torr, Mohamed Elhoseiny et al.</span>
+          <span class="badge badge-date">2024-08-27</span>
+          <span class="badge badge-venue">ICLR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>BFPO将安全性与有用性的联合RLHF目标重参数化为单一监督学习损失，在两个维度上均优于现有对齐方法。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">BFPO reformulates the joint RLHF safety-helpfulness objective into a single supervised learning loss using a global preference labeling function, outperforming existing RLHF-based alignment methods on both dimensions.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">BFPO为同时对齐安全性与有用性提供了高效的监督学习替代方案，降低了部署成本。其配套基准测试涵盖判别与生成任务，为对齐研究社区提供了可复用的评估工具。</div>
+            <div class="en">BFPO offers a practical, compute-efficient alternative to RLHF for aligning LLMs on both safety and helpfulness simultaneously, removing the need for separate reward models and complex RL training loops. Its supervised learning formulation lowers the barrier for practitioners to deploy safer, more helpful models. The accompanying benchmark covering both discriminative and generative tasks also provides a reusable evaluation resource for the alignment community.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">如何在不依赖高成本RLHF的情况下，同时优化LLM的有用性与安全性？这两个目标之间的冲突是对齐领域的核心挑战，单独优化任一目标均会损害另一方。</div>
+            <div class="en">How can LLMs be fine-tuned to simultaneously maximize helpfulness and safety without the high cost and instability of RLHF? The tension between these two objectives is a central challenge: optimizing for helpfulness alone can erode safety guardrails, while over-constraining for safety degrades utility.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">标准RLHF需分别训练安全与有用性奖励模型，再通过PPO联合优化，计算代价高且易出现奖励欺骗。DPO等方法简化了流程，但通常只针对单一偏好维度，无法显式平衡安全与有用性的冲突。</div>
+            <div class="en">Standard RLHF trains separate reward models for helpfulness and safety, then combines them via PPO, which is computationally expensive and sensitive to reward hacking. Methods like DPO simplify RLHF into supervised learning but typically optimize a single preference dimension, failing to explicitly balance safety-helpfulness trade-offs. Existing safety fine-tuning approaches (e.g., RLHF with safety reward shaping) are costly and often degrade model helpfulness as a side effect.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">BFPO通过设计全局偏好标注函数，将安全性与有用性联合打分并排序，将双目标RLHF重参数化为单一监督损失。该方法无需显式奖励模型或RL训练，直接基于重标注的偏好数据进行标准监督微调，兼容现有SFT流程。</div>
+            <div class="en">BFPO re-parameterizes the joint RLHF objective—combining both a helpfulness reward and a safety reward—into a single supervised cross-entropy-style loss. A key labeling function assigns global preference rankings to responses by jointly scoring their safety and helpfulness, capturing the relative priority between the two dimensions. This eliminates the need for explicit reward models or RL optimization, replacing them with standard supervised fine-tuning on re-labeled preference data. The result is a stable, scalable training procedure compatible with existing SFT pipelines.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在涵盖判别与生成任务的新基准上，BFPO在有用性和无害性两方面均显著优于DPO及RLHF变体等基线方法，且在所有任务类别上保持一致提升。</div>
+            <div class="en">BFPO significantly outperforms existing baselines—including DPO and RLHF variants—on both helpfulness and harmlessness across the newly introduced benchmark. The benchmark spans comprehensive discriminative tasks (e.g., preference classification) and generative tasks (e.g., open-ended response quality and safety evaluation). Specific numerical gains are not fully detailed in the abstract, but the paper reports consistent improvements across all task categories.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>标注函数的设计至关重要：若安全与有用性的优先级权重设置不当，模型可能系统性地倾向于过度拒绝或产生不安全输出。</li><li>大规模模型上的有效性尚未验证：实验主要在中等规模LLM上进行，在70B+参数量及多样化真实偏好数据场景下，监督重参数化是否仍优于RLHF尚不明确。</li><li>基准循环性风险：BFPO标注函数与基准测试共享相同的安全-有用性分类体系，存在潜在的评估循环性，可能导致性能被高估。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Labeling function design is critical: the global preference ranking function must encode the right safety-helpfulness priority; a poorly calibrated labeling function could systematically bias the model toward over-refusal or unsafe outputs.</li><li>Scalability to frontier models is unproven: experiments appear limited to moderately-sized LLMs, and it remains unclear whether the supervised reformulation holds advantages over RLHF at the scale of 70B+ parameter models with diverse, real-world preference data.</li><li>Benchmark leakage risk: since BFPO&#39;s labeling function is designed around the same safety-helpfulness taxonomy used to construct the benchmark, there is a potential circularity that could inflate reported performance relative to out-of-distribution evaluations.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2408.15313" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">MAC-PAO将非平稳性融入序列更新机制，使多机器人手在满足安全约束的前提下实现协同双臂灵巧操作。</div>
+        <div class="paper-title-en">Safe multi-agent reinforcement learning for bimanual dexterous manipulation</div>
+        <div class="paper-meta">
+          <span>Weishu Zhan, Peter Chin</span>
+          <span class="badge badge-date">2024-10-14</span>
+          <span class="badge badge-venue">IROS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>MAC-PAO将非平稳性融入序列更新机制，使多机器人手在满足安全约束的前提下实现协同双臂灵巧操作。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">MAC-PAO is a new safe multi-agent RL algorithm that integrates non-stationarity into sequential agent updates to enable cooperative bimanual robot hand control under formal safety constraints.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">安全多智能体强化学习在灵巧操作领域研究匮乏，MAC-PAO填补了单智能体安全RL与多机器人协同控制之间的空白，为需要安全保障的机器人团队部署提供了原则性框架。</div>
+            <div class="en">Safe MARL for dexterous manipulation remains largely unexplored despite its practical importance in manufacturing, surgery, and assistive robotics. MAC-PAO directly addresses the gap between single-agent safe RL and cooperative multi-robot settings, offering a principled framework for deploying robot teams under safety guarantees. This work could serve as a foundational baseline for future research combining constrained optimization with multi-agent coordination.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">多机器人手如何在满足个体与集体安全约束的同时实现双臂灵巧操作协同？这一问题在手术或工业机器人等实际场景中至关重要，现有方法尚未有效解决。</div>
+            <div class="en">How can multiple robot hands coordinate dexterous bimanual manipulation while simultaneously satisfying both individual and collective safety constraints? This is critical because real-world deployments (e.g., surgical or industrial robots) require provable safety guarantees, yet existing safe RL methods are largely designed for single agents and do not account for the coordination challenges of multi-robot systems.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">CPO、PPO-Lagrangian等安全RL方法仅适用于单智能体场景；MAPPO、HAPPO等MARL算法处理协同但忽略安全约束；MARL固有的非平稳性使跨智能体一致执行安全约束尤为困难。</div>
+            <div class="en">Existing safe RL methods such as Constrained Policy Optimization (CPO) and PPO-Lagrangian are designed for single-agent settings and do not generalize well to cooperative multi-agent environments. Standard MARL algorithms (e.g., MAPPO, HAPPO) address coordination but ignore safety constraints entirely. The non-stationarity problem in MARL—where each agent&#39;s environment changes as other agents update their policies—makes it especially difficult to enforce safety constraints consistently across the team.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">MAC-PAO将近端策略优化扩展至约束多智能体场景，显式建模智能体的序列更新顺序并引入非平稳性修正，同时强制执行个体与集体安全约束，在信任域框架下保证策略持续改进。</div>
+            <div class="en">The authors propose Multi-Agent Constrained Proximal Advantage Optimization (MAC-PAO), which extends proximal policy optimization to the constrained multi-agent setting. MAC-PAO explicitly models the sequential order in which agents update their policies and incorporates non-stationarity corrections into each agent&#39;s update step, ensuring that safety constraints remain valid even as other agents&#39; policies shift. The algorithm enforces both individual safety limits (per robot hand) and collective safety constraints (team-level), enabling consistent policy improvement under a trust-region-style update scheme.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">受摘要不完整限制，具体数值尚不完全可得。MAC-PAO在双臂灵巧操作任务中据报道优于忽略安全性或未处理非平稳性的基线，在满足安全约束的同时实现策略持续改进。</div>
+            <div class="en">Specific numerical results are not fully reported in the available abstract, as the paper appears incomplete. The proposed MAC-PAO is evaluated on bimanual dexterous manipulation tasks involving multiple robot hands and is reported to achieve consistent policy improvement while satisfying safety constraints, outperforming baselines that either ignore safety or do not account for non-stationarity. Quantitative comparisons against MAPPO and safe single-agent baselines are indicated but full metrics are not yet available.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>MAC-PAO的核心创新在于序列更新中的非平稳性修正，避免了各智能体因假设环境静止而导致的安全约束违反。</li><li>论文尚不完整，缺乏完整实验与消融分析，难以评估安全保证在多样任务和真实硬件上的泛化能力。</li><li>当前方法仅针对同构机器人手的协同场景，扩展至异构智能体或混合竞合设定是未来验证其适用性的必要方向。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Non-stationarity handling is the core innovation: by making sequential agent updates aware of other agents&#39; changing policies, MAC-PAO avoids constraint violations that arise when each agent naively assumes a stationary environment — a common failure mode in vanilla MARL.</li><li>The paper is noted as incomplete, lacking full experimental results and ablations; this limits the ability to assess whether MAC-PAO&#39;s safety guarantees hold across diverse task difficulties, contact-rich scenarios, or sim-to-real transfer.</li><li>The scope is currently limited to cooperative settings with homogeneous robot hands; extending MAC-PAO to heterogeneous agents, mixed cooperative-competitive settings, or real hardware would be necessary to validate broader applicability.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/54180dbd124a96a52535d3bba2c43914573aee61" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">Jacta是一个灵活的运动规划器，可为强化学习自动生成示教数据，无需任务专用算法即可高效学习灵巧操作策略。</div>
+        <div class="paper-title-en">Jacta: A Versatile Planner for Learning Dexterous and Whole-body Manipulation</div>
+        <div class="paper-meta">
+          <span>Jan Brüdigam, A. Abbas, Maks Sorokin et al.</span>
+          <span class="badge badge-date">2024-08-02</span>
+          <span class="badge badge-venue">CoRL</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>Jacta是一个灵活的运动规划器，可为强化学习自动生成示教数据，无需任务专用算法即可高效学习灵巧操作策略。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">Jacta is a flexible motion planner that generates demonstrations for reinforcement learning, enabling efficient policy learning for dexterous and whole-body robotic manipulation without task-specific algorithms.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">Jacta消除了对昂贵人类示教和专用流程的依赖，其跨灵巧手与全身操作系统的通用性使其具有广泛适用价值，且成功的仿真到实体迁移验证了其实际部署潜力。</div>
+            <div class="en">Jacta addresses a critical bottleneck in robot learning by removing the dependency on costly human demonstrations and specialized demonstration pipelines. Its versatility across dexterous hand and whole-body manipulation systems makes it broadly applicable. The successful sim-to-real transfer further validates its practical utility for real-world deployment.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文针对灵巧操作与全身操作中存在的非连续动力学和高维状态-动作空间问题，探索在无需大量人工示教的前提下高效学习操作策略的方法。</div>
+            <div class="en">The paper tackles the challenge of learning policies for dexterous and whole-body robotic manipulation, which involves discontinuous dynamics and high-dimensional state-action spaces. Standard reinforcement learning struggles to make progress on these tasks without high-quality demonstrations, yet obtaining such demonstrations at scale is expensive and system-specific.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有运动规划器通常只适用于特定系统，且需专用算法整合示教数据；纯强化学习在复杂操作任务上收敛极慢；模仿学习则高度依赖大规模人工示教，难以扩展。</div>
+            <div class="en">Existing motion planners are typically restricted to specific robotic systems and require specialized algorithms to integrate demonstrations into RL pipelines, limiting generalizability. Data-driven methods like imitation learning depend heavily on large volumes of human demonstrations, which are expensive and hard to scale. Neither pure RL nor existing planners alone can efficiently solve complex dexterous manipulation tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">Jacta专为接触丰富的灵巧操作设计，可自动生成兼容标准RL算法的高质量示教轨迹，无需修改训练流程。规划器适用于多指手和全身操作等多种机器人系统，生成的示教作为RL热启动，大幅加速策略学习。</div>
+            <div class="en">Jacta is a versatile motion planner designed specifically for dexterous and whole-body manipulation tasks with discontinuous, contact-rich dynamics. It automatically generates high-quality demonstrations that are directly compatible with standard reinforcement learning algorithms, requiring no modifications to the RL training pipeline. The planner operates across diverse robotic systems—including multi-fingered hands and whole-body manipulation setups—without task-specific customization. Planned demonstrations serve as a warm-start for RL, allowing policies to be learned efficiently where RL alone fails.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">在纯强化学习几乎无法取得进展的复杂操作任务上，Jacta成功训练出有效策略，并实现了仿真到真实机器人的策略迁移，在多个平台上验证了其通用性。</div>
+            <div class="en">Jacta enables successful policy learning on complex dexterous and whole-body manipulation tasks where standalone RL makes little to no progress. Learned policies demonstrate successful sim-to-real transfer on real robotic systems performing dexterous manipulation. The approach is validated across multiple robotic platforms, confirming its versatility and generalizability.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>规划效率的可扩展性：Jacta在复杂任务上的规划耗时与示教质量如何随任务难度增加而变化，目前尚不明确。</li><li>仿真到现实迁移的量化评估：论文展示了实体迁移，但缺乏成功率等定量指标，迁移鲁棒性有待进一步验证。</li><li>与高层推理模型的整合：Jacta专注于底层运动规划，未结合LLM或VLA进行高层任务理解，限制了其在全自主指令跟随场景中的适用性。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability to task complexity: While Jacta outperforms pure RL, it remains unclear how planning time and demonstration quality scale with increasing task complexity, such as multi-step manipulation sequences or longer horizons.</li><li>Sim-to-real gap: The paper demonstrates transfer to real systems, but quantitative metrics (success rates, failure modes) comparing sim vs. real performance are not detailed in the abstract, leaving the robustness of transfer an open question.</li><li>Integration with language/vision models: Jacta focuses on low-level motion planning and does not incorporate high-level task reasoning via LLMs or VLAs, which limits its applicability to fully autonomous, instruction-following manipulation systems.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2408.01258" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出融合行为克隆、强化学习微调与6D位姿估计的机器人装配框架，显著提升多阶段装配任务的成功率。</div>
+        <div class="paper-title-en">Enhancing Imitation Learning for Robotic Assembly with 6D Pose Estimation and Reinforcement Learning Fine-Tuning</div>
+        <div class="paper-meta">
+          <span>Xiaopeng Zhang, Yanjie Li</span>
+          <span class="badge badge-date">2025-07-11</span>
+          <span class="badge badge-venue">CCS</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出融合行为克隆、强化学习微调与6D位姿估计的机器人装配框架，显著提升多阶段装配任务的成功率。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes a robotic assembly framework combining behavior cloning, RL fine-tuning, and 6D pose estimation to significantly improve success rates on long-horizon, multi-stage assembly tasks.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">机器人装配自动化具有重要工业价值，本文展示了融合多种学习范式提升可靠性的实用路径。特权学习降低了硬件门槛，有助于实际部署。框架的模块化设计可推广至其他复杂操作任务。</div>
+            <div class="en">Robotic assembly automation has direct industrial relevance, and this work demonstrates a practical path to improving reliability by combining complementary learning paradigms. The privileged learning paradigm reduces hardware demands, making the approach more accessible for real-world deployment. The framework&#39;s modular design offers a reusable blueprint for other complex manipulation tasks.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">机器人装配需要跨多阶段的高精度操作，全自动化极具挑战性。现有方法在精确插孔与抓取上泛化能力不足。本文探讨：将6D位姿估计与强化学习微调集成至模仿学习框架能否显著提升性能？</div>
+            <div class="en">Robotic assembly requires high physical precision and reliability across long-horizon, multi-stage sequences, making full automation extremely challenging. Existing approaches struggle to generalize to precise part insertion and grasping without robust pose feedback and sufficient exploration. This paper asks: can integrating 6D pose estimation and RL fine-tuning into an imitation learning backbone substantially close the performance gap?</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">纯行为克隆存在误差累积与分布外恢复能力差的问题，在精密装配中尤为突出。纯强化学习面临样本复杂度高、长时序稀疏奖励难以优化的困难。已有混合方法鲜少引入显式6D位姿估计作为结构化感知模块来指导策略。</div>
+            <div class="en">Pure behavior cloning (BC) methods suffer from compounding errors and limited recovery from out-of-distribution states, which is critical in precision assembly. Methods relying solely on end-to-end RL for assembly face prohibitive sample complexity and sparse rewards over long horizons. Prior hybrid approaches rarely incorporate explicit 6D pose estimation as a structured perception module to guide policy decisions.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">框架以行为克隆为骨干从示范数据初始化策略，再通过强化学习微调突破示范分布限制。6D位姿估计器为策略提供结构化精确空间反馈，替代噪声视觉观测以支持精确插孔。训练阶段采用特权学习范式，策略可访问推理时不可用的真值状态信息，降低硬件与数据采集需求。</div>
+            <div class="en">The framework uses behavior cloning as a backbone to initialize a manipulation policy from demonstrations, then applies RL fine-tuning to refine it beyond the demonstration distribution. A 6D object pose estimator provides structured, accurate spatial feedback to the policy, replacing reliance on raw or noisy visual observations for precise insertion. A privileged learning paradigm is used during training—where the policy accesses ground-truth state information unavailable at inference—to reduce hardware and data collection burdens while maintaining training effectiveness.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">所提方法在仿真全流程装配评估中大幅优于基线行为克隆方法，涵盖长时序多阶段精确抓取与插孔。实验结果表明强化学习微调与6D位姿估计具有互补增益效果。特权学习策略在不增加硬件成本的前提下进一步提升了训练稳定性。</div>
+            <div class="en">The proposed method substantially outperforms baseline behavior cloning methods on the full assembly pipeline evaluated in simulation, covering long-horizon and multi-stage precise grasping and part insertion. Specific success rate improvements over baselines are reported, demonstrating the additive benefit of combining RL fine-tuning and 6D pose estimation. The privileged learning strategy further contributes to training stability without additional hardware cost.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>仅在仿真中验证：框架完全在仿真环境中评估，未解决仿真到现实的迁移差距，需真实机器人实验验证实用性。</li><li>模块化流水线的误差累积：BC、RL与位姿估计器串联可能导致误差逐级传播，端到端可微架构或是更优的长期方向。</li><li>对位姿估计器的强依赖：方法的精度提升高度依赖6D位姿估计准确性，在遮挡、无纹理零件或传感器退化场景下的鲁棒性未作分析。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Simulation-only evaluation: The framework is validated entirely in simulation, leaving a significant sim-to-real gap unaddressed. Real-world validation with physical robots and actual sensor noise is essential to confirm practical utility.</li><li>Modularity vs. end-to-end learning: The pipeline chains BC, RL, and a separate pose estimator, meaning errors can compound across modules. An end-to-end differentiable alternative could be a stronger long-term direction.</li><li>Pose estimator dependency: The method&#39;s precision gains rely heavily on accurate 6D pose estimation. Performance under occlusion, textureless parts, or sensor degradation is not analyzed, which is critical for real assembly environments.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/43b943094f689bd94e548f625a58a090f6e19480" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-19</footer>
+</body>
+</html>
