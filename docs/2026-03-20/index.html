@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-20 - DailyPaper - 每日论文精选</title>
+  <style>
+    :root { --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+    .header h1 { font-size: 1.5rem; }
+    .header .date { opacity: 0.85; font-size: 0.9rem; margin-top: 0.25rem; }
+    .nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Category collapsible */
+    .category-details { margin-bottom: 2.5rem; border: 2px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .category-details > summary {
+      list-style: none; display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem; cursor: pointer; background: white; user-select: none;
+      font-size: 1.15rem; font-weight: 700; border-left: 4px solid var(--accent);
+    }
+    .category-details > summary::-webkit-details-marker { display: none; }
+    .category-details > summary::before { content: "▶"; font-size: 0.75rem; color: var(--accent); transition: transform 0.2s; }
+    .category-details[open] > summary::before { transform: rotate(90deg); }
+    .category-details > summary:hover { background: #f8fafc; }
+    .category-body { padding: 1.25rem; background: var(--bg); }
+
+    /* Paper cards */
+    .paper-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .paper-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .paper-title-en { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .paper-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .badge { display: inline-block; border-radius: 4px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 600; }
+    .badge-hf { background: #fef3c7; color: #92400e; }
+    .badge-venue { background: #ede9fe; color: #5b21b6; }
+    .badge-date { background: #f1f5f9; color: #475569; }
+    /* TL;DR block */
+    .tldr { background: #eff6ff; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    .tldr-label { font-weight: 600; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    /* Collapsible sections inside a paper */
+    details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+    summary { padding: 0.6rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; background: #f8fafc; user-select: none; }
+    summary:hover { background: #f1f5f9; }
+    .detail-content { padding: 1rem; }
+    .zh { margin-bottom: 0.75rem; }
+    .en { color: var(--muted); font-size: 0.92rem; border-top: 1px dashed #e2e8f0; padding-top: 0.75rem; }
+    .discussion-list { padding-left: 1.25rem; }
+    .discussion-list li { margin-bottom: 0.4rem; }
+
+    .paper-link { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+    .paper-link:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DailyPaper - 每日论文精选</h1>
+    <div class="date">2026-03-20  |  共 9 篇论文</div>
+  </div>
+  <nav class="nav">
+    <a href="https://minxingzhang.github.io/DailyReading/">首页</a>
+    <a href="#llm_security">LLM 安全</a><a href="#embodied_security">具身智能安全</a><a href="#llm_trends">LLM 发展动态</a><a href="#embodied_trends">具身智能发展动态</a>
+  </nav>
+  <div class="container">
+    
+    <details class="category-details" id="llm_security" open>
+      <summary>LLM 安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">APD框架通过互信息分解、谱图意图分类和轻量级Transformer分类器三重机制，在对抗性提示到达LLM前将其主动拦截。</div>
+        <div class="paper-title-en">Disentangling Adversarial Prompts: A Semantic-Graph Defense for Robust LLM Security</div>
+        <div class="paper-meta">
+          <span>Xiang Fang, Wanlong Fang</span>
+          <span class="badge badge-date">2026-03-14</span>
+          <span class="badge badge-venue">AAAI</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>APD框架通过互信息分解、谱图意图分类和轻量级Transformer分类器三重机制，在对抗性提示到达LLM前将其主动拦截。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">APD introduces a three-part semantic-graph framework—mutual information decomposition, spectral graph intent classification, and a lightweight transformer classifier—to proactively neutralize adversarial prompts before they reach an LLM.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">随着LLM在高安全性场景的广泛部署，APD提供了一种无需重训基础模型即可叠加使用的主动防御方案，其语义图范式为可解释的对抗提示分析开辟了新方向。</div>
+            <div class="en">As LLMs are deployed in security-critical settings, robust defenses against jailbreaking and prompt injection are urgently needed. APD&#39;s proactive, pre-processing approach means it can be applied on top of any existing LLM without retraining the base model. The semantic-graph paradigm opens a new direction for interpretable, structured adversarial prompt analysis.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">越狱攻击和提示注入等对抗性提示利用语义歧义绕过安全过滤器，现有被动防御难以泛化到新型攻击变体，致使生产环境中的LLM持续面临风险。</div>
+            <div class="en">LLMs are increasingly exploited via adversarial prompts—such as jailbreaks and prompt injections—that abuse semantic ambiguities to bypass safety filters and elicit harmful outputs. Existing reactive defenses struggle to generalize across novel attack variations, leaving models exposed in production environments.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有防御主要依赖输出过滤、RLHF微调或关键词匹配，属于被动应对，易被语义改写的攻击绕过；基于图和互信息的方法尚未联合用于LLM对抗提示分解。</div>
+            <div class="en">Prior defenses primarily rely on output filtering, RLHF-based fine-tuning, or simple keyword/pattern matching, all of which are reactive and easily circumvented by semantically rephrased attacks. Graph-based and mutual-information approaches have been explored in NLP safety but not jointly applied to adversarial prompt decomposition in LLMs.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">APD首先用互信息语义分解将输入拆分为统计独立的对抗与良性成分；随后谱图意图分类器检测语义图中的恶意结构模式；最后轻量级Transformer分类器对真实毒性数据集打分并过滤恶意成分，全流程无需修改底层LLM。</div>
+            <div class="en">APD first applies mutual information-based semantic decomposition to split an input prompt into statistically independent adversarial and benign components. A graph-based intent classifier then performs spectral analysis on the prompt&#39;s semantic graph to detect malicious structural patterns. Finally, a lightweight transformer-based classifier, trained on real-world toxic prompt datasets, assigns a threat score and filters or sanitizes the malicious component before the prompt reaches the LLM. The three modules work in a pipeline, requiring no modification to the underlying LLM.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">APD在真实毒性与对抗提示数据集上的检测准确率优于基线防御方法；轻量级Transformer分类器在越狱和提示注入两类攻击上均表现出色，同时保持适合生产部署的低推理开销。</div>
+            <div class="en">The APD framework is evaluated on real-world datasets of toxic and adversarial prompts, demonstrating improvements in detection accuracy over baseline defenses. Specific numbers are partially truncated in the abstract, but the framework reports strong performance on both jailbreak and prompt injection attack categories. The lightweight transformer classifier is noted to achieve competitive accuracy while maintaining low inference overhead suitable for production deployment.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>互信息分解假设对抗与良性成分可被清晰分离，但对于恶意意图高度融合的提示，分解质量可能下降，检测可靠性存疑。</li><li>语义图的谱分析计算代价高于简单分类器，针对超长提示或高吞吐API的可扩展性需进一步基准验证。</li><li>框架仅在现有毒性提示数据集上评估，面对专门针对APD管道本身设计的自适应攻击者，其鲁棒性仍是开放问题。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The mutual information decomposition assumes adversarial and benign components can be cleanly separated, but highly entangled prompts—where malicious intent is woven throughout—may degrade decomposition quality and reduce detection reliability.</li><li>Spectral graph analysis of prompt semantics is computationally more expensive than simple classifiers; scalability to very long prompts or high-throughput APIs needs explicit benchmarking.</li><li>The framework is evaluated on existing toxic prompt datasets, but adversarial prompt attacks are rapidly evolving; robustness to adaptive attackers who specifically craft inputs to fool the APD pipeline itself remains an open question.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://www.semanticscholar.org/paper/6f99bbcb159cd1ae219d9db6a474acf4a0e37268" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">IndicSafe是首个系统评估12种印度语言LLM安全性的基准，揭示跨语言一致性仅12.8%，安全响应率方差超17%。</div>
+        <div class="paper-title-en">IndicSafe: A Benchmark for Evaluating Multilingual LLM Safety in South Asia</div>
+        <div class="paper-meta">
+          <span>Priyaranjan Pattnayak, Sanchari Chowdhuri</span>
+          <span class="badge badge-date">2026-03-18</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>IndicSafe是首个系统评估12种印度语言LLM安全性的基准，揭示跨语言一致性仅12.8%，安全响应率方差超17%。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">IndicSafe is the first benchmark revealing that LLM safety behavior breaks down significantly across 12 Indic languages, with only 12.8% cross-language agreement and over 17% variance in safe-response rates.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">超过12亿印度语言使用者正面临安全特性不明的LLM系统，IndicSafe填补了这一关键空白。其文化扎根的提示集与量化指标为从业者提供了可操作的审计工具，应推动开发者将低资源语言安全性纳入核心评估标准。</div>
+            <div class="en">IndicSafe directly addresses a critical blind spot: over 1.2 billion speakers of Indic languages are exposed to LLM systems whose safety properties are poorly characterized for their languages and cultures. The benchmark&#39;s culturally grounded prompts and quantitative metrics (entropy, bias scores, consistency indices) give practitioners concrete tools to audit and compare multilingual safety. This work should prompt model developers to treat low-resource language safety as a first-class evaluation criterion rather than an afterthought.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">主流LLM在低资源印度语言下是否能保持与高资源语言一致的安全行为？这一问题直接关系到数十亿用户能否平等获得安全、可靠的AI服务。</div>
+            <div class="en">Do leading LLMs maintain consistent safety behavior when responding in low-resource Indic languages compared to high-resource languages like English? This matters because inconsistent safety across languages can expose vulnerable populations to harmful content or, conversely, deny them access to benign information through over-refusal.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LLM安全基准以英语为主，缺乏对南亚特有危害类别（如种姓歧视、宗教冲突）的覆盖。多语言安全研究多聚焦于欧洲高资源语言，印度语言脚本几乎未被系统测试，也无基准量化跨语言安全一致性。</div>
+            <div class="en">Existing LLM safety benchmarks are overwhelmingly English-centric, with limited coverage of culturally specific harm categories relevant to South Asia such as caste discrimination, communal religion, and regional politics. Prior multilingual safety work has typically evaluated only a handful of European or high-resource languages, leaving Indic scripts and dialects largely untested. No prior benchmark systematically quantifies cross-language safety consistency or category-level bias at this scale for Indic languages.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">研究构建了6000条涵盖种姓、宗教、性别、健康、政治五类主题的文化扎根提示，翻译为12种印度语言，评估10个主流LLM。采用提示级熵、类别偏差分数和多语言一致性指数三项指标量化安全一致性。</div>
+            <div class="en">The authors construct a dataset of 6,000 culturally grounded prompts spanning five sensitive categories—caste, religion, gender, health, and politics—translated into 12 Indic languages. Ten leading LLMs are evaluated on each prompt variant, and responses are labeled as safe or unsafe. Safety consistency is quantified using three novel metrics: prompt-level entropy (uncertainty of a model&#39;s label across languages), category bias scores (systematic over- or under-flagging per topic), and a multilingual consistency index (agreement rate across language variants of the same prompt).</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">跨语言安全标签一致率仅12.8%，安全响应率方差超17%，表明安全行为随语言显著漂移。部分模型在低资源脚本中过度拒绝良性提示，同时对真正有害内容漏判；政治敏感话题被系统性过度标记。</div>
+            <div class="en">Cross-language agreement on safety labels is only 12.8%, indicating that most prompts receive inconsistent safe/unsafe classifications depending on the language used. The variance in SAFE response rates across languages exceeds 17%, demonstrating substantial safety drift. Qualitatively, some models over-refuse benign prompts in low-resource scripts while simultaneously failing to flag genuinely unsafe content in others, and politically sensitive topics are disproportionately over-flagged.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>安全漂移并非随机：类别偏差分数显示政治、种姓等话题在不同语言下系统性地触发过度拒绝或漏判，反映模型安全规则受训练数据分布驱动而非原则性设计。</li><li>12.8%的跨语言一致率揭示多语言部署的根本矛盾——同一提示在英语下安全、在印地语或孟加拉语下却被标记为不安全，造成用户体验不平等，并带来法律与伦理风险。</li><li>基准依赖翻译提示存在局限：翻译可能丢失文化特有的细微伤害语义，未来研究应引入母语者原生撰写的提示以提升生态效度。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Safety drift is not random: the category bias scores suggest that certain topics (e.g., politics, caste) systematically trigger over- or under-refusal depending on the language, implying that models inherit biases from their training data distribution rather than applying principled safety rules.</li><li>The 12.8% cross-language agreement figure exposes a fundamental tension in multilingual deployment — a prompt deemed safe in English may be flagged as unsafe in Hindi or Bengali, creating unequal user experiences and potential legal or ethical liability for deployers.</li><li>The benchmark&#39;s reliance on translated prompts is a practical limitation: translation may not fully capture culturally specific nuance or idiomatic harm, and future work should incorporate natively authored prompts by speakers of each language to improve ecological validity.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.17915v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文提出面向医疗场景的零信任安全架构，涵盖六大威胁域，并在九个生产环境AI智能体中得到验证。</div>
+        <div class="paper-title-en">Caging the Agents: A Zero Trust Security Architecture for Autonomous AI in Healthcare</div>
+        <div class="paper-meta">
+          <span>Saikat Maiti</span>
+          <span class="badge badge-date">2026-03-18</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文提出面向医疗场景的零信任安全架构，涵盖六大威胁域，并在九个生产环境AI智能体中得到验证。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper proposes a Zero Trust security architecture for autonomous LLM agents in healthcare, validated across nine production agents with a six-domain threat model addressing HIPAA-relevant attack vectors.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文是少数将零信任原则落地于HIPAA受监管医疗AI智能体的生产实践之一，为从业者提供了可复用的威胁模型，具有较强的实践参考价值。</div>
+            <div class="en">As LLM-powered agents gain shell execution, database, and file system access in regulated industries, security frameworks grounded in real deployments are urgently needed. This work is one of the first to operationalize Zero Trust principles specifically for agentic AI in a HIPAA-governed environment, providing a replicable threat model for practitioners. Its production grounding distinguishes it from purely theoretical proposals in this rapidly evolving space.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">在医疗环境中，具备Shell执行、数据库访问等广泛权限的自主AI智能体如何防范安全威胁？智能体漏洞直接对应HIPAA违规风险，问题极为紧迫。</div>
+            <div class="en">How can autonomous AI agents with broad system capabilities (shell, database, file, network access) be secured in healthcare settings where data breaches constitute HIPAA violations? The problem is urgent because red teaming studies confirm real-world exploitability of these agents via prompt injection, identity spoofing, and cross-agent unsafe instruction propagation.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有LLM安全研究多聚焦于单模型提示注入，缺乏对多智能体编排风险的分析；HIPAA等合规框架也未针对具备工具调用能力的AI智能体提供具体控制措施。</div>
+            <div class="en">Existing LLM security research focuses primarily on single-model prompt injection and jailbreaking, without addressing multi-agent orchestration risks or tool-use attack surfaces. Compliance frameworks like HIPAA predate agentic AI and offer no concrete controls for shell-executing or database-querying LLM agents. Red teaming studies (e.g., the cited work [7]) have identified vulnerabilities but stop short of prescribing deployable architectural mitigations.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">本文构建六大威胁域模型，将零信任原则（最小权限、持续验证、假设已被攻破）映射为具体控制措施，包括智能体身份验证、工具权限范围限制、提示词完整性校验及网络出口过滤，并在九个生产智能体中部署实施。</div>
+            <div class="en">The paper develops a six-domain threat model covering: credential exposure, execution capability abuse, network egress exfiltration, prompt integrity failures, database access risks, and file system threats. It then maps Zero Trust principles (never trust, always verify; least privilege; assume breach) onto each domain with concrete controls. The architecture was deployed for nine autonomous AI agents at a healthcare technology company in production. Key mechanisms include agent identity verification, scoped tool permissions, prompt integrity checks, and monitored egress filtering.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">该架构已在九个生产智能体中完成部署，验证了零信任控制的可行性，但现有摘要未报告具体量化指标（如拦截率或延迟开销）。</div>
+            <div class="en">The architecture was validated in a live production environment covering nine agents at a healthcare technology company, though specific quantitative metrics (e.g., attack interception rates or latency overhead) are not reported in the available abstract. The six-domain threat model provides structured coverage of attack surfaces identified in prior red teaming research. The deployment demonstrates practical feasibility of Zero Trust controls without halting agentic functionality.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>六域威胁模型具有实践价值，但缺乏量化红队评估数据，难以判断各控制措施的实际效果优先级。</li><li>架构设计受HIPAA约束影响显著，向金融、法律等其他受监管行业迁移时需重新映射威胁域，通用性有待验证。</li><li>跨智能体提示注入与不安全指令传播仍是难点，提示完整性控制如何应对动态组合的多智能体流水线需进一步阐明。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The six-domain threat model is a concrete contribution, but without published red team evaluation metrics or ablation studies, it is difficult to assess which controls provide the greatest security lift in practice.</li><li>The architecture&#39;s generalizability beyond healthcare is an open question — HIPAA constraints shape many design choices, and adapting these controls to other regulated sectors (finance, legal) would require careful re-mapping of threat domains.</li><li>Cross-agent prompt injection and unsafe instruction propagation remain particularly hard problems; the paper&#39;s controls for prompt integrity need elaboration on how they handle dynamically composed multi-agent pipelines at runtime.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.17419v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_security" open>
+      <summary>具身智能安全 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Security</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">1 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">AdvRoad生成外观自然的路面对抗贴片，在欺骗自动驾驶视觉3D检测器的同时难以被人眼察觉。</div>
+        <div class="paper-title-en">Invisible Triggers, Visible Threats! Road-Style Adversarial Creation Attack for Visual 3D Detection in Autonomous Driving</div>
+        <div class="paper-meta">
+          <span>Jian Wang, Lijun He, Yixing Yong et al.</span>
+          <span class="badge badge-date">2025-11-11</span>
+          <span class="badge badge-venue">AAAI</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>AdvRoad生成外观自然的路面对抗贴片，在欺骗自动驾驶视觉3D检测器的同时难以被人眼察觉。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">AdvRoad generates naturalistic road-surface adversarial patches that fool visual 3D object detectors in autonomous driving while remaining inconspicuous to human observers.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文揭示了针对量产自动驾驶摄像头3D感知系统的一种隐蔽且实用的攻击方式，说明仅靠外观过滤无法防御多样化路面对抗贴片，对AD系统安全设计具有重要警示意义。</div>
+            <div class="en">This work exposes a practical, stealthy attack vector against camera-based 3D detection systems that are increasingly deployed in production autonomous vehicles. By demonstrating that road-surface patches can be both visually inconspicuous and dynamically varied, the paper raises the security bar for AD perception pipelines. Defenders can no longer rely on simple appearance-based filtering to neutralize physical adversarial patches.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">本文探讨能否在路面放置与正常路面纹理无异的对抗贴片，使视觉3D检测器产生幻觉误检。这一问题至关重要，因为摄像头3D检测器是自动驾驶中LiDAR的低成本替代方案，其安全漏洞可能引发严重事故。</div>
+            <div class="en">The paper asks: can adversarial patches placed on road surfaces reliably induce false detections (hallucinations) in visual 3D object detectors while appearing indistinguishable from normal road texture? This matters because camera-based 3D detectors are cost-effective alternatives to LiDAR in autonomous driving, and their vulnerability to physical adversarial attacks could cause catastrophic safety failures.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">现有路面对抗攻击多采用固定图案的显眼海报，视觉异常易被发现，且固定内容一旦识别即可被列入黑名单。现有方法在隐蔽性和多样性上均存在明显不足。</div>
+            <div class="en">Prior physical adversarial attacks on AD detectors typically use conspicuous printed posters with fixed patterns placed on the road, making them visually anomalous and easily spotted by human inspectors. Fixed-content patches are also straightforward to blacklist once identified, limiting their real-world threat longevity. Neither stealthiness nor diversity was adequately addressed by existing methods.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">AdvRoad将对抗贴片生成建模为路面风格约束优化问题：贴片须同时最大化误检率并保持路面外观。方法利用纹理风格迁移将对抗扰动融入真实路面图案，并通过多样性机制生成不同实例，使基于内容的防御失效，攻击目标涵盖单目和多摄像头视觉3D检测器。</div>
+            <div class="en">AdvRoad frames adversarial patch generation as a road-style constrained optimization problem: patches must simultaneously maximize detection hallucinations and maintain a naturalistic road-surface appearance. The method leverages texture style transfer to blend adversarial perturbations into realistic asphalt/pavement patterns, making patches visually consistent with the road environment. A diversity mechanism generates varied patch instances, preventing simple content-based defenses from neutralizing the attack. The pipeline targets monocular and multi-camera visual 3D detectors commonly used in AD systems.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">AdvRoad诱发的幻觉3D检测框数量显著高于固定图案基线，生成贴片在人眼可察觉性指标上得分更低，验证了隐蔽性。多样性机制生成的多种变体均能有效攻击，使黑名单防御难以奏效。</div>
+            <div class="en">AdvRoad successfully induces hallucinated 3D bounding box detections in targeted visual detectors, with attack success rates notably higher than prior fixed-pattern patch baselines. The generated patches score significantly lower on human perceptibility metrics, confirming their stealthiness against manual inspection. Quantitative results demonstrate that the diversity mechanism produces functionally effective attacks across multiple patch variants, complicating patch-blacklisting defenses.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>攻击范围：AdvRoad仅针对纯摄像头3D检测器，LiDAR-camera融合系统因激光雷达不受路面贴片干扰，攻击效果可能大幅降低。</li><li>迁移性存疑：对抗贴片在不同检测器架构间的迁移能力尚不明确，这对评估针对未知部署模型的实际风险至关重要。</li><li>防御空白：论文未提出或评估具体对抗措施，如BEV特征图异常检测或跨模态一致性校验，相关防御研究有待跟进。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Threat scope: AdvRoad targets only camera-based 3D detectors; LiDAR-camera fusion systems may dilute the attack&#39;s effectiveness since LiDAR returns would not be perturbed by a flat road patch.</li><li>Transferability gap: It is unclear how well the adversarial patches transfer across different detector architectures (e.g., BEVDet vs. DETR3D), which is critical for assessing real-world risk against unknown deployed models.</li><li>Defense gap: The paper motivates the need for perception-layer defenses such as anomaly detection on BEV feature maps or cross-modal consistency checks, but does not propose or evaluate concrete countermeasures.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="https://arxiv.org/abs/2511.08015" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="llm_trends" open>
+      <summary>LLM 发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ LLM Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">3 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">FINER 提出细粒度负样本查询基准及基于DPO的微调策略，将MLLM幻觉率降低最高24.2%，同时提升通用多模态能力。</div>
+        <div class="paper-title-en">FINER: MLLMs Hallucinate under Fine-grained Negative Queries</div>
+        <div class="paper-meta">
+          <span>Rui Xiao, Sanghwan Kim, Yongqin Xian et al.</span>
+          <span class="badge badge-date">2026-03-18</span>
+          <span class="badge badge-venue">CVPR</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>FINER 提出细粒度负样本查询基准及基于DPO的微调策略，将MLLM幻觉率降低最高24.2%，同时提升通用多模态能力。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">FINER introduces fine-grained negative query benchmarks and a DPO-based finetuning strategy that reduces hallucinations in MLLMs by up to 24.2% while improving general multimodal performance.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">MLLM幻觉问题是实际部署的关键瓶颈，而现有基准无法探测细粒度不匹配。FINER填补了这一空白，其改进方法可泛化至8个幻觉基准和6个通用多模态基准，具有重要实用价值。</div>
+            <div class="en">Hallucination in MLLMs is a critical bottleneck for real-world deployment, yet existing benchmarks fail to probe subtle, fine-grained mismatches. FINER fills this gap with two new benchmarks and a practical mitigation method that generalizes across eight existing hallucination suites and six general multimodal benchmarks, making it immediately useful for both researchers and practitioners.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">当查询涉及细微不匹配（如错误属性、关系或对象）且与真实图像内容部分重叠时，MLLM极易产生幻觉。现有基准仅关注粗粒度问题，无法捕捉这一关键失效模式。</div>
+            <div class="en">MLLMs frequently hallucinate when queries involve subtle mismatches—wrong attributes, relations, or objects—that partially overlap with real image content. Existing benchmarks focus on coarse-grained, binary image-question pairs and fail to capture this nuanced failure mode, leaving a critical blind spot in evaluation and mitigation research.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">POPE、CHAIR等现有基准主要测试粗粒度目标存在性，忽视属性、关系及组合错误。它们也未系统构造&#34;假元素与真实内容共存&#34;的负样本查询，导致模型在现实场景中更易被欺骗。</div>
+            <div class="en">Existing hallucination benchmarks like POPE, CHAIR, and MMHal-Bench primarily test object-level presence with coarse yes/no questions, missing fine-grained attribute, relation, and compositional errors. They also do not systematically construct negative queries where false elements co-occur with genuinely present image content, making models easier to fool in realistic scenarios.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">FINER框架在多目标、多属性、多关系和&#34;what&#34;问题四个维度上生成细粒度负样本查询，构建FINER-CompreCap和FINER-DOCCI两个基准。FINER-Tuning利用DPO在偏好数据上微调模型，引导其拒绝细粒度错误查询、肯定正确查询，并在四个前沿MLLM上进行全面评测。</div>
+            <div class="en">The authors introduce FINER, a framework for generating Fine-grained NEgative queRies across four dimensions: multi-object, multi-attribute, multi-relation, and &#34;what&#34; questions. Two benchmarks are built—FINER-CompreCap and FINER-DOCCI—using detailed image captions to systematically inject plausible but incorrect elements into queries. To mitigate the identified hallucinations, FINER-Tuning applies Direct Preference Optimization (DPO) on FINER-inspired preference data, teaching models to reject fine-grained false queries while affirming correct ones. Four frontier MLLMs (including InternVL3.5-14B) are finetuned and evaluated comprehensively.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">FINER-Tuning使InternVL3.5-14B在新基准上幻觉率降低最高24.2%。改进具有广泛泛化性：微调模型在8个现有幻觉基准和6个通用多模态基准上均有提升，未出现灾难性遗忘。</div>
+            <div class="en">FINER-Tuning achieves up to 24.2% hallucination reduction on the new benchmarks for InternVL3.5-14B. Critically, gains are not benchmark-specific: finetuned models also improve on eight existing hallucination suites and six general multimodal benchmarks, demonstrating broad generalization without catastrophic forgetting of general capabilities.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>细粒度共存是核心失效触发器：当错误元素（如错误颜色或关系）与真实目标共存时，MLLM幻觉最为严重，表明模型过度依赖共现统计而非精确视觉定位。</li><li>针对性负样本DPO具有广泛泛化性：FINER-Tuning同时提升幻觉专项和通用基准性能，说明细粒度偏好对齐训练的是更精准的视觉推理能力，而非仅压制特定答案模式。</li><li>基准多样性至关重要：使用CompreCap和DOCCI两个来源的详细描述，确保基准不易被字幕匹配启发式方法攻破，为未来MLLM评测设立了更高标准。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Fine-grained co-occurrence is the core failure trigger: MLLMs hallucinate most when a false element (e.g., wrong color or relation) appears alongside genuinely present objects, suggesting models over-rely on object co-occurrence statistics rather than precise visual grounding.</li><li>DPO on targeted negative data generalizes broadly: the fact that FINER-Tuning improves both hallucination-specific and general benchmarks suggests that fine-grained preference alignment teaches more precise visual reasoning rather than just suppressing specific answer patterns.</li><li>Benchmark diversity matters: using two distinct image sources (CompreCap and DOCCI) with rich captions ensures the benchmarks are not easily solved by caption-matching heuristics, setting a higher bar for future MLLM evaluation.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.17662v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">ULCMOD是一个无监督框架，可同时将LLM神经元划分为语义连贯的功能模块，并发现与之关联的输入主题。</div>
+        <div class="paper-title-en">Discovering Decoupled Functional Modules in Large Language Models</div>
+        <div class="paper-meta">
+          <span>Yanke Yu, Jin Li, Ying Sun et al.</span>
+          <span class="badge badge-date">2026-03-18</span>
+          <span class="badge badge-venue">AAAI</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>ULCMOD是一个无监督框架，可同时将LLM神经元划分为语义连贯的功能模块，并发现与之关联的输入主题。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">ULCMOD is an unsupervised framework that jointly partitions LLM neurons into semantically coherent functional modules and discovers input topics linked to those modules, without any labeled data.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">该工作为LLM内部知识组织提供了数据驱动的解析途径，直接推进了机制可解释性研究。解耦的功能模块为定向模型编辑、安全审计和高效微调提供了实践基础。</div>
+            <div class="en">This work provides a principled, data-driven window into how LLMs internally organize knowledge, directly advancing mechanistic interpretability research. By exposing disentangled functional modules, it opens practical paths toward targeted model editing, safety auditing, and efficient fine-tuning without retraining entire networks. Acceptance at AAAI signals community recognition of its methodological rigor.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">论文探究LLM如何跨层将不同能力（如语言、推理、事实知识）组织为独立神经元群。厘清这一问题对提升模型可信度、支持定向干预（如知识编辑、偏见消除）至关重要。</div>
+            <div class="en">The paper asks: how do LLMs internally organize different capabilities (e.g., language, reasoning, factual knowledge) into distinct neuron groups across layers? Answering this matters because opaque internal organization undermines trust, makes debugging difficult, and limits targeted interventions such as knowledge editing or bias removal.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有工作多孤立分析单个神经元或注意力头，缺乏跨层系统级功能结构的视角。有监督探测方法依赖标注数据，无法发现未知功能特化，且缺乏同时优化神经元分组与输入主题的联合框架。</div>
+            <div class="en">Prior interpretability work largely focuses on individual neurons or attention heads in isolation, missing cross-layer, system-level functional structure. Supervised probing methods require labeled datasets and do not scale to discovering unknown functional specializations. Existing sparse activation or modularity analyses lack a joint optimization that simultaneously identifies both neuron groupings and their corresponding input topics.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">ULCMOD将模块发现建模为联合无监督优化问题，同时对全层神经元进行模块分配并识别激活各模块的输入主题簇。新颖目标函数鼓励模块内聚性与模块间解耦性。迭代解耦算法（IterD）交替执行主题分配与神经元分组，可扩展至十亿参数级LLM，全程无需人工标注。</div>
+            <div class="en">ULCMOD formulates module discovery as a joint unsupervised optimization: it simultaneously assigns neurons across all layers to functional modules and identifies the input-topic clusters that activate each module. A novel objective function encourages intra-module neuron coherence and inter-module decoupling. The efficient Iterative Decoupling (IterD) algorithm alternates between topic assignment and neuron grouping steps, making the approach scalable to billion-parameter LLMs. No labeled data or manual annotation is required at any stage.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">发现的模块具有强语义连贯性，对应可解释的功能特化（如事实召回、句法处理、领域知识）。在利用模块结构的下游任务中，ULCMOD性能优于基线方法，且跨多种LLM架构均可与人类可解释功能类别对齐。</div>
+            <div class="en">Discovered modules demonstrate strong semantic coherence and correspond to interpretable specializations (e.g., distinct modules for factual recall, syntactic processing, and domain-specific knowledge). On downstream tasks leveraging the discovered modular structure, ULCMOD achieves superior performance compared to baseline interpretability and modularity methods. Qualitative analysis confirms that neuron groups identified by ULCMOD align with human-interpretable functional categories across multiple LLM architectures.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>可扩展性与粒度的权衡：IterD使方法在大模型上可行，但随着模型规模超出测试范围（如70B+），模块质量如何退化尚不明确。</li><li>评估循环风险：若下游任务基准与发现阶段所用主题存在重叠，性能结果可能高估真实解耦程度。</li><li>相关性与因果性：框架识别的是与输入主题共激活的神经元群，但未验证消融某模块是否因果性地破坏对应功能，这对定向编辑等应用至关重要。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability vs. granularity trade-off: IterD makes the method tractable for large models, but it is unclear how module quality degrades as model size grows beyond tested scales (e.g., 70B+ parameters), since the search space grows combinatorially.</li><li>Evaluation circularity risk: downstream task performance is used to validate module quality, but if task benchmarks overlap with the topics used during discovery, results may overestimate true disentanglement.</li><li>Causal vs. correlational modules: the framework identifies neuron groups that co-activate with input topics, but does not establish whether ablating a module causally disrupts the corresponding function — a critical gap for practical applications like targeted editing.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.17823v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">本文结合线性探针、稀疏自编码器与激活修补技术，揭示大语言模型如何编码同义、反义、上位与下位四种语义关系，发现层级关...</div>
+        <div class="paper-title-en">Do Language Models Encode Semantic Relations? Probing and Sparse Feature Analysis</div>
+        <div class="paper-meta">
+          <span>Andor Diera, Ansgar Scherp</span>
+          <span class="badge badge-date">2026-03-18</span>
+          <span class="badge badge-venue">LREC 2026</span>
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>本文结合线性探针、稀疏自编码器与激活修补技术，揭示大语言模型如何编码同义、反义、上位与下位四种语义关系，发现层级关系存在显著方向性不对称。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">This paper uses linear probing, sparse autoencoders, and activation patching to reveal how and where LLMs encode four semantic relations (synonymy, antonymy, hypernymy, hyponymy), uncovering a directional asymmetry between hypernymy and hyponymy.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">本文首次将探针分析与稀疏特征方法联合应用于多尺度模型的语义关系研究，为机制可解释性领域提供了新范式。上位关系冗余编码、下位关系易被消融破坏的发现，对知识图谱构建和本体感知NLP系统具有实际价值。</div>
+            <div class="en">This work advances mechanistic interpretability by providing the first joint analysis of probing and sparse feature methods for semantic relations across models of different scales. The finding that hypernymy is redundantly encoded while hyponymy relies on compact, ablation-sensitive features has direct implications for knowledge graph construction and ontology-aware NLP systems. It also establishes a replicable methodology for comparing how structured knowledge is distributed across LLM architectures.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">大语言模型是否在内部编码了结构化语义关系？若有，这些关系在哪些层与组件中如何表示？厘清这一问题对提升模型可解释性与语义推理能力至关重要。</div>
+            <div class="en">Do LLMs internally encode structured semantic relations such as synonymy, antonymy, hypernymy, and hyponymy, and if so, where and how are these relations represented across layers and components? This question matters because understanding the internal geometry of relational knowledge is crucial for improving model interpretability, reliability, and downstream semantic reasoning tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">已有研究多依赖行为探针或嵌入空间分析，无法定位具体负责语义关系的特征或回路。稀疏自编码器等机制可解释性工具此前鲜少用于结构化词汇语义关系分析，且大多数研究仅聚焦单一模型规模，难以进行跨规模比较。</div>
+            <div class="en">Prior work on semantic relation encoding in LLMs has mostly relied on behavioral probing or embedding-space analyses, which reveal correlational patterns but cannot pinpoint the specific features or circuits responsible. Mechanistic interpretability tools like sparse autoencoders have been applied to factual recall and syntax, but rarely to structured lexical-semantic relations. Additionally, most studies focus on a single model scale, making cross-scale comparisons and generalization claims difficult.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">研究对Pythia-70M、GPT-2和Llama 3.1 8B三个模型依次应用线性探针定位语义关系信号的峰值层，再用稀疏自编码器识别各关系类型的单义特征，并通过激活修补验证因果必要性，从而区分&#34;可探测&#34;与&#34;因果编码&#34;两个层面。</div>
+            <div class="en">The authors study three LLMs of increasing scale — Pythia-70M, GPT-2, and Llama 3.1 8B — and apply linear probing to measure where semantic relation signals peak across layers. They use sparse autoencoders (SAEs) to identify monosemantic features specifically active for each relation type, and activation patching to test the causal necessity of those features. This combined pipeline distinguishes between where relations are merely detectable and where they are causally encoded.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">语义关系信号在中间层达到峰值，在残差后/MLP路径中强于注意力头。反义关系最易探测，同义关系最难，此难度排序在三个模型中一致。上位关系冗余分布于多个特征、抗消融，而下位关系依赖紧凑局部特征、易被破坏，呈现明显的方向性不对称。</div>
+            <div class="en">Relation signals peak consistently in mid-layers and are stronger in post-residual/MLP pathways than in attention heads. Antonymy is the easiest relation to probe, while synonymy is hardest — a difficulty ranking that holds across all three model scales. Critically, hypernymy is encoded redundantly across many features and resists ablation, whereas hyponymy relies on compact, localized features that are easily disrupted, revealing a directional asymmetry in hierarchical semantic encoding.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>上</li><li>位</li><li>与</li><li>下</li><li>位</li><li>关</li><li>系</li><li>的</li><li>编</li><li>码</li><li>不</li><li>对</li><li>称</li><li>（</li><li>冗</li><li>余</li><li>v</li><li>s</li><li>.</li><li>紧</li><li>凑</li><li>）</li><li>暗</li><li>示</li><li>L</li><li>L</li><li>M</li><li>可</li><li>能</li><li>隐</li><li>式</li><li>反</li><li>映</li><li>了</li><li>分</li><li>类</li><li>层</li><li>级</li><li>的</li><li>不</li><li>对</li><li>称</li><li>性</li><li>，</li><li>但</li><li>这</li><li>究</li><li>竟</li><li>源</li><li>于</li><li>训</li><li>练</li><li>数</li><li>据</li><li>统</li><li>计</li><li>还</li><li>是</li><li>模</li><li>型</li><li>架</li><li>构</li><li>，</li><li>仍</li><li>有</li><li>待</li><li>探</li><li>究</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>反</li><li>义</li><li>最</li><li>易</li><li>、</li><li>同</li><li>义</li><li>最</li><li>难</li><li>的</li><li>难</li><li>度</li><li>排</li><li>序</li><li>在</li><li>三</li><li>个</li><li>规</li><li>模</li><li>模</li><li>型</li><li>中</li><li>一</li><li>致</li><li>，</li><li>表</li><li>明</li><li>这</li><li>可</li><li>能</li><li>是</li><li>分</li><li>布</li><li>式</li><li>共</li><li>现</li><li>统</li><li>计</li><li>的</li><li>内</li><li>在</li><li>属</li><li>性</li><li>，</li><li>而</li><li>非</li><li>模</li><li>型</li><li>规</li><li>模</li><li>效</li><li>应</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>S</li><li>A</li><li>E</li><li>与</li><li>探</li><li>针</li><li>联</li><li>合</li><li>分</li><li>析</li><li>虽</li><li>有</li><li>力</li><li>，</li><li>但</li><li>S</li><li>A</li><li>E</li><li>独</li><li>立</li><li>训</li><li>练</li><li>可</li><li>能</li><li>无</li><li>法</li><li>完</li><li>美</li><li>分</li><li>解</li><li>残</li><li>差</li><li>流</li><li>，</li><li>部</li><li>分</li><li>&#34;</li><li>特</li><li>征</li><li>&#34;</li><li>或</li><li>为</li><li>S</li><li>A</li><li>E</li><li>训</li><li>练</li><li>目</li><li>标</li><li>的</li><li>伪</li><li>影</li><li>，</li><li>而</li><li>非</li><li>模</li><li>型</li><li>真</li><li>实</li><li>的</li><li>内</li><li>部</li><li>表</li><li>示</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>The directional asymmetry between hypernymy and hyponymy — redundant vs. compact encoding — suggests LLMs may implicitly reflect the asymmetric nature of taxonomic hierarchies found in WordNet-style ontologies, though whether this emerges from training data statistics or architecture is still unclear.</li><li>The consistent difficulty ranking (antonymy easiest, synonymy hardest) across Pythia-70M, GPT-2, and Llama 3.1 8B implies that this pattern is not a scale artifact but may reflect fundamental properties of how distributional co-occurrence statistics capture these relations.</li><li>While the combination of probing and SAE analysis is powerful, SAEs are trained separately and may not perfectly decompose the residual stream, meaning some identified &#39;features&#39; could be artifacts of the SAE training objective rather than true model-internal representations.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.17624v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+    <details class="category-details" id="embodied_trends" open>
+      <summary>具身智能发展动态 <span style="font-weight:400;font-size:0.9rem;color:#64748b">/ Embodied Intelligence Development Trends</span>
+        <span style="margin-left:auto;font-size:0.8rem;font-weight:400;color:var(--muted)">2 篇</span>
+      </summary>
+      <div class="category-body">
+      
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">DexViTac是一个便携式以人为中心的数据采集系统，可同步采集视觉、高密度触觉和运动学数据，采集效率比机器人遥操...</div>
+        <div class="paper-title-en">DexViTac: Collecting Human Visuo-Tactile-Kinematic Demonstrations for Contact-Rich Dexterous Manipulation</div>
+        <div class="paper-meta">
+          <span>Xitong Chen, Yifeng Pan, Min Li et al.</span>
+          <span class="badge badge-date">2026-03-18</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>DexViTac是一个便携式以人为中心的数据采集系统，可同步采集视觉、高密度触觉和运动学数据，采集效率比机器人遥操作基线快24倍以上。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">DexViTac is a portable human-centric data collection system that captures synchronized vision, high-density tactile, and kinematic data for contact-rich dexterous manipulation, achieving 24× faster collection than robot teleoperation baselines.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">DexViTac直接解决了灵巧机器人学习中的触觉数据瓶颈，为接触密集型任务（如手内操作和装配）提供了关键支撑。超过2,400条多模态示范数据集为具身AI社区提供了宝贵资源，而基于运动学的触觉表示学习算法也具有超越硬件本身的通用价值。</div>
+            <div class="en">DexViTac directly addresses the tactile data bottleneck in dexterous robot learning, a gap that hinders progress on contact-rich tasks like in-hand manipulation and assembly. The 2,400+ demonstration dataset with synchronized visuo-tactile-kinematic modalities provides a concrete resource for the embodied AI community. The kinematics-grounded tactile representation offers a transferable algorithmic contribution beyond the hardware itself.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">接触密集型灵巧操作需要丰富的触觉反馈，但现有以人为中心的数据采集系统仅能捕捉视觉和运动学信息，缺失对理解物理交互至关重要的触觉信号，从而限制了训练机器人策略的示范数据质量。</div>
+            <div class="en">Contact-rich dexterous manipulation requires rich tactile feedback, yet existing human-centric data collection systems capture only vision and kinematics, missing the tactile signals critical for understanding physical interactions. This gap limits the quality and applicability of demonstrations for training robot policies on tasks involving grasping, in-hand re-orientation, or assembly.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">机器人遥操作系统（如ACT、ALOHA）扩展性差且需要专业操作员；DexPilot等手套系统仅采集运动学信息，完全忽略触觉数据；配备触觉传感器的机器人手造价高昂且局限于实验室，难以在真实场景中大规模采集数据。</div>
+            <div class="en">Robot teleoperation systems (e.g., ACT, ALOHA) are slow to scale and require expert operators, while human-worn glove systems like DexPilot and MANUS capture kinematics but omit tactile data entirely. Tactile-equipped robot hands exist but are expensive, fragile, and confined to lab settings, making large-scale in-the-wild collection impractical.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">DexViTac将第一人称RGB相机、指尖高密度触觉传感器阵列和基于IMU的手部运动学追踪集成为单一可穿戴设备，支持非结构化环境中的操作。系统同步记录自我中心视频、指尖接触压力图、末端执行器位姿和完整手部关节角度。提出的基于运动学的触觉表示学习算法通过融合手部姿态上下文消除触觉信号的语义歧义，从而实现大规模、高保真的多模态示范采集。</div>
+            <div class="en">DexViTac integrates a first-person RGB camera, high-density tactile sensor arrays on fingertips, and IMU-based hand kinematic tracking into a single wearable, portable device operable in unstructured environments. The system records synchronized multimodal streams: egocentric video, fingertip contact pressure maps, end-effector poses, and full hand joint angles. A kinematics-grounded tactile representation learning algorithm is proposed to disambiguate tactile signals by conditioning on hand pose context, resolving the semantic ambiguity where identical pressure patterns can correspond to different manipulation intents. Together, these contributions enable scalable, in-the-wild collection of high-fidelity multimodal demonstrations.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">与机器人遥操作基线相比，DexViTac的数据采集效率超过24倍，并构建了包含超过2,400条视觉-触觉-运动学示范的多模态数据集。基于运动学的触觉表示在下游操作策略基准上优于纯触觉编码器，验证了位姿条件触觉特征能有效降低歧义并提升任务成功率。</div>
+            <div class="en">DexViTac achieves a data collection efficiency exceeding 24× compared to robot teleoperation baselines, enabling the construction of a dataset with over 2,400 visuo-tactile-kinematic demonstrations. The kinematics-grounded tactile representation outperforms tactile-only encoders on downstream manipulation policy benchmarks, demonstrating that pose-conditioned tactile features reduce ambiguity and improve task success rates.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>人机形态鸿沟：示范由人手采集，但策略需在运动学和传感器布局不同的机器人手上执行，论文对跨形态迁移的具体方案描述不够充分。</li><li>触觉传感器耐用性与标定：高密度指尖触觉阵列易磨损且需定期标定，论文未充分评估其在不同用户和环境下的长期可靠性，这对真正可扩展的野外采集至关重要。</li><li>数据集多样性与任务覆盖：2,400条示范是良好起点，但任务类型、物体类别和环境条件的覆盖范围尚不明确，与DexArt、DexYCB等现有数据集的对比基准测试将进一步强化泛化性主张。</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Embodiment gap: Demonstrations are collected from human hands, but policies must be executed on robot hands with different kinematics and sensor placements — the paper does not fully detail how this morphological mismatch is bridged during policy transfer.</li><li>Tactile sensor durability and calibration: High-density fingertip tactile arrays are sensitive to wear and require calibration; long-term reliability across diverse users and environments is not extensively evaluated, which is critical for truly scalable in-the-wild collection.</li><li>Dataset diversity and task scope: With 2,400 demonstrations, the dataset is a solid starting point, but coverage of task types, object categories, and environmental conditions is not fully characterized — broader benchmarking against existing datasets (e.g., DexArt, DEXYCB) would strengthen generalizability claims.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.17851v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      
+      <div class="paper-card">
+        <div class="paper-title">KineVLA提出双层动作分解框架，将方向、轨迹、姿态等运动学属性显式编码进VLA模型，实现细粒度个性化机器人操作。</div>
+        <div class="paper-title-en">KineVLA: Towards Kinematics-Aware Vision-Language-Action Models with Bi-Level Action Decomposition</div>
+        <div class="paper-meta">
+          <span>Gaoge Han, Zhengqing Gao, Ziwen Li et al.</span>
+          <span class="badge badge-date">2026-03-18</span>
+          
+          
+        </div>
+
+        <div class="tldr">
+          <div class="tldr-label">核心贡献</div>
+          <div>KineVLA提出双层动作分解框架，将方向、轨迹、姿态等运动学属性显式编码进VLA模型，实现细粒度个性化机器人操作。</div>
+          <div style="color:#64748b;font-size:0.9rem;margin-top:0.4rem">KineVLA introduces a bi-level action decomposition framework that explicitly encodes dense kinematic attributes (direction, trajectory, orientation, displacement) into VLA models, enabling fine-grained and personalized robot manipulation.</div>
+        </div>
+
+        <details open>
+          <summary>重要性与意义 / Significance</summary>
+          <div class="detail-content">
+            <div class="zh">KineVLA弥合了语言指令与底层运动执行之间的鸿沟，使机器人能遵循轨迹级个性化指令。这对工业和辅助机器人领域具有重要实用价值，所构建的仿真与真实世界数据集也为社区提供了可复用的基准。</div>
+            <div class="en">KineVLA fills a critical gap in embodied AI by bridging high-level language instructions with low-level kinematic execution, enabling robots to follow personalized trajectory-level commands rather than just task-level goals. This has direct implications for industrial and assistive robotics where execution style and path precision matter. The proposed kinematics-aware dataset spanning simulation and real-world settings also provides a reusable benchmark for the community.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>科研问题 / Research Question</summary>
+          <div class="detail-content">
+            <div class="zh">现有VLA模型的动作指令仅粗略编码运动学信息，无法区分&#34;做什么&#34;与&#34;如何运动&#34;。KineVLA研究如何在保持任务目标不变的前提下，使模型响应细粒度的运动学规格指令，实现执行轨迹的个性化。</div>
+            <div class="en">Existing VLA models receive action instructions that encode kinematic attributes only coarsely — specifying what to do but not how to move (e.g., direction, curvature, orientation). This limits personalization: two robots given the same task goal cannot differ in execution trajectory based on user preference. KineVLA asks how to make VLA models respond to dense, instruction-level kinematic specifications while keeping task goals invariant.</div>
+          </div>
+        </details>
+        <details>
+          <summary>先前工作为何不够 / Why Prior Work Falls Short</summary>
+          <div class="detail-content">
+            <div class="zh">RT-2、OpenVLA等现有VLA模型仅编码粗粒度任务语义，忽视轨迹形状和姿态等运动学细节。引入运动约束的方法多依赖手工先验或独立规划器，缺乏端到端语言对齐。此前也无数据集对操作任务全程进行密集运动学标注。</div>
+            <div class="en">Existing VLA models such as RT-2 and OpenVLA treat language instructions as task-level directives, capturing coarse action semantics but ignoring kinematic details like trajectory shape or approach orientation. Methods that do incorporate motion constraints typically rely on hand-crafted priors or separate motion planners, lacking end-to-end language grounding. No prior dataset systematically annotates dense kinematic attributes across the full execution timeline of manipulation tasks.</div>
+          </div>
+        </details>
+        <details>
+          <summary>解决方案 / Solution</summary>
+          <div class="detail-content">
+            <div class="zh">KineVLA通过双层动作表示将目标级不变性与运动学级可变性解耦，并设计双层推理令牌作为显式监督中间变量，对齐语言描述与动作输出。语言指令在关键时刻密集标注方向、轨迹、姿态和相对位移等属性。同时构建了覆盖仿真与真实世界的运动学感知VLA数据集。</div>
+            <div class="en">KineVLA introduces a bi-level action representation that separates goal-level invariance (what to achieve) from kinematics-level variability (how to move), modeled via two distinct sets of reasoning tokens. These bi-level reasoning tokens serve as explicit, supervised intermediate variables that align dense kinematic language descriptions with action outputs. Language commands in the proposed setting densely annotate kinematic attributes — direction, trajectory, orientation, relative displacement — at key moments from start to completion. A new kinematics-aware VLA dataset is constructed across both simulation and real-world environments to train and evaluate the framework.</div>
+          </div>
+        </details>
+        <details>
+          <summary>主要结论 / Key Results</summary>
+          <div class="detail-content">
+            <div class="zh">KineVLA在仿真和真实操作任务中的细粒度运动学指令跟随性能优于基线VLA模型。双层推理令牌在轨迹合规性上带来可量化提升，验证了显式运动学监督的有效性。具体数值未在摘要中完整披露，但在多种运动学属性组合上均有验证。</div>
+            <div class="en">KineVLA demonstrates improved performance on fine-grained kinematic instruction following compared to baseline VLA models in both simulated and real-world manipulation tasks. The bi-level reasoning tokens provide measurable gains in trajectory compliance, showing that explicit kinematic supervision bridges the language-action gap more effectively than end-to-end approaches. Specific numerical results are not fully disclosed in the abstract, but the framework is validated across diverse kinematic attribute combinations.</div>
+          </div>
+        </details>
+        <details>
+          <summary>值得关注的讨论点 / Discussion Points</summary>
+          <div class="detail-content">
+            <div class="zh">
+              <ul class="discussion-list"><li>[</li><li>&#34;</li><li>密</li><li>集</li><li>运</li><li>动</li><li>学</li><li>标</li><li>注</li><li>的</li><li>规</li><li>模</li><li>化</li><li>问</li><li>题</li><li>：</li><li>逐</li><li>时</li><li>刻</li><li>标</li><li>注</li><li>运</li><li>动</li><li>学</li><li>属</li><li>性</li><li>成</li><li>本</li><li>较</li><li>高</li><li>，</li><li>在</li><li>长</li><li>时</li><li>域</li><li>或</li><li>非</li><li>结</li><li>构</li><li>化</li><li>环</li><li>境</li><li>中</li><li>的</li><li>扩</li><li>展</li><li>性</li><li>尚</li><li>不</li><li>明</li><li>确</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>对</li><li>未</li><li>见</li><li>运</li><li>动</li><li>学</li><li>组</li><li>合</li><li>的</li><li>泛</li><li>化</li><li>：</li><li>模</li><li>型</li><li>基</li><li>于</li><li>预</li><li>定</li><li>义</li><li>属</li><li>性</li><li>词</li><li>汇</li><li>训</li><li>练</li><li>，</li><li>面</li><li>对</li><li>新</li><li>颖</li><li>或</li><li>矛</li><li>盾</li><li>指</li><li>令</li><li>（</li><li>如</li><li>&#34;</li><li>慢</li><li>速</li><li>走</li><li>锐</li><li>弯</li><li>&#34;</li><li>）</li><li>的</li><li>处</li><li>理</li><li>能</li><li>力</li><li>有</li><li>待</li><li>验</li><li>证</li><li>。</li><li>&#34;</li><li>,</li><li> </li><li>&#34;</li><li>与</li><li>感</li><li>知</li><li>不</li><li>确</li><li>定</li><li>性</li><li>的</li><li>结</li><li>合</li><li>：</li><li>框</li><li>架</li><li>假</li><li>设</li><li>语</li><li>言</li><li>-</li><li>运</li><li>动</li><li>学</li><li>对</li><li>齐</li><li>清</li><li>晰</li><li>，</li><li>但</li><li>真</li><li>实</li><li>部</li><li>署</li><li>中</li><li>感</li><li>知</li><li>噪</li><li>声</li><li>和</li><li>指</li><li>令</li><li>歧</li><li>义</li><li>对</li><li>鲁</li><li>棒</li><li>性</li><li>构</li><li>成</li><li>挑</li><li>战</li><li>。</li><li>&#34;</li><li>]</li></ul>
+            </div>
+            <div class="en">
+              <ul class="discussion-list"><li>Scalability of dense kinematic annotation: constructing datasets with dense, timestep-level kinematic labels is labor-intensive; it remains unclear how annotation cost scales to more complex, long-horizon tasks or unstructured environments.</li><li>Generalization to unseen kinematic combinations: the model is trained on predefined kinematic attribute vocabularies — how it handles novel or contradictory kinematic instructions (e.g., &#39;move slowly in a sharp arc&#39;) at test time is not addressed.</li><li>Integration with perception uncertainty: the framework assumes clean language-kinematic grounding, but real deployments face noisy perception and ambiguous user commands; robustness to such uncertainty is an open challenge.</li></ul>
+            </div>
+          </div>
+        </details>
+
+        <a class="paper-link" href="http://arxiv.org/abs/2603.17524v1" target="_blank">查看原文 →</a>
+      </div>
+      
+      
+      </div>
+    </details>
+    
+  </div>
+  <footer>Generated by DailyPaper · Powered by Claude AI · 2026-03-20</footer>
+</body>
+</html>
